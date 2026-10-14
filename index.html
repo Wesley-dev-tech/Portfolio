@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Wesley Bogaerts - Portfolio</title>
+
+    <!-- Bootstrap, Font Awesome en lettertype -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico">
+</head>
+
+<body>
+    <a class="skip-link" href="#inhoud">Ga naar de inhoud</a>
+
+    <!-- Navigatie -->
+    <header>
+        <nav class="site-nav container-fluid d-flex align-items-center justify-content-between flex-wrap gap-3"
+            aria-label="Hoofdnavigatie">
+            <a class="logo" href="#home">
+                <img src="favicon.ico" alt="">
+                <span>Portfolio Wesley Bogaerts</span>
+            </a>
+
+            <input type="checkbox" id="menu-toggle" aria-label="Menu openen of sluiten" aria-controls="menu">
+
+            <label for="menu-toggle" class="menu-button">
+                <i class="fa-solid fa-bars" aria-hidden="true"></i>
+            </label>
+
+            <ul class="nav-links d-xl-flex flex-column flex-xl-row" id="menu">
+                <li>
+                    <a href="#home">
+                        <i class="fa-solid fa-house" aria-hidden="true"></i> Home
+                    </a>
+                </li>
+                <li>
+                    <a href="#about">
+                        <i class="fa-solid fa-user" aria-hidden="true"></i> Over mij
+                    </a>
+                </li>
+                <li>
+                    <a href="#education">
+                        <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Opleiding
+                    </a>
+                </li>
+                <li>
+                    <a href="#skills">
+                        <i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i> Vaardigheden
+                    </a>
+                </li>
+                <li>
+                    <a href="#projects">
+                        <i class="fa-solid fa-folder-open" aria-hidden="true"></i> Projecten
+                    </a>
+                </li>
+                <li>
+                    <a href="#contact">
+                        <i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Contact
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="inhoud">
+
+        <!-- Intro -->
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <h1>Hallo, ik ben <span>Wesley Bogaerts</span></h1>
+
+                <p class="hero-subtitle">
+                    Student Full Stack &amp; AI Automation Developer met een passie
+                    voor technologie, programmeren en innovatieve digitale oplossingen.
+                </p>
+
+                <p>
+                    Momenteel verdiep ik mij verder in softwareontwikkeling,
+                    webdevelopment en artificiële intelligentie. Op dit portfolio
+                    ontdek je mijn projecten, vaardigheden en mijn groei binnen IT.
+                </p>
+
+                <div class="hero-buttons d-flex flex-column flex-sm-row justify-content-center gap-3">
+                    <a class="btn" href="#projects">
+                        <i class="fa-solid fa-rocket" aria-hidden="true"></i>
+                        Bekijk mijn projecten
+                    </a>
+
+                    <a class="btn btn-secondary" href="#contact">
+                        <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+                        Neem contact op
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Over mij -->
+        <section class="section about" id="about">
+            <div class="container narrow">
+                <h2 class="section-title">Over mij</h2>
+
+                <p>
+                    Met een achtergrond in accounting en een grote passie voor IT
+                    combineer ik analytisch inzicht met een sterke interesse in technologie.
+                </p>
+
+                <p>
+                    Momenteel volg ik de opleiding
+                    <strong>Full Stack &amp; AI Automation aan SyntraPXL</strong>,
+                    waar ik mijn kennis van programmeren, softwareontwikkeling,
+                    webdevelopment en AI automation verder uitbreid.
+                </p>
+
+                <p>
+                    Ik vind het boeiend om nieuwe technologieën te ontdekken en deze
+                    kennis om te zetten in praktische toepassingen. Door mijn opleiding
+                    en persoonlijke projecten blijf ik mezelf uitdagen en werk ik
+                    voortdurend aan mijn groei.
+                </p>
+            </div>
+        </section>
+
+        <!-- Opleiding -->
+        <section class="section education" id="education">
+            <div class="container">
+                <h2 class="section-title">Mijn opleiding</h2>
+
+                <article class="education-card d-flex flex-column flex-sm-row gap-4">
+                    <div class="education-icon d-flex align-items-center justify-content-center">
+                        <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
+                    </div>
+
+                    <div>
+                        <span class="education-label">Momenteel studerend</span>
+                        <h3>Full Stack &amp; AI Automation</h3>
+                        <h4>SyntraPXL</h4>
+
+                        <p>
+                            Tijdens deze opleiding ontwikkel ik mijn vaardigheden in
+                            full stack development, programmeren, webtechnologieën en
+                            artificiële intelligentie. Ik leer technische kennis te
+                            combineren met praktische toepassingen en automatisatie.
+                        </p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Vaardigheden -->
+        <section class="section skills" id="skills">
+            <div class="container">
+                <h2 class="section-title">Mijn vaardigheden</h2>
+
+                <div class="skills-grid row g-4 justify-content-center">
+
+                    <div class="col-12 col-md-6 col-xl-3 d-flex justify-content-center">
+                        <article class="skill-card">
+                            <i class="fa-brands fa-html5" aria-hidden="true"></i>
+                            <h3>HTML</h3>
+                            <p>Semantische, duidelijke en toegankelijke webstructuren.</p>
+                        </article>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-xl-3 d-flex justify-content-center">
+                        <article class="skill-card">
+                            <i class="fa-brands fa-css3-alt" aria-hidden="true"></i>
+                            <h3>CSS</h3>
+                            <p>Moderne layouts, styling, Flexbox, Grid en responsive design.</p>
+                        </article>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-xl-3 d-flex justify-content-center">
+                        <article class="skill-card">
+                            <i class="fa-solid fa-sitemap" aria-hidden="true"></i>
+                            <h3>Database<wbr>normalisatie</h3>
+                            <p>Gegevens logisch structureren en dubbele gegevens beperken.</p>
+                        </article>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-xl-3 d-flex justify-content-center">
+                        <article class="skill-card">
+                            <i class="fa-solid fa-database" aria-hidden="true"></i>
+                            <h3>MySQL</h3>
+                            <p>Werken met relationele databases en SQL-query's.</p>
+                        </article>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Projecten -->
+        <section class="section projects" id="projects">
+            <div class="container">
+                <h2 class="section-title">Mijn projecten</h2>
+
+                <div class="projects-grid d-flex flex-column flex-md-row flex-wrap gap-4">
+
+                    <article class="project-card">
+                        <div class="project-icon d-flex align-items-center justify-content-center">
+                            <i class="fa-solid fa-laptop-code" aria-hidden="true"></i>
+                        </div>
+
+                        <h3>Portfolio</h3>
+
+                        <p>
+                            Een moderne en responsive portfoliowebsite waarin ik mijn
+                            opleiding, vaardigheden, projecten en ontwikkeling als
+                            developer voorstel.
+                        </p>
+
+                        <div class="project-tags d-flex flex-wrap justify-content-center gap-2">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                        </div>
+                    </article>
+
+
+                    <article class="project-card">
+                        <div class="project-icon d-flex align-items-center justify-content-center">
+                            <i class="fa-solid fa-car" aria-hidden="true"></i>
+                        </div>
+                        <h3>Polestar 6</h3>
+                        <p>Mijn eerste opleidingsproject: een opgegeven Polestar-pagina namaken met HTML en CSS. Ik oefende met Flexbox, afbeeldingen en het opbouwen van een lay-out.</p>
+                        <div class="project-tags d-flex flex-wrap justify-content-center gap-2">
+                            <span>HTML</span><span>CSS</span><span>Flexbox</span>
+                        </div>
+                        <a class="btn mt-4" href="projecten/polestar/index.html" target="_blank" rel="noopener noreferrer">Bekijk project ↗</a>
+                        <a class="btn btn-secondary mt-4" href="https://github.com/Wesley-dev-tech/polestar" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github" aria-hidden="true"></i> Code bekijken</a>
+                    </article>
+
+                    <button class="project-card project-button" type="button" popovertarget="demo"
+                        aria-haspopup="dialog" aria-label="Bekijk animatie: Geanimeerde browsermockup">
+                        <span class="project-icon d-flex align-items-center justify-content-center">
+                            <i class="fa-solid fa-window-maximize" aria-hidden="true"></i>
+                        </span>
+
+                        <span class="card-title">Geanimeerde browsermockup</span>
+
+                        <span class="card-text">
+                            Een browservenster met een bewegende cursor en een
+                            scrollanimatie, volledig gemaakt met HTML en CSS.
+                        </span>
+
+                        <span class="project-tags d-flex flex-wrap justify-content-center gap-2">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>Animatie</span>
+                        </span>
+
+                        <span class="btn">Bekijk animatie ↗</span>
+                    </button>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Projectvenster -->
+    <div class="demo" id="demo" popover role="dialog" aria-labelledby="demo-title">
+
+        <button class="close d-flex align-items-center justify-content-center" type="button" popovertarget="demo"
+            popovertargetaction="hide" aria-label="Sluiten" autofocus>
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
+
+        <h2 id="demo-title">Geanimeerde browsermockup</h2>
+        <p>Mijn project: een browserpreview met een CSS-cursor en scrollanimatie.</p>
+
+        <input type="checkbox" id="motion" checked>
+        <label for="motion">Animatie afspelen</label>
+
+        <div class="browser">
+            <div class="browser-bar d-flex align-items-center gap-3">
+                <span aria-hidden="true">● ● ●</span>
+                <span class="address flex-grow-1">wesley / portfolio</span>
+            </div>
+
+            <svg viewBox="0 0 640 360" aria-hidden="true">
+                <defs>
+                    <clipPath id="screen">
+                        <rect y="44" width="640" height="316" />
+                    </clipPath>
+                </defs>
+
+                <rect width="640" height="360" fill="var(--bg-darker)" />
+
+                <g clip-path="url(#screen)">
+                    <g class="page">
+
+                        <!-- Intro -->
+                        <rect y="44" width="640" height="316" fill="var(--bg-darker)" />
+                        <rect x="210" y="100" width="220" height="16" rx="4" fill="var(--text-color)" />
+                        <rect x="170" y="132" width="300" height="20" rx="4" fill="var(--accent-color)" />
+                        <path d="M150 182H490M180 198H460" stroke="var(--text-muted)" stroke-width="5" />
+
+                        <rect x="202" y="220" width="124" height="30" rx="6" fill="var(--primary-color)" />
+                        <rect x="338" y="220" width="100" height="30" rx="6" fill="none" stroke="var(--accent-color)" />
+                        <path d="M220 235H308M354 235H422" stroke="var(--text-color)" stroke-width="4" />
+
+                        <!-- Projectkaart -->
+                        <rect y="360" width="640" height="360" fill="var(--bg-darker)" />
+                        <rect x="254" y="390" width="132" height="12" rx="3" fill="var(--text-color)" />
+                        <rect x="140" y="438" width="360" height="220" rx="12" fill="var(--card-bg)"
+                            stroke="var(--border-color)" />
+
+                        <path d="m306 480-12 12 12 12m28-24 12 12-12 12" fill="none" stroke="var(--accent-color)"
+                            stroke-width="4" />
+
+                        <rect x="276" y="530" width="88" height="10" rx="3" fill="var(--text-color)" />
+                        <path d="M190 566H450M220 582H420" stroke="var(--text-muted)" stroke-width="5" />
+                        <rect x="250" y="612" width="64" height="20" rx="10" fill="var(--primary-color)" />
+                        <rect x="326" y="612" width="64" height="20" rx="10" fill="var(--primary-color)" />
+                    </g>
+                </g>
+
+                <!-- Vaste navigatie -->
+                <rect width="640" height="44" fill="var(--bg-dark)" />
+                <path d="M24 22H150M420 22H460M480 22H520M540 22H580" stroke="var(--text-muted)" stroke-width="5" />
+
+                <!-- Cursor -->
+                <path class="cursor" d="M0 0V20L5 15L9 24L13 22L9 14L16 13Z" fill="var(--text-color)"
+                    stroke="var(--bg-darker)" stroke-width="2" />
+            </svg>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <h2>Neem contact op</h2>
+
+            <p class="footer-intro">
+                Interesse in mijn projecten of zie je mogelijkheden voor een
+                samenwerking? Neem gerust contact met mij op.
+            </p>
+
+            <div
+                class="contact-details d-flex flex-column flex-sm-row flex-wrap align-items-center justify-content-center gap-4">
+                <a href="mailto:wesleybogaerts@hotmail.com">
+                    <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                    <span>wesleybogaerts@hotmail.com</span>
+                </a>
+
+                <a href="tel:+32472254248">
+                    <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                    <span>+32 (0)472 25 42 48</span>
+                </a>
+
+                <a href="https://maps.google.com/?q=Balen" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                    <span>Balen, België</span>
+                </a>
+            </div>
+
+            <div class="social-links d-flex justify-content-center gap-4">
+                <a href="https://github.com/Wesley-dev-tech" target="_blank" rel="noopener noreferrer"
+                    aria-label="GitHub">
+                    <i class="fa-brands fa-github" aria-hidden="true"></i>
+                </a>
+
+                <a href="https://www.linkedin.com/in/wesley-bogaerts/" target="_blank" rel="noopener noreferrer"
+                    aria-label="LinkedIn">
+                    <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+                </a>
+            </div>
+
+            <p class="copyright">
+                &copy; 2026 Wesley Bogaerts - Developer Portfolio
+            </p>
+        </div>
+    </footer>
+</body>
+
+</html>
