@@ -33,7 +33,6 @@ Download the files and open `index.html` in a browser. An internet connection is
 - `index.html`: the complete product page and Tailwind utility classes.
 - `airpods.jpeg`: the product image supplied with the project.
 - `README.md`: project documentation.
-- `.gitattributes`: hides automatic language statistics on GitHub.
 
 ## About This Version
 

@@ -29,7 +29,6 @@ Download the files and open `index.html` in a browser. Keep `style.css` in the s
 - `index.html`: the browser frame, SVG illustration and animation checkbox.
 - `style.css`: colours, layout, keyframes and reduced-motion support.
 - `README.md`: project documentation.
-- `.gitattributes`: hides automatic language statistics on GitHub.
 
 ## What I Practised
 
