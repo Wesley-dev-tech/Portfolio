@@ -1,6 +1,6 @@
 # Portfolio Wesley Bogaerts
 
-Mijn persoonlijke developerportfolio met mijn opleiding, vaardigheden en projecten. Gebouwd met HTML, CSS, Bootstrap, Flexbox en Font Awesome, zonder JavaScript.
+Mijn persoonlijke developerportfolio met mijn opleiding, vaardigheden en projecten. Gebouwd met HTML, CSS, Bootstrap, Flexbox en Font Awesome icons.
 
 ## Bekijken
 Open index.html in een browser. Voor Bootstrap, Font Awesome en het lettertype is een internetverbinding nodig.
