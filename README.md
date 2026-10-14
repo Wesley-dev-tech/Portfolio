@@ -12,6 +12,7 @@ Open `index.html` in a browser. An internet connection is required to load Boots
 - Polestar 6: my original first course assignment, accessible through its project card.
 - Halloween registration page: my second course project, built with Bootstrap Grid, Google Fonts and Font Awesome icons.
 - Crossword puzzle: my third course project, a static layout built with Bootstrap Grid.
+- Tailwind product page: my fourth course project, an AirPods product card styled with Tailwind CSS.
 - Animated browser mockup featuring a CSS cursor and scrolling animation.
 
 ## Files
@@ -23,6 +24,9 @@ Open `index.html` in a browser. An internet connection is required to load Boots
 
 - `projecten/halloween/`: the Halloween registration page and its English README.
 - `projecten/kruiswoordraadsel/`: the crossword puzzle layout and its English README.
+- `projecten/tailwind/`: the Tailwind product page, product image and English README.
+
+The Tailwind product page is a visual demo with sample product information and no purchase or payment functionality. It loads Tailwind through a CDN script.
 
 The crossword puzzle is a static layout exercise with no input fields or answer validation.
 

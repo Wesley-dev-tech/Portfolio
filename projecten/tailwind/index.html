@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AirPods Productcard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body class="bg-gray-100 flex justify-center items-center min-h-screen">
+
+    <!-- Productcard -->
+    <div class="bg-white rounded-3xl shadow-lg overflow-hidden w-72">
+
+        <!-- Productafbeelding -->
+        <div class="bg-gray-50 p-6">
+            <img src="airpods.jpeg" alt="Apple AirPods" class="w-full h-40 object-contain">
+        </div>
+
+        <!-- Productinformatie -->
+        <div class="p-3">
+
+            <p class="text-sm text-red-500 font-bold">
+                NIEUW
+            </p>
+
+            <h2 class="text-2xl font-bold mt-3">
+                Apple AirPods Pro3
+            </h2>
+
+            <p class="text-gray-800 mt-2">
+                Geweldig geluid. Comfortabel ontworpen.
+                Perfect voor elke dag.
+            </p>
+
+            <!-- Prijs -->
+            <div class="my-5">
+                <span class="text-2xl font-bold text-green-600">
+                    € 249
+                </span>
+            </div>
+
+            <!-- Plus- en minpunten -->
+            <div class="mt-3 space-y-3">
+                <div class="space-y-2">
+                    <h3 class="font-bold text-black-700">Voordelen</h3>
+                    <ul class="space-y-3 text-sm text-gray-700">
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-circle-check text-green-600 mt-1"></i>
+                            <span>Compact en comfortabel om te dragen</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-circle-check text-green-600 mt-1"></i>
+                            <span>Draadloos luisteren zonder kabels</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-circle-check text-green-600 mt-1"></i>
+                            <span>Eenvoudig te gebruiken met Apple-apparaten</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="space-y-2">
+                    <h3 class="font-bold text-black-700">Nadelen</h3>
+                    <ul class="space-y-3 text-sm text-gray-700">
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-circle-xmark text-red-600 mt-1"></i>
+                            <span>Relatief hoge aanschafprijs</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-circle-xmark text-red-600 mt-1"></i>
+                            <span>Werken het best binnen het Apple-ecosysteem</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-circle-xmark text-red-600 mt-1"></i>
+                            <span>De batterij moet regelmatig worden opgeladen</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Knop -->
+            <button class="w-full mt-5 bg-black text-white py-3 rounded-full hover:bg-gray-800 transition">
+                Koop nu
+            </button>
+
+        </div>
+    </div>
+
+</body>
+
+</html>
