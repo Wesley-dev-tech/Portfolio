@@ -413,10 +413,10 @@ header {
 #motion:not(:checked) ~ .browser .page { animation: none; }
 #motion:not(:checked) ~ .browser .cursor { display: none; }
 
-/* Mobiel menu zonder JavaScript */
+/* Mobiel menu */
 @media (max-width: 1199.98px) {
-    header { position: relative; }
-    html { scroll-padding-top: 20px; }
+    header { position: sticky; }
+    html { scroll-padding-top: 85px; }
 
     .menu-button {
         display: block;
