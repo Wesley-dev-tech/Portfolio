@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Halloween Party</title>
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        rel="stylesheet">
+
+    <!-- Google font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Creepster&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <style>
+
+        /* Achtergrond */
+        body {
+            background-color: #1a0d1f;
+        }
+
+        /* Paarse achtergrond */
+        .hero {
+            min-height: 100vh;
+            background-color: #1a0d1f;
+        }
+
+        /* Halloween lettertype */
+        .halloween {
+            font-family: "Creepster", cursive;
+        }
+
+        /* Wit formulier */
+        .box {
+            background-color: white;
+            border-radius: 20px;
+        }
+
+        /* Oranje tekst */
+        .orange {
+            color: #ff7518;
+        }
+
+        /* Oranje knop */
+        .button {
+            background-color: #ff7518;
+            color: white;
+        }
+
+        /* Knop bij hover */
+        .button:hover {
+            background-color: #d95b00;
+            color: white;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <!-- Achtergrond -->
+    <div class="hero">
+
+        <div class="container py-5">
+
+            <!-- Eerste rij -->
+            <div class="row align-items-center">
+
+
+                <!-- Linkerkolom -->
+                <div class="col-12 col-md-6 text-white text-center text-md-start">
+
+                    <!-- Hoofdtitel -->
+                    <h1 class="display-3 fw-bold halloween orange">
+
+                        <i class="fa-solid fa-ghost"></i>
+                        HALLOWEENTOCHT<br>
+                        31 OKTOBER 2026
+
+                    </h1>
+
+                    <h2 class="orange">
+                        Durf jij te komen?
+                    </h2>
+
+                    <p>
+                        Schrijf je in voor onze griezelige Halloweentocht!
+                    </p>
+
+
+                    <!-- Activiteiten -->
+                    <div class="d-flex flex-column gap-2">
+                        <div>
+                            <i class="fa-solid fa-ghost"></i>
+                            Griezelige sfeer
+                        </div>
+
+                        <div>
+                            <i class="fa-solid fa-spider"></i>
+                            Spooky activiteiten
+                        </div>
+
+                        <div>
+                            <i class="fa-solid fa-masks-theater"></i>
+                            Veel plezier
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- Rechterkolom -->
+                <div class="col-12 col-md-6">
+
+                    <!-- Inschrijfformulier -->
+                    <div class="box p-4 shadow">
+
+                        <h2 class="orange halloween">
+
+                            <i class="fa-solid fa-ghost"></i>
+                            Schrijf je in
+
+                        </h2>
+
+                        <p>
+                            Reserveer hier jouw plaats.
+                        </p>
+
+
+                        <!-- Tijdslot -->
+                        <label class="form-label">
+
+                            <i class="fa-solid fa-clock orange"></i>
+                            Kies een tijdslot
+
+                        </label>
+
+                        <select class="form-select mb-3">
+
+                            <option>Kies een tijdslot</option>
+                            <option>18:00 - 19:00</option>
+                            <option>19:00 - 20:00</option>
+                            <option>20:00 - 21:00</option>
+                            <option>21:00 - 22:00</option>
+                            <option>22:00 - 23:00</option>
+                            <option>23:00 - 00:00</option>
+
+                        </select>
+
+
+                        <!-- Prijzen -->
+                        <div class="d-flex flex-column flex-md-row gap-3 mb-3">
+
+
+                            <!-- Kind -->
+                            <div class="border rounded p-3 flex-fill">
+
+                                <h5 class="orange">
+
+                                    <i class="fa-solid fa-child"></i>
+                                    Kinderen
+
+                                </h5>
+
+                                <p class="mb-0">
+                                    €10
+                                </p>
+
+                            </div>
+
+
+                            <!-- Volwassene -->
+                            <div class="border rounded p-3 flex-fill">
+
+                                <h5 class="orange">
+
+                                    <i class="fa-solid fa-user"></i>
+                                    Volwassenen
+
+                                </h5>
+
+                                <p class="mb-0">
+                                    €15
+                                </p>
+
+                            </div>
+
+
+                            <!-- Senior -->
+                            <div class="border rounded p-3 flex-fill">
+
+                                <h5 class="orange">
+
+                                    <i class="fa-solid fa-person"></i>
+                                    Senioren
+
+                                </h5>
+
+                                <p class="mb-0">
+                                    €12
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Voornaam + naam -->
+                        <div class="d-flex flex-column flex-md-row gap-3">
+
+                            <input
+                                class="form-control"
+                                type="text"
+                                placeholder="Voornaam">
+
+                            <input
+                                class="form-control"
+                                type="text"
+                                placeholder="Naam">
+
+                        </div>
+
+
+                        <!-- E-mail + telefoon -->
+                        <div class="d-flex flex-column flex-md-row gap-3 mt-3">
+
+                            <input
+                                class="form-control"
+                                type="email"
+                                placeholder="E-mail">
+
+                            <input
+                                class="form-control"
+                                type="tel"
+                                placeholder="Telefoon">
+
+                        </div>
+
+
+                        <!-- Aantal + kostuum -->
+                        <div class="d-flex flex-column flex-md-row gap-3 mt-3">
+
+                            <select class="form-select">
+
+                                <option>Aantal personen</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+
+                            </select>
+
+
+                            <select class="form-select">
+
+                                <option>Kostuum?</option>
+                                <option>Ja</option>
+                                <option>Nee</option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- Bericht -->
+                        <textarea
+                            class="form-control mt-3"
+                            rows="3"
+                            placeholder="Bericht"></textarea>
+
+
+                        <!-- Inschrijfknop -->
+                        <button class="btn button w-100 mt-3">
+
+                            <i class="fa-solid fa-ticket"></i>
+                            Inschrijven
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Tweede rij -->
+            <div class="row text-center text-white mt-5">
+
+                <div class="col-12">
+
+                    <h2 class="halloween orange">
+
+
+                    <p>
+                        Trek je engste kostuum aan en kom naar onze Halloweentocht!
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-4">
+
+        <p class="mb-2">
+            Halloweentocht 2026
+        </p>
+
+        <p class="mb-0">
+
+            <a href="mailto:info@halloween.be" class="text-white text-decoration-none">
+                <i class="fa-solid fa-envelope"></i>
+                info@halloween.be
+            </a>
+
+            &nbsp;&nbsp;
+
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="text-white text-decoration-none">
+                <i class="fa-brands fa-instagram"></i>
+                Instagram
+            </a>
+
+            &nbsp;&nbsp;
+
+            <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" class="text-white text-decoration-none">
+                <i class="fa-brands fa-facebook"></i>
+                Facebook
+            </a>
+
+        </p>
+
+    </footer>
+
+</body>
+
+</html>

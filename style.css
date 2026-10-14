@@ -230,7 +230,7 @@ header {
 .skill-card h3 { margin-bottom: 10px; font-size: 1.2rem; }
 
 .project-card {
-    flex: 1 1 320px;
+    flex: 1 1 calc(50% - 12px);
     min-width: 0;
     width: 100%;
     padding: 40px;
