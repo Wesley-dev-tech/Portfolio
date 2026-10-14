@@ -22,8 +22,8 @@ Download the files and open `index.html` in a browser. No installation is requir
 
 ## About This Version
 
-This is my original course submission. The source files have been preserved as submitted to document the starting point of my development journey. Although Bootstrap was part of the assignment, this submitted version uses custom CSS and Flexbox. The page was primarily designed for desktop; the navigation links and pre-order button do not have any underlying functionality.
+This is my original course submission. The source files have been preserved as submitted to document the starting point of my development journey. The page was primarily designed for desktop; the navigation links and pre-order button do not have any underlying functionality.
 
 ## Attribution
 
-This is an educational recreation, not an official Polestar website. The brand name, logos and supplied images belong to their respective rights holders. The pre-order and copyright text shown in the demo is part of the recreated design. This attribution does not grant permission to reuse third-party materials.
+This is an educational recreation, not an official Polestar website. The brand name, logos and supplied images belong to their respective rights holders. The pre-order and copyright text shown in the demo is part of the recreated design.
