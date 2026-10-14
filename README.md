@@ -1,19 +1,22 @@
-# Portfolio Wesley Bogaerts
+# Wesley Bogaerts — Developer Portfolio
 
-Mijn persoonlijke developerportfolio met mijn opleiding, vaardigheden en projecten. Gebouwd met HTML, CSS, Bootstrap, Flexbox en Font Awesome icons.
+My personal developer portfolio showcasing my education, skills and projects. Built with HTML, CSS, Bootstrap, Flexbox and Font Awesome icons.
 
-## Bekijken
-Open index.html in een browser. Voor Bootstrap, Font Awesome en het lettertype is een internetverbinding nodig.
+## How to View
 
-## Projecten
-- Persoonlijk portfolio.
-- Polestar 6: mijn originele eerste opleidingsopdracht, bereikbaar via de projectkaart.
-- Geanimeerde browsermockup met CSS-cursor en scrollanimatie.
+Open `index.html` in a browser. An internet connection is required to load Bootstrap, Font Awesome and the font.
 
-## Bestanden
-- index.html: de portfoliopagina.
-- style.css: styling en animatie.
-- favicon.ico: het site-icoon.
-- projecten/polestar/: een ongewijzigde kopie van mijn Polestar-opdracht en een eigen README.
+## Projects
 
-De Polestar-demo is een educatief project en geen officiële website of werkend pre-ordersysteem.
+- Personal portfolio website.
+- Polestar 6: my original first course assignment, accessible through its project card.
+- Animated browser mockup featuring a CSS cursor and scrolling animation.
+
+## Files
+
+- `index.html`: the portfolio page.
+- `style.css`: styling and animation.
+- `favicon.ico`: the site icon.
+- `projecten/polestar/`: an unchanged copy of my original Polestar assignment, with its own README.
+
+The Polestar demo is an educational project, not an official website or a working pre-order system.
