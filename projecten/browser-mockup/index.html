@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Geanimeerde browsermockup</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="d-flex align-items-center justify-content-center">
+    <main class="mockup" aria-label="Geanimeerde browsermockup">
+
+        <input type="checkbox" id="motion" checked>
+        <label for="motion">Animatie afspelen</label>
+
+        <div class="browser">
+
+            <!-- Browserbalk -->
+            <div class="browser-bar d-flex align-items-center gap-3">
+                <span aria-hidden="true">● ● ●</span>
+                <span class="address flex-grow-1">demo / browser-mockup</span>
+            </div>
+
+            <!-- Schaalbare illustratie -->
+            <svg viewBox="0 0 640 360" aria-hidden="true">
+                <defs>
+                    <clipPath id="screen">
+                        <rect y="44" width="640" height="316" />
+                    </clipPath>
+                </defs>
+
+                <rect width="640" height="360" fill="var(--bg-darker)" />
+
+                <g clip-path="url(#screen)">
+                    <g class="page">
+
+                        <!-- Startscherm -->
+                        <rect y="44" width="640" height="316" fill="var(--bg-darker)" />
+
+                        <rect x="210" y="100" width="220" height="16" rx="4" fill="var(--text-color)" />
+                        <rect x="170" y="132" width="300" height="20" rx="4" fill="var(--accent-color)" />
+
+                        <path d="M150 182H490M180 198H460" stroke="var(--text-muted)" stroke-width="5" />
+
+                        <!-- Knoppen -->
+                        <rect x="202" y="220" width="124" height="30" rx="6" fill="var(--primary-color)" />
+                        <rect x="338" y="220" width="100" height="30" rx="6" fill="none" stroke="var(--accent-color)" />
+
+                        <path d="M220 235H308M354 235H422" stroke="var(--text-color)" stroke-width="4" />
+
+                        <!-- Kaart, zichtbaar na het scrollen -->
+                        <rect y="360" width="640" height="360" fill="var(--bg-darker)" />
+                        <rect x="254" y="390" width="132" height="12" rx="3" fill="var(--text-color)" />
+
+                        <rect x="140" y="438" width="360" height="220" rx="12" fill="var(--card-bg)"
+                            stroke="var(--border-color)" />
+
+                        <path d="m306 480-12 12 12 12m28-24 12 12-12 12" fill="none" stroke="var(--accent-color)"
+                            stroke-width="4" />
+
+                        <rect x="276" y="530" width="88" height="10" rx="3" fill="var(--text-color)" />
+
+                        <path d="M190 566H450M220 582H420" stroke="var(--text-muted)" stroke-width="5" />
+
+                        <rect x="250" y="612" width="64" height="20" rx="10" fill="var(--primary-color)" />
+                        <rect x="326" y="612" width="64" height="20" rx="10" fill="var(--primary-color)" />
+
+                    </g>
+                </g>
+
+                <!-- Vaste navigatie -->
+                <rect width="640" height="44" fill="var(--bg-dark)" />
+
+                <path d="M24 22H150M420 22H460M480 22H520M540 22H580" stroke="var(--text-muted)" stroke-width="5" />
+
+                <!-- Bewegende cursor -->
+                <path class="cursor" d="M0 0V20L5 15L9 24L13 22L9 14L16 13Z" fill="var(--text-color)"
+                    stroke="var(--bg-darker)" stroke-width="2" />
+            </svg>
+        </div>
+    </main>
+</body>
+
+</html>

@@ -25,6 +25,7 @@ Open `index.html` in a browser. An internet connection is required to load Boots
 - `projecten/halloween/`: the Halloween registration page and its English README.
 - `projecten/kruiswoordraadsel/`: the crossword puzzle layout and its English README.
 - `projecten/tailwind/`: the Tailwind product page, product image and English README.
+- `projecten/browser-mockup/`: the standalone animated browser mockup and its English README.
 
 The Tailwind product page is a visual demo with sample product information and no purchase or payment functionality. It loads Tailwind through a CDN script.
 
