@@ -1,23 +1,29 @@
-# Polestar 6 — eerste opleidingsproject
+# Polestar 6 — My First Course Project
 
-Mijn eerste HTML- en CSS-opdracht tijdens mijn opleiding: een opgegeven Polestar-pagina zo nauwkeurig mogelijk namaken.
+My first HTML and CSS assignment during my developer training: recreating a provided Polestar page as closely as possible.
 
-## De opdracht
-Een pagina met navigatie, een autoafbeelding en een pre-orderkaart nabouwen aan de hand van een voorbeeld.
+## The Assignment
 
-## Gebruikte technieken
-- HTML voor de inhoud en structuur.
-- CSS voor kleuren, typografie, positionering en styling.
-- Flexbox voor het plaatsen van onderdelen naast en onder elkaar.
+Recreate a reference design featuring navigation, a car image and a pre-order card.
 
-## Wat ik heb geoefend
-Een ontwerp vertalen naar HTML en CSS, afbeeldingen over elkaar plaatsen en een pagina opbouwen met Flexbox.
+## Technologies Used
 
-## Bekijken
-Download de bestanden en open index.html in een browser. Er is geen installatie nodig.
+- HTML for the content and structure.
+- CSS for colours, typography, positioning and styling.
+- Flexbox for arranging elements in rows and columns.
 
-## Over deze versie
-Dit is mijn originele opleidingsopdracht. De bronbestanden zijn bewaard zoals ze zijn ingeleverd, als vertrekpunt van mijn groei als developer. Hoewel Bootstrap onderdeel was van de opdracht, gebruikt deze ingeleverde versie eigen CSS en Flexbox. De pagina is vooral voor desktop gemaakt; de navigatielinks en pre-orderknop hebben geen achterliggende functionaliteit.
+## What I Practised
 
-## Vermelding
-Dit is een educatieve nabouwopdracht, geen officiële Polestar-website. De merknaam, logo's en aangeleverde afbeeldingen behoren aan hun respectieve rechthebbenden. De tekst over pre-orders en copyright in de demo maakt deel uit van het nagemaakte ontwerp.
+Translating a design into HTML and CSS, layering images and building a layout with Flexbox.
+
+## How to View
+
+Download the files and open `index.html` in a browser. No installation is required.
+
+## About This Version
+
+This is my original course submission. The source files have been preserved as submitted to document the starting point of my development journey. Although Bootstrap was part of the assignment, this submitted version uses custom CSS and Flexbox. The page was primarily designed for desktop; the navigation links and pre-order button do not have any underlying functionality.
+
+## Attribution
+
+This is an educational recreation, not an official Polestar website. The brand name, logos and supplied images belong to their respective rights holders. The pre-order and copyright text shown in the demo is part of the recreated design. This attribution does not grant permission to reuse third-party materials.
