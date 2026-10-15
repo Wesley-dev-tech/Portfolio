@@ -128,7 +128,6 @@ header {
     color: var(--accent-color);
 }
 
-#menu-toggle,
 .menu-button {
     display: none;
 }
@@ -346,23 +345,16 @@ header {
 /* Mobiel menu zonder JavaScript */
 @media (max-width: 1199.98px) {
     .menu-button {
-        display: block;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
         color: var(--accent-color);
         font-size: 1.4rem;
-        cursor: pointer;
     }
 
-    #menu-toggle {
-        display: block;
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        clip-path: inset(50%);
-    }
-
-    #menu-toggle:focus-visible + .menu-button {
-        outline: 3px solid var(--accent-color);
-        outline-offset: 5px;
+    .menu-open {
+        display: flex;
     }
 
     .nav-links {
@@ -376,7 +368,13 @@ header {
         border-top: 1px solid var(--border-color);
     }
 
-    #menu-toggle:checked ~ .nav-links {
+    .menu-close,
+    .site-nav:target .menu-open {
+        display: none;
+    }
+
+    .site-nav:target .menu-close,
+    .site-nav:target .nav-links {
         display: flex;
     }
 }
