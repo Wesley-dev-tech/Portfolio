@@ -8,6 +8,10 @@
     --text-color: #fff;
     --text-muted: rgba(255, 255, 255, .75);
     --border-color: rgba(255, 255, 255, .1);
+    
+    /* Design Tokens */
+    --radius-card: 15px;
+    --transition-base: all .2s ease;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -20,11 +24,11 @@ body {
     line-height: 1.7;
 }
 
-p, .card-text { color: var(--text-muted); margin-bottom: 0; }
+p { color: var(--text-muted); margin-bottom: 0; }
 a { color: inherit; text-decoration: none; }
 button, input { font: inherit; }
 button { color: inherit; cursor: pointer; }
-h1, h2, h3, h4, .card-title { font-weight: 700; }
+h1, h2, h3, h4 { font-weight: 700; }
 .narrow { max-width: 800px; }
 .section { padding: 80px 0; }
 
@@ -88,10 +92,13 @@ header {
     padding: 0;
 }
 
+.nav-links a { font-weight: 700; }
+
 .nav-links a,
 .social-links a,
 .contact-details a {
     color: var(--text-muted);
+    transition: var(--transition-base);
 }
 
 .nav-links i { margin-right: 5px; }
@@ -146,6 +153,8 @@ header {
     background: var(--primary-color);
     color: #fff;
     font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition-base);
 }
 
 .btn i { margin-right: 5px; }
@@ -180,8 +189,9 @@ header {
 .project-card {
     padding: 30px;
     border: 1px solid var(--border-color);
-    border-radius: 15px;
+    border-radius: var(--radius-card);
     background: var(--card-bg);
+    transition: border-color .2s ease;
 }
 
 .education-card { max-width: 800px; margin: auto; }
@@ -218,6 +228,7 @@ header {
     flex: 1 1 0;
     min-width: 0;
     max-width: 300px;
+    width: 100%;
     text-align: center;
 }
 
@@ -246,16 +257,12 @@ header {
     font-size: 2rem;
 }
 
-.project-card h3,
-.card-title {
-    display: block;
+.project-card h3 {
     margin-bottom: 15px;
     font-size: 1.5rem;
 }
 
-.project-card p,
-.card-text {
-    display: block;
+.project-card p {
     margin-bottom: 20px;
 }
 
@@ -273,9 +280,9 @@ header {
     border-color: var(--accent-color);
 }
 
-.project-button .btn {
-    display: inline-block;
-    margin-top: 24px;
+.project-button {
+    margin-top: auto;
+    padding-top: 24px;
 }
 
 /* Contact */
@@ -307,117 +314,8 @@ header {
     font-size: .8rem;
 }
 
-/* Projectvenster */
-.demo {
-    width: min(760px, calc(100% - 32px));
-    max-height: calc(100dvh - 32px);
-    margin: auto;
-    padding: 28px;
-    overflow: auto;
-    border: 1px solid var(--border-color);
-    border-radius: 16px;
-    background: var(--bg-dark);
-    color: var(--text-color);
-}
-
-.demo::backdrop { background: #000b; }
-
-.demo h2 {
-    padding-right: 38px;
-    margin-bottom: 14px;
-    text-align: left;
-    font-size: 1.5rem;
-}
-
-/* Gecentreerd Font Awesome-kruisje */
-.close {
-    position: absolute;
-    top: 18px;
-    right: 18px;
-    width: 34px;
-    height: 34px;
-    padding: 0;
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
-    background: var(--card-bg);
-    font-size: 18px;
-    line-height: 1;
-}
-
-#motion { margin-right: 6px; accent-color: var(--accent-color); }
-.demo label { font-size: .8rem; }
-
-/* Browsermockup */
-.browser {
-    margin-top: 18px;
-    border: 1px solid var(--border-color);
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.browser-bar {
-    padding: 10px 14px;
-    background: var(--card-bg);
-    color: var(--text-muted);
-    font-size: 11px;
-}
-
-.address {
-    padding: 4px;
-    border-radius: 4px;
-    background: var(--bg-darker);
-    text-align: center;
-}
-
-.browser svg { display: block; width: 100%; height: auto; }
-.page { animation: scroll-preview 6s ease-in-out infinite; }
-
-.cursor {
-    transform-box: fill-box;
-    transform-origin: 0 0;
-    animation: move-cursor 6s ease-in-out infinite;
-}
-
-@keyframes scroll-preview {
-    0%, 29%, 100% { transform: translateY(0); }
-    42%, 82% { transform: translateY(-320px); }
-}
-
-@keyframes move-cursor {
-    0%, 5%, 100% {
-        opacity: 0;
-        transform: translate(520px, 300px);
-    }
-
-    10% {
-        opacity: 1;
-        transform: translate(480px, 280px);
-    }
-
-    22%, 28%, 31% {
-        opacity: 1;
-        transform: translate(280px, 235px) scale(1);
-    }
-
-    25% {
-        opacity: 1;
-        transform: translate(280px, 235px) scale(.8);
-    }
-
-    42%, 82% {
-        opacity: 0;
-        transform: translate(300px, 290px);
-    }
-}
-
-#motion:not(:checked) ~ .browser .page { animation: none; }
-#motion:not(:checked) ~ .browser .cursor { display: none; }
-
 /* Mobiel menu */
 @media (max-width: 1199.98px) {
-    header { position: sticky; }
-    html { scroll-padding-top: 85px; }
-
     .menu-button {
         display: block;
         color: var(--accent-color);
@@ -460,11 +358,8 @@ header {
     .section-title { font-size: 1.8rem; }
     .hero { min-height: auto; padding: 75px 20px; }
     .project-card { padding: 28px 20px; }
-    .demo { padding: 20px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    .page, .cursor { animation: none; }
-    .cursor { display: none; }
 }
