@@ -1,11 +1,11 @@
 /* Kleuren en basis */
 :root {
-    --primary-color: rgb(108, 92, 231);
-    --accent-color: rgb(0, 206, 201);
-    --bg-dark: rgb(15, 23, 42);
-    --bg-darker: rgb(11, 17, 32);
+    --primary-color: #6c5ce7;
+    --accent-color: #00cec9;
+    --bg-dark: #0f172a;
+    --bg-darker: #0b1120;
     --card-bg: rgba(255, 255, 255, .08);
-    --text-color: rgb(255, 255, 255);
+    --text-color: #fff;
     --text-muted: rgba(255, 255, 255, .75);
     --border-color: rgba(255, 255, 255, .1);
 }
@@ -18,7 +18,6 @@ body {
     background: var(--bg-dark);
     color: var(--text-color);
     line-height: 1.7;
-    overflow-x: hidden;
 }
 
 p { color: var(--text-muted); margin-bottom: 0; }
@@ -65,12 +64,12 @@ h1, h2, h3, h4 { font-weight: 700; }
 header {
     position: sticky;
     top: 0;
-    z-index: 100;
-    background: rgba(11, 17, 32, .98);
+    z-index: 10;
+    background: rgba(11, 17, 32, .96);
     border-bottom: 1px solid var(--border-color);
 }
 
-.site-nav { min-height: 70px; padding: 12px 20px; }
+.site-nav { min-height: 70px; padding: 12px 30px; }
 
 .logo {
     display: flex;
@@ -113,51 +112,65 @@ header {
 
 #menu-toggle, .menu-button { display: none; }
 
-/* Intro */
+/* Intro / Hero */
 .hero {
-    min-height: 600px;
-    padding: 90px 20px;
+    min-height: 520px;
+    padding: 70px 20px;
     text-align: center;
     background:
-        radial-gradient(ellipse at top, rgba(108, 92, 231, .2), transparent 55%),
+        radial-gradient(ellipse at top, #6c5ce733, transparent 55%),
         var(--bg-darker);
 }
 
-.hero-content { max-width: 800px; margin: auto; }
+.hero-content { max-width: 680px; margin: auto; }
 
 .hero h1 {
     margin-bottom: 20px;
-    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
     line-height: 1.2;
 }
 
 .hero h1 span { color: var(--accent-color); }
 
 .hero-subtitle {
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     color: var(--text-color);
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     font-weight: 600;
 }
 
-.hero-content > p:not(.hero-subtitle) { margin-bottom: 30px; }
+.hero-content > p:not(.hero-subtitle) { margin-bottom: 28px; }
 
-/* Knoppen even breed gemaakt in de hero (min-width en gecentreerd) */
+/* Knoppen op natuurlijke grootte naast elkaar */
+.hero-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.btn-wrapper {
+    display: inline-block;
+}
+
 .hero-actions .btn {
-    width: 100%;
-    max-width: 300px;
-    text-align: center;
-    display: inline-flex;
+    width: auto !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    white-space: nowrap !important;
+    display: inline-flex !important;
     justify-content: center;
     align-items: center;
 }
 
 .btn {
-    padding: 12px 22px;
+    padding: 12px 24px;
     border: 2px solid var(--primary-color);
     border-radius: 8px;
     background: var(--primary-color);
-    color: rgb(255, 255, 255);
+    color: #fff;
     font-weight: 700;
     cursor: pointer;
 }
@@ -165,9 +178,9 @@ header {
 .btn i { margin-right: 8px; }
 
 .btn:hover {
-    background: rgb(89, 72, 214);
-    border-color: rgb(89, 72, 214);
-    color: rgb(255, 255, 255);
+    background: #5948d6;
+    border-color: #5948d6;
+    color: #fff;
 }
 
 .btn-secondary {
@@ -210,7 +223,7 @@ header {
     width: 65px;
     height: 65px;
     border-radius: 14px;
-    background: rgba(0, 206, 201, .12);
+    background: #00cec91f;
     font-size: 1.8rem;
 }
 
@@ -245,7 +258,7 @@ header {
 .project-card {
     width: 100%;
     height: 100%;
-    padding: 35px 24px;
+    padding: 40px;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -256,13 +269,13 @@ header {
     height: 80px;
     margin: 0 auto 20px;
     border-radius: 18px;
-    background: rgba(108, 92, 231, .18);
+    background: #6c5ce72e;
     font-size: 2rem;
 }
 
 .project-card h3 {
     margin-bottom: 15px;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
 }
 
 .project-card p {
@@ -272,7 +285,7 @@ header {
 .project-tags span {
     padding: 5px 14px;
     border-radius: 20px;
-    background: rgba(0, 206, 201, .12);
+    background: #00cec91f;
     color: var(--accent-color);
     font-size: .85rem;
     font-weight: 600;
@@ -285,11 +298,7 @@ header {
 
 .project-button {
     margin-top: auto;
-    padding-top: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
+    padding-top: 24px;
 }
 
 /* Contact */
@@ -321,7 +330,7 @@ header {
     font-size: .8rem;
 }
 
-/* Mobiel menu fix */
+/* Mobiel menu (Links uitgelijnd) */
 @media (max-width: 1199.98px) {
     .menu-button {
         display: block;
@@ -346,9 +355,9 @@ header {
     .nav-links {
         display: none;
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
         width: 100%;
-        padding: 20px 0 10px;
+        padding: 20px 20px 15px;
         gap: 16px;
         background: rgba(11, 17, 32, .98);
         border-top: 1px solid var(--border-color);
@@ -358,19 +367,22 @@ header {
     #menu-toggle:checked ~ .nav-links { display: flex; }
 }
 
-@media (min-width: 768px) {
+@media (max-width: 480px) {
     .hero-actions {
-        flex-direction: row !important;
+        flex-direction: column !important;
+    }
+    .hero-actions .btn {
+        width: 100% !important;
     }
 }
 
 @media (max-width: 600px) {
-    .site-nav { padding: 12px 16px; }
+    .site-nav { padding: 12px 20px; }
     .logo { font-size: .85rem; }
     .section { padding: 60px 0; }
     .section-title { font-size: 1.8rem; }
-    .hero { min-height: auto; padding: 75px 16px; }
-    .project-card { padding: 28px 16px; }
+    .hero { min-height: auto; padding: 75px 20px; }
+    .project-card { padding: 28px 20px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
