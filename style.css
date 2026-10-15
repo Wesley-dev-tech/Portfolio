@@ -142,6 +142,16 @@ header {
 
 .hero-content > p:not(.hero-subtitle) { margin-bottom: 30px; }
 
+/* Knoppen even breed gemaakt in de hero (min-width en gecentreerd) */
+.hero-actions .btn {
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .btn {
     padding: 12px 22px;
     border: 2px solid var(--primary-color);
@@ -152,7 +162,7 @@ header {
     cursor: pointer;
 }
 
-.btn i { margin-right: 5px; }
+.btn i { margin-right: 8px; }
 
 .btn:hover {
     background: rgb(89, 72, 214);
@@ -346,6 +356,12 @@ header {
     }
 
     #menu-toggle:checked ~ .nav-links { display: flex; }
+}
+
+@media (min-width: 768px) {
+    .hero-actions {
+        flex-direction: row !important;
+    }
 }
 
 @media (max-width: 600px) {
