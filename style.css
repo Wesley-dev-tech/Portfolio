@@ -141,20 +141,19 @@ header {
 
 .hero-content > p:not(.hero-subtitle) { margin-bottom: 28px; }
 
-/* Hero knoppen netjes op gelijke breedte */
+/* Knoppen exact even breed en meer spatie ertussen */
 .hero-actions {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 15px;
+    gap: 24px; /* Meer spatie tussen de knoppen */
     flex-wrap: wrap;
 }
 
 .hero-actions .btn {
-    width: auto !important;
-    max-width: none !important;
-    min-width: 230px;
+    flex: 1 1 240px; /* Zorgt dat beide knoppen exact even breed zijn en meeschalen */
+    max-width: 270px;
     white-space: nowrap !important;
     display: inline-flex !important;
     justify-content: center;
@@ -292,23 +291,9 @@ header {
     border-color: var(--accent-color);
 }
 
-/* Project knoppen netjes op gelijke breedte op mobiel */
 .project-button {
     margin-top: auto;
     padding-top: 24px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-}
-
-.project-button .btn {
-    width: 220px !important;
-    max-width: 100% !important;
-    white-space: nowrap !important;
-    display: inline-flex !important;
-    justify-content: center;
-    align-items: center;
 }
 
 /* Contact */
@@ -377,16 +362,13 @@ header {
     #menu-toggle:checked ~ .nav-links { display: flex; }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 575.98px) {
     .hero-actions {
         flex-direction: column !important;
     }
     .hero-actions .btn {
         width: 100% !important;
-        min-width: 0;
-    }
-    .project-button .btn {
-        width: 100% !important;
+        max-width: none !important;
     }
 }
 
