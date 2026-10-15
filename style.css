@@ -5,13 +5,21 @@
     --bg-dark: rgb(15, 23, 42);
     --bg-darker: rgb(11, 17, 32);
     --card-bg: rgb(24, 34, 52);
-    --text-color: rgb(255, 255, 255);
+    --text-color: #fff;
     --text-muted: rgba(255, 255, 255, .75);
     --border-color: rgba(255, 255, 255, .1);
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; scroll-padding-top: 85px; }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
 
 body {
     font-family: "Plus Jakarta Sans", system-ui, sans-serif;
@@ -20,10 +28,17 @@ body {
     line-height: 1.7;
 }
 
-p { color: var(--text-muted); margin-bottom: 0; }
-a { color: inherit; text-decoration: none; }
-button, input { font: inherit; }
-button { color: inherit; cursor: pointer; }
+p {
+    color: var(--text-muted);
+    margin-bottom: 0;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+input { font: inherit; }
 h1, h2, h3, h4 { font-weight: 700; }
 .narrow { max-width: 800px; }
 .section { padding: 80px 0; }
@@ -60,6 +75,7 @@ h1, h2, h3, h4 { font-weight: 700; }
 
 .skip-link:focus { top: 12px; }
 
+/* Navigatie */
 header {
     position: sticky;
     top: 0;
@@ -68,7 +84,11 @@ header {
     border-bottom: 1px solid var(--border-color);
 }
 
-.site-nav { min-height: 70px; padding: 12px 30px; }
+.site-nav {
+    min-height: 70px;
+    padding: 12px 30px;
+    gap: 16px;
+}
 
 .logo {
     display: flex;
@@ -77,7 +97,7 @@ header {
     font-weight: 700;
 }
 
-.logo img { width: 28px; height: 28px; flex-shrink: 0; }
+.logo img { flex-shrink: 0; }
 
 .nav-links {
     align-items: center;
@@ -88,14 +108,13 @@ header {
 }
 
 .nav-links a { font-weight: 700; }
+.nav-links i { margin-right: 5px; }
 
 .nav-links a,
 .social-links a,
 .contact-details a {
     color: var(--text-muted);
 }
-
-.nav-links i { margin-right: 5px; }
 
 .nav-links i,
 .contact-details i,
@@ -104,13 +123,17 @@ header {
 }
 
 .nav-links a:hover,
-.contact-details a:hover,
-.social-links a:hover {
+.social-links a:hover,
+.contact-details a:hover {
     color: var(--accent-color);
 }
 
-#menu-toggle, .menu-button { display: none; }
+#menu-toggle,
+.menu-button {
+    display: none;
+}
 
+/* Intro en knoppen */
 .hero {
     min-height: 520px;
     padding: 70px 20px;
@@ -120,7 +143,10 @@ header {
         var(--bg-darker);
 }
 
-.hero-content { max-width: 680px; margin: auto; }
+.hero-content {
+    max-width: 680px;
+    margin: auto;
+}
 
 .hero h1 {
     margin-bottom: 20px;
@@ -137,41 +163,15 @@ header {
     font-weight: 600;
 }
 
-.hero-content > p:not(.hero-subtitle) { margin-bottom: 28px; }
-
-/* KEIHARDE FIX TEGEN BOOTSTRAP: Knoppen worden niet meer uitgerekt */
-.hero-actions {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-.hero-btn-wrap {
-    display: inline-block;
-}
-
-.hero-actions .btn {
-    width: auto !important;
-    max-width: none !important;
-    min-width: 230px !important;
-    flex: none !important;
-    white-space: nowrap !important;
-    display: inline-flex !important;
-    justify-content: center;
-    align-items: center;
-}
+.hero-actions .btn { max-width: 100%; }
 
 .btn {
     padding: 12px 24px;
     border: 2px solid var(--primary-color);
     border-radius: 8px;
     background: var(--primary-color);
-    color: rgb(255, 255, 255);
+    color: var(--text-color);
     font-weight: 700;
-    cursor: pointer;
 }
 
 .btn i { margin-right: 8px; }
@@ -179,7 +179,7 @@ header {
 .btn:hover {
     background: rgb(89, 72, 214);
     border-color: rgb(89, 72, 214);
-    color: rgb(255, 255, 255);
+    color: var(--text-color);
 }
 
 .btn-secondary {
@@ -194,22 +194,30 @@ header {
     color: var(--bg-darker);
 }
 
+/* Opleiding en kaarten */
 .about { text-align: center; }
-.about p { margin-bottom: 18px; }
+.about p + p { margin-top: 18px; }
 .about strong { color: var(--text-color); }
 
-.education, .projects { background: var(--bg-darker); }
+.education,
+.projects {
+    background: var(--bg-darker);
+}
 
 .education-card,
 .skill-card,
 .project-card {
+    min-width: 0;
     padding: 30px;
     border: 1px solid var(--border-color);
     border-radius: 15px;
     background: var(--card-bg);
 }
 
-.education-card { max-width: 800px; margin: auto; }
+.education-card {
+    max-width: 800px;
+    margin: auto;
+}
 
 .education-icon,
 .project-icon {
@@ -231,7 +239,10 @@ header {
     text-transform: uppercase;
 }
 
-.education-card h3 { margin: 8px 0 2px; font-size: 1.35rem; }
+.education-card h3 {
+    margin: 8px 0 2px;
+    font-size: 1.35rem;
+}
 
 .education-card h4 {
     margin-bottom: 12px;
@@ -239,9 +250,8 @@ header {
     font-size: 1rem;
 }
 
-.skill-card {
-    width: 100%;
-    height: 100%;
+.skill-card,
+.project-card {
     text-align: center;
 }
 
@@ -251,16 +261,12 @@ header {
     font-size: 2.8rem;
 }
 
-.skill-card h3 { margin-bottom: 10px; font-size: 1.2rem; }
-
-.project-card {
-    width: 100%;
-    height: 100%;
-    padding: 40px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
+.skill-card h3 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
 }
+
+.project-card { padding: 40px; }
 
 .project-icon {
     width: 80px;
@@ -276,9 +282,7 @@ header {
     font-size: 1.5rem;
 }
 
-.project-card p {
-    margin-bottom: 20px;
-}
+.project-card p { margin-bottom: 20px; }
 
 .project-tags span {
     padding: 5px 14px;
@@ -299,15 +303,27 @@ header {
     padding-top: 24px;
 }
 
+/* Contact */
 .footer {
     padding: 70px 0 25px;
     text-align: center;
     border-top: 1px solid var(--border-color);
 }
 
-.footer h2 { margin-bottom: 15px; font-size: 2rem; }
-.footer-intro { max-width: 650px; margin: 0 auto 30px; }
-.contact-details, .social-links { margin-bottom: 30px; }
+.footer h2 {
+    margin-bottom: 15px;
+    font-size: 2rem;
+}
+
+.footer-intro {
+    max-width: 650px;
+    margin: 0 auto 30px;
+}
+
+.contact-details,
+.social-links {
+    margin-bottom: 30px;
+}
 
 .contact-details a {
     display: flex;
@@ -327,6 +343,7 @@ header {
     font-size: .8rem;
 }
 
+/* Mobiel menu zonder JavaScript */
 @media (max-width: 1199.98px) {
     .menu-button {
         display: block;
@@ -357,22 +374,10 @@ header {
         gap: 16px;
         background: rgba(11, 17, 32, .98);
         border-top: 1px solid var(--border-color);
-        margin-top: 12px;
     }
 
-    #menu-toggle:checked ~ .nav-links { display: flex; }
-}
-
-@media (max-width: 480px) {
-    .hero-actions {
-        flex-direction: column !important;
-    }
-    .hero-actions .hero-btn-wrap {
-        width: 100%;
-    }
-    .hero-actions .btn {
-        width: 100% !important;
-        min-width: 0 !important;
+    #menu-toggle:checked ~ .nav-links {
+        display: flex;
     }
 }
 
@@ -381,8 +386,18 @@ header {
     .logo { font-size: .85rem; }
     .section { padding: 60px 0; }
     .section-title { font-size: 1.8rem; }
-    .hero { min-height: auto; padding: 75px 20px; }
+
+    .hero {
+        min-height: auto;
+        padding: 75px 20px;
+    }
+
     .project-card { padding: 28px 20px; }
+}
+
+@media (max-width: 480px) {
+    .hero-actions { flex-direction: column; }
+    .hero-actions .btn { width: 100%; }
 }
 
 @media (prefers-reduced-motion: reduce) {

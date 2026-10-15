@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="nl">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio Wesley Bogaerts</title>
     <meta name="description"
         content="Portfolio van Wesley Bogaerts uit Balen, student Full Stack &amp; AI Automation Developer aan SyntraPXL.">
-    <meta http-equiv="Page-Enter" content="revealTrans(Duration=0,Transition=0)">
 
     <meta property="og:title" content="Portfolio Wesley Bogaerts">
     <meta property="og:description"
@@ -15,35 +13,36 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://wesley-dev-tech.github.io/portfolio/">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap"
-        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap">
 
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="favicon.ico">
 </head>
 
 <body>
-
     <a class="skip-link" href="#inhoud">Ga naar de inhoud</a>
 
     <!-- Navigatie -->
     <header>
-        <nav class="site-nav d-flex flex-wrap justify-content-between align-items-center" aria-label="Hoofdnavigatie">
+        <nav class="site-nav d-flex flex-wrap justify-content-between align-items-center"
+            aria-label="Hoofdnavigatie">
             <a class="logo" href="#home">
-                <img src="favicon.ico" alt="">
+                <img src="favicon.ico" width="28" height="28" alt="">
                 <span>Portfolio - Wesley Bogaerts</span>
             </a>
 
-            <input type="checkbox" id="menu-toggle" aria-label="Menu openen of sluiten">
+            <input type="checkbox" id="menu-toggle"
+                aria-label="Menu openen of sluiten" aria-controls="menu">
             <label for="menu-toggle" class="menu-button" aria-hidden="true">
-                <i class="fa-solid fa-bars"></i>
+                <i class="fa-solid fa-bars" aria-hidden="true"></i>
             </label>
 
-            <ul class="nav-links d-xl-flex">
+            <ul class="nav-links d-xl-flex" id="menu">
                 <li>
                     <a href="#home">
                         <i class="fa-solid fa-house" aria-hidden="true"></i> Home
@@ -79,32 +78,25 @@
     </header>
 
     <main id="inhoud">
-
-        <!-- Intro / Hero -->
+        <!-- Intro -->
         <section id="home" class="hero d-flex align-items-center">
             <div class="hero-content">
-                <h1>Hallo, ik ben<br>
-                    <span>Wesley Bogaerts</span>
-                </h1>
+                <h1>Hallo, ik ben<br><span>Wesley Bogaerts</span></h1>
 
                 <p class="hero-subtitle">
-                    Student Full Stack &amp; AI Automation Developer aan SyntraPXL, woonachtig in Balen.
+                    Student Full Stack &amp; AI Automation Developer aan SyntraPXL,
+                    woonachtig in Balen.
                 </p>
 
-                <!-- Aangepaste wrapper zodat Bootstrap de knoppen niet kan uitrekken -->
-                <div class="hero-actions">
-                    <div class="hero-btn-wrap">
-                        <a class="btn" href="#projects">
-                            <i class="fa-solid fa-folder-open" aria-hidden="true"></i>
-                            Bekijk mijn projecten
-                        </a>
-                    </div>
-                    <div class="hero-btn-wrap">
-                        <a class="btn btn-secondary" href="#contact">
-                            <i class="fa-solid fa-envelope" aria-hidden="true"></i>
-                            Neem contact op
-                        </a>
-                    </div>
+                <div class="hero-actions d-flex flex-wrap justify-content-center align-items-center gap-3">
+                    <a class="btn" href="#projects">
+                        <i class="fa-solid fa-folder-open" aria-hidden="true"></i>
+                        Bekijk mijn projecten
+                    </a>
+                    <a class="btn btn-secondary" href="#contact">
+                        <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                        Neem contact op
+                    </a>
                 </div>
             </div>
         </section>
@@ -113,19 +105,18 @@
         <section id="about" class="section about">
             <div class="container narrow">
                 <h2 class="section-title">Over mij</h2>
-
-                  <p>
-                    Na een loopbaan in accounting en administration, waar ik dagelijks
-                    met cijfers, boekhoudkundige stromen en SAP bezig was heb ik de overstap gemaakt naar Full Stack &amp; AI
-                    Automation Development. Die ervaring met gestructureerde data komt vandaag goed van pas bij het uittekenen van databanken en het schrijven van code. 
-                </p>
-
                 <p>
-                    Op deze pagina bundel ik al mijn projecten en vaardigheden die ik tijdens mijn opleiding heb
-                    opgedaan.
-                    Elk project op mijn portfolio is een concrete lesopdracht waar ik mijn kennis in de praktijk breng.
-                    Alles is volledig door mijzelf opgebouwd, van de opmaak tot de code en volledig beschikbaar op mijn
-                    GitHub-pagina.
+                    Na een loopbaan in boekhouding en administratie, waarin ik dagelijks werkte
+                    met cijfers, boekhoudkundige processen en SAP, heb ik de overstap gemaakt
+                    naar fullstackontwikkeling en AI-automatisering. Mijn ervaring met
+                    gestructureerde gegevens komt goed van pas bij het ontwerpen van databanken
+                    en het schrijven van code.
+                </p>
+                <p>
+                    Op deze pagina bundel ik mijn projecten en de vaardigheden die ik tijdens
+                    mijn opleiding ontwikkel. Met lesopdrachten en persoonlijke projecten breng
+                    ik mijn kennis in de praktijk. Bij elk project vind je een link naar de
+                    broncode op GitHub.
                 </p>
             </div>
         </section>
@@ -144,13 +135,14 @@
                         <span class="education-label">Momenteel studerend</span>
                         <h3>Full Stack &amp; AI Automation Developer</h3>
                         <h4>SyntraPXL</h4>
-
                         <p>
-                            Om zelf applicaties en websites vanaf nul op te bouwen, volg ik nu de voltijdse dagopleiding
-                            <strong>Full Stack &amp; AI Automation Developer</strong>. Daar werk ik aan
-                            diverse projecten in HTML, CSS, Bootstrap, Tailwind en relationele databanken in MySQL.
-                            Ook leer ik hoe je met AI automatiseringen processen kunt laten overnemen zodat je minder
-                            tijd kwijt bent aan terugkerende taken.
+                            Om zelf applicaties en websites vanaf nul te bouwen, volg ik de
+                            voltijdse dagopleiding
+                            <strong>Full Stack &amp; AI Automation Developer</strong>.
+                            Ik werk aan projecten met HTML, CSS, Bootstrap, Tailwind en
+                            relationele databanken in MySQL. Ook leer ik hoe ik AI kan inzetten
+                            om processen te automatiseren en terugkerende taken efficiënter
+                            uit te voeren.
                         </p>
                     </div>
                 </article>
@@ -167,7 +159,7 @@
                         <article class="skill-card w-100">
                             <i class="fa-brands fa-html5" aria-hidden="true"></i>
                             <h3>HTML</h3>
-                            <p>Logische pagina-opbouw.</p>
+                            <p>Logische en toegankelijke paginaopbouw.</p>
                         </article>
                     </div>
 
@@ -183,7 +175,7 @@
                         <article class="skill-card w-100">
                             <i class="fa-solid fa-sitemap" aria-hidden="true"></i>
                             <h3>Database<wbr>normalisatie</h3>
-                            <p>Data stap voor stap opdelen van 0NF tot 3NF.</p>
+                            <p>Gegevens structureren en normaliseren van 0NF tot 3NF.</p>
                         </article>
                     </div>
 
@@ -191,7 +183,7 @@
                         <article class="skill-card w-100">
                             <i class="fa-solid fa-database" aria-hidden="true"></i>
                             <h3>MySQL</h3>
-                            <p>Relationele tabellen opzetten en SQL-queries toepassen.</p>
+                            <p>Relationele tabellen opzetten en SQL-query’s schrijven.</p>
                         </article>
                     </div>
                 </div>
@@ -204,22 +196,18 @@
                 <h2 class="section-title">Mijn projecten</h2>
 
                 <div class="row g-4">
-
-                    <!-- Project 1: Portfolio -->
+                    <!-- Portfolio -->
                     <div class="col-12 col-lg-6 d-flex">
                         <article class="project-card w-100 d-flex flex-column">
                             <div class="project-icon d-flex align-items-center justify-content-center">
                                 <i class="fa-solid fa-laptop-code" aria-hidden="true"></i>
                             </div>
-
                             <h3>Portfolio</h3>
-
                             <p>
-                                Deze eigen portfoliowebsite, volledig opgebouwd met HTML,CSS Flexbox, Bootstrap en
-                                responsiviteit voor mobiele apparaten.
-                                De code is volledig beschikbaar op mijn GitHub-pagina.
+                                Mijn eigen portfoliowebsite, opgebouwd met HTML, CSS, Flexbox en
+                                Bootstrap. De lay-out past zich aan verschillende schermformaten
+                                aan. De broncode is beschikbaar op GitHub.
                             </p>
-
                             <div class="project-tags d-flex flex-wrap justify-content-center gap-2">
                                 <span>HTML</span>
                                 <span>CSS</span>
@@ -227,14 +215,17 @@
                                 <span>Bootstrap</span>
                             </div>
                             <div class="project-button d-flex flex-wrap justify-content-center gap-3">
-                                <a class="btn btn-secondary" href="https://github.com/Wesley-dev-tech/portfolio"
-                                    rel="noopener noreferrer" target="_blank"><i class="fa-brands fa-github"
-                                        aria-hidden="true"></i> Code bekijken</a>
+                                <a class="btn btn-secondary"
+                                    href="https://github.com/Wesley-dev-tech/portfolio"
+                                    target="_blank" rel="noopener noreferrer">
+                                    <i class="fa-brands fa-github" aria-hidden="true"></i>
+                                    Code bekijken
+                                </a>
                             </div>
                         </article>
                     </div>
 
-                    <!-- Project 2: Polestar 6 -->
+                    <!-- Polestar -->
                     <div class="col-12 col-lg-6 d-flex">
                         <article class="project-card w-100 d-flex flex-column">
                             <div class="project-icon d-flex align-items-center justify-content-center">
@@ -242,9 +233,9 @@
                             </div>
                             <h3>Polestar 6</h3>
                             <p>
-                                Een opgegeven Polestar-pagina namaken met HTML en CSS. Ik
-                                oefende met Flexbox, afbeeldingen en het opbouwen van een lay-out die nog niet
-                                responsive is.
+                                Een opgegeven Polestar-pagina nagemaakt met HTML en CSS.
+                                Ik oefende met Flexbox, afbeeldingen en het opbouwen van een
+                                lay-out. Deze versie is nog niet responsive.
                             </p>
                             <div class="project-tags d-flex flex-wrap justify-content-center gap-2">
                                 <span>HTML</span>
@@ -252,16 +243,21 @@
                                 <span>Flexbox</span>
                             </div>
                             <div class="project-button d-flex flex-wrap justify-content-center gap-3">
-                                <a class="btn" href="projecten/polestar/index.html" rel="noopener noreferrer"
-                                    target="_blank">Bekijk project ↗</a>
-                                <a class="btn btn-secondary" href="https://github.com/Wesley-dev-tech/polestar"
-                                    rel="noopener noreferrer" target="_blank"><i class="fa-brands fa-github"
-                                        aria-hidden="true"></i> Code bekijken</a>
+                                <a class="btn" href="projecten/polestar/index.html"
+                                    target="_blank" rel="noopener noreferrer">
+                                    Bekijk project ↗
+                                </a>
+                                <a class="btn btn-secondary"
+                                    href="https://github.com/Wesley-dev-tech/polestar"
+                                    target="_blank" rel="noopener noreferrer">
+                                    <i class="fa-brands fa-github" aria-hidden="true"></i>
+                                    Code bekijken
+                                </a>
                             </div>
                         </article>
                     </div>
 
-                    <!-- Project 3: Halloween -->
+                    <!-- Halloween -->
                     <div class="col-12 col-lg-6 d-flex">
                         <article class="project-card w-100 d-flex flex-column">
                             <div class="project-icon d-flex align-items-center justify-content-center">
@@ -269,9 +265,9 @@
                             </div>
                             <h3>Halloween inschrijvingspagina</h3>
                             <p>
-                                Een inschrijvingspagina voor een Halloweentocht. Ik oefende
-                                met Bootstrap Grid, Google Fonts en Font Awesome-iconen, een formulier met
-                                verschillende inputtypes en de pagina is volledig responsive voor mobiele apparaten.
+                                Een inschrijvingspagina voor een Halloweentocht. Ik oefende met
+                                Bootstrap Grid, Google Fonts, Font Awesome-iconen en verschillende
+                                invoervelden. De lay-out past zich aan kleinere schermen aan.
                             </p>
                             <div class="project-tags d-flex flex-wrap justify-content-center gap-2">
                                 <span>HTML</span>
@@ -279,16 +275,21 @@
                                 <span>Bootstrap Grid</span>
                             </div>
                             <div class="project-button d-flex flex-wrap justify-content-center gap-3">
-                                <a class="btn" href="projecten/halloween/index.html" rel="noopener noreferrer"
-                                    target="_blank">Bekijk project ↗</a>
-                                <a class="btn btn-secondary" href="https://github.com/Wesley-dev-tech/halloween"
-                                    rel="noopener noreferrer" target="_blank"><i class="fa-brands fa-github"
-                                        aria-hidden="true"></i> Code bekijken</a>
+                                <a class="btn" href="projecten/halloween/index.html"
+                                    target="_blank" rel="noopener noreferrer">
+                                    Bekijk project ↗
+                                </a>
+                                <a class="btn btn-secondary"
+                                    href="https://github.com/Wesley-dev-tech/halloween"
+                                    target="_blank" rel="noopener noreferrer">
+                                    <i class="fa-brands fa-github" aria-hidden="true"></i>
+                                    Code bekijken
+                                </a>
                             </div>
                         </article>
                     </div>
 
-                    <!-- Project 4: Kruiswoordraadsel -->
+                    <!-- Kruiswoordraadsel -->
                     <div class="col-12 col-lg-6 d-flex">
                         <article class="project-card w-100 d-flex flex-column">
                             <div class="project-icon d-flex align-items-center justify-content-center">
@@ -296,8 +297,9 @@
                             </div>
                             <h3>Kruiswoordraadsel</h3>
                             <p>
-                                Een kruiswoordraadsel opbouwen met het Bootstrap Grid. Ik oefende
-                                met rijen, kolommen en het vormgeven van een raster met genummerde vakjes.
+                                Een kruiswoordraadsel opgebouwd met Bootstrap Grid. Ik oefende
+                                met rijen, kolommen en het vormgeven van een raster met
+                                genummerde vakjes.
                             </p>
                             <div class="project-tags d-flex flex-wrap justify-content-center gap-2">
                                 <span>HTML</span>
@@ -305,16 +307,21 @@
                                 <span>Bootstrap Grid</span>
                             </div>
                             <div class="project-button d-flex flex-wrap justify-content-center gap-3">
-                                <a class="btn" href="projecten/kruiswoordraadsel/index.html" rel="noopener noreferrer"
-                                    target="_blank">Bekijk project ↗</a>
-                                <a class="btn btn-secondary" href="https://github.com/Wesley-dev-tech/crossword-puzzle"
-                                    rel="noopener noreferrer" target="_blank"><i class="fa-brands fa-github"
-                                        aria-hidden="true"></i> Code bekijken</a>
+                                <a class="btn" href="projecten/kruiswoordraadsel/index.html"
+                                    target="_blank" rel="noopener noreferrer">
+                                    Bekijk project ↗
+                                </a>
+                                <a class="btn btn-secondary"
+                                    href="https://github.com/Wesley-dev-tech/crossword-puzzle"
+                                    target="_blank" rel="noopener noreferrer">
+                                    <i class="fa-brands fa-github" aria-hidden="true"></i>
+                                    Code bekijken
+                                </a>
                             </div>
                         </article>
                     </div>
 
-                    <!-- Project 5: Tailwind Productpagina -->
+                    <!-- Tailwind -->
                     <div class="col-12 col-lg-6 d-flex">
                         <article class="project-card w-100 d-flex flex-column">
                             <div class="project-icon d-flex align-items-center justify-content-center">
@@ -322,8 +329,9 @@
                             </div>
                             <h3>Productpagina met Tailwind</h3>
                             <p>
-                                Een AirPods-productpagina vormgeven met Tailwind. Ik
-                                oefende met utility-classes voor lay-out, kleuren, typografie en een productkaart.
+                                Een AirPods-productpagina vormgegeven met Tailwind CSS.
+                                Ik oefende met utility-klassen voor de lay-out, kleuren,
+                                typografie en de opmaak van een productkaart.
                             </p>
                             <div class="project-tags d-flex flex-wrap justify-content-center gap-2">
                                 <span>HTML</span>
@@ -331,17 +339,21 @@
                                 <span>Flexbox</span>
                             </div>
                             <div class="project-button d-flex flex-wrap justify-content-center gap-3">
-                                <a class="btn" href="projecten/tailwind/index.html" rel="noopener noreferrer"
-                                    target="_blank">Bekijk project ↗</a>
+                                <a class="btn" href="projecten/tailwind/index.html"
+                                    target="_blank" rel="noopener noreferrer">
+                                    Bekijk project ↗
+                                </a>
                                 <a class="btn btn-secondary"
                                     href="https://github.com/Wesley-dev-tech/tailwind-product-page"
-                                    rel="noopener noreferrer" target="_blank"><i class="fa-brands fa-github"
-                                        aria-hidden="true"></i> Code bekijken</a>
+                                    target="_blank" rel="noopener noreferrer">
+                                    <i class="fa-brands fa-github" aria-hidden="true"></i>
+                                    Code bekijken
+                                </a>
                             </div>
                         </article>
                     </div>
 
-                    <!-- Project 6: Geanimeerde browsermock-up -->
+                    <!-- Browsermock-up -->
                     <div class="col-12 col-lg-6 d-flex">
                         <article class="project-card w-100 d-flex flex-column">
                             <div class="project-icon d-flex align-items-center justify-content-center">
@@ -349,77 +361,74 @@
                             </div>
                             <h3>Geanimeerde browsermock-up</h3>
                             <p>
-                                Een browservenster met een bewegende cursor en een scrollanimatie, volledig gemaakt met
-                                HTML en CSS.
+                                Een browservenster met een bewegende cursor en een scrollanimatie,
+                                volledig gemaakt met HTML en CSS.
                             </p>
                             <div class="project-tags d-flex flex-wrap justify-content-center gap-2">
-                                <span>HTML</span><span>CSS</span>
+                                <span>HTML</span>
+                                <span>CSS</span>
                             </div>
                             <div class="project-button d-flex flex-wrap justify-content-center gap-3">
-                                <a class="btn" href="projecten/browser-mockup/index.html" rel="noopener noreferrer"
-                                    target="_blank">Bekijk project ↗</a>
+                                <a class="btn" href="projecten/browser-mockup/index.html"
+                                    target="_blank" rel="noopener noreferrer">
+                                    Bekijk project ↗
+                                </a>
                                 <a class="btn btn-secondary"
                                     href="https://github.com/Wesley-dev-tech/animated-browser-mockup"
-                                    rel="noopener noreferrer" target="_blank"><i class="fa-brands fa-github"
-                                        aria-hidden="true"></i> Code bekijken</a>
+                                    target="_blank" rel="noopener noreferrer">
+                                    <i class="fa-brands fa-github" aria-hidden="true"></i>
+                                    Code bekijken
+                                </a>
                             </div>
                         </article>
                     </div>
-
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Contact / Footer -->
+    <!-- Contact -->
     <footer id="contact" class="footer">
         <div class="container">
             <h2>Neem contact op</h2>
-
             <p class="footer-intro">
-                Heb je een vraag over een van mijn projecten of zoek je een gemotiveerde stagiair in de regio Kempen of
-                Limburg? Stuur me gerust een bericht.
+                Heb je een vraag over een van mijn projecten of zoek je een gemotiveerde
+                stagiair in de Kempen of Limburg? Stuur me gerust een bericht.
             </p>
 
-            <div class="contact-details d-flex flex-column flex-md-row justify-content-center align-items-center gap-4">
+            <div class="contact-details d-flex flex-column flex-md-row flex-wrap justify-content-center align-items-center gap-4">
                 <a href="mailto:wesleybogaerts@hotmail.com">
                     <i class="fa-solid fa-envelope" aria-hidden="true"></i>
                     <span>wesleybogaerts@hotmail.com</span>
                 </a>
-
                 <a href="tel:+32472254248">
                     <i class="fa-solid fa-phone" aria-hidden="true"></i>
                     <span>+32 (0)472 25 42 48</span>
                 </a>
-
-                <a href="https://maps.google.com/?q=Balen" rel="noopener noreferrer" target="_blank">
+                <a href="https://maps.google.com/?q=Balen"
+                    target="_blank" rel="noopener noreferrer">
                     <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
                     <span>Balen, België</span>
                 </a>
             </div>
 
             <div class="social-links d-flex justify-content-center gap-4">
-                <a aria-label="GitHub" href="https://github.com/Wesley-dev-tech" rel="noopener noreferrer"
-                    target="_blank">
+                <a href="https://github.com/Wesley-dev-tech" aria-label="GitHub"
+                    target="_blank" rel="noopener noreferrer">
                     <i class="fa-brands fa-github" aria-hidden="true"></i>
                 </a>
-
-                <a aria-label="LinkedIn" href="https://www.linkedin.com/in/wesley-bogaerts/" rel="noopener noreferrer"
-                    target="_blank">
+                <a href="https://www.linkedin.com/in/wesley-bogaerts/" aria-label="LinkedIn"
+                    target="_blank" rel="noopener noreferrer">
                     <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
                 </a>
-
-                <a aria-label="WhatsApp" href="https://wa.me/32472254248" rel="noopener noreferrer" target="_blank">
+                <a href="https://wa.me/32472254248" aria-label="WhatsApp"
+                    target="_blank" rel="noopener noreferrer">
                     <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
                 </a>
             </div>
 
-            <p class="copyright">
-                &copy; 2026 Wesley Bogaerts - Developer Portfolio
-            </p>
+            <p class="copyright">&copy; 2026 Wesley Bogaerts - Developer Portfolio</p>
         </div>
     </footer>
-
 </body>
-
 </html>
