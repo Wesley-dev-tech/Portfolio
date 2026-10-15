@@ -410,8 +410,13 @@ header {
         align-items: center;
     }
 
-    .project-button .btn {
+    .project-button > .btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         width: 220px;
         max-width: 100%;
+        min-height: 52px;
+        flex: none;
     }
 }
