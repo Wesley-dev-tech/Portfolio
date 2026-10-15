@@ -1,17 +1,13 @@
 /* Kleuren en basis */
 :root {
-    --primary-color: #6c5ce7;
-    --accent-color: #00cec9;
-    --bg-dark: #0f172a;
-    --bg-darker: #0b1120;
+    --primary-color: rgb(108, 92, 231);
+    --accent-color: rgb(0, 206, 201);
+    --bg-dark: rgb(15, 23, 42);
+    --bg-darker: rgb(11, 17, 32);
     --card-bg: rgba(255, 255, 255, .08);
-    --text-color: #fff;
+    --text-color: rgb(255, 255, 255);
     --text-muted: rgba(255, 255, 255, .75);
     --border-color: rgba(255, 255, 255, .1);
-    
-    /* Design Tokens */
-    --radius-card: 15px;
-    --transition-base: all .2s ease;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -98,7 +94,6 @@ header {
 .social-links a,
 .contact-details a {
     color: var(--text-muted);
-    transition: var(--transition-base);
 }
 
 .nav-links i { margin-right: 5px; }
@@ -123,7 +118,7 @@ header {
     padding: 90px 20px;
     text-align: center;
     background:
-        radial-gradient(ellipse at top, #6c5ce733, transparent 55%),
+        radial-gradient(ellipse at top, rgba(108, 92, 231, .2), transparent 55%),
         var(--bg-darker);
 }
 
@@ -151,18 +146,17 @@ header {
     border: 2px solid var(--primary-color);
     border-radius: 8px;
     background: var(--primary-color);
-    color: #fff;
+    color: rgb(255, 255, 255);
     font-weight: 700;
     cursor: pointer;
-    transition: var(--transition-base);
 }
 
 .btn i { margin-right: 5px; }
 
 .btn:hover {
-    background: #5948d6;
-    border-color: #5948d6;
-    color: #fff;
+    background: rgb(89, 72, 214);
+    border-color: rgb(89, 72, 214);
+    color: rgb(255, 255, 255);
 }
 
 .btn-secondary {
@@ -189,9 +183,8 @@ header {
 .project-card {
     padding: 30px;
     border: 1px solid var(--border-color);
-    border-radius: var(--radius-card);
+    border-radius: 15px;
     background: var(--card-bg);
-    transition: border-color .2s ease;
 }
 
 .education-card { max-width: 800px; margin: auto; }
@@ -206,7 +199,7 @@ header {
     width: 65px;
     height: 65px;
     border-radius: 14px;
-    background: #00cec91f;
+    background: rgba(0, 206, 201, .12);
     font-size: 1.8rem;
 }
 
@@ -253,7 +246,7 @@ header {
     height: 80px;
     margin: 0 auto 20px;
     border-radius: 18px;
-    background: #6c5ce72e;
+    background: rgba(108, 92, 231, .18);
     font-size: 2rem;
 }
 
@@ -269,7 +262,7 @@ header {
 .project-tags span {
     padding: 5px 14px;
     border-radius: 20px;
-    background: #00cec91f;
+    background: rgba(0, 206, 201, .12);
     color: var(--accent-color);
     font-size: .85rem;
     font-weight: 600;
