@@ -403,3 +403,15 @@ header {
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
 }
+
+@media (max-width: 600px) {
+    .project-button {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .project-button .btn {
+        width: 220px;
+        max-width: 100%;
+    }
+}
