@@ -139,7 +139,7 @@ header {
 
 .hero-content > p:not(.hero-subtitle) { margin-bottom: 28px; }
 
-/* Knoppen op natuurlijke grootte en op mobiel niet meer uitgerekt over de volle breedte */
+/* KEIHARDE FIX TEGEN BOOTSTRAP: Knoppen worden niet meer uitgerekt */
 .hero-actions {
     display: flex;
     flex-direction: row;
@@ -149,11 +149,15 @@ header {
     flex-wrap: wrap;
 }
 
+.hero-btn-wrap {
+    display: inline-block;
+}
+
 .hero-actions .btn {
     width: auto !important;
     max-width: none !important;
-    min-width: 230px;
-    flex: 0 0 auto !important;
+    min-width: 230px !important;
+    flex: none !important;
     white-space: nowrap !important;
     display: inline-flex !important;
     justify-content: center;
@@ -293,18 +297,6 @@ header {
 .project-button {
     margin-top: auto;
     padding-top: 24px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px;
-}
-
-.project-button .btn {
-    width: max-content !important;
-    max-width: none !important;
-    min-width: 0 !important;
-    flex: 0 0 auto !important;
-    white-space: nowrap !important;
 }
 
 .footer {
@@ -369,6 +361,19 @@ header {
     }
 
     #menu-toggle:checked ~ .nav-links { display: flex; }
+}
+
+@media (max-width: 480px) {
+    .hero-actions {
+        flex-direction: column !important;
+    }
+    .hero-actions .hero-btn-wrap {
+        width: 100%;
+    }
+    .hero-actions .btn {
+        width: 100% !important;
+        min-width: 0 !important;
+    }
 }
 
 @media (max-width: 600px) {
