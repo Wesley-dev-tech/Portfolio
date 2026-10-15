@@ -1,11 +1,11 @@
 /* Kleuren en basis */
 :root {
-    --primary-color: #6c5ce7;
-    --accent-color: #00cec9;
-    --bg-dark: #0f172a;
-    --bg-darker: #0b1120;
-    --card-bg: rgba(255, 255, 255, .08);
-    --text-color: #fff;
+    --primary-color: rgb(108, 92, 231);
+    --accent-color: rgb(0, 206, 201);
+    --bg-dark: rgb(15, 23, 42);
+    --bg-darker: rgb(11, 17, 32);
+    --card-bg: rgb(24, 34, 52);
+    --text-color: rgb(255, 255, 255);
     --text-muted: rgba(255, 255, 255, .75);
     --border-color: rgba(255, 255, 255, .1);
 }
@@ -118,7 +118,7 @@ header {
     padding: 70px 20px;
     text-align: center;
     background:
-        radial-gradient(ellipse at top, #6c5ce733, transparent 55%),
+        radial-gradient(ellipse at top, rgba(108, 92, 231, .2), transparent 55%),
         var(--bg-darker);
 }
 
@@ -141,18 +141,18 @@ header {
 
 .hero-content > p:not(.hero-subtitle) { margin-bottom: 28px; }
 
-/* Knoppen exact even breed en meer spatie ertussen */
+/* Knoppen exact even breed en netjes naast elkaar */
 .hero-actions {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 24px; /* Meer spatie tussen de knoppen */
+    gap: 24px;
     flex-wrap: wrap;
 }
 
 .hero-actions .btn {
-    flex: 1 1 240px; /* Zorgt dat beide knoppen exact even breed zijn en meeschalen */
+    flex: 1 1 240px;
     max-width: 270px;
     white-space: nowrap !important;
     display: inline-flex !important;
@@ -173,8 +173,8 @@ header {
 .btn i { margin-right: 8px; }
 
 .btn:hover {
-    background: #5948d6;
-    border-color: #5948d6;
+    background: rgb(89, 72, 214);
+    border-color: rgb(89, 72, 214);
     color: #fff;
 }
 
@@ -218,7 +218,7 @@ header {
     width: 65px;
     height: 65px;
     border-radius: 14px;
-    background: #00cec91f;
+    background: rgba(0, 206, 201, .12);
     font-size: 1.8rem;
 }
 
@@ -264,7 +264,7 @@ header {
     height: 80px;
     margin: 0 auto 20px;
     border-radius: 18px;
-    background: #6c5ce72e;
+    background: rgba(108, 92, 231, .18);
     font-size: 2rem;
 }
 
@@ -280,7 +280,7 @@ header {
 .project-tags span {
     padding: 5px 14px;
     border-radius: 20px;
-    background: #00cec91f;
+    background: rgba(0, 206, 201, .12);
     color: var(--accent-color);
     font-size: .85rem;
     font-weight: 600;
