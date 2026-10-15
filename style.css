@@ -141,7 +141,7 @@ header {
 
 .hero-content > p:not(.hero-subtitle) { margin-bottom: 28px; }
 
-/* Knoppen exact even breed en netjes naast elkaar */
+/* Knoppen netjes gecentreerd op natuurlijke tekstbreedte, zonder uit te rekken over het scherm */
 .hero-actions {
     display: flex;
     flex-direction: row;
@@ -152,8 +152,9 @@ header {
 }
 
 .hero-actions .btn {
-    flex: 1 1 240px;
-    max-width: 270px;
+    width: auto !important;
+    max-width: none !important;
+    min-width: 240px;
     white-space: nowrap !important;
     display: inline-flex !important;
     justify-content: center;
@@ -165,7 +166,7 @@ header {
     border: 2px solid var(--primary-color);
     border-radius: 8px;
     background: var(--primary-color);
-    color: #fff;
+    color: rgb(255, 255, 255);
     font-weight: 700;
     cursor: pointer;
 }
@@ -175,7 +176,7 @@ header {
 .btn:hover {
     background: rgb(89, 72, 214);
     border-color: rgb(89, 72, 214);
-    color: #fff;
+    color: rgb(255, 255, 255);
 }
 
 .btn-secondary {
@@ -362,13 +363,9 @@ header {
     #menu-toggle:checked ~ .nav-links { display: flex; }
 }
 
-@media (max-width: 575.98px) {
-    .hero-actions {
-        flex-direction: column !important;
-    }
+@media (max-width: 480px) {
     .hero-actions .btn {
-        width: 100% !important;
-        max-width: none !important;
+        width: auto !important;
     }
 }
 
