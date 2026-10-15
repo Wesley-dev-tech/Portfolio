@@ -1,11 +1,11 @@
 /* Kleuren en basis */
 :root {
-    --primary-color: #6c5ce7;
-    --accent-color: #00cec9;
-    --bg-dark: #0f172a;
-    --bg-darker: #0b1120;
-    --card-bg: rgba(255, 255, 255, .08);
-    --text-color: #fff;
+    --primary-color: rgb(108, 92, 231);
+    --accent-color: rgb(0, 206, 201);
+    --bg-dark: rgb(15, 23, 42);
+    --bg-darker: rgb(11, 17, 32);
+    --card-bg: rgb(24, 34, 52);
+    --text-color: rgb(255, 255, 255);
     --text-muted: rgba(255, 255, 255, .75);
     --border-color: rgba(255, 255, 255, .1);
 }
@@ -60,7 +60,6 @@ h1, h2, h3, h4 { font-weight: 700; }
 
 .skip-link:focus { top: 12px; }
 
-/* Navigatie */
 header {
     position: sticky;
     top: 0;
@@ -112,13 +111,12 @@ header {
 
 #menu-toggle, .menu-button { display: none; }
 
-/* Intro / Hero */
 .hero {
     min-height: 520px;
     padding: 70px 20px;
     text-align: center;
     background:
-        radial-gradient(ellipse at top, #6c5ce733, transparent 55%),
+        radial-gradient(ellipse at top, rgba(108, 92, 231, .2), transparent 55%),
         var(--bg-darker);
 }
 
@@ -141,7 +139,7 @@ header {
 
 .hero-content > p:not(.hero-subtitle) { margin-bottom: 28px; }
 
-/* Knoppen netjes gecentreerd op natuurlijke breedte (geen volle schermbreedte meer) */
+/* Knoppen op natuurlijke grootte en op mobiel niet meer uitgerekt over de volle breedte */
 .hero-actions {
     display: flex;
     flex-direction: row;
@@ -155,7 +153,7 @@ header {
     width: auto !important;
     max-width: none !important;
     min-width: 230px;
-    flex: 0 1 auto !important;
+    flex: 0 0 auto !important;
     white-space: nowrap !important;
     display: inline-flex !important;
     justify-content: center;
@@ -167,7 +165,7 @@ header {
     border: 2px solid var(--primary-color);
     border-radius: 8px;
     background: var(--primary-color);
-    color: #fff;
+    color: rgb(255, 255, 255);
     font-weight: 700;
     cursor: pointer;
 }
@@ -175,9 +173,9 @@ header {
 .btn i { margin-right: 8px; }
 
 .btn:hover {
-    background: #5948d6;
-    border-color: #5948d6;
-    color: #fff;
+    background: rgb(89, 72, 214);
+    border-color: rgb(89, 72, 214);
+    color: rgb(255, 255, 255);
 }
 
 .btn-secondary {
@@ -196,7 +194,6 @@ header {
 .about p { margin-bottom: 18px; }
 .about strong { color: var(--text-color); }
 
-/* Opleiding, vaardigheden en projecten */
 .education, .projects { background: var(--bg-darker); }
 
 .education-card,
@@ -220,7 +217,7 @@ header {
     width: 65px;
     height: 65px;
     border-radius: 14px;
-    background: #00cec91f;
+    background: rgba(0, 206, 201, .12);
     font-size: 1.8rem;
 }
 
@@ -266,7 +263,7 @@ header {
     height: 80px;
     margin: 0 auto 20px;
     border-radius: 18px;
-    background: #6c5ce72e;
+    background: rgba(108, 92, 231, .18);
     font-size: 2rem;
 }
 
@@ -282,7 +279,7 @@ header {
 .project-tags span {
     padding: 5px 14px;
     border-radius: 20px;
-    background: #00cec91f;
+    background: rgba(0, 206, 201, .12);
     color: var(--accent-color);
     font-size: .85rem;
     font-weight: 600;
@@ -296,9 +293,20 @@ header {
 .project-button {
     margin-top: auto;
     padding-top: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
 }
 
-/* Contact */
+.project-button .btn {
+    width: max-content !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    flex: 0 0 auto !important;
+    white-space: nowrap !important;
+}
+
 .footer {
     padding: 70px 0 25px;
     text-align: center;
@@ -327,7 +335,6 @@ header {
     font-size: .8rem;
 }
 
-/* Mobiel menu (Links uitgelijnd) */
 @media (max-width: 1199.98px) {
     .menu-button {
         display: block;
@@ -362,16 +369,6 @@ header {
     }
 
     #menu-toggle:checked ~ .nav-links { display: flex; }
-}
-
-@media (max-width: 480px) {
-    .hero-actions {
-        flex-direction: column !important;
-    }
-    .hero-actions .btn {
-        width: 100% !important;
-        min-width: 0;
-    }
 }
 
 @media (max-width: 600px) {
