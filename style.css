@@ -1,10 +1,9 @@
-/* Kleuren en basis */
 :root {
     --primary-color: rgb(108, 92, 231);
     --accent-color: rgb(0, 206, 201);
     --bg-dark: rgb(15, 23, 42);
     --bg-darker: rgb(11, 17, 32);
-    --card-bg: rgb(24, 34, 52);
+    --card-bg: rgba(255, 255, 255, .08);
     --text-color: rgb(255, 255, 255);
     --text-muted: rgba(255, 255, 255, .75);
     --border-color: rgba(255, 255, 255, .1);
@@ -60,7 +59,6 @@ h1, h2, h3, h4 { font-weight: 700; }
 
 .skip-link:focus { top: 12px; }
 
-/* Navigatie */
 header {
     position: sticky;
     top: 0;
@@ -112,7 +110,6 @@ header {
 
 #menu-toggle, .menu-button { display: none; }
 
-/* Intro / Hero */
 .hero {
     min-height: 520px;
     padding: 70px 20px;
@@ -141,7 +138,6 @@ header {
 
 .hero-content > p:not(.hero-subtitle) { margin-bottom: 28px; }
 
-/* Knoppen netjes gecentreerd op natuurlijke tekstbreedte, zonder uit te rekken over het scherm */
 .hero-actions {
     display: flex;
     flex-direction: row;
@@ -152,9 +148,8 @@ header {
 }
 
 .hero-actions .btn {
-    width: auto !important;
-    max-width: none !important;
-    min-width: 240px;
+    flex: 1 1 240px;
+    max-width: 270px;
     white-space: nowrap !important;
     display: inline-flex !important;
     justify-content: center;
@@ -195,7 +190,6 @@ header {
 .about p { margin-bottom: 18px; }
 .about strong { color: var(--text-color); }
 
-/* Opleiding, vaardigheden en projecten */
 .education, .projects { background: var(--bg-darker); }
 
 .education-card,
@@ -297,7 +291,6 @@ header {
     padding-top: 24px;
 }
 
-/* Contact */
 .footer {
     padding: 70px 0 25px;
     text-align: center;
@@ -326,7 +319,6 @@ header {
     font-size: .8rem;
 }
 
-/* Mobiel menu (Links uitgelijnd) */
 @media (max-width: 1199.98px) {
     .menu-button {
         display: block;
@@ -363,9 +355,13 @@ header {
     #menu-toggle:checked ~ .nav-links { display: flex; }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 575.98px) {
+    .hero-actions {
+        flex-direction: column !important;
+    }
     .hero-actions .btn {
-        width: auto !important;
+        width: 100% !important;
+        max-width: none !important;
     }
 }
 
