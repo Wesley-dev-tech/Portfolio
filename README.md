@@ -9,7 +9,7 @@ Open `index.html` in a browser. An internet connection is required to load Boots
 ## Projects
 
 - Personal portfolio website.
-- Polestar 6: my original first course assignment, accessible through its project card.
+- Polestar 6: my first course assignment, accessible through its project card.
 - Halloween registration page: my second course project, built with Bootstrap Grid, Google Fonts and Font Awesome icons.
 - Crossword puzzle: my third course project, a static layout built with Bootstrap Grid.
 - Tailwind product page: my fourth course project, an AirPods product card styled with Tailwind CSS.
@@ -20,7 +20,7 @@ Open `index.html` in a browser. An internet connection is required to load Boots
 - `index.html`: the portfolio page.
 - `style.css`: styling and animation.
 - `favicon.ico`: the site icon.
-- `projecten/polestar/`: an unchanged copy of my original Polestar assignment, with its own README.
+- `projecten/polestar/`: a copy of my original Polestar assignment, with its own README.
 
 - `projecten/halloween/`: the Halloween registration page and its English README.
 - `projecten/kruiswoordraadsel/`: the crossword puzzle layout and its English README.

@@ -22,7 +22,7 @@ Download the files and open `index.html` in a browser. No installation is requir
 
 ## About This Version
 
-This is my original course submission. The source files have been preserved as submitted to document the starting point of my development journey. The page was primarily designed for desktop; the navigation links and pre-order button do not have any underlying functionality.
+This page is based on my original course submission and documents the starting point of my development journey. It was primarily designed for desktop; the navigation links and pre-order button do not have any underlying functionality.
 
 ## Attribution
 
