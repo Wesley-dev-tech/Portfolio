@@ -1,10 +1,16 @@
 # Wesley Bogaerts — Developer Portfolio
 
-My personal developer portfolio showcasing my education, skills and projects. Built with HTML, CSS, Bootstrap, Flexbox and Font Awesome icons.
+My personal developer portfolio showcasing my education, skills and projects. Built with HTML, CSS, JavaScript, Bootstrap, Flexbox and Font Awesome icons.
 
 ## How to View
 
 Open `index.html` in a browser. An internet connection is required to load Bootstrap, Font Awesome and the font.
+
+## Skills
+
+HTML, CSS, database normalization, MySQL, Agile & Scrum, and beginner JavaScript. Coursework includes sprint planning, planning poker, and a Kanban board in Trello.
+
+The mobile navigation uses JavaScript to open and close the menu, including closing it after a navigation link is selected.
 
 ## Projects
 
@@ -18,7 +24,8 @@ Open `index.html` in a browser. An internet connection is required to load Boots
 ## Files
 
 - `index.html`: the portfolio page.
-- `style.css`: styling and animation.
+- `style.css`: responsive styling.
+- `script.js`: mobile menu interactions.
 - `favicon.ico`: the site icon.
 - `projecten/polestar/`: a copy of my original Polestar assignment, with its own README.
 
