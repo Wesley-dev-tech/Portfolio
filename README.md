@@ -4,9 +4,9 @@ My personal developer portfolio showcasing my education, skills and projects. Bu
 
 ## Version
 
-Current site version: **v10** (20 October 2026).
+Current site version: **v11** (20 October 2026).
 
-This update adds subtle, layered color and depth to the existing dark theme without changing the page layout or copy.
+This update changes the site's typeface to Manrope without changing the page copy or layout.
 
 [View the color palette on Coolors](https://coolors.co/0b1120-0f172a-182234-2dd4bf-a78bfa).
 
