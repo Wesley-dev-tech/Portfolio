@@ -4,13 +4,13 @@ My personal developer portfolio showcasing my education, skills and projects. Bu
 
 ## Version
 
-Current site version: **v8** (20 October 2026).
+Current site version: **v9** (20 October 2026).
 
-This update introduces a dark blue theme with turquoise primary buttons, dark button text and subtle purple accents. Button hover, focus and active states use the same palette. Existing responsive layouts and mobile navigation are preserved.
+This update adds project sorting and pagination, scroll-reveal animations, and expanded skills carousel controls. The established dark blue palette with turquoise buttons and purple accents is preserved.
 
 [View the color palette on Coolors](https://coolors.co/0b1120-0f172a-182234-2dd4bf-a78bfa).
 
-The CSS and JavaScript URLs in `index.html` use `?v=8` to refresh cached assets for this site version.
+The CSS and JavaScript URLs in `index.html` use `?v=9` to refresh cached assets for this site version.
 
 ## How to View
 
@@ -20,7 +20,7 @@ Open `index.html` in a browser. An internet connection is required to load Boots
 
 HTML, CSS, database normalization, MySQL, Agile & Scrum, and beginner JavaScript. Coursework includes sprint planning, planning poker, and a Kanban board in Trello.
 
-The mobile navigation uses JavaScript to open and close the menu, including closing it after a navigation link is selected.
+JavaScript powers the mobile navigation, scroll-reveal animations, skills carousel with pause/resume controls, project sorting and pagination, and the scroll-to-top button.
 
 ## Projects
 
@@ -35,7 +35,7 @@ The mobile navigation uses JavaScript to open and close the menu, including clos
 
 - `index.html`: the portfolio page.
 - `style.css`: responsive styling.
-- `script.js`: mobile menu interactions.
+- `script.js`: mobile navigation, scroll animations, skills carousel, project sorting and pagination, and scroll-to-top interactions.
 - `favicon.ico`: the site icon.
 - `projecten/polestar/`: a copy of my original Polestar assignment, with its own README.
 

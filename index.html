@@ -9,19 +9,18 @@
         content="Portfolio van Wesley Bogaerts uit Balen, student Full Stack &amp; AI Automation Developer aan SyntraPXL.">
 
     <meta property="og:title" content="Portfolio Wesley Bogaerts">
-    <meta property="og:description"
-        content="Ontdek de projecten en ontwikkeling van Wesley Bogaerts, student Full Stack &amp; AI Automation Developer aan SyntraPXL.">
+    <meta property="og:description" content="Ontdek de projecten en ontwikkeling van Wesley Bogaerts, student Full Stack &amp; AI Automation Developer aan SyntraPXL.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://wesley-dev-tech.github.io/portfolio/">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap">
 
-    <link rel="stylesheet" href="style.css?v=8">
+    <link rel="stylesheet" href="style.css?v=9">
     <link rel="icon" href="favicon.ico">
 </head>
 
@@ -30,7 +29,8 @@
 
     <!-- Navigatie -->
     <header>
-        <nav id="menu" class="site-nav d-flex flex-wrap justify-content-between align-items-center"
+        <nav id="menu"
+            class="site-nav d-flex flex-wrap justify-content-between align-items-center"
             aria-label="Hoofdnavigatie">
 
             <a class="logo" href="#home">
@@ -38,11 +38,13 @@
                 <span>Portfolio - Wesley Bogaerts</span>
             </a>
 
-            <a href="#menu" class="menu-button menu-open" aria-label="Menu openen" aria-controls="nav-links">
+            <a href="#menu" class="menu-button menu-open"
+                aria-label="Menu openen" aria-controls="nav-links">
                 <i class="fa-solid fa-bars" aria-hidden="true"></i>
             </a>
 
-            <a href="#home" class="menu-button menu-close" aria-label="Menu sluiten">
+            <a href="#home" class="menu-button menu-close"
+                aria-label="Menu sluiten">
                 <i class="fa-solid fa-xmark" aria-hidden="true"></i>
             </a>
 
@@ -82,10 +84,12 @@
     </header>
 
     <main id="inhoud">
+
         <!-- Intro -->
         <section id="home" class="hero d-flex align-items-center">
             <div class="hero-content">
-                <h1>Hallo, ik ben<br>
+                <h1>
+                    Hallo, ik ben<br>
                     <span>Wesley Bogaerts</span>
                 </h1>
 
@@ -99,6 +103,7 @@
                         <i class="fa-solid fa-folder-open" aria-hidden="true"></i>
                         Bekijk mijn projecten
                     </a>
+
                     <a class="btn btn-secondary" href="#contact">
                         <i class="fa-solid fa-envelope" aria-hidden="true"></i>
                         Neem contact op
@@ -111,17 +116,20 @@
         <section id="about" class="section about">
             <div class="container narrow">
                 <h2 class="section-title">Over mij</h2>
+
                 <p>
-                    Na een loopbaan in de boekhouding en administratie maak ik de overstap naar
-                    full stack development en AI-automatisering. In mijn vorige werk werkte ik dagelijks
-                    met cijfers, gestructureerde gegevens en SAP. Die ervaring neem ik mee in
-                    mijn opleiding tot Full Stack &amp; AI Automation Developer aan SyntraPXL.
+                    Na een loopbaan in de boekhouding en administratie maak ik de overstap
+                    naar full stack development en AI-automatisering. In mijn vorige werk
+                    werkte ik dagelijks met cijfers, gestructureerde gegevens en SAP.
+                    Die ervaring neem ik mee in mijn opleiding tot
+                    Full Stack &amp; AI Automation Developer aan SyntraPXL.
                 </p>
+
                 <p>
-                    Tijdens mijn opleiding bouw ik stap voor stap mijn kennis op door websites
-                    en applicaties te maken. In dit portfolio deel ik mijn opleidingsprojecten.
-                    Je vindt hier wat ik maak, waarmee ik oefen en
-                    hoe ik me verder ontwikkel als developer.
+                    Tijdens mijn opleiding bouw ik stap voor stap mijn kennis op door
+                    websites en applicaties te maken. In dit portfolio deel ik mijn
+                    opleidingsprojecten. Je vindt hier wat ik maak, waarmee ik oefen
+                    en hoe ik me verder ontwikkel als developer.
                 </p>
             </div>
         </section>
@@ -140,13 +148,15 @@
                         <span class="education-label">Momenteel student</span>
                         <h3>Full Stack &amp; AI Automation Developer</h3>
                         <h4>SyntraPXL</h4>
+
                         <p>
                             Om zelf websites en applicaties vanaf nul te bouwen, volg ik de
                             voltijdse dagopleiding
                             <strong>Full Stack &amp; AI Automation Developer</strong>.
                             Ik werk aan projecten met HTML, CSS, Bootstrap, Tailwind en
-                            relationele databanken in MySQL. Ook leer ik hoe ik AI kan inzetten
-                            om processen te automatiseren en terugkerende taken efficiënter uit te voeren.
+                            relationele databanken in MySQL. Ook leer ik hoe ik AI kan
+                            inzetten om processen te automatiseren en terugkerende taken
+                            efficiënter uit te voeren.
                         </p>
                     </div>
                 </article>
@@ -158,59 +168,47 @@
             <div class="container">
                 <h2 class="section-title">Mijn vaardigheden</h2>
 
-                <div class="row g-4 justify-content-center">
+                <div class="skills-carousel"
+                    role="region"
+                    aria-roledescription="carrousel"
+                    aria-label="Mijn vaardigheden">
 
-                    <!-- HTML -->
-                    <div class="col-12 col-md-6 col-lg-4 d-flex">
-                        <article class="skill-card w-100">
+                    <div id="skill-slides">
+                        <article class="skill-card">
                             <i class="fa-brands fa-html5" aria-hidden="true"></i>
                             <h3>HTML</h3>
                             <p>Logische en toegankelijke paginaopbouw.</p>
                         </article>
-                    </div>
 
-                    <!-- CSS -->
-                    <div class="col-12 col-md-6 col-lg-4 d-flex">
-                        <article class="skill-card w-100">
+                        <article class="skill-card" hidden>
                             <i class="fa-brands fa-css3-alt" aria-hidden="true"></i>
                             <h3>CSS</h3>
                             <p>Flexbox, Bootstrap, Tailwind en responsiviteit.</p>
                         </article>
-                    </div>
 
-                    <!-- Databasenormalisatie -->
-                    <div class="col-12 col-md-6 col-lg-4 d-flex">
-                        <article class="skill-card w-100">
+                        <article class="skill-card" hidden>
                             <i class="fa-solid fa-sitemap" aria-hidden="true"></i>
                             <h3>Database<wbr>normalisatie</h3>
                             <p>Gegevens structureren en normaliseren van 0NF tot 3NF.</p>
                         </article>
-                    </div>
 
-                    <!-- MySQL -->
-                    <div class="col-12 col-md-6 col-lg-4 d-flex">
-                        <article class="skill-card w-100">
+                        <article class="skill-card" hidden>
                             <i class="fa-solid fa-database" aria-hidden="true"></i>
                             <h3>MySQL</h3>
                             <p>Relationele tabellen opzetten en SQL-queries toepassen.</p>
                         </article>
-                    </div>
 
-                    <!-- Agile en Scrum -->
-                    <div class="col-12 col-md-6 col-lg-4 d-flex">
-                        <article class="skill-card w-100">
+                        <article class="skill-card" hidden>
                             <i class="fa-solid fa-people-group" aria-hidden="true"></i>
                             <h3>Agile &amp; Scrum</h3>
                             <p>
                                 Ik oefen met het plannen van sprints en schat met planning
                                 poker in hoeveel werk een taak vraagt. In Trello maak ik
-                                een kanbanbord om taken en hun voortgang bij te houden.</p>
+                                een kanbanbord om taken en hun voortgang bij te houden.
+                            </p>
                         </article>
-                    </div>
 
-                    <!-- JavaScript -->
-                    <div class="col-12 col-md-6 col-lg-4 d-flex">
-                        <article class="skill-card w-100">
+                        <article class="skill-card" hidden>
                             <i class="fa-brands fa-js" aria-hidden="true"></i>
                             <h3>JavaScript</h3>
                             <p>
@@ -218,6 +216,27 @@
                                 portfolio.
                             </p>
                         </article>
+                    </div>
+
+                    <div class="d-flex flex-wrap justify-content-center gap-3 mt-4">
+                        <button id="vorige-skill" class="btn btn-secondary"
+                            type="button" aria-controls="skill-slides">
+                            <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+                            Vorige
+                        </button>
+
+                        <button id="volgende-skill" class="btn btn-secondary"
+                            type="button" aria-controls="skill-slides">
+                            Volgende
+                            <i class="fa-solid fa-chevron-right"
+                                aria-hidden="true"></i>
+                        </button>
+
+                        <button id="skill-carousel-toggle" class="btn btn-secondary"
+                            type="button" aria-pressed="true">
+                            <i class="fa-solid fa-pause" aria-hidden="true"></i>
+                            <span>Automatisch pauzeren</span>
+                        </button>
                     </div>
 
                 </div>
@@ -229,26 +248,44 @@
             <div class="container">
                 <h2 class="section-title">Mijn projecten</h2>
 
-                <div class="row g-4">
+                <div class="project-controls">
+                    <div class="project-control">
+                        <label for="project-sort">Sorteren</label>
+                        <select id="project-sort" class="form-select">
+                            <option value="newest">Nieuwste eerst</option>
+                            <option value="oldest">Oudste eerst</option>
+                            <option value="alphabetical">Alfabetisch (A-Z)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="project-list" class="row g-4">
+
                     <!-- Portfolio -->
-                    <div class="col-12 col-lg-6 d-flex">
+                    <div class="col-12 col-lg-6 d-flex" data-project-order="1">
                         <article class="project-card w-100 d-flex flex-column">
                             <div class="project-icon d-flex align-items-center justify-content-center">
                                 <i class="fa-solid fa-laptop-code" aria-hidden="true"></i>
                             </div>
+
                             <h3>Portfolio</h3>
                             <p>
-                                Mijn eigen portfoliowebsite, opgebouwd met HTML, CSS, Flexbox en
-                                Bootstrap. De lay-out werkt op zowel desktopcomputers als mobiele apparaten.
+                                Mijn eigen portfoliowebsite, opgebouwd met HTML, CSS,
+                                JavaScript, Flexbox en Bootstrap. De lay-out werkt op
+                                zowel desktopcomputers als mobiele apparaten.
                             </p>
+
                             <div class="project-tags d-flex flex-wrap justify-content-center gap-2">
                                 <span>HTML</span>
                                 <span>CSS</span>
+                                <span>JavaScript</span>
                                 <span>Flexbox</span>
                                 <span>Bootstrap</span>
                             </div>
+
                             <div class="project-button d-flex flex-wrap justify-content-center gap-3">
-                                <a class="btn btn-secondary" href="https://github.com/Wesley-dev-tech/portfolio"
+                                <a class="btn btn-secondary"
+                                    href="https://github.com/Wesley-dev-tech/portfolio"
                                     target="_blank" rel="noopener noreferrer">
                                     <i class="fa-brands fa-github" aria-hidden="true"></i>
                                     Code bekijken
@@ -258,28 +295,33 @@
                     </div>
 
                     <!-- Polestar -->
-                    <div class="col-12 col-lg-6 d-flex">
+                    <div class="col-12 col-lg-6 d-flex" data-project-order="6">
                         <article class="project-card w-100 d-flex flex-column">
                             <div class="project-icon d-flex align-items-center justify-content-center">
                                 <i class="fa-solid fa-car-side" aria-hidden="true"></i>
                             </div>
+
                             <h3>Polestar 6</h3>
                             <p>
                                 Mijn eerste opleidingsproject: een fictieve Polestar-pagina
-                                namaken met HTML en CSS. Daarbij oefende ik met Flexbox en het positioneren van
-                                afbeeldingen. De pagina is nog niet aangepast voor mobiele apparaten.
+                                namaken met HTML en CSS. Daarbij oefende ik met Flexbox en
+                                het positioneren van afbeeldingen. De pagina is nog niet
+                                aangepast voor mobiele apparaten.
                             </p>
+
                             <div class="project-tags d-flex flex-wrap justify-content-center gap-2">
                                 <span>HTML</span>
                                 <span>CSS</span>
                                 <span>Flexbox</span>
                             </div>
+
                             <div class="project-button d-flex flex-wrap justify-content-center gap-3">
-                                <a class="btn" href="projecten/polestar/index.html" target="_blank"
-                                    rel="noopener noreferrer">
+                                <a class="btn" href="projecten/polestar/index.html"
+                                    target="_blank" rel="noopener noreferrer">
                                     Bekijk project ↗
                                 </a>
-                                <a class="btn btn-secondary" href="https://github.com/Wesley-dev-tech/polestar"
+                                <a class="btn btn-secondary"
+                                    href="https://github.com/Wesley-dev-tech/polestar"
                                     target="_blank" rel="noopener noreferrer">
                                     <i class="fa-brands fa-github" aria-hidden="true"></i>
                                     Code bekijken
@@ -289,28 +331,33 @@
                     </div>
 
                     <!-- Halloween -->
-                    <div class="col-12 col-lg-6 d-flex">
+                    <div class="col-12 col-lg-6 d-flex" data-project-order="5">
                         <article class="project-card w-100 d-flex flex-column">
                             <div class="project-icon d-flex align-items-center justify-content-center">
                                 <i class="fa-solid fa-ghost" aria-hidden="true"></i>
                             </div>
+
                             <h3>Halloween inschrijvingspagina</h3>
                             <p>
-                                Een inschrijvingspagina voor een Halloweentocht. Ik oefende met
-                                Bootstrap Grid, Google Fonts, Font Awesome-iconen en een formulier met
-                                invoervelden. De lay-out werkt op zowel desktopcomputers als mobiele apparaten.
+                                Een inschrijvingspagina voor een Halloweentocht. Ik oefende
+                                met Bootstrap Grid, Google Fonts, Font Awesome-iconen en
+                                een formulier met invoervelden. De lay-out werkt op zowel
+                                desktopcomputers als mobiele apparaten.
                             </p>
+
                             <div class="project-tags d-flex flex-wrap justify-content-center gap-2">
                                 <span>HTML</span>
                                 <span>CSS</span>
                                 <span>Bootstrap Grid</span>
                             </div>
+
                             <div class="project-button d-flex flex-wrap justify-content-center gap-3">
-                                <a class="btn" href="projecten/halloween/index.html" target="_blank"
-                                    rel="noopener noreferrer">
+                                <a class="btn" href="projecten/halloween/index.html"
+                                    target="_blank" rel="noopener noreferrer">
                                     Bekijk project ↗
                                 </a>
-                                <a class="btn btn-secondary" href="https://github.com/Wesley-dev-tech/halloween"
+                                <a class="btn btn-secondary"
+                                    href="https://github.com/Wesley-dev-tech/halloween"
                                     target="_blank" rel="noopener noreferrer">
                                     <i class="fa-brands fa-github" aria-hidden="true"></i>
                                     Code bekijken
@@ -320,28 +367,32 @@
                     </div>
 
                     <!-- Kruiswoordraadsel -->
-                    <div class="col-12 col-lg-6 d-flex">
+                    <div class="col-12 col-lg-6 d-flex" data-project-order="4">
                         <article class="project-card w-100 d-flex flex-column">
                             <div class="project-icon d-flex align-items-center justify-content-center">
                                 <i class="fa-solid fa-table-cells" aria-hidden="true"></i>
                             </div>
+
                             <h3>Kruiswoordraadsel</h3>
                             <p>
-                                Een visuele uitwerking van een kruiswoordraadsel met Bootstrap
-                                Grid. Met rijen, kolommen en CSS bouwde ik een raster met
-                                genummerde vakjes. De puzzel is niet interactief.
+                                Een visuele uitwerking van een kruiswoordraadsel met
+                                Bootstrap Grid. Met rijen, kolommen en CSS bouwde ik een
+                                raster met genummerde vakjes. De puzzel is niet interactief.
                             </p>
+
                             <div class="project-tags d-flex flex-wrap justify-content-center gap-2">
                                 <span>HTML</span>
                                 <span>CSS</span>
                                 <span>Bootstrap Grid</span>
                             </div>
+
                             <div class="project-button d-flex flex-wrap justify-content-center gap-3">
-                                <a class="btn" href="projecten/kruiswoordraadsel/index.html" target="_blank"
-                                    rel="noopener noreferrer">
+                                <a class="btn" href="projecten/kruiswoordraadsel/index.html"
+                                    target="_blank" rel="noopener noreferrer">
                                     Bekijk project ↗
                                 </a>
-                                <a class="btn btn-secondary" href="https://github.com/Wesley-dev-tech/crossword-puzzle"
+                                <a class="btn btn-secondary"
+                                    href="https://github.com/Wesley-dev-tech/crossword-puzzle"
                                     target="_blank" rel="noopener noreferrer">
                                     <i class="fa-brands fa-github" aria-hidden="true"></i>
                                     Code bekijken
@@ -351,30 +402,33 @@
                     </div>
 
                     <!-- Tailwind -->
-                    <div class="col-12 col-lg-6 d-flex">
+                    <div class="col-12 col-lg-6 d-flex" data-project-order="3">
                         <article class="project-card w-100 d-flex flex-column">
                             <div class="project-icon d-flex align-items-center justify-content-center">
                                 <i class="fa-solid fa-headphones" aria-hidden="true"></i>
                             </div>
+
                             <h3>Productpagina met Tailwind</h3>
                             <p>
                                 Een AirPods-productpagina vormgegeven met Tailwind CSS.
                                 Ik oefende met utility-classes voor de lay-out, kleuren,
                                 typografie en de opmaak van de productkaart.
                             </p>
+
                             <div class="project-tags d-flex flex-wrap justify-content-center gap-2">
                                 <span>HTML</span>
                                 <span>Tailwind</span>
                                 <span>Flexbox</span>
                             </div>
+
                             <div class="project-button d-flex flex-wrap justify-content-center gap-3">
-                                <a class="btn" href="projecten/tailwind/index.html" target="_blank"
-                                    rel="noopener noreferrer">
+                                <a class="btn" href="projecten/tailwind/index.html"
+                                    target="_blank" rel="noopener noreferrer">
                                     Bekijk project ↗
                                 </a>
                                 <a class="btn btn-secondary"
-                                    href="https://github.com/Wesley-dev-tech/tailwind-product-page" target="_blank"
-                                    rel="noopener noreferrer">
+                                    href="https://github.com/Wesley-dev-tech/tailwind-product-page"
+                                    target="_blank" rel="noopener noreferrer">
                                     <i class="fa-brands fa-github" aria-hidden="true"></i>
                                     Code bekijken
                                 </a>
@@ -383,36 +437,54 @@
                     </div>
 
                     <!-- Browsermock-up -->
-                    <div class="col-12 col-lg-6 d-flex">
+                    <div class="col-12 col-lg-6 d-flex" data-project-order="2">
                         <article class="project-card w-100 d-flex flex-column">
                             <div class="project-icon d-flex align-items-center justify-content-center">
                                 <i class="fa-solid fa-window-maximize" aria-hidden="true"></i>
                             </div>
+
                             <h3>Geanimeerde browsermock-up</h3>
                             <p>
-                                Een geanimeerd browservenster met een bewegende cursor en een
-                                scrollende voorbeeldpagina. Dit project laat zien hoe je met
-                                HTML en CSS een animatie kunt maken zonder JavaScript.
+                                Een geanimeerd browservenster met een bewegende cursor en
+                                een scrollende voorbeeldpagina. Dit project laat zien hoe
+                                je met HTML en CSS een animatie kunt maken zonder JavaScript.
                             </p>
+
                             <div class="project-tags d-flex flex-wrap justify-content-center gap-2">
                                 <span>HTML</span>
                                 <span>CSS</span>
                             </div>
+
                             <div class="project-button d-flex flex-wrap justify-content-center gap-3">
-                                <a class="btn" href="projecten/browser-mockup/index.html" target="_blank"
-                                    rel="noopener noreferrer">
+                                <a class="btn" href="projecten/browser-mockup/index.html"
+                                    target="_blank" rel="noopener noreferrer">
                                     Bekijk project ↗
                                 </a>
                                 <a class="btn btn-secondary"
-                                    href="https://github.com/Wesley-dev-tech/animated-browser-mockup" target="_blank"
-                                    rel="noopener noreferrer">
+                                    href="https://github.com/Wesley-dev-tech/animated-browser-mockup"
+                                    target="_blank" rel="noopener noreferrer">
                                     <i class="fa-brands fa-github" aria-hidden="true"></i>
                                     Code bekijken
                                 </a>
                             </div>
                         </article>
                     </div>
+
                 </div>
+
+                <nav id="project-pagination" class="project-pagination"
+                    aria-label="Paginering projecten" hidden>
+                    <button id="vorige-projectpagina" class="btn btn-secondary"
+                        type="button" aria-label="Vorige projectpagina">
+                        <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+                        Vorige
+                    </button>
+                    <button id="volgende-projectpagina" class="btn btn-secondary"
+                        type="button" aria-label="Volgende projectpagina">
+                        Volgende
+                        <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                    </button>
+                </nav>
             </div>
         </section>
     </main>
@@ -421,39 +493,45 @@
     <footer id="contact" class="footer">
         <div class="container">
             <h2>Neem contact op</h2>
+
             <p class="footer-intro">
-                Heb je een vraag over mijn projecten of over de code op mijn GitHub-pagina? Stuur me gerust een bericht
-                via e-mail of Whatsapp.
-                Je kunt me ook telefonisch bereiken of een bericht sturen via LinkedIn. Ik kijk ernaar uit om van je te
-                horen!
+                Heb je een vraag over mijn projecten of over de code op mijn GitHub-pagina?
+                Stuur me gerust een bericht via e-mail of WhatsApp. Je kunt me ook
+                telefonisch bereiken of een bericht sturen via LinkedIn.
+                Ik kijk ernaar uit om van je te horen!
             </p>
 
-            <div
-                class="contact-details d-flex flex-column flex-md-row flex-wrap justify-content-center align-items-center gap-4">
+            <div class="contact-details d-flex flex-column flex-md-row flex-wrap justify-content-center align-items-center gap-4">
                 <a href="mailto:wesleybogaerts@hotmail.com">
                     <i class="fa-solid fa-envelope" aria-hidden="true"></i>
                     <span>wesleybogaerts@hotmail.com</span>
                 </a>
+
                 <a href="tel:+32472254248">
                     <i class="fa-solid fa-phone" aria-hidden="true"></i>
                     <span>+32 (0)472 25 42 48</span>
                 </a>
-                <a href="https://maps.google.com/?q=Balen" target="_blank" rel="noopener noreferrer">
+
+                <a href="https://maps.google.com/?q=Balen"
+                    target="_blank" rel="noopener noreferrer">
                     <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
                     <span>Balen, België</span>
                 </a>
             </div>
 
             <div class="social-links d-flex flex-wrap justify-content-center align-items-center gap-4">
-                <a href="https://github.com/Wesley-dev-tech" aria-label="GitHub" target="_blank"
-                    rel="noopener noreferrer">
+                <a href="https://github.com/Wesley-dev-tech" aria-label="GitHub"
+                    target="_blank" rel="noopener noreferrer">
                     <i class="fa-brands fa-github" aria-hidden="true"></i>
                 </a>
-                <a href="https://www.linkedin.com/in/wesley-bogaerts/" aria-label="LinkedIn" target="_blank"
-                    rel="noopener noreferrer">
+
+                <a href="https://www.linkedin.com/in/wesley-bogaerts/" aria-label="LinkedIn"
+                    target="_blank" rel="noopener noreferrer">
                     <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
                 </a>
-                <a href="https://wa.me/32472254248" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
+
+                <a href="https://wa.me/32472254248" aria-label="WhatsApp"
+                    target="_blank" rel="noopener noreferrer">
                     <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
                 </a>
             </div>
@@ -461,16 +539,24 @@
             <div class="footer-badge d-flex justify-content-center mb-4">
                 <a class="d-flex align-items-center"
                     href="https://madewithjev.com/free-tools/ai-slop-detector/report/wesley-dev-tech.github.io~a872f2">
-                    <img src="https://madewithjev.com/free-tools/ai-slop-detector/badge/wesley-dev-tech.github.io~a872f2"
+                    <img
+                        src="https://madewithjev.com/free-tools/ai-slop-detector/badge/wesley-dev-tech.github.io~a872f2"
                         alt="33% AI slop, checked by Jev" height="20">
                 </a>
             </div>
 
-            <p class="copyright">&copy; 2026 Wesley Bogaerts - Developer Portfolio</p>
+            <p class="copyright">
+                &copy; 2026 Wesley Bogaerts - Developer Portfolio
+            </p>
         </div>
     </footer>
 
-    <script src="script.js?v=8"></script>
+    <button id="back-to-top" class="btn back-to-top" type="button"
+        aria-label="Terug naar boven" title="Terug naar boven" hidden>
+        <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+    </button>
+
+    <script src="script.js?v=9"></script>
 </body>
 
 </html>
