@@ -1,13 +1,23 @@
+/* Portfolio v8 - donker developer-thema */
 /* Kleuren en basis */
+/* Coolors-palet: https://coolors.co/0b1120-0f172a-182234-2dd4bf-a78bfa */
 :root {
-    --primary-color: rgb(108, 92, 231);
-    --accent-color: rgb(0, 206, 201);
+    /* Turquoise voor acties; paars uitsluitend voor subtiele accenten. */
+    --primary-color: #2dd4bf;
+    --primary-hover: #5eead4;
+    --primary-active: #14b8a6;
+    --accent-color: var(--primary-color);
+    --purple-accent: #a78bfa;
+    --button-text: #0b1120;
+    --primary-soft: rgba(45, 212, 191, .1);
+    --primary-soft-active: rgba(45, 212, 191, .18);
+    --purple-soft: rgba(167, 139, 250, .1);
     --bg-dark: rgb(15, 23, 42);
     --bg-darker: rgb(11, 17, 32);
     --card-bg: rgb(24, 34, 52);
-    --text-color: #fff;
-    --text-muted: rgba(255, 255, 255, .75);
-    --border-color: rgba(255, 255, 255, .1);
+    --text-color: #e6edf7;
+    --text-muted: #b6c2d4;
+    --border-color: rgba(182, 194, 212, .14);
 }
 
 * {
@@ -158,7 +168,7 @@ header {
     padding: 70px 20px;
     text-align: center;
     background:
-        radial-gradient(ellipse at top, rgba(108, 92, 231, .2), transparent 55%),
+        radial-gradient(ellipse at top, rgba(167, 139, 250, .08), transparent 55%),
         var(--bg-darker);
 }
 
@@ -189,11 +199,27 @@ header {
 }
 
 .btn {
+    /* Bootstrap gebruikt deze variabelen ook bij focus, active en disabled. */
+    --bs-btn-color: var(--button-text);
+    --bs-btn-bg: var(--primary-color);
+    --bs-btn-border-color: var(--primary-color);
+    --bs-btn-hover-color: var(--button-text);
+    --bs-btn-hover-bg: var(--primary-hover);
+    --bs-btn-hover-border-color: var(--primary-hover);
+    --bs-btn-active-color: var(--button-text);
+    --bs-btn-active-bg: var(--primary-active);
+    --bs-btn-active-border-color: var(--primary-active);
+    --bs-btn-disabled-color: var(--button-text);
+    --bs-btn-disabled-bg: var(--primary-color);
+    --bs-btn-disabled-border-color: var(--primary-color);
+    --bs-btn-focus-box-shadow: 0 0 0 3px var(--bg-darker),
+        0 0 0 6px var(--primary-color);
+
     padding: 12px 24px;
     border: 2px solid var(--primary-color);
     border-radius: 8px;
     background: var(--primary-color);
-    color: var(--text-color);
+    color: var(--button-text);
     font-weight: 700;
 }
 
@@ -202,12 +228,25 @@ header {
 }
 
 .btn:hover {
-    background: rgb(89, 72, 214);
-    border-color: rgb(89, 72, 214);
-    color: var(--text-color);
+    background: var(--primary-hover);
+    border-color: var(--primary-hover);
+    color: var(--button-text);
 }
 
 .btn-secondary {
+    --bs-btn-color: var(--accent-color);
+    --bs-btn-bg: transparent;
+    --bs-btn-border-color: var(--accent-color);
+    --bs-btn-hover-color: var(--accent-color);
+    --bs-btn-hover-bg: var(--primary-soft);
+    --bs-btn-hover-border-color: var(--accent-color);
+    --bs-btn-active-color: var(--accent-color);
+    --bs-btn-active-bg: var(--primary-soft-active);
+    --bs-btn-active-border-color: var(--accent-color);
+    --bs-btn-disabled-color: var(--accent-color);
+    --bs-btn-disabled-bg: transparent;
+    --bs-btn-disabled-border-color: var(--accent-color);
+
     border-color: var(--accent-color);
     background: transparent;
     color: var(--accent-color);
@@ -215,8 +254,8 @@ header {
 
 .btn-secondary:hover {
     border-color: var(--accent-color);
-    background: var(--accent-color);
-    color: var(--bg-darker);
+    background: var(--primary-soft);
+    color: var(--accent-color);
 }
 
 /* Over mij en opleiding */
@@ -262,7 +301,7 @@ header {
     width: 65px;
     height: 65px;
     border-radius: 14px;
-    background: rgba(0, 206, 201, .12);
+    background: var(--primary-soft);
     font-size: 1.8rem;
 }
 
@@ -309,7 +348,8 @@ header {
     height: 80px;
     margin: 0 auto 20px;
     border-radius: 18px;
-    background: rgba(108, 92, 231, .18);
+    background: var(--purple-soft);
+    color: var(--purple-accent);
     font-size: 2rem;
 }
 
@@ -325,7 +365,7 @@ header {
 .project-tags span {
     padding: 5px 14px;
     border-radius: 20px;
-    background: rgba(0, 206, 201, .12);
+    background: var(--primary-soft);
     color: var(--accent-color);
     font-size: .85rem;
     font-weight: 600;
@@ -333,7 +373,7 @@ header {
 
 .project-card:hover,
 .skill-card:hover {
-    border-color: var(--accent-color);
+    border-color: rgba(45, 212, 191, .55);
 }
 
 .project-button {

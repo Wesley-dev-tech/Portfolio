@@ -2,6 +2,16 @@
 
 My personal developer portfolio showcasing my education, skills and projects. Built with HTML, CSS, JavaScript, Bootstrap, Flexbox and Font Awesome icons.
 
+## Version
+
+Current site version: **v8** (20 October 2026).
+
+This update introduces a dark blue theme with turquoise primary buttons, dark button text and subtle purple accents. Button hover, focus and active states use the same palette. Existing responsive layouts and mobile navigation are preserved.
+
+[View the color palette on Coolors](https://coolors.co/0b1120-0f172a-182234-2dd4bf-a78bfa).
+
+The CSS and JavaScript URLs in `index.html` use `?v=8` to refresh cached assets for this site version.
+
 ## How to View
 
 Open `index.html` in a browser. An internet connection is required to load Bootstrap, Font Awesome and the font.
