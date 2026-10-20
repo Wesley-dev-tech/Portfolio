@@ -4,13 +4,13 @@ My personal developer portfolio showcasing my education, skills and projects. Bu
 
 ## Version
 
-Current site version: **v9** (20 October 2026).
+Current site version: **v10** (20 October 2026).
 
-This update adds project sorting and pagination, scroll-reveal animations, and expanded skills carousel controls. The established dark blue palette with turquoise buttons and purple accents is preserved.
+This update adds subtle, layered color and depth to the existing dark theme without changing the page layout or copy.
 
 [View the color palette on Coolors](https://coolors.co/0b1120-0f172a-182234-2dd4bf-a78bfa).
 
-The CSS and JavaScript URLs in `index.html` use `?v=9` to refresh cached assets for this site version.
+The CSS and JavaScript URLs in `index.html` use versioned query strings to refresh cached assets.
 
 ## How to View
 
