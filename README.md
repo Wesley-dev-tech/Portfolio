@@ -26,7 +26,9 @@ JavaScript powers the mobile navigation with an active link that follows the cur
 - Crossword puzzle: my third course project, a static layout built with Bootstrap Grid.
 - Tailwind product page: my fourth course project, an AirPods product card styled with Tailwind CSS.
 - Animated browser mockup featuring a CSS cursor and scrolling animation.
-- Vloermeesters tile price calculator: a course project for a fictional tiling company, with JavaScript price calculations and printable PDF quotes. The project card links to the live demo at https://wesley-dev-tech.github.io/vloerder/ and the code at https://github.com/Wesley-dev-tech/vloerder.
+- Vloermeesters tile price calculator: a course project for a fictional tiling company, with JavaScript price calculations and printable PDF quotes.
+
+Each project has its own GitHub repository. The project cards link to the live demo on GitHub Pages (`https://wesley-dev-tech.github.io/<repo>/`) and to the code on GitHub.
 
 ## Files
 
@@ -34,12 +36,6 @@ JavaScript powers the mobile navigation with an active link that follows the cur
 - `style.css`: responsive styling.
 - `script.js`: mobile navigation and active link, scroll progress bar, typing effect, scroll animations, skills carousel with swipe support, project sorting and pagination, copy buttons, and scroll-to-top interactions. The typed phrases come from the `rollen` list in this file. The project cards are generated from the `projecten` list in this file; add a new project at the bottom of that list.
 - `favicon.ico`: the site icon.
-- `projecten/polestar/`: a copy of my original Polestar assignment, with its own README.
-- `projecten/halloween/`: the Halloween registration page and its English README.
-- `projecten/kruiswoordraadsel/`: the crossword puzzle layout and its English README.
-- `projecten/tailwind/`: the Tailwind product page, product image and English README.
-- `projecten/browser-mockup/`: the standalone animated browser mockup and its English README.
-- `projecten/vloermeesters/`: the Vloermeesters price calculator and its English README.
 
 The Tailwind product page is a visual demo with sample product information and no purchase or payment functionality. It loads Tailwind through a CDN script.
 
