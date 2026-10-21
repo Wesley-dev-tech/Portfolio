@@ -304,7 +304,7 @@ const projecten = [
         icoon: "fa-calculator",
         beschrijving: "Een prijsberekeningstool voor een fictief vloerdersbedrijf. Bereken een richtprijs voor tegelwerken en druk een overzichtelijke offerte af als PDF.",
         tags: ["HTML", "CSS", "JavaScript", "Bootstrap"],
-        code: "https://github.com/Wesley-dev-tech/vloerder"
+        demo: "https://wesley-dev-tech.github.io/vloerder/",         code: "https://github.com/Wesley-dev-tech/vloerder"
     },
 ];
 
