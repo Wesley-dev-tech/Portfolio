@@ -49,8 +49,7 @@ a {
 
 h1,
 h2,
-h3,
-h4 {
+h3 {
     font-weight: 700;
 }
 
@@ -277,7 +276,6 @@ header {
 .education-icon,
 .project-icon {
     flex-shrink: 0;
-    color: var(--primary-color);
 }
 
 .education-icon {
@@ -285,6 +283,7 @@ header {
     height: 65px;
     border-radius: 14px;
     background: var(--primary-soft);
+    color: var(--primary-color);
     font-size: 1.8rem;
 }
 
@@ -301,7 +300,6 @@ header {
 
 .education-card .education-school {
     margin-bottom: 12px;
-    font-size: 1rem;
     font-weight: 700;
 }
 
@@ -533,9 +531,9 @@ header {
 /* Mobiel menu */
 @media (max-width: 1199.98px) {
     .menu-button {
+        display: flex;
         align-items: center;
         justify-content: center;
-        display: flex;
         width: 44px;
         height: 44px;
         padding: 0;
@@ -562,10 +560,6 @@ header {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    html {
-        scroll-behavior: auto;
-    }
-
     *,
     *::before,
     *::after {
