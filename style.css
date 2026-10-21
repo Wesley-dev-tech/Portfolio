@@ -264,7 +264,8 @@ header {
     text-align: center;
 }
 
-.about p+p {
+.about p+p,
+.education-card p+p {
     margin-top: 18px;
 }
 
