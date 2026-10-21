@@ -194,10 +194,7 @@ skillSlides.addEventListener("touchend", function (event) {
 // Typ-effect in de hero
 const getypteTekst = document.querySelector("#typed-text");
 const rollen = [
-    "Full Stack Developer in opleiding",
-    "AI Automation",
-    "HTML, CSS & JavaScript",
-    "MySQL & Database Management",
+    "Full Stack Developer in opleiding"
 ];
 
 let huidigeRol = 0;
