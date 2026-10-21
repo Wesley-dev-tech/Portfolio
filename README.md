@@ -27,6 +27,8 @@ JavaScript powers the mobile navigation with an active link that follows the cur
 - Tailwind product page: my fourth course project, an AirPods product card styled with Tailwind CSS.
 - Animated browser mockup featuring a CSS cursor and scrolling animation.
 
+- Vloermeesters tile price calculator: a responsive quote calculator for a fictional tiling company, with printable PDF quotes.
+
 ## Files
 
 - `index.html`: the portfolio page.
