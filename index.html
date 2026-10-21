@@ -13,19 +13,23 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://wesley-dev-tech.github.io/portfolio/">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha384-t1nt8BQoYMLFN5p42tRAtuAAFQaCQODekUVeKKZrEnEyp4H2R0RHFz0KWpmj7i8g"
+        crossorigin="anonymous">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap">
 
-    <link rel="stylesheet" href="style.css?v=12">
+    <link rel="stylesheet" href="style.css?v=13">
     <link rel="icon" href="favicon.ico">
 </head>
 
 <body>
-    <a class="skip-link" href="#inhoud">Ga naar de inhoud</a>
+    <a class="skip-link" href="#main-content">Ga naar de inhoud</a>
 
     <!-- Navigatie -->
     <header>
@@ -38,15 +42,10 @@
                 <span>Portfolio - Wesley Bogaerts</span>
             </a>
 
-            <a href="#menu" class="menu-button menu-open"
-                aria-label="Menu openen" aria-controls="nav-links">
+            <button type="button" class="menu-button" aria-label="Menu openen"
+                aria-controls="nav-links" aria-expanded="false">
                 <i class="fa-solid fa-bars" aria-hidden="true"></i>
-            </a>
-
-            <a href="#home" class="menu-button menu-close"
-                aria-label="Menu sluiten">
-                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
-            </a>
+            </button>
 
             <ul class="nav-links d-xl-flex" id="nav-links">
                 <li>
@@ -83,7 +82,7 @@
         </nav>
     </header>
 
-    <main id="inhoud">
+    <main id="main-content">
 
         <!-- Intro -->
         <section id="home" class="hero d-flex align-items-center">
@@ -171,7 +170,7 @@
                     <div>
                         <span class="education-label">Momenteel student</span>
                         <h3>Full Stack &amp; AI Automation Developer</h3>
-                        <h4>SyntraPXL</h4>
+                        <p class="education-school">SyntraPXL</p>
 
                         <p>
                             Ik volg de voltijdse dagopleiding Full Stack &amp; AI Automation
@@ -244,7 +243,7 @@
                     aria-roledescription="carrousel"
                     aria-label="Mijn vaardigheden">
 
-                    <div id="skill-slides">
+                    <div id="skill-slides" class="skill-slides" aria-live="off">
                         <article class="skill-card">
                             <i class="fa-brands fa-html5" aria-hidden="true"></i>
                             <h3>HTML</h3>
@@ -307,21 +306,21 @@
                     </div>
 
                     <div class="d-flex flex-wrap justify-content-center gap-3 mt-4">
-                        <button id="vorige-skill" class="btn btn-secondary"
+                        <button id="skill-prev" class="btn btn-secondary"
                             type="button" aria-controls="skill-slides">
                             <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
                             Vorige
                         </button>
 
-                        <button id="volgende-skill" class="btn btn-secondary"
+                        <button id="skill-next" class="btn btn-secondary"
                             type="button" aria-controls="skill-slides">
                             Volgende
                             <i class="fa-solid fa-chevron-right"
                                 aria-hidden="true"></i>
                         </button>
 
-                        <button id="skill-carousel-toggle" class="btn btn-secondary"
-                            type="button" aria-pressed="true">
+                        <button id="skill-carousel-toggle" class="btn btn-secondary carousel-toggle"
+                            type="button">
                             <i class="fa-solid fa-pause" aria-hidden="true"></i>
                             <span>Automatisch pauzeren</span>
                         </button>
@@ -347,69 +346,33 @@
                     </div>
                 </div>
 
-                <div id="project-list" class="row g-4">
+                <div id="project-list" class="project-list row g-4"></div>
 
-                    <!-- Portfolio -->
-                    <div class="col-12 col-lg-6 d-flex" data-project-order="1">
+                <noscript>
+                    <p class="text-center">
+                        Zet JavaScript aan om mijn projecten te zien, of bekijk ze op
+                        <a class="text-decoration-underline" href="https://github.com/Wesley-dev-tech">GitHub</a>.
+                    </p>
+                </noscript>
+
+                <!-- Sjabloon voor één projectkaart; script.js vult het in -->
+                <template id="project-template">
+                    <div class="col-12 col-lg-6 d-flex">
                         <article class="project-card w-100 d-flex flex-column">
                             <div class="project-icon d-flex align-items-center justify-content-center">
-                                <i class="fa-solid fa-laptop-code" aria-hidden="true"></i>
+                                <i class="fa-solid" aria-hidden="true"></i>
                             </div>
 
-                            <h3>Portfolio</h3>
-                            <p>
-                                Mijn eigen portfoliowebsite, opgebouwd met HTML, CSS,
-                                JavaScript, Flexbox en Bootstrap. De lay-out werkt op
-                                zowel desktopcomputers als mobiele apparaten.
-                            </p>
+                            <h3></h3>
+                            <p></p>
 
-                            <div class="project-tags d-flex flex-wrap justify-content-center gap-2">
-                                <span>HTML</span>
-                                <span>CSS</span>
-                                <span>JavaScript</span>
-                                <span>Flexbox</span>
-                                <span>Bootstrap</span>
-                            </div>
+                            <div class="project-tags d-flex flex-wrap justify-content-center gap-2"></div>
 
                             <div class="project-button d-flex flex-wrap justify-content-center gap-3">
-                                <a class="btn btn-secondary"
-                                    href="https://github.com/Wesley-dev-tech/portfolio"
-                                    target="_blank" rel="noopener noreferrer">
-                                    <i class="fa-brands fa-github" aria-hidden="true"></i>
-                                    Code bekijken
-                                </a>
-                            </div>
-                        </article>
-                    </div>
-
-                    <!-- Polestar -->
-                    <div class="col-12 col-lg-6 d-flex" data-project-order="6">
-                        <article class="project-card w-100 d-flex flex-column">
-                            <div class="project-icon d-flex align-items-center justify-content-center">
-                                <i class="fa-solid fa-car-side" aria-hidden="true"></i>
-                            </div>
-
-                            <h3>Polestar 6</h3>
-                            <p>
-                                Mijn eerste opleidingsproject: een fictieve Polestar-pagina
-                                namaken met HTML en CSS. Daarbij oefende ik met Flexbox en
-                                het positioneren van afbeeldingen. De pagina is nog niet
-                                aangepast voor mobiele apparaten.
-                            </p>
-
-                            <div class="project-tags d-flex flex-wrap justify-content-center gap-2">
-                                <span>HTML</span>
-                                <span>CSS</span>
-                                <span>Flexbox</span>
-                            </div>
-
-                            <div class="project-button d-flex flex-wrap justify-content-center gap-3">
-                                <a class="btn" href="projecten/polestar/index.html"
-                                    target="_blank" rel="noopener noreferrer">
+                                <a class="btn project-demo" target="_blank" rel="noopener noreferrer">
                                     Bekijk project ↗
                                 </a>
-                                <a class="btn btn-secondary"
-                                    href="https://github.com/Wesley-dev-tech/polestar"
+                                <a class="btn btn-secondary project-code"
                                     target="_blank" rel="noopener noreferrer">
                                     <i class="fa-brands fa-github" aria-hidden="true"></i>
                                     Code bekijken
@@ -417,157 +380,16 @@
                             </div>
                         </article>
                     </div>
-
-                    <!-- Halloween -->
-                    <div class="col-12 col-lg-6 d-flex" data-project-order="5">
-                        <article class="project-card w-100 d-flex flex-column">
-                            <div class="project-icon d-flex align-items-center justify-content-center">
-                                <i class="fa-solid fa-ghost" aria-hidden="true"></i>
-                            </div>
-
-                            <h3>Halloween inschrijvingspagina</h3>
-                            <p>
-                                Een inschrijvingspagina voor een Halloweentocht. Ik oefende
-                                met Bootstrap Grid, Google Fonts, Font Awesome-iconen en
-                                een formulier met invoervelden. De lay-out werkt op zowel
-                                desktopcomputers als mobiele apparaten.
-                            </p>
-
-                            <div class="project-tags d-flex flex-wrap justify-content-center gap-2">
-                                <span>HTML</span>
-                                <span>CSS</span>
-                                <span>Bootstrap Grid</span>
-                            </div>
-
-                            <div class="project-button d-flex flex-wrap justify-content-center gap-3">
-                                <a class="btn" href="projecten/halloween/index.html"
-                                    target="_blank" rel="noopener noreferrer">
-                                    Bekijk project ↗
-                                </a>
-                                <a class="btn btn-secondary"
-                                    href="https://github.com/Wesley-dev-tech/halloween"
-                                    target="_blank" rel="noopener noreferrer">
-                                    <i class="fa-brands fa-github" aria-hidden="true"></i>
-                                    Code bekijken
-                                </a>
-                            </div>
-                        </article>
-                    </div>
-
-                    <!-- Kruiswoordraadsel -->
-                    <div class="col-12 col-lg-6 d-flex" data-project-order="4">
-                        <article class="project-card w-100 d-flex flex-column">
-                            <div class="project-icon d-flex align-items-center justify-content-center">
-                                <i class="fa-solid fa-table-cells" aria-hidden="true"></i>
-                            </div>
-
-                            <h3>Kruiswoordraadsel</h3>
-                            <p>
-                                Een visuele uitwerking van een kruiswoordraadsel met
-                                Bootstrap Grid. Met rijen, kolommen en CSS bouwde ik een
-                                raster met genummerde vakjes. De puzzel is niet interactief.
-                            </p>
-
-                            <div class="project-tags d-flex flex-wrap justify-content-center gap-2">
-                                <span>HTML</span>
-                                <span>CSS</span>
-                                <span>Bootstrap Grid</span>
-                            </div>
-
-                            <div class="project-button d-flex flex-wrap justify-content-center gap-3">
-                                <a class="btn" href="projecten/kruiswoordraadsel/index.html"
-                                    target="_blank" rel="noopener noreferrer">
-                                    Bekijk project ↗
-                                </a>
-                                <a class="btn btn-secondary"
-                                    href="https://github.com/Wesley-dev-tech/crossword-puzzle"
-                                    target="_blank" rel="noopener noreferrer">
-                                    <i class="fa-brands fa-github" aria-hidden="true"></i>
-                                    Code bekijken
-                                </a>
-                            </div>
-                        </article>
-                    </div>
-
-                    <!-- Tailwind -->
-                    <div class="col-12 col-lg-6 d-flex" data-project-order="3">
-                        <article class="project-card w-100 d-flex flex-column">
-                            <div class="project-icon d-flex align-items-center justify-content-center">
-                                <i class="fa-solid fa-headphones" aria-hidden="true"></i>
-                            </div>
-
-                            <h3>Productpagina met Tailwind</h3>
-                            <p>
-                                Een AirPods-productpagina vormgegeven met Tailwind CSS.
-                                Ik oefende met utility-classes voor de lay-out, kleuren,
-                                typografie en de opmaak van de productkaart.
-                            </p>
-
-                            <div class="project-tags d-flex flex-wrap justify-content-center gap-2">
-                                <span>HTML</span>
-                                <span>Tailwind</span>
-                                <span>Flexbox</span>
-                            </div>
-
-                            <div class="project-button d-flex flex-wrap justify-content-center gap-3">
-                                <a class="btn" href="projecten/tailwind/index.html"
-                                    target="_blank" rel="noopener noreferrer">
-                                    Bekijk project ↗
-                                </a>
-                                <a class="btn btn-secondary"
-                                    href="https://github.com/Wesley-dev-tech/tailwind-product-page"
-                                    target="_blank" rel="noopener noreferrer">
-                                    <i class="fa-brands fa-github" aria-hidden="true"></i>
-                                    Code bekijken
-                                </a>
-                            </div>
-                        </article>
-                    </div>
-
-                    <!-- Browsermock-up -->
-                    <div class="col-12 col-lg-6 d-flex" data-project-order="2">
-                        <article class="project-card w-100 d-flex flex-column">
-                            <div class="project-icon d-flex align-items-center justify-content-center">
-                                <i class="fa-solid fa-window-maximize" aria-hidden="true"></i>
-                            </div>
-
-                            <h3>Geanimeerde browsermock-up</h3>
-                            <p>
-                                Een geanimeerd browservenster met een bewegende cursor en
-                                een scrollende voorbeeldpagina. Dit project laat zien hoe
-                                je met HTML en CSS een animatie kunt maken zonder JavaScript.
-                            </p>
-
-                            <div class="project-tags d-flex flex-wrap justify-content-center gap-2">
-                                <span>HTML</span>
-                                <span>CSS</span>
-                            </div>
-
-                            <div class="project-button d-flex flex-wrap justify-content-center gap-3">
-                                <a class="btn" href="projecten/browser-mockup/index.html"
-                                    target="_blank" rel="noopener noreferrer">
-                                    Bekijk project ↗
-                                </a>
-                                <a class="btn btn-secondary"
-                                    href="https://github.com/Wesley-dev-tech/animated-browser-mockup"
-                                    target="_blank" rel="noopener noreferrer">
-                                    <i class="fa-brands fa-github" aria-hidden="true"></i>
-                                    Code bekijken
-                                </a>
-                            </div>
-                        </article>
-                    </div>
-
-                </div>
+                </template>
 
                 <nav id="project-pagination" class="project-pagination"
                     aria-label="Paginering projecten" hidden>
-                    <button id="vorige-projectpagina" class="btn btn-secondary"
+                    <button id="project-prev" class="btn btn-secondary"
                         type="button" aria-label="Vorige projectpagina">
                         <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
                         Vorige
                     </button>
-                    <button id="volgende-projectpagina" class="btn btn-secondary"
+                    <button id="project-next" class="btn btn-secondary"
                         type="button" aria-label="Volgende projectpagina">
                         Volgende
                         <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
@@ -634,7 +456,7 @@
             </div>
 
             <p class="copyright">
-                &copy; 2026 Wesley Bogaerts - Developer Portfolio
+                &copy; <span id="copyright-year">2026</span> Wesley Bogaerts - Developer Portfolio
             </p>
         </div>
     </footer>
@@ -644,7 +466,7 @@
         <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
     </button>
 
-    <script src="script.js?v=9"></script>
+    <script src="script.js?v=13"></script>
 </body>
 
 </html>
