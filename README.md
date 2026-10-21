@@ -26,7 +26,7 @@ JavaScript powers the mobile navigation with an active link that follows the cur
 - Crossword puzzle: my third course project, a static layout built with Bootstrap Grid.
 - Tailwind product page: my fourth course project, an AirPods product card styled with Tailwind CSS.
 - Animated browser mockup featuring a CSS cursor and scrolling animation.
-- Vloermeesters price calculator: a course project, a tile installation price calculator in JavaScript with a printable PDF quote.
+- Vloermeesters tile price calculator: a course project for a fictional tiling company, with JavaScript price calculations and printable PDF quotes.
 
 ## Files
 
