@@ -246,8 +246,8 @@ const projecten = [
             + "positioneren van afbeeldingen. De pagina is nog niet aangepast "
             + "voor mobiele apparaten.",
         tags: ["HTML", "CSS", "Flexbox"],
-        demo: "https://wesley-dev-tech.github.io/polestar/",
-        code: "https://github.com/Wesley-dev-tech/polestar"
+        demo: "https://wesley-dev-tech.github.io/Polestar/",
+        code: "https://github.com/Wesley-dev-tech/Polestar"
     },
     {
         titel: "Halloween inschrijvingspagina",
@@ -257,8 +257,8 @@ const projecten = [
             + "formulier met invoervelden. De lay-out werkt op zowel "
             + "desktopcomputers als mobiele apparaten.",
         tags: ["HTML", "CSS", "Bootstrap Grid"],
-        demo: "https://wesley-dev-tech.github.io/halloween/",
-        code: "https://github.com/Wesley-dev-tech/halloween"
+        demo: "https://wesley-dev-tech.github.io/Halloween/",
+        code: "https://github.com/Wesley-dev-tech/Halloween"
     },
     {
         titel: "Kruiswoordraadsel",
@@ -267,8 +267,8 @@ const projecten = [
             + "Bootstrap Grid. Met rijen, kolommen en CSS bouwde ik een raster "
             + "met genummerde vakjes. De puzzel is niet interactief.",
         tags: ["HTML", "CSS", "Bootstrap Grid"],
-        demo: "https://wesley-dev-tech.github.io/crossword-puzzle/",
-        code: "https://github.com/Wesley-dev-tech/crossword-puzzle"
+        demo: "https://wesley-dev-tech.github.io/Crossword_puzzle/",
+        code: "https://github.com/Wesley-dev-tech/Crossword_puzzle"
     },
     {
         titel: "Productpagina met Tailwind",
@@ -277,8 +277,8 @@ const projecten = [
             + "oefende met utility-classes voor de lay-out, kleuren, typografie "
             + "en de opmaak van de productkaart.",
         tags: ["HTML", "Tailwind", "Flexbox"],
-        demo: "https://wesley-dev-tech.github.io/tailwind-product-page/",
-        code: "https://github.com/Wesley-dev-tech/tailwind-product-page"
+        demo: "https://wesley-dev-tech.github.io/Tailwind_product_page/",
+        code: "https://github.com/Wesley-dev-tech/Tailwind_product_page"
     },
     {
         titel: "Geanimeerde browsermock-up",
@@ -287,8 +287,8 @@ const projecten = [
             + "een scrollende voorbeeldpagina. Dit project laat zien hoe je met "
             + "HTML en CSS een animatie kunt maken zonder JavaScript.",
         tags: ["HTML", "CSS"],
-        demo: "https://wesley-dev-tech.github.io/animated-browser-mockup/",
-        code: "https://github.com/Wesley-dev-tech/animated-browser-mockup"
+        demo: "https://wesley-dev-tech.github.io/Animated_browser_mockup/",
+        code: "https://github.com/Wesley-dev-tech/Animated_browser_mockup"
     },
     {
         titel: "Portfolio",
@@ -304,8 +304,8 @@ const projecten = [
         icoon: "fa-calculator",
         beschrijving: "Een prijsberekeningstool voor een fictief vloerdersbedrijf. Bereken een richtprijs voor tegelwerken en druk een overzichtelijke offerte af als PDF.",
         tags: ["HTML", "CSS", "JavaScript", "Bootstrap"],
-        demo: "https://wesley-dev-tech.github.io/vloerder/",
-        code: "https://github.com/Wesley-dev-tech/vloerder"
+        demo: "https://wesley-dev-tech.github.io/Flooring_price_calculator/",
+        code: "https://github.com/Wesley-dev-tech/Flooring_price_calculator"
     },
 ];
 
