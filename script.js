@@ -195,9 +195,9 @@ skillSlides.addEventListener("touchend", function (event) {
 const getypteTekst = document.querySelector("#typed-text");
 const rollen = [
     "Full Stack Developer in opleiding",
-    "AI Automaton",
-    "HTML, CSS en JavaScript",
-    'MySQL en Database Management'
+    "AI Automation",
+    "HTML, CSS & JavaScript",
+    'MySQL & Databases Management'
 ];
 
 let huidigeRol = 0;
