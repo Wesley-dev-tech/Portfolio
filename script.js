@@ -31,6 +31,37 @@ document.addEventListener("keydown", function (event) {
     }
 });
 
+// Actieve link in de navigatie
+const secties = document.querySelectorAll("main section[id], footer[id]");
+
+// Actief is de laatste sectie die al tot het bovenste derde van het scherm gescrold is
+function werkActieveLinkBij() {
+    let actieveSectie = secties[0];
+
+    secties.forEach(function (sectie) {
+        if (sectie.getBoundingClientRect().top <= window.innerHeight / 3) {
+            actieveSectie = sectie;
+        }
+    });
+
+    // Helemaal onderaan geraakt de contactsectie dat punt soms niet,
+    // dus dan is die sowieso actief.
+    const onderaanPagina = window.innerHeight + window.scrollY
+        >= document.documentElement.scrollHeight - 2;
+
+    if (onderaanPagina) {
+        actieveSectie = secties[secties.length - 1];
+    }
+
+    menuLinks.forEach(function (link) {
+        if (link.getAttribute("href") === "#" + actieveSectie.id) {
+            link.setAttribute("aria-current", "location");
+        } else {
+            link.removeAttribute("aria-current");
+        }
+    });
+}
+
 // Vaardighedencarrousel
 const skillSlides = document.querySelector("#skill-slides");
 const skillKaarten = skillSlides.querySelectorAll(".skill-card");
@@ -131,6 +162,79 @@ voorkeurMinderBeweging.addEventListener("change", function (event) {
         werkCarrouselTimerBij();
     }
 });
+
+// Vegen op een touchscreen
+let veegStartX = 0;
+let veegStartY = 0;
+
+skillSlides.addEventListener("touchstart", function (event) {
+    veegStartX = event.changedTouches[0].clientX;
+    veegStartY = event.changedTouches[0].clientY;
+}, { passive: true });
+
+skillSlides.addEventListener("touchend", function (event) {
+    const verschilX = event.changedTouches[0].clientX - veegStartX;
+    const verschilY = event.changedTouches[0].clientY - veegStartY;
+
+    // Alleen een duidelijke horizontale veeg telt, zodat verticaal scrollen blijft werken
+    if (Math.abs(verschilX) < 50 || Math.abs(verschilX) < Math.abs(verschilY)) {
+        return;
+    }
+
+    // Naar links vegen = volgende kaart, naar rechts vegen = vorige kaart
+    if (verschilX < 0) {
+        volgendeSkill();
+    } else {
+        vorigeSkill();
+    }
+
+    werkCarrouselTimerBij();
+}, { passive: true });
+
+// Typ-effect in de hero
+const getypteTekst = document.querySelector("#typed-text");
+const rollen = [
+    "Full Stack Developer in opleiding",
+    "AI Automation",
+    "HTML, CSS & JavaScript",
+    "MySQL & databanken"
+];
+
+let huidigeRol = 0;
+let aantalLetters = 0;
+let aanHetWissen = false;
+
+// Telkens één letter erbij of eraf, en dan zichzelf opnieuw inplannen
+function typRol() {
+    const rol = rollen[huidigeRol];
+    let wachttijd = aanHetWissen ? 40 : 90;
+
+    aantalLetters = aanHetWissen ? aantalLetters - 1 : aantalLetters + 1;
+    getypteTekst.textContent = rol.slice(0, aantalLetters);
+
+    if (!aanHetWissen && aantalLetters === rol.length) {
+        // Even laten staan voor het wissen begint
+        aanHetWissen = true;
+        wachttijd = 1800;
+    } else if (aanHetWissen && aantalLetters === 0) {
+        aanHetWissen = false;
+        huidigeRol = huidigeRol + 1;
+
+        if (huidigeRol >= rollen.length) {
+            huidigeRol = 0;
+        }
+
+        wachttijd = 400;
+    }
+
+    setTimeout(typRol, wachttijd);
+}
+
+if (voorkeurMinderBeweging.matches) {
+    getypteTekst.textContent = rollen[0];
+} else {
+    typRol();
+}
 
 // Projecten, van oud naar nieuw. Een nieuw project zet je gewoon onderaan de lijst.
 const projecten = [
@@ -323,13 +427,65 @@ function werkTerugNaarBovenKnopBij() {
     terugNaarBovenKnop.hidden = window.scrollY < 400;
 }
 
-window.addEventListener("scroll", werkTerugNaarBovenKnopBij, { passive: true });
-
 terugNaarBovenKnop.addEventListener("click", function () {
     window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-werkTerugNaarBovenKnopBij();
+// Voortgangsbalk onder de header
+const voortgangsbalk = document.querySelector("#scroll-progress");
+
+function werkVoortgangsbalkBij() {
+    const scrollbareHoogte = document.documentElement.scrollHeight - window.innerHeight;
+    let voortgang = scrollbareHoogte > 0 ? window.scrollY / scrollbareHoogte : 0;
+
+    // Op iPhones kan je even voorbij de rand scrollen, dus tussen 0 en 1 houden
+    voortgang = Math.min(Math.max(voortgang, 0), 1);
+    voortgangsbalk.style.transform = "scaleX(" + voortgang + ")";
+}
+
+// Alles wat meebeweegt met de scrollpositie, in één listener
+function werkScrollpositieBij() {
+    werkActieveLinkBij();
+    werkTerugNaarBovenKnopBij();
+    werkVoortgangsbalkBij();
+}
+
+window.addEventListener("scroll", werkScrollpositieBij, { passive: true });
+window.addEventListener("resize", werkScrollpositieBij);
+werkScrollpositieBij();
+
+// Kopieerknoppen bij de contactgegevens
+const kopieerKnoppen = document.querySelectorAll(".copy-button");
+const kopieerStatus = document.querySelector("#copy-status");
+
+kopieerKnoppen.forEach(function (knop) {
+    // Zonder Clipboard API (bijvoorbeeld op een onveilige verbinding) werkt de knop niet
+    if (!navigator.clipboard) {
+        knop.remove();
+        return;
+    }
+
+    const icoon = knop.querySelector("i");
+    let terugzetTimer = null;
+
+    knop.addEventListener("click", function () {
+        navigator.clipboard.writeText(knop.dataset.copy).then(function () {
+            icoon.className = "fa-solid fa-check";
+            knop.classList.add("is-copied");
+            kopieerStatus.textContent = knop.dataset.copyLabel + " gekopieerd";
+
+            // Na 2 seconden de knop terugzetten
+            clearTimeout(terugzetTimer);
+            terugzetTimer = setTimeout(function () {
+                icoon.className = "fa-regular fa-copy";
+                knop.classList.remove("is-copied");
+                kopieerStatus.textContent = "";
+            }, 2000);
+        }).catch(function () {
+            kopieerStatus.textContent = "Kopiëren is niet gelukt";
+        });
+    });
+});
 
 // Jaartal in de footer altijd actueel houden
 document.querySelector("#copyright-year").textContent = new Date().getFullYear();

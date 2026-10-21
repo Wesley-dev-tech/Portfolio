@@ -6,7 +6,7 @@ The portfolio content describes my background, coursework and current skills.
 
 [View the color palette on Coolors](https://coolors.co/0b1120-0f172a-182234-2dd4bf-a78bfa).
 
-The CSS and JavaScript URLs in `index.html` share one version query string (`?v=13`). Raise both numbers together after a change so browsers load the new files.
+The CSS and JavaScript URLs in `index.html` share one version query string (`?v=14`). Raise both numbers together after a change so browsers load the new files.
 
 ## How to View
 
@@ -16,7 +16,7 @@ Open `index.html` in a browser. An internet connection is required to load Boots
 
 HTML, CSS, database normalization, MySQL, Agile & Scrum, and beginner JavaScript. Coursework includes sprint planning, planning poker, and a Kanban board in Trello.
 
-JavaScript powers the mobile navigation, scroll-reveal animations, skills carousel with pause/resume controls, project sorting and pagination, and the scroll-to-top button.
+JavaScript powers the mobile navigation with an active link that follows the current section, a scroll progress bar, a typing effect in the intro, scroll-reveal animations, the skills carousel with pause/resume controls and swipe support on touchscreens, project sorting and pagination, copy buttons for the email address and phone number, and the scroll-to-top button. Animations respect the reduced-motion setting.
 
 ## Projects
 
@@ -31,10 +31,9 @@ JavaScript powers the mobile navigation, scroll-reveal animations, skills carous
 
 - `index.html`: the portfolio page.
 - `style.css`: responsive styling.
-- `script.js`: mobile navigation, scroll animations, skills carousel, project sorting and pagination, and scroll-to-top interactions. The project cards are generated from the `projecten` list in this file; add a new project at the bottom of that list.
+- `script.js`: mobile navigation and active link, scroll progress bar, typing effect, scroll animations, skills carousel with swipe support, project sorting and pagination, copy buttons, and scroll-to-top interactions. The typed phrases come from the `rollen` list in this file. The project cards are generated from the `projecten` list in this file; add a new project at the bottom of that list.
 - `favicon.ico`: the site icon.
 - `projecten/polestar/`: a copy of my original Polestar assignment, with its own README.
-
 - `projecten/halloween/`: the Halloween registration page and its English README.
 - `projecten/kruiswoordraadsel/`: the crossword puzzle layout and its English README.
 - `projecten/tailwind/`: the Tailwind product page, product image and English README.

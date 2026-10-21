@@ -24,7 +24,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap">
 
-    <link rel="stylesheet" href="style.css?v=13">
+    <link rel="stylesheet" href="style.css?v=14">
     <link rel="icon" href="favicon.ico">
 </head>
 
@@ -79,6 +79,8 @@
                 </li>
             </ul>
         </nav>
+
+        <div id="scroll-progress" class="scroll-progress" aria-hidden="true"></div>
     </header>
 
     <main id="main-content">
@@ -94,6 +96,11 @@
                 <p class="hero-subtitle">
                     Student Full Stack &amp; AI Automation Developer aan SyntraPXL,
                     woonachtig in Balen.
+                </p>
+
+                <!-- Wordt door script.js letter per letter getypt -->
+                <p class="hero-typing" aria-hidden="true">
+                    <span class="typed-prompt">&gt;</span> <span id="typed-text"></span><span class="typed-cursor"></span>
                 </p>
 
                 <div class="hero-actions d-flex flex-wrap justify-content-center align-items-center gap-3">
@@ -411,15 +418,31 @@
             </p>
 
             <div class="contact-details d-flex flex-column flex-md-row flex-wrap justify-content-center align-items-center gap-4">
-                <a href="mailto:wesleybogaerts@hotmail.com">
-                    <i class="fa-solid fa-envelope" aria-hidden="true"></i>
-                    <span>wesleybogaerts@hotmail.com</span>
-                </a>
+                <div class="contact-item d-flex align-items-center gap-2">
+                    <a href="mailto:wesleybogaerts@hotmail.com">
+                        <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                        <span>wesleybogaerts@hotmail.com</span>
+                    </a>
 
-                <a href="tel:+32472254248">
-                    <i class="fa-solid fa-phone" aria-hidden="true"></i>
-                    <span>+32 (0)472 25 42 48</span>
-                </a>
+                    <button type="button" class="copy-button"
+                        data-copy="wesleybogaerts@hotmail.com" data-copy-label="E-mailadres"
+                        aria-label="E-mailadres kopiëren" title="E-mailadres kopiëren">
+                        <i class="fa-regular fa-copy" aria-hidden="true"></i>
+                    </button>
+                </div>
+
+                <div class="contact-item d-flex align-items-center gap-2">
+                    <a href="tel:+32472254248">
+                        <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                        <span>+32 (0)472 25 42 48</span>
+                    </a>
+
+                    <button type="button" class="copy-button"
+                        data-copy="+32472254248" data-copy-label="Telefoonnummer"
+                        aria-label="Telefoonnummer kopiëren" title="Telefoonnummer kopiëren">
+                        <i class="fa-regular fa-copy" aria-hidden="true"></i>
+                    </button>
+                </div>
 
                 <a href="https://maps.google.com/?q=Balen"
                     target="_blank" rel="noopener noreferrer">
@@ -427,6 +450,9 @@
                     <span>Balen, België</span>
                 </a>
             </div>
+
+            <!-- Meldt aan screenreaders dat iets gekopieerd is -->
+            <p id="copy-status" class="visually-hidden" role="status"></p>
 
             <div class="social-links d-flex flex-wrap justify-content-center align-items-center gap-4">
                 <a href="https://github.com/Wesley-dev-tech" aria-label="GitHub"
@@ -465,7 +491,7 @@
         <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
     </button>
 
-    <script src="script.js?v=13"></script>
+    <script src="script.js?v=14"></script>
 </body>
 
 </html>

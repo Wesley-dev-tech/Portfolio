@@ -151,9 +151,22 @@ header {
 }
 
 .nav-links a:hover,
+.nav-links a[aria-current],
 .social-links a:hover,
 .contact-details a:hover {
     color: var(--primary-color);
+}
+
+/* Voortgangsbalk, wordt via JavaScript opgerekt */
+.scroll-progress {
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), var(--purple-accent));
+    transform: scaleX(0);
+    transform-origin: left;
 }
 
 .menu-button {
@@ -191,6 +204,34 @@ header {
     color: var(--text-color);
     font-size: 1.1rem;
     font-weight: 600;
+}
+
+.hero-typing {
+    /* Vaste hoogte, zodat de knoppen niet verspringen tijdens het typen */
+    min-height: 1.7em;
+    margin-bottom: 28px;
+    color: var(--text-muted);
+    font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+}
+
+.typed-prompt {
+    color: var(--purple-accent);
+}
+
+.typed-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1.1em;
+    margin-left: 2px;
+    vertical-align: text-bottom;
+    background: var(--primary-color);
+    animation: knipperen 1s steps(1) infinite;
+}
+
+@keyframes knipperen {
+    50% {
+        opacity: 0;
+    }
 }
 
 .hero-actions .btn {
@@ -323,6 +364,11 @@ header {
 .skills-carousel {
     max-width: 540px;
     margin: 0 auto;
+}
+
+.skill-slides {
+    /* Horizontaal vegen gaat naar de carrousel, verticaal scrollen blijft werken */
+    touch-action: pan-y;
 }
 
 .skill-slides .skill-card {
@@ -518,6 +564,49 @@ header {
     min-width: 0;
 }
 
+.contact-item {
+    min-width: 0;
+    max-width: 100%;
+}
+
+.copy-button {
+    position: relative;
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--text-muted);
+    transition: color .2s ease, border-color .2s ease;
+}
+
+.copy-button:hover,
+.copy-button.is-copied {
+    border-color: var(--primary-border);
+    color: var(--primary-color);
+}
+
+/* Klein tekstballonnetje boven de knop */
+.copy-button.is-copied::after {
+    content: "Gekopieerd!";
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    padding: 4px 10px;
+    border-radius: 6px;
+    background: var(--primary-color);
+    color: var(--button-text);
+    font-size: .75rem;
+    font-weight: 700;
+    white-space: nowrap;
+    transform: translateX(-50%);
+}
+
 .social-links a {
     font-size: 1.8rem;
 }
@@ -570,6 +659,10 @@ header {
     .scroll-reveal {
         opacity: 1;
         transform: none;
+    }
+
+    .typed-cursor {
+        animation: none;
     }
 }
 
