@@ -1,0 +1,15 @@
+.puzzel {
+    max-width: 468px;
+    margin: 30px auto;
+}
+
+.vak {
+    aspect-ratio: 1;
+    border: 1px solid black;
+    font-size: 12px;
+    padding: 2px;
+}
+
+.zwart {
+    background: black;
+}
