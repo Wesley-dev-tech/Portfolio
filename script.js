@@ -197,7 +197,7 @@ const rollen = [
     "Full Stack Developer in opleiding",
     "AI Automation",
     "HTML, CSS & JavaScript",
-    "MySQL & databanken"
+    "MySQL & Database Management",
 ];
 
 let huidigeRol = 0;
