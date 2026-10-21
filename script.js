@@ -246,7 +246,7 @@ const projecten = [
             + "positioneren van afbeeldingen. De pagina is nog niet aangepast "
             + "voor mobiele apparaten.",
         tags: ["HTML", "CSS", "Flexbox"],
-        demo: "projecten/polestar/index.html",
+        demo: "https://wesley-dev-tech.github.io/polestar/",
         code: "https://github.com/Wesley-dev-tech/polestar"
     },
     {
@@ -257,7 +257,7 @@ const projecten = [
             + "formulier met invoervelden. De lay-out werkt op zowel "
             + "desktopcomputers als mobiele apparaten.",
         tags: ["HTML", "CSS", "Bootstrap Grid"],
-        demo: "projecten/halloween/index.html",
+        demo: "https://wesley-dev-tech.github.io/halloween/",
         code: "https://github.com/Wesley-dev-tech/halloween"
     },
     {
@@ -267,7 +267,7 @@ const projecten = [
             + "Bootstrap Grid. Met rijen, kolommen en CSS bouwde ik een raster "
             + "met genummerde vakjes. De puzzel is niet interactief.",
         tags: ["HTML", "CSS", "Bootstrap Grid"],
-        demo: "projecten/kruiswoordraadsel/index.html",
+        demo: "https://wesley-dev-tech.github.io/crossword-puzzle/",
         code: "https://github.com/Wesley-dev-tech/crossword-puzzle"
     },
     {
@@ -277,7 +277,7 @@ const projecten = [
             + "oefende met utility-classes voor de lay-out, kleuren, typografie "
             + "en de opmaak van de productkaart.",
         tags: ["HTML", "Tailwind", "Flexbox"],
-        demo: "projecten/tailwind/index.html",
+        demo: "https://wesley-dev-tech.github.io/tailwind-product-page/",
         code: "https://github.com/Wesley-dev-tech/tailwind-product-page"
     },
     {
@@ -287,7 +287,7 @@ const projecten = [
             + "een scrollende voorbeeldpagina. Dit project laat zien hoe je met "
             + "HTML en CSS een animatie kunt maken zonder JavaScript.",
         tags: ["HTML", "CSS"],
-        demo: "projecten/browser-mockup/index.html",
+        demo: "https://wesley-dev-tech.github.io/animated-browser-mockup/",
         code: "https://github.com/Wesley-dev-tech/animated-browser-mockup"
     },
     {
