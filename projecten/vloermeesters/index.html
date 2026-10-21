@@ -18,13 +18,12 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <!-- Eigen CSS (altijd als laatste, zodat onze regels voorrang krijgen) -->
+    <!-- Eigen CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- ========== HEADER EN NAVIGATIE ========== -->
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-vloer">
             <div class="container">
@@ -55,7 +54,6 @@
 
     <main>
 
-        <!-- ========== HERO ========== -->
         <section id="home" class="hero">
             <div class="container">
                 <div class="row justify-content-center">
@@ -65,11 +63,11 @@
                                 <i class="fa-solid fa-award"></i>
                                 Tegelwerken voor particulieren in België
                             </p>
-                            <h1>Een nieuwe vloer? Bereken meteen je prijs.</h1>
+                            <h1>Een nieuwe vloer? Bereken meteen je prijs en ontvang een vrijblijvende offerte.</h1>
                             <p class="hero-tekst">
                                 Van een kleine renovatie tot een volledig nieuwe tegelvloer.
                                 Bij Vloermeesters staan vakmanschap en een verzorgde afwerking centraal.
-                                Bereken vrijblijvend de geschatte plaatsingskosten voor jouw ruimte.
+                                Bereken vrijblijvend de geschatte plaatsingskosten voor jouw project.
                             </p>
                             <a href="#prijsberekening" class="btn btn-accent btn-lg">
                                 <i class="fa-solid fa-calculator me-2"></i>Bereken je prijs
@@ -96,8 +94,7 @@
                                 <div class="dienst-icoon"><i class="fa-solid fa-table-cells-large"></i></div>
                                 <h3 class="card-title">Plaatsen van vloertegels</h3>
                                 <p class="card-text">
-                                    Wij leggen je tegels strak, vlak en volgens het gekozen legpatroon.
-                                    Geschikt voor keuken, badkamer, woonkamer en hal.
+                                    Wij leggen je tegels strak, vlak en volgens jouw gekozen legpatroon.
                                 </p>
                             </div>
                         </div>
@@ -109,7 +106,7 @@
                                 <div class="dienst-icoon"><i class="fa-solid fa-fill-drip"></i></div>
                                 <h3 class="card-title">Voegafwerking</h3>
                                 <p class="card-text">
-                                    Een mooie voeg maakt het verschil. Kies een dunne of dikke voeg
+                                    Een mooie voeg maakt het verschil. Kies een fijne, brede, flexibele of epoxyvoeg
                                     in de kleur die het best past bij je tegels.
                                 </p>
                             </div>
@@ -149,53 +146,126 @@
                             <div class="card-body p-4">
                                 <form id="prijsFormulier">
 
-                                    <h3 class="formulier-titel">
-                                        <i class="fa-solid fa-user"></i> Jouw gegevens
-                                    </h3>
-                                    <div class="mb-4">
-                                        <label for="naam" class="form-label">Naam</label>
-                                        <input type="text" id="naam" class="form-control" placeholder="Bv. Wesley">
+                                    <div class="formulier-groep">
+                                        <h3 class="formulier-titel">
+                                            <i class="fa-solid fa-user"></i> Jouw gegevens
+                                        </h3>
+                                        <div class="row g-3 mb-4">
+                                            <div class="col-12 col-sm-6">
+                                                <label for="voornaam" class="form-label">Voornaam</label>
+                                                <input type="text" id="voornaam" class="form-control"
+                                                    placeholder="Bv. Wesley" autocomplete="given-name">
+                                                <div class="invalid-feedback">Vul je voornaam in.</div>
+                                            </div>
+                                            <div class="col-12 col-sm-6">
+                                                <label for="achternaam" class="form-label">Achternaam</label>
+                                                <input type="text" id="achternaam" class="form-control"
+                                                    placeholder="Bv. Peeters" autocomplete="family-name">
+                                                <div class="invalid-feedback">Vul je achternaam in.</div>
+                                            </div>
+                                            <div class="col-12 col-sm-6">
+                                                <label for="email" class="form-label">E-mailadres</label>
+                                                <input type="email" id="email" class="form-control"
+                                                    placeholder="Bv. naam@voorbeeld.be" autocomplete="email">
+                                                <div class="invalid-feedback">Vul een geldig e-mailadres in, bv. naam@voorbeeld.be.</div>
+                                            </div>
+                                            <div class="col-12 col-sm-6">
+                                                <label for="telefoon" class="form-label">Telefoonnummer</label>
+                                                <input type="text" id="telefoon" class="form-control"
+                                                    placeholder="Bv. +32 470 12 34 56" autocomplete="tel">
+                                                <div class="invalid-feedback">Vul een geldig telefoonnummer in, bv. +32 470 12 34 56 of 0470 12 34 56.</div>
+                                            </div>
+                                            <div class="col-12">
+                                                <label for="straat" class="form-label">Straat en huisnummer</label>
+                                                <input type="text" id="straat" class="form-control"
+                                                    placeholder="Bv. Kerkstraat 12" autocomplete="street-address">
+                                                <div class="invalid-feedback">Vul je straat en huisnummer in.</div>
+                                            </div>
+                                            <div class="col-12 col-sm-4">
+                                                <label for="postcode" class="form-label">Postcode</label>
+                                                <input type="text" id="postcode" class="form-control" placeholder="Bv. 2000"
+                                                    inputmode="numeric" maxlength="4" autocomplete="postal-code">
+                                                <div class="invalid-feedback">Vul een postcode van 4 cijfers in.</div>
+                                            </div>
+                                            <div class="col-12 col-sm-8">
+                                                <label for="gemeente" class="form-label">Gemeente</label>
+                                                <input type="text" id="gemeente" class="form-control"
+                                                    placeholder="Bv. Antwerpen" autocomplete="address-level2">
+                                                <div class="invalid-feedback">Vul je gemeente in.</div>
+                                            </div>
+                                        </div>
                                     </div>
 
-                                    <h3 class="formulier-titel">
-                                        <i class="fa-solid fa-ruler-combined"></i> Afmetingen van de ruimte
-                                    </h3>
-                                    <div class="row g-3 mb-4">
-                                        <div class="col-12 col-sm-6">
-                                            <label for="lengte" class="form-label">Lengte (meter)</label>
-                                            <input type="number" id="lengte" class="form-control" placeholder="Bv. 5"
-                                                min="0" step="0.01">
-                                        </div>
-                                        <div class="col-12 col-sm-6">
-                                            <label for="breedte" class="form-label">Breedte (meter)</label>
-                                            <input type="number" id="breedte" class="form-control" placeholder="Bv. 4"
-                                                min="0" step="0.01">
+                                    <div class="formulier-groep">
+                                        <h3 class="formulier-titel">
+                                            <i class="fa-solid fa-ruler-combined"></i> Afmetingen van de ruimte
+                                        </h3>
+                                        <div class="row g-3 mb-4">
+                                            <div class="col-12 col-sm-6">
+                                                <label for="lengte" class="form-label">Lengte (meter)</label>
+                                                <input type="number" id="lengte" class="form-control" placeholder="Bv. 5"
+                                                    min="0" step="0.01">
+                                                <div class="invalid-feedback">Vul een lengte groter dan 0 in.</div>
+                                            </div>
+                                            <div class="col-12 col-sm-6">
+                                                <label for="breedte" class="form-label">Breedte (meter)</label>
+                                                <input type="number" id="breedte" class="form-control" placeholder="Bv. 4"
+                                                    min="0" step="0.01">
+                                                <div class="invalid-feedback">Vul een breedte groter dan 0 in.</div>
+                                            </div>
                                         </div>
                                     </div>
 
-                                    <h3 class="formulier-titel">
-                                        <i class="fa-solid fa-fill-drip"></i> Voegafwerking
-                                    </h3>
-                                    <div class="row g-3 mb-4">
-                                        <div class="col-12 col-sm-6">
-                                            <label for="voegdikte" class="form-label">Voegdikte</label>
-                                            <select id="voegdikte" class="form-select">
-                                                <option value="" selected disabled>Kies een voegdikte</option>
-                                                <option value="4">Dunne voeg (2 mm)</option>
-                                                <option value="6">Dikke voeg (5 mm)</option>
+                                    <div class="formulier-groep">
+                                        <h3 class="formulier-titel">
+                                            <i class="fa-solid fa-table-cells-large"></i> Tegels
+                                        </h3>
+                                        <div class="mb-4">
+                                            <label for="tegels" class="form-label">Soort tegel</label>
+                                            <select id="tegels" class="form-select">
+                                                <option value="" selected disabled>Kies een tegel</option>
+                                                <option value="0">Eigen tegels (zelf aangeleverd)</option>
+                                                <option value="25">Keramiek 30 × 30 cm</option>
+                                                <option value="35">Porselein 60 × 60 cm</option>
+                                                <option value="40">Houtlook 20 × 120 cm</option>
+                                                <option value="50">Porselein 120 × 60 cm</option>
+                                                <option value="65">Natuursteen 40 × 40 cm</option>
+                                                <option value="70">Cementtegel 20 × 20 cm</option>
+                                                <option value="90">Marmer 60 × 60 cm</option>
                                             </select>
+                                            <div class="invalid-feedback">Kies een soort tegel.</div>
                                         </div>
-                                        <div class="col-12 col-sm-6">
-                                            <label for="voegkleur" class="form-label">Voegkleur</label>
-                                            <select id="voegkleur" class="form-select">
-                                                <option value="" selected disabled>Kies een voegkleur</option>
-                                                <option value="wit">Wit</option>
-                                                <option value="lichtgrijs">Lichtgrijs</option>
-                                                <option value="donkergrijs">Donkergrijs</option>
-                                                <option value="antraciet">Antraciet</option>
-                                                <option value="beige">Beige</option>
-                                                <option value="zwart">Zwart</option>
-                                            </select>
+                                    </div>
+
+                                    <div class="formulier-groep">
+                                        <h3 class="formulier-titel">
+                                            <i class="fa-solid fa-fill-drip"></i> Voegafwerking
+                                        </h3>
+                                        <div class="row g-3 mb-4">
+                                            <div class="col-12 col-sm-6">
+                                                <label for="voegdikte" class="form-label">Soort voeg</label>
+                                                <select id="voegdikte" class="form-select">
+                                                    <option value="" selected disabled>Kies een soort voeg</option>
+                                                    <option value="8">Fijne voeg (2 mm)</option>
+                                                    <option value="10">Brede voeg (5 mm)</option>
+                                                    <option value="12">Flexibele voeg (4 mm)</option>
+                                                    <option value="20">Epoxyvoeg (3 mm)</option>
+                                                </select>
+                                                <div class="invalid-feedback">Kies een soort voeg.</div>
+                                            </div>
+                                            <div class="col-12 col-sm-6">
+                                                <label for="voegkleur" class="form-label">Voegkleur</label>
+                                                <select id="voegkleur" class="form-select">
+                                                    <option value="" selected disabled>Kies een voegkleur</option>
+                                                    <option value="wit">Wit</option>
+                                                    <option value="lichtgrijs">Lichtgrijs</option>
+                                                    <option value="donkergrijs">Donkergrijs</option>
+                                                    <option value="antraciet">Antraciet</option>
+                                                    <option value="beige">Beige</option>
+                                                    <option value="zwart">Zwart</option>
+                                                </select>
+                                                <div class="invalid-feedback">Kies een voegkleur.</div>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -203,9 +273,15 @@
                                         <button type="button" id="berekenKnop" class="btn btn-accent btn-lg">
                                             <i class="fa-solid fa-calculator me-2"></i>Bereken mijn prijs
                                         </button>
+                                        <!-- type="reset" maakt alle velden van het formulier leeg -->
+                                        <!-- title = tekstballon bij hover, aria-label = naam voor schermlezers -->
+                                        <button type="reset" id="wisKnop" class="btn btn-omlijnd btn-icoon"
+                                            title="Velden wissen" aria-label="Velden wissen">
+                                            <i class="fa-solid fa-rotate-left"></i>
+                                        </button>
                                         <p class="formulier-noot">
                                             <i class="fa-solid fa-circle-info"></i>
-                                            Vrijblijvende prijsindicatie
+                                            Vrijblijvende offerte
                                         </p>
                                     </div>
 
@@ -224,35 +300,80 @@
 
                                 <ul class="tarief-lijst">
                                     <li class="tarief-rij">
+                                        <span class="tarief-naam"><i class="fa-solid fa-border-all"></i> Keramiek 30 × 30
+                                            cm</span>
+                                        <span class="tarief-prijs">€ 25,00/m²</span>
+                                    </li>
+                                    <li class="tarief-rij">
+                                        <span class="tarief-naam"><i class="fa-solid fa-border-all"></i> Porselein 60 × 60
+                                            cm</span>
+                                        <span class="tarief-prijs">€ 35,00/m²</span>
+                                    </li>
+                                    <li class="tarief-rij">
+                                        <span class="tarief-naam"><i class="fa-solid fa-border-all"></i> Houtlook 20 × 120 cm</span>
+                                        <span class="tarief-prijs">€ 40,00/m²</span>
+                                    </li>
+                                    <li class="tarief-rij">
+                                        <span class="tarief-naam"><i class="fa-solid fa-border-all"></i> Porselein 120 × 60
+                                            cm</span>
+                                        <span class="tarief-prijs">€ 50,00/m²</span>
+                                    </li>
+                                    <li class="tarief-rij">
+                                        <span class="tarief-naam"><i class="fa-solid fa-border-all"></i> Natuursteen 40 × 40
+                                            cm</span>
+                                        <span class="tarief-prijs">€ 65,00/m²</span>
+                                    </li>
+                                    <li class="tarief-rij">
+                                        <span class="tarief-naam"><i class="fa-solid fa-border-all"></i> Cementtegel 20 × 20 cm</span>
+                                        <span class="tarief-prijs">€ 70,00/m²</span>
+                                    </li>
+                                    <li class="tarief-rij">
+                                        <span class="tarief-naam"><i class="fa-solid fa-border-all"></i> Marmer 60 × 60 cm</span>
+                                        <span class="tarief-prijs">€ 90,00/m²</span>
+                                    </li>
+                                    <li class="tarief-rij">
                                         <span class="tarief-naam"><i class="fa-solid fa-table-cells-large"></i> Plaatsen
                                             vloertegels</span>
                                         <span class="tarief-prijs">€ 45,00/m²</span>
                                     </li>
                                     <li class="tarief-rij">
-                                        <span class="tarief-naam"><i class="fa-solid fa-grip-lines"></i> Dunne voeg (2
+                                        <span class="tarief-naam"><i class="fa-solid fa-grip-lines"></i> Fijne voeg (2
                                             mm)</span>
-                                        <span class="tarief-prijs">€ 4,00/m²</span>
+                                        <span class="tarief-prijs">€ 8,00/m²</span>
                                     </li>
                                     <li class="tarief-rij">
-                                        <span class="tarief-naam"><i class="fa-solid fa-grip-lines"></i> Dikke voeg (5
+                                        <span class="tarief-naam"><i class="fa-solid fa-grip-lines"></i> Brede voeg (5
                                             mm)</span>
-                                        <span class="tarief-prijs">€ 6,00/m²</span>
+                                        <span class="tarief-prijs">€ 10,00/m²</span>
+                                    </li>
+                                    <li class="tarief-rij">
+                                        <span class="tarief-naam"><i class="fa-solid fa-grip-lines"></i> Flexibele voeg (4 mm)</span>
+                                        <span class="tarief-prijs">€ 12,00/m²</span>
+                                    </li>
+                                    <li class="tarief-rij">
+                                        <span class="tarief-naam"><i class="fa-solid fa-grip-lines"></i> Epoxyvoeg (3 mm)</span>
+                                        <span class="tarief-prijs">€ 20,00/m²</span>
                                     </li>
                                 </ul>
                                 <p class="tarief-btw">Alle tarieven zijn exclusief 21% btw.</p>
 
                                 <div class="info-blok">
-                                    <i class="fa-solid fa-vector-square"></i>
-                                    <p>De oppervlakte berekenen we als <strong>lengte × breedte</strong> in vierkante
-                                        meter (m²).</p>
+                                    <i class="fa-solid fa-border-all"></i>
+                                    <p>Eigen tegels kan ook: dan betaal je enkel voor de plaatsing en de voeg.</p>
+                                </div>
+                                <div class="info-blok">
+                                    <i class="fa-solid fa-grip-lines"></i>
+                                    <p>Een <strong>flexibele voeg</strong> raden we aan bij vloerverwarming en grote
+                                        tegels. Een <strong>epoxyvoeg</strong> is water- en vlekbestendig, ideaal voor
+                                        badkamers en keukens.</p>
                                 </div>
                                 <div class="info-blok">
                                     <i class="fa-solid fa-circle-exclamation"></i>
                                     <p>
-                                        Dit is een vrijblijvende prijsindicatie met fictieve tarieven. Ze omvat enkel
-                                        plaatsing en voegafwerking.
-                                        Tegels, bijkomende materialen, voorbereidende werkzaamheden en extra kosten zijn
-                                        niet inbegrepen.
+                                        Dit is een vrijblijvende offerte met fictieve tarieven. Ze omvat de gekozen
+                                        tegels, plaatsing en voegafwerking.
+                                        Bijkomende materialen, voorbereidende werkzaamheden en extra kosten zijn
+                                        niet inbegrepen. Offerte is 30 dagen geldig. Voor een definitieve offerte bekijken we je project graag ter plaatse.
                                     </p>
                                 </div>
                             </div>
@@ -262,7 +383,7 @@
                 </div>
 
                 <!-- Offerte: verschijnt na de berekening en kan als PDF bewaard worden -->
-                <div id="offerte" class="offerte mt-4" hidden>
+                <div id="offerte" class="offerte offerte-verborgen mt-4">
 
                     <!-- Kop in huisstijl -->
                     <div class="offerte-kop">
@@ -274,7 +395,7 @@
                             </div>
                         </div>
                         <div class="offerte-titel">
-                            <p class="offerte-soort">Prijsindicatie</p>
+                            <p class="offerte-soort">Offerte</p>
                             <p class="offerte-datum">
                                 <i class="fa-regular fa-calendar"></i> <span id="offerteDatum"></span>
                             </p>
@@ -296,7 +417,10 @@
                                 <div class="offerte-partij">
                                     <p class="offerte-label"><i class="fa-solid fa-user"></i> Voor</p>
                                     <p class="offerte-partij-naam" id="offerteNaam"></p>
-                                    <p>Particulier</p>
+                                    <p id="offerteStraat"></p>
+                                    <p id="offerteGemeente"></p>
+                                    <p class="offerte-contact"><i class="fa-solid fa-phone"></i> <span id="offerteTelefoon"></span></p>
+                                    <p class="offerte-contact"><i class="fa-solid fa-envelope"></i> <span id="offerteEmail"></span></p>
                                 </div>
                             </div>
                         </div>
@@ -315,6 +439,11 @@
                                 <strong id="offerteOppervlakte"></strong>
                             </div>
                             <div class="offerte-gegeven">
+                                <i class="fa-solid fa-border-all"></i>
+                                <span>Tegels</span>
+                                <strong id="offerteTegeltype"></strong>
+                            </div>
+                            <div class="offerte-gegeven">
                                 <i class="fa-solid fa-palette"></i>
                                 <span>Voegkleur</span>
                                 <strong id="offerteVoegkleur"></strong>
@@ -331,9 +460,14 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <tr id="offerteTegelRij">
+                                    <td><i class="fa-solid fa-border-all"></i> Tegels
+                                        <small id="offerteTegelprijs"></small></td>
+                                    <td class="text-end" id="offerteTegels"></td>
+                                </tr>
                                 <tr>
                                     <td><i class="fa-solid fa-table-cells-large"></i> Plaatsingskosten
-                                        <small>(€ 45.00/m²)</small></td>
+                                        <small>(€ 45,00/m²)</small></td>
                                     <td class="text-end" id="offertePlaatsing"></td>
                                 </tr>
                                 <tr>
@@ -360,7 +494,7 @@
                         <div class="offerte-noot">
                             <i class="fa-solid fa-circle-info"></i>
                             <p>
-                                Dit is een vrijblijvende prijsindicatie. Tegels, bijkomende materialen,
+                                Dit is een vrijblijvende offerte. Bijkomende materialen,
                                 voorbereidende werkzaamheden en extra kosten zijn niet inbegrepen.
                                 Voor een definitieve offerte bekijken we je project graag ter plaatse.
                             </p>
@@ -437,6 +571,7 @@
 
     <!-- Bootstrap JavaScript (nodig voor het uitklapmenu op gsm) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
     <!-- Eigen JavaScript -->
     <script src="app.js"></script>

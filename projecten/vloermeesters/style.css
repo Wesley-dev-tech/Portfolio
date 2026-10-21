@@ -59,6 +59,32 @@ h3 {
     color: var(--kleur-wit);
 }
 
+/* Tweede knop: omlijnd, minder opvallend dan de accentknop */
+.btn-omlijnd {
+    background-color: transparent;
+    border: 2px solid var(--kleur-secundair);
+    color: var(--kleur-primair);
+    font-weight: 600;
+}
+
+.btn-omlijnd:hover,
+.btn-omlijnd:focus {
+    background-color: var(--kleur-achtergrond);
+    border-color: var(--kleur-primair);
+    color: var(--kleur-primair);
+}
+
+/* Kleine, ronde knop met enkel een icoon */
+.btn-icoon {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
 /* ---------- Navbar ---------- */
 .navbar-vloer {
     background-color: var(--kleur-primair);
@@ -249,6 +275,21 @@ h3 {
 }
 
 /* Flexbox: knop en noot naast elkaar, op een smal scherm onder elkaar (wrap) */
+/* Flexbox (kolom): het formulier vult de volledige hoogte naast de tarievenkaart */
+.formulier-kaart .card-body {
+    display: flex;
+    flex-direction: column;
+}
+
+#prijsFormulier {
+    flex-grow: 1;
+    /* het formulier neemt alle vrije hoogte in */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* de groepen (gegevens, afmetingen, tegels, voeg, knoppen) evenredig verdeeld */
+}
+
 .formulier-knoppen {
     display: flex;
     flex-wrap: wrap;
@@ -272,10 +313,25 @@ h3 {
     color: var(--kleur-wit);
 }
 
+/* Flexbox (kolom): de tarievenkaart vult de volledige hoogte naast het formulier */
+.tarief-kaart .card-body {
+    display: flex;
+    flex-direction: column;
+}
+
 .tarief-lijst {
     list-style: none;
     padding: 0;
     margin: 0;
+    flex-grow: 1;
+    /* de lijst neemt alle vrije ruimte in */
+    display: flex;
+    flex-direction: column;
+}
+
+.tarief-lijst .tarief-rij {
+    flex-grow: 1;
+    /* elke rij krijgt een even groot deel van die ruimte */
 }
 
 /* Flexbox: naam links en prijs rechts op dezelfde lijn */
@@ -285,7 +341,8 @@ h3 {
     align-items: center;
     flex-wrap: wrap;
     gap: 8px;
-    padding: 12px 0;
+    padding: 7px 0;
+    font-size: 0.9rem;
     border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
 }
 
@@ -302,9 +359,9 @@ h3 {
 }
 
 .tarief-btw {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: #C9BFB3;
-    margin: 12px 0 20px;
+    margin: 10px 0 14px;
 }
 
 /* Flexbox: icoon links naast de tekst, bovenaan uitgelijnd */
@@ -314,19 +371,19 @@ h3 {
     gap: 12px;
     background-color: rgba(255, 255, 255, 0.06);
     border-radius: 10px;
-    padding: 14px;
-    margin-bottom: 12px;
+    padding: 10px 12px;
+    margin-bottom: 10px;
 }
 
 .info-blok i {
     color: var(--kleur-accent);
-    font-size: 1.2rem;
+    font-size: 1rem;
     margin-top: 3px;
 }
 
 .info-blok p {
     margin: 0;
-    font-size: 0.9rem;
+    font-size: 0.82rem;
 }
 
 /* ---------- Contact ---------- */
@@ -394,6 +451,11 @@ h3 {
     border-radius: var(--afronding);
     box-shadow: var(--schaduw);
     overflow: hidden;
+}
+
+/* Offerte verbergen tot de prijs berekend is (JavaScript haalt deze klasse weg) */
+.offerte-verborgen {
+    display: none;
 }
 
 /* Kop: donkere band met accentlijn */
@@ -485,6 +547,15 @@ h3 {
 
 .offerte-partij p {
     margin: 0;
+}
+
+.offerte-contact {
+    overflow-wrap: anywhere;
+}
+
+.offerte-contact i {
+    width: 1rem;
+    color: var(--kleur-accent);
 }
 
 .offerte-partij-naam {
