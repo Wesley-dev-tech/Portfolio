@@ -6,7 +6,7 @@ The portfolio content describes my background, coursework and current skills.
 
 [View the color palette on Coolors](https://coolors.co/0b1120-0f172a-182234-2dd4bf-a78bfa).
 
-The CSS and JavaScript URLs in `index.html` share one version query string (`?v=16`). Raise both numbers together after a change so browsers load the new files.
+The CSS and JavaScript URLs in `index.html` share one version query string (`?v=17`). Raise both numbers together after a change so browsers load the new files.
 
 ## How to View
 
@@ -26,6 +26,7 @@ JavaScript powers the mobile navigation with an active link that follows the cur
 - Crossword puzzle: my third course project, a static layout built with Bootstrap Grid.
 - Tailwind product page: my fourth course project, an AirPods product card styled with Tailwind CSS.
 - Animated browser mockup featuring a CSS cursor and scrolling animation.
+- Vloermeesters price calculator: a course project, a tile installation price calculator in JavaScript with a printable PDF quote.
 
 ## Files
 
@@ -38,11 +39,14 @@ JavaScript powers the mobile navigation with an active link that follows the cur
 - `projecten/kruiswoordraadsel/`: the crossword puzzle layout and its English README.
 - `projecten/tailwind/`: the Tailwind product page, product image and English README.
 - `projecten/browser-mockup/`: the standalone animated browser mockup and its English README.
+- `projecten/vloermeesters/`: the Vloermeesters price calculator and its English README.
 
 The Tailwind product page is a visual demo with sample product information and no purchase or payment functionality. It loads Tailwind through a CDN script.
 
 The crossword puzzle is a static layout exercise with no input fields or answer validation.
 
 The Halloween registration page is a static frontend demo and does not send or store registrations.
+
+The Vloermeesters price calculator is a static frontend demo for a fictional company with fictional rates; nothing is sent or stored.
 
 The Polestar demo is an educational project, not an official website or a working pre-order system.

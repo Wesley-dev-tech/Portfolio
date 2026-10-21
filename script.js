@@ -288,6 +288,17 @@ const projecten = [
         code: "https://github.com/Wesley-dev-tech/animated-browser-mockup"
     },
     {
+        titel: "Vloermeesters prijsberekening",
+        icoon: "fa-border-all",
+        beschrijving: "Een website voor een fictieve vloerder met een prijsberekening "
+            + "in JavaScript. Ik oefende met invoer uitlezen, Number(), if/else "
+            + "en afronden. De prijs verschijnt in een alert en als offerte "
+            + "die je als PDF kunt bewaren.",
+        tags: ["HTML", "CSS", "JavaScript", "Bootstrap Grid", "Flexbox"],
+        demo: "projecten/vloermeesters/index.html",
+        code: "https://github.com/Wesley-dev-tech/vloermeesters"
+    },
+    {
         titel: "Portfolio",
         icoon: "fa-laptop-code",
         beschrijving: "Mijn eigen portfoliowebsite, opgebouwd met HTML, CSS, "
