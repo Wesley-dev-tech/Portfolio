@@ -298,7 +298,14 @@ const projecten = [
             + "desktopcomputers als mobiele apparaten.",
         tags: ["HTML", "CSS", "JavaScript", "Flexbox", "Bootstrap"],
         code: "https://github.com/Wesley-dev-tech/portfolio"
-    }
+    },
+    {
+        titel: "Vloermeesters tegelprijs calculator",
+        icoon: "fa-calculator",
+        beschrijving: "Een prijsberekeningstool voor een fictief vloerdersbedrijf. Bereken een richtprijs voor tegelwerken en druk een overzichtelijke offerte af als PDF.",
+        tags: ["HTML", "CSS", "JavaScript", "Bootstrap"],
+        code: "https://github.com/Wesley-dev-tech/vloerder"
+    },
 ];
 
 const projectLijst = document.querySelector("#project-list");
