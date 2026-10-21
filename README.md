@@ -6,7 +6,7 @@ The portfolio content describes my background, coursework and current skills.
 
 [View the color palette on Coolors](https://coolors.co/0b1120-0f172a-182234-2dd4bf-a78bfa).
 
-The CSS and JavaScript URLs in `index.html` share one version query string (`?v=14`). Raise both numbers together after a change so browsers load the new files.
+The CSS and JavaScript URLs in `index.html` share one version query string (`?v=15`). Raise both numbers together after a change so browsers load the new files.
 
 ## How to View
 
@@ -26,7 +26,6 @@ JavaScript powers the mobile navigation with an active link that follows the cur
 - Crossword puzzle: my third course project, a static layout built with Bootstrap Grid.
 - Tailwind product page: my fourth course project, an AirPods product card styled with Tailwind CSS.
 - Animated browser mockup featuring a CSS cursor and scrolling animation.
-
 - Vloermeesters tile price calculator: a responsive quote calculator for a fictional tiling company, with printable PDF quotes.
 
 ## Files
