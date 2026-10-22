@@ -256,10 +256,6 @@ header {
     }
 }
 
-.hero-actions .btn {
-    max-width: 100%;
-}
-
 .btn {
     /* Bootstrap gebruikt deze variabelen ook bij focus, active en disabled. */
     --bs-btn-color: var(--button-text);
@@ -377,18 +373,13 @@ header {
         linear-gradient(145deg, rgba(255, 255, 255, .025), transparent 58%),
         var(--card-bg);
     box-shadow: 0 16px 36px rgba(0, 0, 0, .12);
+    text-align: center;
     transition: border-color .2s ease, box-shadow .2s ease;
 }
 
 .education-card {
     max-width: 800px;
     margin: auto;
-    text-align: center;
-}
-
-.education-icon,
-.project-icon {
-    flex-shrink: 0;
 }
 
 /* Icoonvlak, gedeeld door de opleiding en de vaardigheden */
@@ -427,8 +418,6 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 28px;
-    text-align: center;
 }
 
 .skill-card i {
@@ -508,7 +497,9 @@ header {
     scroll-padding-inline: calc(var(--bs-gutter-x) * .5);
 }
 
-.skills-carousel button {
+/* Vorige- en Volgende-knoppen van vaardigheden en projecten */
+.skill-buttons .btn,
+.project-pagination .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -518,9 +509,15 @@ header {
     white-space: nowrap;
 }
 
-.skills-carousel button i {
-    flex-shrink: 0;
+.skill-buttons .btn i,
+.project-pagination .btn i {
     margin: 0;
+}
+
+.skill-buttons .btn:disabled,
+.project-pagination .btn:disabled {
+    cursor: not-allowed;
+    opacity: .55;
 }
 
 /* Verschijnen bij scrollen */
@@ -536,9 +533,8 @@ header {
 }
 
 /* Projecten */
-.project-list>[hidden],
-.project-pagination[hidden],
-.back-to-top[hidden] {
+/* De kolommen hebben d-flex (met !important); zonder deze regel wint die van [hidden] */
+.project-list > [hidden] {
     display: none !important;
 }
 
@@ -574,7 +570,6 @@ header {
 .project-card {
     min-height: 480px;
     padding: 40px 24px 24px;
-    text-align: center;
     cursor: pointer;
     transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
 }
@@ -688,11 +683,6 @@ header {
     box-shadow: 0 18px 40px rgba(0, 0, 0, .2);
 }
 
-.project-button {
-    margin-top: auto;
-    padding-top: 24px;
-}
-
 .project-pagination {
     display: flex;
     flex-wrap: wrap;
@@ -702,19 +692,6 @@ header {
     margin-top: 32px;
 }
 
-.project-pagination button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    min-width: 125px;
-}
-
-.project-pagination button:disabled,
-.skills-carousel button:disabled {
-    cursor: not-allowed;
-    opacity: .55;
-}
 
 /* Detailvenster van een project */
 html.modal-is-open {
@@ -761,7 +738,7 @@ html.modal-is-open {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 28px 32px 28px;
+    padding: 28px 32px;
     text-align: center;
 }
 
@@ -839,7 +816,7 @@ html.modal-is-open {
     min-height: 0;
 }
 
-.project-modal .project-button {
+.project-button {
     padding-top: 4px;
 }
 
