@@ -23,6 +23,14 @@ menuLinks.forEach(function (link) {
     });
 });
 
+// Menu sluiten bij een klik naast het menupaneel
+document.addEventListener("click", function (event) {
+    if (navigatie.classList.contains("menu-is-open")
+        && !event.target.closest(".nav-links, .menu-button")) {
+        zetMenu(false);
+    }
+});
+
 // Menu sluiten met de Escape-toets
 document.addEventListener("keydown", function (event) {
     if (event.key === "Escape" && navigatie.classList.contains("menu-is-open")) {
@@ -62,249 +70,174 @@ function werkActieveLinkBij() {
     });
 }
 
-// Vaardighedencarrousel
-const skillSlides = document.querySelector("#skill-slides");
-const skillKaarten = skillSlides.querySelectorAll(".skill-card");
-const vorigeKnop = document.querySelector("#skill-prev");
-const volgendeKnop = document.querySelector("#skill-next");
-const carrouselBedieningsknop = document.querySelector("#skill-carousel-toggle");
-const voorkeurMinderBeweging = window.matchMedia("(prefers-reduced-motion: reduce)");
+// Lees meer: zonder JavaScript blijft alle tekst gewoon zichtbaar
+document.querySelectorAll(".read-more-toggle").forEach(function (knop) {
+    const tekst = document.getElementById(knop.getAttribute("aria-controls"));
+    const label = knop.querySelector("span");
 
-let huidigeSkill = 0;
-let carrouselActief = !voorkeurMinderBeweging.matches;
-let carrouselTimer = null;
+    tekst.classList.add("is-collapsed");
+    knop.hidden = false;
 
-// Alleen de gekozen kaart tonen
-function toonSkill() {
-    skillKaarten.forEach(function (kaart) {
-        kaart.hidden = true;
+    knop.addEventListener("click", function () {
+        const open = tekst.classList.toggle("is-collapsed") === false;
+
+        knop.setAttribute("aria-expanded", open);
+        label.textContent = open ? "Lees minder" : "Lees meer";
     });
 
-    skillKaarten[huidigeSkill].hidden = false;
-}
-
-function werkCarrouselBedieningBij() {
-    const icoon = carrouselBedieningsknop.querySelector("i");
-    const tekst = carrouselBedieningsknop.querySelector("span");
-
-    icoon.className = carrouselActief
-        ? "fa-solid fa-pause"
-        : "fa-solid fa-play";
-    tekst.textContent = carrouselActief
-        ? "Automatisch pauzeren"
-        : "Automatisch starten";
-
-    // Een screenreader leest een nieuwe kaart alleen voor als de carrousel stilstaat,
-    // anders zou die om de 3 seconden onderbroken worden.
-    skillSlides.setAttribute("aria-live", carrouselActief ? "off" : "polite");
-}
-
-function werkCarrouselTimerBij() {
-    if (carrouselTimer !== null) {
-        clearInterval(carrouselTimer);
-        carrouselTimer = null;
-    }
-
-    if (carrouselActief && !document.hidden) {
-        carrouselTimer = setInterval(volgendeSkill, 3000);
-    }
-
-    werkCarrouselBedieningBij();
-}
-
-// Naar de volgende kaart gaan
-function volgendeSkill() {
-    huidigeSkill = huidigeSkill + 1;
-
-    if (huidigeSkill >= skillKaarten.length) {
-        huidigeSkill = 0;
-    }
-
-    toonSkill();
-}
-
-// Naar de vorige kaart gaan
-function vorigeSkill() {
-    huidigeSkill = huidigeSkill - 1;
-
-    if (huidigeSkill < 0) {
-        huidigeSkill = skillKaarten.length - 1;
-    }
-
-    toonSkill();
-}
-
-toonSkill();
-werkCarrouselTimerBij();
-
-// Knop Volgende
-volgendeKnop.addEventListener("click", function () {
-    volgendeSkill();
-    werkCarrouselTimerBij();
-});
-
-// Knop Vorige
-vorigeKnop.addEventListener("click", function () {
-    vorigeSkill();
-    werkCarrouselTimerBij();
-});
-
-carrouselBedieningsknop.addEventListener("click", function () {
-    carrouselActief = !carrouselActief;
-    werkCarrouselTimerBij();
-});
-
-document.addEventListener("visibilitychange", werkCarrouselTimerBij);
-
-voorkeurMinderBeweging.addEventListener("change", function (event) {
-    if (event.matches) {
-        carrouselActief = false;
-        werkCarrouselTimerBij();
-    }
-});
-
-// Vegen op een touchscreen
-let veegStartX = 0;
-let veegStartY = 0;
-
-skillSlides.addEventListener("touchstart", function (event) {
-    veegStartX = event.changedTouches[0].clientX;
-    veegStartY = event.changedTouches[0].clientY;
-}, { passive: true });
-
-skillSlides.addEventListener("touchend", function (event) {
-    const verschilX = event.changedTouches[0].clientX - veegStartX;
-    const verschilY = event.changedTouches[0].clientY - veegStartY;
-
-    // Alleen een duidelijke horizontale veeg telt, zodat verticaal scrollen blijft werken
-    if (Math.abs(verschilX) < 50 || Math.abs(verschilX) < Math.abs(verschilY)) {
-        return;
-    }
-
-    // Naar links vegen = volgende kaart, naar rechts vegen = vorige kaart
-    if (verschilX < 0) {
-        volgendeSkill();
-    } else {
-        vorigeSkill();
-    }
-
-    werkCarrouselTimerBij();
-}, { passive: true });
-
-// Typ-effect in de hero
-const getypteTekst = document.querySelector("#typed-text");
-const rollen = [
-    "Full Stack Developer in opleiding",
-    "AI Automation",
-    "HTML, CSS & JavaScript",
-    'MySQL & Databases Management'
-];
-
-let huidigeRol = 0;
-let aantalLetters = 0;
-let aanHetWissen = false;
-
-// Telkens één letter erbij of eraf, en dan zichzelf opnieuw inplannen
-function typRol() {
-    const rol = rollen[huidigeRol];
-    let wachttijd = aanHetWissen ? 40 : 90;
-
-    aantalLetters = aanHetWissen ? aantalLetters - 1 : aantalLetters + 1;
-    getypteTekst.textContent = rol.slice(0, aantalLetters);
-
-    if (!aanHetWissen && aantalLetters === rol.length) {
-        // Even laten staan voor het wissen begint
-        aanHetWissen = true;
-        wachttijd = 1800;
-    } else if (aanHetWissen && aantalLetters === 0) {
-        aanHetWissen = false;
-        huidigeRol = huidigeRol + 1;
-
-        if (huidigeRol >= rollen.length) {
-            huidigeRol = 0;
+    // Na het inklappen staat de knop soms onder de header of erboven; dan terug in beeld brengen
+    tekst.addEventListener("transitionend", function (event) {
+        if (event.propertyName === "grid-template-rows"
+            && tekst.classList.contains("is-collapsed")
+            && knop.getBoundingClientRect().top < navigatie.offsetHeight) {
+            knop.scrollIntoView({ block: "center" });
         }
+    });
+});
 
-        wachttijd = 400;
+// Paginering per vier kaarten, gedeeld door vaardigheden en projecten.
+// Onder deze breedte worden beide een veegbare carrousel zonder paginering.
+const mobieleWeergave = window.matchMedia("(max-width: 991.98px)");
+const kaartenPerPagina = 4;
+
+function toonPagina(lijst, kaarten, pagina, vorigeKnop, volgendeKnop) {
+    const aantalPaginas = Math.ceil(kaarten.length / kaartenPerPagina);
+    const eersteKaart = (pagina - 1) * kaartenPerPagina;
+
+    // Op mobiel staan alle kaarten naast elkaar in de carrousel
+    lijst.classList.toggle("is-swipeable", mobieleWeergave.matches);
+    kaarten.forEach(function (kaart, index) {
+        kaart.hidden = !mobieleWeergave.matches
+            && (index < eersteKaart || index >= eersteKaart + kaartenPerPagina);
+    });
+
+    vorigeKnop.disabled = pagina <= 1;
+    volgendeKnop.disabled = pagina >= aantalPaginas;
+
+    return aantalPaginas;
+}
+
+// Vaardigheden
+const skillSlides = document.querySelector("#skill-slides");
+const skillKaarten = Array.from(skillSlides.querySelectorAll(".skill-card"));
+const vorigeKnop = document.querySelector("#skill-prev");
+const volgendeKnop = document.querySelector("#skill-next");
+let huidigeSkillpagina = 1;
+
+function toonSkillpagina(pagina) {
+    huidigeSkillpagina = pagina;
+    toonPagina(skillSlides, skillKaarten, pagina, vorigeKnop, volgendeKnop);
+}
+
+// Uitgeschakelde knoppen sturen geen klik, dus de grenzen bewaken zichzelf
+vorigeKnop.addEventListener("click", function () {
+    toonSkillpagina(huidigeSkillpagina - 1);
+});
+
+volgendeKnop.addEventListener("click", function () {
+    toonSkillpagina(huidigeSkillpagina + 1);
+});
+
+// Pijltjestoetsen bladeren op desktop; op mobiel scrollen ze de rij al vanzelf
+skillSlides.addEventListener("keydown", function (event) {
+    const knop = { ArrowLeft: vorigeKnop, ArrowRight: volgendeKnop }[event.key];
+
+    if (knop && !mobieleWeergave.matches) {
+        event.preventDefault();
+        knop.click();
     }
+});
 
-    setTimeout(typRol, wachttijd);
-}
+mobieleWeergave.addEventListener("change", function () {
+    toonSkillpagina(huidigeSkillpagina);
+});
 
-if (voorkeurMinderBeweging.matches) {
-    getypteTekst.textContent = rollen[0];
-} else {
-    typRol();
-}
+toonSkillpagina(1);
 
-// Projecten, van oud naar nieuw. Een nieuw project zet je gewoon onderaan de lijst.
+// Projecten, van oud naar nieuw. Een nieuw project zet je gewoon onderaan de lijst,
+// met een korte teaser voor de kaart en een screenshot in images/ voor het detailvenster.
 const projecten = [
     {
         titel: "Polestar 6",
+        teaser: "Een fictieve preorder voor een roadster cabrio met drone. Kopen kan niet, dromen wel.",
         icoon: "fa-car-side",
-        beschrijving: "Mijn eerste opleidingsproject: een fictieve Polestar-pagina "
-            + "namaken met HTML en CSS. Daarbij oefende ik met Flexbox en het "
-            + "positioneren van afbeeldingen. De pagina is nog niet aangepast "
-            + "voor mobiele apparaten.",
+        beschrijving: "Een fictieve preorderpagina voor de Polestar 6, en meteen mijn allereerste "
+            + "opleidingsproject. Hier leerden Flexbox en ik elkaar kennen. Een mobiele versie? "
+            + "Die staat nog in de backlog.",
         tags: ["HTML", "CSS", "Flexbox"],
         demo: "https://wesley-dev-tech.github.io/Polestar/",
+        afbeelding: "images/polestar.webp",
         code: "https://github.com/Wesley-dev-tech/Polestar"
     },
     {
         titel: "Halloween inschrijvingspagina",
+        teaser: "Een fictieve Halloweentocht op 31 oktober. Kies je tijdslot en vergeet je kostuum niet.",
         icoon: "fa-ghost",
-        beschrijving: "Een inschrijvingspagina voor een Halloweentocht. Ik oefende "
-            + "met Bootstrap Grid, Google Fonts, Font Awesome-iconen en een "
-            + "formulier met invoervelden. De lay-out werkt op zowel "
-            + "desktopcomputers als mobiele apparaten.",
+        beschrijving: "Een inschrijvingspagina voor een fictieve Halloweentocht, met tijdsloten tot "
+            + "middernacht. Het lettertype Creepster zorgt voor de rillingen. Bootstrap Grid houdt "
+            + "de spoken op hun plek, ook op je smartphone.",
         tags: ["HTML", "CSS", "Bootstrap Grid"],
         demo: "https://wesley-dev-tech.github.io/Halloween/",
+        afbeelding: "images/halloween.webp",
         code: "https://github.com/Wesley-dev-tech/Halloween"
     },
     {
         titel: "Kruiswoordraadsel",
+        teaser: "Een fictief kruiswoordraadsel waarop je nooit vastloopt. Invullen kan namelijk niet.",
         icoon: "fa-table-cells",
-        beschrijving: "Een visuele uitwerking van een kruiswoordraadsel met "
-            + "Bootstrap Grid. Met rijen, kolommen en CSS bouwde ik een raster "
-            + "met genummerde vakjes. De puzzel is niet interactief.",
+        beschrijving: "Een fictief kruiswoordraadsel van 15 rijen, waarin elk vakje een kolom van "
+            + "Bootstrap Grid is. Het ziet eruit als een puzzel, maar werkt als een screenshot. "
+            + "Read-only, zeg maar.",
         tags: ["HTML", "CSS", "Bootstrap Grid"],
         demo: "https://wesley-dev-tech.github.io/Crossword_puzzle/",
+        afbeelding: "images/kruiswoordraadsel.webp",
         code: "https://github.com/Wesley-dev-tech/Crossword_puzzle"
     },
     {
         titel: "Productpagina met Tailwind",
+        teaser: "Een fictieve productkaart voor AirPods Pro 3. Zo eerlijk dat ze zelfs de nadelen opsomt.",
         icoon: "fa-headphones",
-        beschrijving: "Een AirPods-productpagina vormgegeven met Tailwind CSS. Ik "
-            + "oefende met utility-classes voor de lay-out, kleuren, typografie "
-            + "en de opmaak van de productkaart.",
+        beschrijving: "Een fictieve productkaart voor de AirPods Pro 3, eerlijk tot en met de nadelen. "
+            + "De knop Koop nu heeft geen event listener, dus je portemonnee is veilig. De opmaak is "
+            + "een flinke stapel utility-classes van Tailwind.",
         tags: ["HTML", "Tailwind", "Flexbox"],
         demo: "https://wesley-dev-tech.github.io/Tailwind_product_page/",
+        afbeelding: "images/tailwind-productpagina.webp",
         code: "https://github.com/Wesley-dev-tech/Tailwind_product_page"
     },
     {
         titel: "Geanimeerde browsermock-up",
+        teaser: "Een fictieve browser met een cursor die zijn eigen gang gaat. En dat zonder één regel JavaScript.",
         icoon: "fa-window-maximize",
-        beschrijving: "Een geanimeerd browservenster met een bewegende cursor en "
-            + "een scrollende voorbeeldpagina. Dit project laat zien hoe je met "
-            + "HTML en CSS een animatie kunt maken zonder JavaScript.",
+        beschrijving: "Een fictief browservenster met een cursor die rondzweeft en een pagina die "
+            + "vanzelf scrolt. Nul regels JavaScript, alleen HTML en CSS die hun best doen. Vink "
+            + "Animatie afspelen uit en de cursor gaat in slaapstand.",
         tags: ["HTML", "CSS"],
         demo: "https://wesley-dev-tech.github.io/Animated_browser_mockup/",
+        afbeelding: "images/browsermockup.webp",
         code: "https://github.com/Wesley-dev-tech/Animated_browser_mockup"
     },
     {
         titel: "Portfolio",
+        teaser: "Het enige project hier dat niet fictief is, want je zit er middenin. Klik op Bekijk details en kijk achter de schermen.",
         icoon: "fa-laptop-code",
-        beschrijving: "Mijn eigen portfoliowebsite, opgebouwd met HTML, CSS, "
-            + "JavaScript, Flexbox en Bootstrap. De lay-out werkt op zowel "
-            + "desktopcomputers als mobiele apparaten.",
+        beschrijving: "Geen fictie deze keer, dit is mijn eigen portfolio, gebouwd met HTML, CSS, Bootstrap "
+            + "en JavaScript. Je zit er middenin, dus dit venster is eigenlijk ook een project. "
+            + "Werkt op mijn smartphone en desktop, en hopelijk ook op de jouwe.",
         tags: ["HTML", "CSS", "JavaScript", "Flexbox", "Bootstrap"],
-        code: "https://github.com/Wesley-dev-tech/portfolio"
+        afbeelding: "images/portfolio.webp",
+        code: "https://github.com/Wesley-dev-tech/Portfolio"
     },
     {
         titel: "Vloermeesters tegelprijs calculator",
+        teaser: "Een fictief tegelbedrijf. Je offerte rolt er als PDF uit, alleen belt er nooit een tegelzetter aan.",
         icoon: "fa-calculator",
-        beschrijving: "Een prijsberekeningstool voor een fictief vloerdersbedrijf. Bereken een richtprijs voor tegelwerken en druk een overzichtelijke offerte af als PDF.",
+        beschrijving: "Een rekentool voor Vloermeesters, een fictief tegelbedrijf. Geef de afmetingen "
+            + "van je ruimte in, kies een tegel en een voeg, en de richtprijs rolt eruit als PDF-offerte. "
+            + "Alleen de tegelzetter is nooit gedeployd.",
         tags: ["HTML", "CSS", "JavaScript", "Bootstrap"],
         demo: "https://wesley-dev-tech.github.io/Flooring_price_calculator/",
+        afbeelding: "images/vloermeesters.webp",
         code: "https://github.com/Wesley-dev-tech/Flooring_price_calculator"
     },
 ];
@@ -315,43 +248,35 @@ const projectSortering = document.querySelector("#project-sort");
 const projectPaginering = document.querySelector("#project-pagination");
 const vorigeProjectpaginaKnop = document.querySelector("#project-prev");
 const volgendeProjectpaginaKnop = document.querySelector("#project-next");
-const projectenPerPagina = 4;
 
-// Een kopie van het sjabloon invullen met de gegevens van één project
-function maakProjectkaart(project, index) {
-    const kaart = projectSjabloon.content.firstElementChild.cloneNode(true);
-    const tags = kaart.querySelector(".project-tags");
-    const demoLink = kaart.querySelector(".project-demo");
+// Technologieën als labels; gedeeld door de projectkaart en het detailvenster
+function vulTags(element, project) {
+    const tags = element.querySelector(".project-tags");
 
-    // Hoe hoger het nummer, hoe nieuwer het project
-    kaart.dataset.order = index;
-    kaart.querySelector(".project-icon i").classList.add(project.icoon);
-    kaart.querySelector("h3").textContent = project.titel;
-    kaart.querySelector("p").textContent = project.beschrijving;
-
+    tags.replaceChildren();
     project.tags.forEach(function (tag) {
         const label = document.createElement("span");
         label.textContent = tag;
         tags.appendChild(label);
     });
+}
 
-    if (project.demo) {
-        demoLink.href = project.demo;
-    } else {
-        demoLink.remove();
-    }
+// Een kopie van het sjabloon invullen met de teaser van één project
+function maakProjectkaart(project, index) {
+    const kaart = projectSjabloon.content.firstElementChild.cloneNode(true);
 
-    kaart.querySelector(".project-code").href = project.code;
+    // Hoe hoger het nummer, hoe nieuwer het project
+    kaart.dataset.order = index;
+    kaart.querySelector(".project-icon i").classList.add(project.icoon);
+    kaart.querySelector(".project-open").textContent = project.titel;
+    kaart.querySelector("p").textContent = project.teaser;
+    vulTags(kaart, project);
 
     return kaart;
 }
 
 const projectKaarten = projecten.map(maakProjectkaart);
 let huidigeProjectpagina = 1;
-
-function aantalProjectpaginas() {
-    return Math.ceil(projectKaarten.length / projectenPerPagina);
-}
 
 function werkProjectenBij() {
     const sortering = projectSortering.value;
@@ -372,41 +297,96 @@ function werkProjectenBij() {
         projectLijst.appendChild(kaart);
     });
 
-    // Na een nieuwe sortering terug naar de eerste pagina
+    // Na een nieuwe sortering terug naar de eerste pagina (of het eerste project)
+    projectLijst.scrollLeft = 0;
     toonProjectpagina(1);
 }
 
 function toonProjectpagina(pagina) {
     huidigeProjectpagina = pagina;
-    const eersteProject = (pagina - 1) * projectenPerPagina;
-    const laatsteProject = eersteProject + projectenPerPagina;
+    const aantalPaginas = toonPagina(projectLijst, projectKaarten, pagina,
+        vorigeProjectpaginaKnop, volgendeProjectpaginaKnop);
 
-    projectKaarten.forEach(function (kaart, index) {
-        kaart.hidden = index < eersteProject || index >= laatsteProject;
-    });
-
-    projectPaginering.hidden = aantalProjectpaginas() <= 1;
-    vorigeProjectpaginaKnop.disabled = pagina <= 1;
-    volgendeProjectpaginaKnop.disabled = pagina >= aantalProjectpaginas();
+    projectPaginering.hidden = mobieleWeergave.matches || aantalPaginas <= 1;
 }
 
 projectSortering.addEventListener("change", werkProjectenBij);
 werkProjectenBij();
 
 vorigeProjectpaginaKnop.addEventListener("click", function () {
-    if (huidigeProjectpagina > 1) {
-        toonProjectpagina(huidigeProjectpagina - 1);
-    }
+    toonProjectpagina(huidigeProjectpagina - 1);
 });
 
 volgendeProjectpaginaKnop.addEventListener("click", function () {
-    if (huidigeProjectpagina < aantalProjectpaginas()) {
-        toonProjectpagina(huidigeProjectpagina + 1);
+    toonProjectpagina(huidigeProjectpagina + 1);
+});
+
+mobieleWeergave.addEventListener("change", function () {
+    toonProjectpagina(huidigeProjectpagina);
+});
+
+// Detailvenster van een project
+const projectModal = document.querySelector("#project-modal");
+const projectModalAfbeelding = projectModal.querySelector(".project-modal-image");
+let projectModalOpener = null;
+
+function openProjectModal(kaart) {
+    const project = projecten[Number(kaart.dataset.order)];
+
+    projectModal.querySelector(".project-icon i").className = "fa-solid " + project.icoon;
+    projectModal.querySelector("#project-modal-title").textContent = project.titel;
+    projectModal.querySelector(".project-modal-description").textContent = project.beschrijving;
+    projectModalAfbeelding.src = project.afbeelding;
+    projectModalAfbeelding.alt = "Screenshot van " + project.titel;
+    vulTags(projectModal, project);
+
+    // Zonder live demo geen knop die nergens naartoe gaat
+    const demoLink = projectModal.querySelector(".project-demo");
+    demoLink.hidden = !project.demo;
+    if (project.demo) {
+        demoLink.href = project.demo;
+    }
+    projectModal.querySelector(".project-code").href = project.code;
+
+    // showModal zet de focus op de sluitknop; na het sluiten gaat ze terug naar deze kaart
+    projectModalOpener = kaart.querySelector(".project-open");
+    document.documentElement.classList.add("modal-is-open");
+    projectModal.showModal();
+}
+
+// De hele kaart is klikbaar; de titelknop zorgt voor de toetsenbordbediening
+projectLijst.addEventListener("click", function (event) {
+    const kaart = event.target.closest("#project-list > *");
+
+    if (kaart) {
+        openProjectModal(kaart);
+    }
+});
+
+projectModal.querySelector(".project-modal-close").addEventListener("click", function () {
+    projectModal.close();
+});
+
+// Een klik op de donkere achtergrond valt op het dialog-element zelf
+projectModal.addEventListener("click", function (event) {
+    if (event.target === projectModal) {
+        projectModal.close();
+    }
+});
+
+// Escape sluit het venster al vanzelf; ook dan opruimen
+projectModal.addEventListener("close", function () {
+    document.documentElement.classList.remove("modal-is-open");
+
+    if (projectModalOpener) {
+        projectModalOpener.focus({ preventScroll: true });
     }
 });
 
 // Secties en kaarten animeren wanneer ze in beeld komen.
 // Dit staat onderaan, zodat de projectkaarten al bestaan.
+const voorkeurMinderBeweging = window.matchMedia("(prefers-reduced-motion: reduce)");
+
 if ("IntersectionObserver" in window && !voorkeurMinderBeweging.matches) {
     const scrollObserver = new IntersectionObserver(function (entries, observer) {
         entries.forEach(function (entry) {
@@ -461,39 +441,6 @@ function werkScrollpositieBij() {
 window.addEventListener("scroll", werkScrollpositieBij, { passive: true });
 window.addEventListener("resize", werkScrollpositieBij);
 werkScrollpositieBij();
-
-// Kopieerknoppen bij de contactgegevens
-const kopieerKnoppen = document.querySelectorAll(".copy-button");
-const kopieerStatus = document.querySelector("#copy-status");
-
-kopieerKnoppen.forEach(function (knop) {
-    // Zonder Clipboard API (bijvoorbeeld op een onveilige verbinding) werkt de knop niet
-    if (!navigator.clipboard) {
-        knop.remove();
-        return;
-    }
-
-    const icoon = knop.querySelector("i");
-    let terugzetTimer = null;
-
-    knop.addEventListener("click", function () {
-        navigator.clipboard.writeText(knop.dataset.copy).then(function () {
-            icoon.className = "fa-solid fa-check";
-            knop.classList.add("is-copied");
-            kopieerStatus.textContent = knop.dataset.copyLabel + " gekopieerd";
-
-            // Na 2 seconden de knop terugzetten
-            clearTimeout(terugzetTimer);
-            terugzetTimer = setTimeout(function () {
-                icoon.className = "fa-regular fa-copy";
-                knop.classList.remove("is-copied");
-                kopieerStatus.textContent = "";
-            }, 2000);
-        }).catch(function () {
-            kopieerStatus.textContent = "Kopiëren is niet gelukt";
-        });
-    });
-});
 
 // Jaartal in de footer altijd actueel houden
 document.querySelector("#copyright-year").textContent = new Date().getFullYear();

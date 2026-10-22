@@ -178,7 +178,9 @@ header {
     min-height: 520px;
     padding: 70px 20px;
     text-align: center;
+    /* Onderaan zacht overlopen naar de tekstbalk en de rest van de pagina */
     background:
+        linear-gradient(transparent 55%, var(--bg-dark)),
         radial-gradient(circle at 16% 36%, var(--primary-soft), transparent 34%),
         radial-gradient(ellipse at 84% 12%, var(--purple-soft), transparent 42%),
         var(--bg-darker);
@@ -200,37 +202,57 @@ header {
 }
 
 .hero-subtitle {
-    margin-bottom: 16px;
+    margin-bottom: 28px;
     color: var(--text-color);
     font-size: 1.1rem;
     font-weight: 600;
 }
 
-.hero-typing {
-    /* Vaste hoogte, zodat de knoppen niet verspringen tijdens het typen */
-    min-height: 1.7em;
-    margin-bottom: 28px;
+/* Bewegende tekstbalk onder de intro */
+.marquee {
+    overflow: hidden;
+    padding: 14px 0;
+    border-block: 1px solid var(--border-color);
+    /* Tekst en lijnen vervagen aan de zijkanten in plaats van hard af te breken */
+    mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+
+.marquee-track {
+    display: flex;
+    width: max-content;
+    /* Twee gelijke kopieën: na de helft staat alles weer exact op de beginpositie */
+    animation: marquee 45s linear infinite;
+}
+
+.marquee-group {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    /* Minstens schermbreed, zodat er op brede schermen geen gat valt */
+    min-width: 100vw;
+    justify-content: space-around;
+    margin: 0;
+    padding: 0;
+    list-style: none;
     color: var(--text-muted);
-    font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+    font-size: .8rem;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    white-space: nowrap;
 }
 
-.typed-prompt {
-    color: var(--purple-accent);
+.marquee-group li {
+    padding: 0 18px;
 }
 
-.typed-cursor {
-    display: inline-block;
-    width: 2px;
-    height: 1.1em;
-    margin-left: 2px;
-    vertical-align: text-bottom;
-    background: var(--primary-color);
-    animation: knipperen 1s steps(1) infinite;
+.marquee-group .marquee-dot {
+    color: var(--primary-color);
 }
 
-@keyframes knipperen {
-    50% {
-        opacity: 0;
+@keyframes marquee {
+    to {
+        transform: translateX(-50%);
     }
 }
 
@@ -290,6 +312,55 @@ header {
     margin-top: 18px;
 }
 
+/* Lees meer: de rest van de tekst klapt vloeiend open via de rijhoogte.
+   Ingeklapt blijft er een stukje zichtbaar dat zacht vervaagt. */
+.read-more {
+    display: grid;
+    grid-template-rows: 1fr;
+}
+
+/* Ook in "Over mij", waar scroll-reveal een eigen transition op dit blok zet */
+.read-more,
+.read-more.scroll-reveal {
+    transition: grid-template-rows .45s ease, opacity .6s ease, transform .6s ease;
+}
+
+.read-more-inner {
+    min-height: 4.5em;
+    padding-top: 18px;
+    overflow: hidden;
+}
+
+.read-more.is-collapsed {
+    grid-template-rows: 0fr;
+    mask-image: linear-gradient(#000, transparent);
+}
+
+.read-more-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    padding: 4px 0;
+    border: 0;
+    background: none;
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.read-more-toggle:hover {
+    color: var(--primary-hover);
+}
+
+.read-more-toggle i {
+    font-size: .8rem;
+    transition: transform .3s ease;
+}
+
+.read-more-toggle[aria-expanded="true"] i {
+    transform: rotate(180deg);
+}
+
 .education,
 .projects {
     background: var(--bg-darker);
@@ -312,6 +383,7 @@ header {
 .education-card {
     max-width: 800px;
     margin: auto;
+    text-align: center;
 }
 
 .education-icon,
@@ -319,12 +391,17 @@ header {
     flex-shrink: 0;
 }
 
-.education-icon {
-    width: 65px;
-    height: 65px;
+/* Icoonvlak, gedeeld door de opleiding en de vaardigheden */
+.education-icon,
+.skill-card i {
     border-radius: 14px;
     background: var(--primary-soft);
     color: var(--primary-color);
+}
+
+.education-icon {
+    width: 65px;
+    height: 65px;
     font-size: 1.8rem;
 }
 
@@ -344,42 +421,91 @@ header {
     font-weight: 700;
 }
 
-/* Vaardigheden en carrousel */
-.skill-card,
-.project-card {
+/* Vaardigheden: inhoud gecentreerd en bovenaan, zodat icoon, titel en tekst
+   in elke kaart op dezelfde hoogte beginnen */
+.skill-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 28px;
     text-align: center;
 }
 
 .skill-card i {
-    margin-bottom: 15px;
-    color: var(--primary-color);
-    font-size: 2.8rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    margin-bottom: 20px;
+    font-size: 1.6rem;
 }
 
 .skill-card h3 {
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     font-size: 1.2rem;
 }
 
-.skills-carousel {
-    max-width: 540px;
-    margin: 0 auto;
+.skill-card p {
+    font-size: .95rem;
 }
 
-.skill-slides {
-    /* Horizontaal vegen gaat naar de carrousel, verticaal scrollen blijft werken */
-    touch-action: pan-y;
+/* Desktop: zelfde breedte als het projectenraster, per vier kaarten gepagineerd.
+   Een onvolledige rij staat gecentreerd onder de titel en de knoppen. */
+@media (min-width: 992px) {
+    .skill-slides {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.5rem;
+    }
+
+    .skill-card {
+        flex: 0 0 calc((100% - 1.5rem) / 2);
+    }
 }
 
-.skill-slides .skill-card {
-    min-height: 320px;
+@media (min-width: 1200px) {
+    .skill-card {
+        flex-basis: calc((100% - 4.5rem) / 4);
+    }
 }
 
-.skill-slides .skill-card:not([hidden]) {
+/* Mobiel: veegbare rij voor vaardigheden en projecten; script.js zet deze klasse */
+.is-swipeable {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    /* Ruimte voor de schaduw van de kaarten */
+    padding-bottom: 16px;
+}
+
+.is-swipeable::-webkit-scrollbar {
+    display: none;
+}
+
+.is-swipeable > * {
+    flex: 0 0 85%;
+    width: 85%;
+    scroll-snap-align: start;
+}
+
+/* Projectkaarten blijven ook in de veegbare rij smal en staand */
+.project-list.is-swipeable > * {
+    flex-basis: min(85%, 324px);
+    width: min(85%, 324px);
+}
+
+/* Tot aan de schermrand, net als de projectenrij */
+.skill-slides.is-swipeable {
+    gap: 16px;
+    margin-inline: calc(var(--bs-gutter-x) * -.5);
+    padding-inline: calc(var(--bs-gutter-x) * .5);
+    scroll-padding-inline: calc(var(--bs-gutter-x) * .5);
 }
 
 .skills-carousel button {
@@ -390,10 +516,6 @@ header {
     width: 145px;
     max-width: 100%;
     white-space: nowrap;
-}
-
-.skills-carousel .carousel-toggle {
-    width: 205px;
 }
 
 .skills-carousel button i {
@@ -420,6 +542,11 @@ header {
     display: none !important;
 }
 
+/* Een onvolledige pagina staat gecentreerd, net als bij de vaardigheden */
+.project-list:not(.is-swipeable) {
+    justify-content: center;
+}
+
 .project-controls {
     display: flex;
     flex-wrap: wrap;
@@ -442,28 +569,108 @@ header {
     color: var(--text-color);
 }
 
+/* Projectkaart als staande teaser: icoon, titel en één zin bovenaan,
+   tags en "Bekijk details" in een vaste voet onderaan. Alles gecentreerd. */
 .project-card {
-    padding: 40px;
+    min-height: 480px;
+    padding: 40px 24px 24px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
 }
 
 .project-icon {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 20px;
+    width: 72px;
+    height: 72px;
+    margin-bottom: 24px;
     border-radius: 18px;
     background: linear-gradient(145deg, var(--purple-soft), var(--primary-soft));
     color: var(--purple-accent);
-    font-size: 2rem;
+    font-size: 1.8rem;
     box-shadow: inset 0 0 0 1px var(--purple-border);
 }
 
+/* Ruimte voor twee titelregels, zodat de teasers overal op één lijn beginnen */
 .project-card h3 {
-    margin-bottom: 15px;
-    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.4em;
+    margin-bottom: 12px;
+    font-size: 1.2rem;
+}
+
+/* Voet altijd onderaan en even hoog (plaats voor twee rijen tags),
+   zodat de lijn en "Bekijk details" in elke kaart op dezelfde hoogte staan */
+.project-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    width: 100%;
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+.project-footer .project-tags {
+    align-content: center;
+    min-height: 70px;
+}
+
+/* Iets compacter dan in het detailvenster, zodat de tags in twee rijen passen */
+.project-footer .project-tags span {
+    padding: 4px 11px;
+    font-size: .8rem;
+}
+
+.project-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.project-cta i {
+    font-size: .85rem;
+    transition: transform .2s ease;
+}
+
+/* Alleen met een muis; op touchscreens blijft hover na een tik hangen */
+@media (hover: hover) {
+    .project-card:hover {
+        transform: translateY(-4px);
+    }
+
+    .project-card:hover .project-cta i {
+        transform: translateX(4px);
+    }
+}
+
+/* Toetsenbordfocus op de titelknop toont een rand rond de hele kaart */
+.project-card:has(.project-open:focus-visible) {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 4px;
+}
+
+.project-open:focus-visible {
+    outline: none;
+}
+
+/* Titelknop ziet eruit als de gewone titel */
+.project-open {
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
 }
 
 .project-card p {
-    margin-bottom: 20px;
+    margin-bottom: 24px;
+    font-size: .95rem;
 }
 
 .project-tags span {
@@ -503,9 +710,137 @@ header {
     min-width: 125px;
 }
 
-.project-pagination button:disabled {
+.project-pagination button:disabled,
+.skills-carousel button:disabled {
     cursor: not-allowed;
     opacity: .55;
+}
+
+/* Detailvenster van een project */
+html.modal-is-open {
+    overflow: hidden;
+    scrollbar-gutter: stable;
+}
+
+.project-modal {
+    width: min(760px, calc(100% - 32px));
+    max-height: calc(100dvh - 32px);
+    padding: 0;
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    background: var(--card-bg);
+    color: var(--text-color);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, .45);
+}
+
+.project-modal[open] {
+    animation: modal-in .25s ease-out;
+}
+
+.project-modal::backdrop {
+    background: rgba(11, 17, 32, .75);
+    animation: modal-fade .25s ease-out;
+}
+
+@keyframes modal-in {
+    from {
+        opacity: 0;
+        transform: translateY(16px) scale(.98);
+    }
+}
+
+@keyframes modal-fade {
+    from {
+        opacity: 0;
+    }
+}
+
+/* Zelfde opmaak als de projectkaart, alles gecentreerd */
+.project-modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 28px 32px 28px;
+    text-align: center;
+}
+
+/* Iets kleiner icoon dan op de kaart, zodat het venster even groot blijft als voorheen */
+.project-modal .project-icon {
+    width: 56px;
+    height: 56px;
+    margin-bottom: 14px;
+    border-radius: 15px;
+    font-size: 1.4rem;
+}
+
+.project-modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    background: var(--bg-darker);
+    color: var(--text-color);
+    font-size: 1.2rem;
+    transition: color .2s ease, border-color .2s ease;
+}
+
+.project-modal-close:hover {
+    border-color: var(--primary-border);
+    color: var(--primary-color);
+}
+
+/* Links en rechts evenveel ruimte, zodat de titel gecentreerd blijft naast de sluitknop */
+.project-modal h3 {
+    margin: 0 48px 18px;
+    font-size: 1.5rem;
+}
+
+.project-modal-image {
+    display: block;
+    width: 100%;
+    max-width: 640px;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    object-position: top;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background: var(--bg-darker);
+}
+
+.project-modal-description {
+    max-width: 600px;
+    margin: 18px 0;
+    font-size: .95rem;
+}
+
+.project-modal h4 {
+    margin: 0;
+    color: var(--text-color);
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+/* In het venster geen vaste hoogte voor de tags nodig */
+.project-modal .project-footer {
+    gap: 14px;
+    padding-top: 18px;
+}
+
+.project-modal .project-footer .project-tags {
+    min-height: 0;
+}
+
+.project-modal .project-button {
+    padding-top: 4px;
 }
 
 .back-to-top {
@@ -536,14 +871,16 @@ header {
     border-top: 1px solid var(--border-color);
 }
 
-.footer h2 {
-    margin-bottom: 15px;
-    font-size: 2rem;
+.footer-intro {
+    max-width: 560px;
+    margin: 0 auto 28px;
 }
 
-.footer-intro {
-    max-width: 650px;
-    margin: 0 auto 30px;
+/* Hoofdactie van de footer */
+.footer-cta {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 36px;
 }
 
 .contact-details,
@@ -555,56 +892,6 @@ header {
     display: flex;
     align-items: center;
     gap: 10px;
-    min-width: 0;
-    max-width: 100%;
-    overflow-wrap: anywhere;
-}
-
-.contact-details a span {
-    min-width: 0;
-}
-
-.contact-item {
-    min-width: 0;
-    max-width: 100%;
-}
-
-.copy-button {
-    position: relative;
-    display: inline-flex;
-    flex-shrink: 0;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    padding: 0;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    background: transparent;
-    color: var(--text-muted);
-    transition: color .2s ease, border-color .2s ease;
-}
-
-.copy-button:hover,
-.copy-button.is-copied {
-    border-color: var(--primary-border);
-    color: var(--primary-color);
-}
-
-/* Klein tekstballonnetje boven de knop */
-.copy-button.is-copied::after {
-    content: "Gekopieerd!";
-    position: absolute;
-    bottom: calc(100% + 8px);
-    left: 50%;
-    padding: 4px 10px;
-    border-radius: 6px;
-    background: var(--primary-color);
-    color: var(--button-text);
-    font-size: .75rem;
-    font-weight: 700;
-    white-space: nowrap;
-    transform: translateX(-50%);
 }
 
 .social-links a {
@@ -615,6 +902,15 @@ header {
     padding-top: 20px;
     border-top: 1px solid var(--border-color);
     font-size: .8rem;
+}
+
+.copyright a {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.copyright a:hover {
+    color: var(--primary-hover);
 }
 
 /* Mobiel menu */
@@ -632,19 +928,72 @@ header {
         font-size: 1.4rem;
     }
 
+    /* Zijpaneel dat van rechts inschuift, onder de header */
     .nav-links {
-        display: none;
+        position: fixed;
+        top: calc(var(--header-height) + 1px);
+        right: 0;
+        bottom: 0;
+        display: flex;
         flex-direction: column;
-        align-items: flex-start;
-        width: 100%;
-        padding: 20px 20px 15px;
-        gap: 16px;
+        align-items: stretch;
+        width: min(340px, 85vw);
+        padding: 32px 28px;
+        gap: 4px;
+        overflow-y: auto;
         background: var(--nav-bg);
-        border-top: 1px solid var(--border-color);
+        border-left: 1px solid var(--border-color);
+        box-shadow: -16px 0 36px rgba(0, 0, 0, .25);
+        transform: translateX(100%);
+        visibility: hidden;
+        transition: transform .3s ease, visibility 0s linear .3s;
     }
 
     .site-nav.menu-is-open .nav-links {
-        display: flex;
+        transform: translateX(0);
+        visibility: visible;
+        transition: transform .3s ease, visibility 0s;
+    }
+
+    .nav-links a {
+        display: block;
+        padding: 12px 0;
+        border-bottom: 1px solid transparent;
+        font-size: 1.05rem;
+    }
+
+    .nav-links a[aria-current] {
+        border-bottom-color: var(--primary-color);
+    }
+
+    /* Donkere laag over de pagina; een klik erop sluit het menu */
+    .site-nav::after {
+        content: "";
+        position: fixed;
+        inset: calc(var(--header-height) + 1px) 0 0;
+        z-index: -1;
+        background: rgba(11, 17, 32, .6);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity .3s ease, visibility 0s linear .3s;
+    }
+
+    .site-nav.menu-is-open::after {
+        opacity: 1;
+        visibility: visible;
+        transition: opacity .3s ease, visibility 0s;
+    }
+}
+
+/* Tablet en mobiel: veegbare carrousels in plaats van knoppen en paginering */
+@media (max-width: 991.98px) {
+    .skills-carousel {
+        max-width: 540px;
+        margin: 0 auto;
+    }
+
+    .skills-carousel .skill-buttons {
+        display: none !important;
     }
 }
 
@@ -661,7 +1010,29 @@ header {
         transform: none;
     }
 
-    .typed-cursor {
+    /* Tekstbalk staat stil; de teksten lopen dan gewoon over meerdere regels */
+    .marquee {
+        mask-image: none;
+    }
+
+    .marquee-track {
+        width: auto;
+        animation: none;
+    }
+
+    .marquee-group {
+        flex-wrap: wrap;
+        justify-content: center;
+        min-width: 0;
+        white-space: normal;
+    }
+
+    .marquee-group[aria-hidden] {
+        display: none;
+    }
+
+    .project-modal[open],
+    .project-modal::backdrop {
         animation: none;
     }
 }
@@ -689,10 +1060,6 @@ header {
         padding: 75px 20px;
     }
 
-    .project-card {
-        padding: 28px 20px;
-    }
-
     .hero-actions,
     .project-button {
         flex-direction: column;
@@ -716,5 +1083,10 @@ header {
 
     .project-button>.btn {
         width: 220px;
+    }
+
+    /* Ruimte onderaan, zodat de terug-naar-bovenknop de copyright niet bedekt */
+    .footer {
+        padding-bottom: 96px;
     }
 }

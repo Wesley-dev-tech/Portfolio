@@ -11,7 +11,13 @@
     <meta property="og:title" content="Portfolio Wesley Bogaerts">
     <meta property="og:description" content="Ontdek de projecten en ontwikkeling van Wesley Bogaerts, student Full Stack &amp; AI Automation Developer aan SyntraPXL.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://wesley-dev-tech.github.io/portfolio/">
+    <meta property="og:url" content="https://wesley-dev-tech.github.io/Portfolio/">
+    <!-- Voorbeeldafbeelding bij delen op LinkedIn, WhatsApp en andere platformen -->
+    <meta property="og:image" content="https://wesley-dev-tech.github.io/Portfolio/images/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Startpagina van het portfolio van Wesley Bogaerts">
+    <meta name="twitter:card" content="summary_large_image">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
@@ -24,7 +30,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap">
 
-    <link rel="stylesheet" href="style.css?v=17">
+    <link rel="stylesheet" href="style.css?v=18">
     <link rel="icon" href="favicon.ico">
 </head>
 
@@ -98,11 +104,6 @@
                     woonachtig in Balen.
                 </p>
 
-                <!-- Wordt door script.js?v=16 letter per letter getypt -->
-                <p class="hero-typing" aria-hidden="true">
-                    <span class="typed-prompt">&gt;</span> <span id="typed-text"></span><span class="typed-cursor"></span>
-                </p>
-
                 <div class="hero-actions d-flex flex-wrap justify-content-center align-items-center gap-3">
                     <a class="btn" href="#projects">
                         <i class="fa-solid fa-folder-open" aria-hidden="true"></i>
@@ -117,6 +118,44 @@
             </div>
         </section>
 
+        <!-- Bewegende tekstbalk; de tweede kopie zorgt voor een naadloze lus -->
+        <div class="marquee">
+            <div class="marquee-track">
+                <ul class="marquee-group">
+                    <li>Full Stack Developer in opleiding</li>
+                    <li class="marquee-dot" aria-hidden="true">•</li>
+                    <li>Webdesign</li>
+                    <li class="marquee-dot" aria-hidden="true">•</li>
+                    <li>Websites</li>
+                    <li class="marquee-dot" aria-hidden="true">•</li>
+                    <li>Webapplicaties</li>
+                    <li class="marquee-dot" aria-hidden="true">•</li>
+                    <li>Software op maat</li>
+                    <li class="marquee-dot" aria-hidden="true">•</li>
+                    <li>AI automatisering</li>
+                    <li class="marquee-dot" aria-hidden="true">•</li>
+                    <li>Databases</li>
+                    <li class="marquee-dot" aria-hidden="true">•</li>
+                </ul>
+                <ul class="marquee-group" aria-hidden="true">
+                    <li>Full Stack Developer in opleiding</li>
+                    <li class="marquee-dot">•</li>
+                    <li>Webdesign</li>
+                    <li class="marquee-dot">•</li>
+                    <li>Websites</li>
+                    <li class="marquee-dot">•</li>
+                    <li>Webapplicaties</li>
+                    <li class="marquee-dot">•</li>
+                    <li>Software op maat</li>
+                    <li class="marquee-dot">•</li>
+                    <li>AI automatisering</li>
+                    <li class="marquee-dot">•</li>
+                    <li>Databases</li>
+                    <li class="marquee-dot">•</li>
+                </ul>
+            </div>
+        </div>
+
         <!-- Over mij -->
         <section id="about" class="section about">
             <div class="container narrow">
@@ -130,36 +169,47 @@
                     manier aanpakken.
                 </p>
 
-                <p>
-                    De afgelopen jaren groeide mijn interesse in IT en technologie. Ik werd
-                    steeds nieuwsgieriger naar hoe websites en applicaties achter de schermen
-                    werken. Op een bepaald moment wilde ik niet langer alleen gebruiker zijn,
-                    maar ook begrijpen hoe zulke toepassingen worden gebouwd. Die nieuwsgierigheid
-                    gaf uiteindelijk de doorslag om me om te scholen tot developer.
-                </p>
+                <!-- Ingeklapt tot de bezoeker op "Lees meer" klikt (zie script.js) -->
+                <div class="read-more" id="about-more">
+                    <div class="read-more-inner">
+                        <p>
+                            De afgelopen jaren groeide mijn interesse in IT en technologie. Ik werd
+                            steeds nieuwsgieriger naar hoe websites en applicaties achter de schermen
+                            werken. Op een bepaald moment wilde ik niet langer alleen gebruiker zijn,
+                            maar ook begrijpen hoe zulke toepassingen worden gebouwd. Die nieuwsgierigheid
+                            gaf uiteindelijk de doorslag om me om te scholen tot developer.
+                        </p>
 
-                <p>
-                    Wat mij aanspreekt in programmeren, is het zoeken naar oplossingen. Niet
-                    alles werkt meteen zoals verwacht, en net dat maakt het interessant. Ik
-                    probeer te begrijpen waar iets fout loopt, test verschillende mogelijkheden
-                    en pas mijn aanpak aan tot ik een oplossing vind. Mijn ervaring in de
-                    boekhouding komt daarbij goed van pas, vooral wanneer het gaat om logisch
-                    nadenken en aandacht voor details.
-                </p>
+                        <p>
+                            Wat mij aanspreekt in programmeren, is het zoeken naar oplossingen. Niet
+                            alles werkt meteen zoals verwacht, en net dat maakt het interessant. Ik
+                            probeer te begrijpen waar iets fout loopt, test verschillende mogelijkheden
+                            en pas mijn aanpak aan tot ik een oplossing vind. Mijn ervaring in de
+                            boekhouding komt daarbij goed van pas, vooral wanneer het gaat om logisch
+                            nadenken en aandacht voor details.
+                        </p>
 
-                <p>
-                    De overstap naar IT is voor mij een bewuste keuze. Ik weet dat leren
-                    programmeren tijd en doorzettingsvermogen vraagt, maar ik ben gemotiveerd
-                    om me hierin verder te ontwikkelen. Door regelmatig te oefenen, feedback
-                    te verwerken en uit mijn fouten te leren, bouw ik stap voor stap mijn
-                    kennis op.
-                </p>
+                        <p>
+                            De overstap naar IT is voor mij een bewuste keuze. Ik weet dat leren
+                            programmeren tijd en doorzettingsvermogen vraagt, maar ik ben gemotiveerd
+                            om me hierin verder te ontwikkelen. Door regelmatig te oefenen, feedback
+                            te verwerken en uit mijn fouten te leren, bouw ik stap voor stap mijn
+                            kennis op.
+                        </p>
 
-                <p>
-                    Ik wil mijn eerdere werkervaring combineren met mijn nieuwe technische
-                    vaardigheden om toepassingen te ontwikkelen die niet alleen goed werken,
-                    maar ook praktisch en gebruiksvriendelijk zijn.
-                </p>
+                        <p>
+                            Ik wil mijn eerdere werkervaring combineren met mijn nieuwe technische
+                            vaardigheden om toepassingen te ontwikkelen die niet alleen goed werken,
+                            maar ook praktisch en gebruiksvriendelijk zijn.
+                        </p>
+                    </div>
+                </div>
+
+                <button type="button" class="read-more-toggle" aria-expanded="false"
+                    aria-controls="about-more" hidden>
+                    <span>Lees meer</span>
+                    <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                </button>
             </div>
         </section>
 
@@ -168,7 +218,7 @@
             <div class="container">
                 <h2 class="section-title">Mijn opleiding</h2>
 
-                <article class="education-card d-flex flex-column flex-sm-row align-items-start gap-4">
+                <article class="education-card d-flex flex-column align-items-center gap-4">
                     <div class="education-icon d-flex align-items-center justify-content-center">
                         <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
                     </div>
@@ -184,56 +234,66 @@
                             stap hoe ik zelf websites en applicaties kan ontwikkelen.
                         </p>
 
-                        <p>
-                            We zijn gestart met HTML en CSS. Daarbij leerde ik werken met
-                            Flexbox en responsive design, zodat websites goed functioneren op
-                            verschillende schermformaten. Daarna kwamen Bootstrap en Tailwind
-                            aan bod. Met Bootstrap Grid leerde ik pagina’s opbouwen met rijen
-                            en kolommen. Met Tailwind oefende ik dan weer om elementen
-                            rechtstreeks via classes vorm te geven.
-                        </p>
+                        <div class="read-more" id="education-more">
+                            <div class="read-more-inner">
+                                <p>
+                                    We zijn gestart met HTML en CSS. Daarbij leerde ik werken met
+                                    Flexbox en responsive design, zodat websites goed functioneren op
+                                    verschillende schermformaten. Daarna kwamen Bootstrap en Tailwind
+                                    aan bod. Met Bootstrap Grid leerde ik pagina’s opbouwen met rijen
+                                    en kolommen. Met Tailwind oefende ik dan weer om elementen
+                                    rechtstreeks via classes vorm te geven.
+                                </p>
 
-                        <p>
-                            Ook het visuele aspect van websites kwam uitgebreid aan bod. Zo
-                            leerde ik werken met Google Fonts voor lettertypes, Font Awesome
-                            voor iconen en Coolors.co om kleurencombinaties te kiezen die goed
-                            bij elkaar passen. Met die kennis heb ik ondertussen verschillende
-                            projecten gemaakt, waaronder mijn eigen portfolio.
-                        </p>
+                                <p>
+                                    Ook het visuele aspect van websites kwam uitgebreid aan bod. Zo
+                                    leerde ik werken met Google Fonts voor lettertypes, Font Awesome
+                                    voor iconen en Coolors.co om kleurencombinaties te kiezen die goed
+                                    bij elkaar passen. Met die kennis heb ik ondertussen verschillende
+                                    projecten gemaakt, waaronder mijn eigen portfolio.
+                                </p>
 
-                        <p>
-                            Naast het bouwen en vormgeven van websites heb ik ook geleerd hoe
-                            relationele databanken werken. In MySQL oefende ik met het opbouwen
-                            van tabellen, het normaliseren van gegevens en het schrijven van
-                            SQL-queries. Momenteel zijn we bezig met JavaScript en TypeScript,
-                            waarmee ik mijn programmeerkennis verder uitbreid.
-                        </p>
+                                <p>
+                                    Naast het bouwen en vormgeven van websites heb ik ook geleerd hoe
+                                    relationele databanken werken. In MySQL oefende ik met het opbouwen
+                                    van tabellen, het normaliseren van gegevens en het schrijven van
+                                    SQL-queries. Momenteel zijn we bezig met JavaScript en TypeScript,
+                                    waarmee ik mijn programmeerkennis verder uitbreid.
+                                </p>
 
-                        <p>
-                            Tijdens de opleiding maakte ik ook kennis met Agile en Scrum. We
-                            oefenden onder andere met het plannen van sprints, planning poker
-                            en het opvolgen van taken via een kanbanbord in Trello. Daardoor
-                            kreeg ik een beter beeld van hoe developers binnen een team
-                            samenwerken en hun werk organiseren.
-                        </p>
+                                <p>
+                                    Tijdens de opleiding maakte ik ook kennis met Agile en Scrum. We
+                                    oefenden onder andere met het plannen van sprints, planning poker
+                                    en het opvolgen van taken via een kanbanbord in Trello. Daardoor
+                                    kreeg ik een beter beeld van hoe developers binnen een team
+                                    samenwerken en hun werk organiseren.
+                                </p>
 
-                        <p>
-                            Mijn doel is om zelfstandig volledige webapplicaties te kunnen
-                            bouwen, van de frontend tot de backend. Ik wil me verder verdiepen
-                            in JavaScript en TypeScript, leren werken met API’s en ontdekken
-                            hoe ik AI kan inzetten om processen te automatiseren.
-                        </p>
+                                <p>
+                                    Mijn doel is om zelfstandig volledige webapplicaties te kunnen
+                                    bouwen, van de frontend tot de backend. Ik wil me verder verdiepen
+                                    in JavaScript en TypeScript, leren werken met API’s en ontdekken
+                                    hoe ik AI kan inzetten om processen te automatiseren.
+                                </p>
 
-                        <p>
-                            Wat ik daarbij minstens even belangrijk vind, is dat ik de code
-                            die ik schrijf ook echt begrijp. Ik wil niet zomaar code laten
-                            genereren door AI-agents zonder te weten wat die precies doet. Ik
-                            wil zelf kunnen uitleggen hoe mijn code werkt, waarom bepaalde
-                            keuzes zijn gemaakt en hoe ik fouten kan opsporen en oplossen. AI
-                            zie ik als een handig hulpmiddel om bij te leren en efficiënter te
-                            werken, maar niet als een vervanging voor mijn eigen kennis en
-                            inzicht.
-                        </p>
+                                <p>
+                                    Wat ik daarbij minstens even belangrijk vind, is dat ik de code
+                                    die ik schrijf ook echt begrijp. Ik wil niet zomaar code laten
+                                    genereren door AI-agents zonder te weten wat die precies doet. Ik
+                                    wil zelf kunnen uitleggen hoe mijn code werkt, waarom bepaalde
+                                    keuzes zijn gemaakt en hoe ik fouten kan opsporen en oplossen. AI
+                                    zie ik als een handig hulpmiddel om bij te leren en efficiënter te
+                                    werken, maar niet als een vervanging voor mijn eigen kennis en
+                                    inzicht.
+                                </p>
+                            </div>
+                        </div>
+
+                        <button type="button" class="read-more-toggle" aria-expanded="false"
+                            aria-controls="education-more" hidden>
+                            <span>Lees meer</span>
+                            <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                        </button>
                     </div>
                 </article>
             </div>
@@ -249,7 +309,7 @@
                     aria-roledescription="carrousel"
                     aria-label="Mijn vaardigheden">
 
-                    <div id="skill-slides" class="skill-slides" aria-live="off">
+                    <div id="skill-slides" class="skill-slides" tabindex="0">
                         <article class="skill-card">
                             <i class="fa-brands fa-html5" aria-hidden="true"></i>
                             <h3>HTML</h3>
@@ -259,7 +319,7 @@
                             </p>
                         </article>
 
-                        <article class="skill-card" hidden>
+                        <article class="skill-card">
                             <i class="fa-brands fa-css3-alt" aria-hidden="true"></i>
                             <h3>CSS</h3>
                             <p>
@@ -269,7 +329,7 @@
                             </p>
                         </article>
 
-                        <article class="skill-card" hidden>
+                        <article class="skill-card">
                             <i class="fa-solid fa-sitemap" aria-hidden="true"></i>
                             <h3>Database<wbr>normalisatie</h3>
                             <p>
@@ -279,7 +339,7 @@
                             </p>
                         </article>
 
-                        <article class="skill-card" hidden>
+                        <article class="skill-card">
                             <i class="fa-solid fa-database" aria-hidden="true"></i>
                             <h3>MySQL</h3>
                             <p>
@@ -289,7 +349,7 @@
                             </p>
                         </article>
 
-                        <article class="skill-card" hidden>
+                        <article class="skill-card">
                             <i class="fa-solid fa-people-group" aria-hidden="true"></i>
                             <h3>Agile &amp; Scrum</h3>
                             <p>
@@ -300,7 +360,7 @@
                             </p>
                         </article>
 
-                        <article class="skill-card" hidden>
+                        <article class="skill-card">
                             <i class="fa-brands fa-js" aria-hidden="true"></i>
                             <h3>JavaScript</h3>
                             <p>
@@ -311,7 +371,7 @@
                         </article>
                     </div>
 
-                    <div class="d-flex flex-wrap justify-content-center gap-3 mt-4">
+                    <div class="skill-buttons d-flex flex-wrap justify-content-center gap-3 mt-4">
                         <button id="skill-prev" class="btn btn-secondary"
                             type="button" aria-controls="skill-slides">
                             <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
@@ -323,12 +383,6 @@
                             Volgende
                             <i class="fa-solid fa-chevron-right"
                                 aria-hidden="true"></i>
-                        </button>
-
-                        <button id="skill-carousel-toggle" class="btn btn-secondary carousel-toggle"
-                            type="button">
-                            <i class="fa-solid fa-pause" aria-hidden="true"></i>
-                            <span>Automatisch pauzeren</span>
                         </button>
                     </div>
 
@@ -361,28 +415,26 @@
                     </p>
                 </noscript>
 
-                <!-- Sjabloon voor één projectkaart; script.js?v=16 vult het in -->
+                <!-- Sjabloon voor één projectkaart; script.js vult het in -->
                 <template id="project-template">
-                    <div class="col-12 col-lg-6 d-flex">
-                        <article class="project-card w-100 d-flex flex-column">
+                    <div class="col-12 col-lg-4 col-xl-3 d-flex">
+                        <!-- Teaser: de volledige uitleg en de links staan in het detailvenster -->
+                        <article class="project-card w-100 d-flex flex-column align-items-center">
                             <div class="project-icon d-flex align-items-center justify-content-center">
                                 <i class="fa-solid" aria-hidden="true"></i>
                             </div>
 
-                            <h3></h3>
+                            <!-- Knop in de titel, zodat de details ook met het toetsenbord opengaan -->
+                            <h3><button type="button" class="project-open" aria-haspopup="dialog"></button></h3>
                             <p></p>
 
-                            <div class="project-tags d-flex flex-wrap justify-content-center gap-2"></div>
+                            <div class="project-footer">
+                                <div class="project-tags d-flex flex-wrap justify-content-center gap-2"></div>
 
-                            <div class="project-button d-flex flex-wrap justify-content-center gap-3">
-                                <a class="btn project-demo" target="_blank" rel="noopener noreferrer">
-                                    Bekijk project ↗
-                                </a>
-                                <a class="btn btn-secondary project-code"
-                                    target="_blank" rel="noopener noreferrer">
-                                    <i class="fa-brands fa-github" aria-hidden="true"></i>
-                                    Code bekijken
-                                </a>
+                                <span class="project-cta" aria-hidden="true">
+                                    Bekijk details
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </span>
                             </div>
                         </article>
                     </div>
@@ -405,44 +457,62 @@
         </section>
     </main>
 
+    <!-- Detailvenster van een project; script.js vult het in -->
+    <dialog id="project-modal" class="project-modal" aria-labelledby="project-modal-title">
+        <div class="project-modal-content">
+            <button type="button" class="project-modal-close" aria-label="Sluiten" title="Sluiten">
+                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+            </button>
+
+            <!-- Zelfde opbouw als de projectkaart: icoon, titel en tekst, met een voet onderaan -->
+            <div class="project-icon d-flex align-items-center justify-content-center">
+                <i class="fa-solid" aria-hidden="true"></i>
+            </div>
+
+            <h3 id="project-modal-title"></h3>
+
+            <img class="project-modal-image" width="1280" height="800" alt="">
+
+            <p class="project-modal-description"></p>
+
+            <div class="project-footer">
+                <h4>Gebruikte technologieën</h4>
+                <div class="project-tags d-flex flex-wrap justify-content-center gap-2"></div>
+
+                <div class="project-button d-flex flex-wrap justify-content-center gap-3">
+                    <a class="btn project-demo" target="_blank" rel="noopener noreferrer">
+                        Bekijk project ↗
+                    </a>
+                    <a class="btn btn-secondary project-code" target="_blank" rel="noopener noreferrer">
+                        <i class="fa-brands fa-github" aria-hidden="true"></i>
+                        Bekijk code
+                    </a>
+                </div>
+            </div>
+        </div>
+    </dialog>
+
     <!-- Contact -->
     <footer id="contact" class="footer">
         <div class="container">
-            <h2>Neem contact op</h2>
+            <h2 class="section-title">Neem contact op</h2>
 
             <p class="footer-intro">
-                Heb je een vraag over mijn projecten of over de code op mijn GitHub-pagina?
-                Stuur me gerust een bericht via e-mail of WhatsApp. Je kunt me ook
-                telefonisch bereiken of een bericht sturen via LinkedIn.
-                Ik kijk ernaar uit om van je te horen!
+                Een vraag over een project of over mijn code op GitHub?
+                Stuur me gerust een bericht of bel even, ik hoor graag van je.
             </p>
 
+            <a class="btn footer-cta" href="mailto:wesleybogaerts@hotmail.com"
+                title="wesleybogaerts@hotmail.com">
+                <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+                Stuur me een e-mail
+            </a>
+
             <div class="contact-details d-flex flex-column flex-md-row flex-wrap justify-content-center align-items-center gap-4">
-                <div class="contact-item d-flex align-items-center gap-2">
-                    <a href="mailto:wesleybogaerts@hotmail.com">
-                        <i class="fa-solid fa-envelope" aria-hidden="true"></i>
-                        <span>wesleybogaerts@hotmail.com</span>
-                    </a>
-
-                    <button type="button" class="copy-button"
-                        data-copy="wesleybogaerts@hotmail.com" data-copy-label="E-mailadres"
-                        aria-label="E-mailadres kopiëren" title="E-mailadres kopiëren">
-                        <i class="fa-regular fa-copy" aria-hidden="true"></i>
-                    </button>
-                </div>
-
-                <div class="contact-item d-flex align-items-center gap-2">
-                    <a href="tel:+32472254248">
-                        <i class="fa-solid fa-phone" aria-hidden="true"></i>
-                        <span>+32 (0)472 25 42 48</span>
-                    </a>
-
-                    <button type="button" class="copy-button"
-                        data-copy="+32472254248" data-copy-label="Telefoonnummer"
-                        aria-label="Telefoonnummer kopiëren" title="Telefoonnummer kopiëren">
-                        <i class="fa-regular fa-copy" aria-hidden="true"></i>
-                    </button>
-                </div>
+                <a href="tel:+32472254248">
+                    <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                    <span>+32 (0)472 25 42 48</span>
+                </a>
 
                 <a href="https://maps.google.com/?q=Balen"
                     target="_blank" rel="noopener noreferrer">
@@ -451,37 +521,29 @@
                 </a>
             </div>
 
-            <!-- Meldt aan screenreaders dat iets gekopieerd is -->
-            <p id="copy-status" class="visually-hidden" role="status"></p>
-
             <div class="social-links d-flex flex-wrap justify-content-center align-items-center gap-4">
-                <a href="https://github.com/Wesley-dev-tech" aria-label="GitHub"
+                <a href="https://github.com/Wesley-dev-tech" aria-label="GitHub" title="GitHub"
                     target="_blank" rel="noopener noreferrer">
                     <i class="fa-brands fa-github" aria-hidden="true"></i>
                 </a>
 
-                <a href="https://www.linkedin.com/in/wesley-bogaerts/" aria-label="LinkedIn"
+                <a href="https://www.linkedin.com/in/wesley-bogaerts/" aria-label="LinkedIn" title="LinkedIn"
                     target="_blank" rel="noopener noreferrer">
                     <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
                 </a>
 
-                <a href="https://wa.me/32472254248" aria-label="WhatsApp"
+                <a href="https://wa.me/32472254248" aria-label="WhatsApp" title="WhatsApp"
                     target="_blank" rel="noopener noreferrer">
                     <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
                 </a>
             </div>
 
-            <div class="d-flex justify-content-center mb-4">
-                <a class="d-flex align-items-center"
-                    href="https://madewithjev.com/free-tools/ai-slop-detector/report/wesley-dev-tech.github.io~a872f2">
-                    <img
-                        src="https://madewithjev.com/free-tools/ai-slop-detector/badge/wesley-dev-tech.github.io~a872f2"
-                        alt="33% AI slop, checked by Jev" height="20">
-                </a>
-            </div>
-
             <p class="copyright">
-                &copy; <span id="copyright-year">2026</span> Wesley Bogaerts - Developer Portfolio
+                &copy; <span id="copyright-year">2026</span> Wesley Bogaerts
+                <span aria-hidden="true">·</span> Gebouwd met HTML, CSS, Bootstrap en JavaScript
+                <span aria-hidden="true">·</span>
+                <a href="https://github.com/Wesley-dev-tech/Portfolio" target="_blank"
+                    rel="noopener noreferrer">Bekijk de code</a>
             </p>
         </div>
     </footer>
@@ -491,7 +553,7 @@
         <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
     </button>
 
-    <script src="script.js?v=17"></script>
+    <script src="script.js?v=18"></script>
 </body>
 
 </html>
