@@ -812,25 +812,26 @@ h3 {
     font-size: .925rem;
 }
 
+/* Voet van kaart en detailvenster, met een lijn erboven */
 .project-footer {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-}
-
-/* Altijd onderaan, met een lijn erboven */
-.project-card .project-footer {
     align-items: center;
     gap: 20px;
     width: 100%;
-    margin-top: auto;
     padding-top: 20px;
     border-top: 1px solid var(--border-color);
+}
+
+/* Altijd onderaan de kaart */
+.project-card .project-footer {
+    margin-top: auto;
 }
 
 .project-tags {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 6px;
     margin: 0;
     padding: 0;
@@ -840,7 +841,6 @@ h3 {
 /* Plaats voor twee rijen tags; één rij staat verticaal in het midden */
 .project-card .project-tags {
     align-content: center;
-    justify-content: center;
     min-height: 56px;
 }
 
@@ -997,16 +997,8 @@ html.modal-is-open {
 }
 
 .project-modal .project-footer {
-    align-items: center;
     gap: 14px;
-    width: 100%;
     max-width: var(--modal-content-width);
-    padding-top: 20px;
-    border-top: 1px solid var(--border-color);
-}
-
-.project-modal .project-tags {
-    justify-content: center;
 }
 
 .project-modal h3 {
@@ -1210,10 +1202,6 @@ html.modal-is-open {
         text-align: center;
     }
 
-    .nav-links a[aria-current] {
-        border-bottom-color: var(--accent);
-    }
-
     /* Donkere laag over de pagina; een klik erop sluit het menu */
     .site-nav::after {
         content: "";
@@ -1331,8 +1319,11 @@ html.modal-is-open {
 
     .hero-actions > .btn,
     .project-button > .btn {
-        width: 220px;
         max-width: 100%;
+    }
+
+    .hero-actions > .btn {
+        width: 220px;
     }
 
     .project-button > .btn {
