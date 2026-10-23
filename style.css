@@ -510,7 +510,7 @@ h3 {
     }
 }
 
-/* Bewegende tekstbalk onder de intro */
+/* Bewegende tekstbalk onder de intro, in een .container zodat hij even breed is als de inhoud */
 .marquee {
     overflow: hidden;
     padding: 14px 0;
@@ -530,7 +530,7 @@ h3 {
     display: flex;
     flex-shrink: 0;
     align-items: center;
-    /* Minstens schermbreed, zodat er op brede schermen geen gat valt */
+    /* Minstens schermbreed (dus altijd breder dan de balk), zodat er nooit een gat valt */
     min-width: 100vw;
     justify-content: space-around;
     margin: 0;
