@@ -19,6 +19,10 @@
     --accent-hover: #e2a07a;
     --border-color: #36332e;
     --border-strong: #756f64;
+    --overlay: rgba(10, 9, 8, .6);
+    --backdrop: rgba(10, 9, 8, .75);
+    /* Pijltje van het sorteermenu in de tekstkleur */
+    --select-arrow: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23ece7dd' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
 
     --font-sans: "Schibsted Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
     --font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", monospace;
@@ -28,6 +32,31 @@
     --radius-card: 6px;
     --header-height: 68px;
     --section-space: clamp(64px, 9vw, 112px);
+}
+
+/* Licht thema: warm gebroken wit als papier, bijna-zwarte tekst en een
+   donkerder koper, zodat het accent ook op de lichte vlakken leesbaar blijft.
+   Coolors-palet: https://coolors.co/f7f4ee-efe9df-1f1d1a-5c574e-9c4b26
+   Alle tekstcombinaties halen WCAG AA (4,5:1 of hoger). */
+:root[data-theme="light"] {
+    color-scheme: light;
+
+    /* Basispalet */
+    --bg-primary: #f7f4ee;
+    --bg-secondary: #efe9df;
+    --text-color: #1f1d1a;
+    --text-muted: #5c574e;
+    --accent: #9c4b26;
+
+    /* Afgeleide tinten van hetzelfde palet */
+    --bg-card: #fdfbf7;
+    --bg-footer: #ebe4d8;
+    --accent-hover: #7f3d1f;
+    --border-color: #ddd5c8;
+    --border-strong: #857e71;
+    --overlay: rgba(31, 29, 26, .35);
+    --backdrop: rgba(31, 29, 26, .55);
+    --select-arrow: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%231f1d1a' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
 }
 
 html {
@@ -230,8 +259,62 @@ h3 {
     transform-origin: left;
 }
 
+/* Themaknop en menuknop rechts in de header */
+.nav-actions {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Vierkante knop met alleen een icoon, even hoog als het WB-monogram plus wat lucht */
+.icon-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    background: none;
+    color: var(--text-color);
+    font-size: 1.15rem;
+    transition: border-color .2s ease;
+}
+
+.theme-toggle {
+    font-size: 1.05rem;
+}
+
+@media (hover: hover) {
+    .icon-button:hover {
+        border-color: var(--border-strong);
+    }
+}
+
 .menu-button {
     display: none;
+}
+
+/* Desktop: links rechts uitgelijnd, de themaknop daarachter na een dunne scheidingslijn */
+@media (min-width: 1200px) {
+    .nav-links {
+        margin-left: auto;
+    }
+
+    .nav-actions {
+        margin-left: 12px;
+        padding-left: 24px;
+        border-left: 1px solid var(--border-color);
+    }
+
+    /* Iets kleiner, in verhouding met de tekstlinks ernaast */
+    .theme-toggle {
+        width: 40px;
+        height: 40px;
+        font-size: .95rem;
+    }
 }
 
 /* Knoppen. Bootstrap gebruikt deze variabelen ook bij focus, active en disabled. */
@@ -759,8 +842,8 @@ h3 {
     border-radius: var(--radius);
     background-color: var(--bg-card);
     color: var(--text-color);
-    /* Bootstraps pijltje is donker; deze is lichtgrijs zodat hij zichtbaar blijft */
-    --bs-form-select-bg-img: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23ece7dd' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+    /* Bootstraps pijltje is altijd donker; dit pijltje volgt het thema */
+    --bs-form-select-bg-img: var(--select-arrow);
 }
 
 .project-control select:focus {
@@ -912,7 +995,7 @@ html.modal-is-open {
 }
 
 .project-modal::backdrop {
-    background: rgba(10, 9, 8, .75);
+    background: var(--backdrop);
     animation: modal-fade .25s ease-out;
 }
 
@@ -1150,17 +1233,7 @@ html.modal-is-open {
 /* Mobiel menu */
 @media (max-width: 1199.98px) {
     .menu-button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 44px;
-        height: 44px;
-        padding: 0;
-        border: 1px solid var(--border-color);
-        border-radius: var(--radius);
-        background: none;
-        color: var(--text-color);
-        font-size: 1.15rem;
+        display: inline-flex;
     }
 
     /* Zijpaneel dat van rechts inschuift, onder de header */
@@ -1208,7 +1281,7 @@ html.modal-is-open {
         position: fixed;
         inset: calc(var(--header-height) + 1px) 0 0;
         z-index: -1;
-        background: rgba(10, 9, 8, .6);
+        background: var(--overlay);
         opacity: 0;
         visibility: hidden;
         transition: opacity .3s ease, visibility 0s linear .3s;
@@ -1300,6 +1373,13 @@ html.modal-is-open {
 
     .logo {
         font-size: .9rem;
+    }
+
+    /* Smalste schermen: alleen de naam, zodat het logo op één regel naast beide knoppen past */
+    @media (max-width: 399.98px) {
+        .logo-prefix {
+            display: none;
+        }
     }
 
     /* Compactere knoppen, in verhouding met de kleinere tekst op mobiel */
