@@ -325,6 +325,40 @@ mobieleWeergave.addEventListener("change", function () {
     toonProjectpagina(huidigeProjectpagina);
 });
 
+// Elke kaart even hoog als de hoogste in dezelfde lijst, ook op een andere pagina.
+// Verborgen kaarten worden heel even getoond om ze te kunnen meten.
+function maakKaartenEvenHoog(kaarten) {
+    const verborgenKaarten = kaarten.filter(function (kaart) {
+        return kaart.hidden;
+    });
+
+    kaarten.forEach(function (kaart) {
+        kaart.style.minHeight = "";
+        kaart.hidden = false;
+    });
+
+    const hoogste = Math.max(...kaarten.map(function (kaart) {
+        return kaart.offsetHeight;
+    }));
+
+    verborgenKaarten.forEach(function (kaart) {
+        kaart.hidden = true;
+    });
+    kaarten.forEach(function (kaart) {
+        kaart.style.minHeight = hoogste + "px";
+    });
+}
+
+function maakAlleKaartenEvenHoog() {
+    maakKaartenEvenHoog(skillKaarten);
+    maakKaartenEvenHoog(projectKaarten);
+}
+
+// Opnieuw meten zodra het lettertype geladen is en bij een andere schermbreedte
+document.fonts.ready.then(maakAlleKaartenEvenHoog);
+window.addEventListener("resize", maakAlleKaartenEvenHoog);
+maakAlleKaartenEvenHoog();
+
 // Detailvenster van een project
 const projectModal = document.querySelector("#project-modal");
 const projectModalAfbeelding = projectModal.querySelector(".project-modal-image");
@@ -398,10 +432,9 @@ if ("IntersectionObserver" in window && !voorkeurMinderBeweging.matches) {
     }, { threshold: 0.12 });
 
     document.querySelectorAll(
-        "#about .container > *, #education .education-card, " +
-        "#skills .skills-carousel, #projects .section-title, " +
-        "#projects .project-controls, #project-list > *, " +
-        ".footer .container > *"
+        "#about .section-body, #education .education-card, " +
+        "#skills .skills-carousel, #projects .section-head-row, " +
+        "#project-list > *, .footer-grid > *"
     ).forEach(function (element) {
         element.classList.add("scroll-reveal");
         scrollObserver.observe(element);

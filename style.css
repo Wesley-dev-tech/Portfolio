@@ -1,27 +1,33 @@
-/* Donker developer-thema */
-/* Kleuren en basis */
-/* Coolors-palet: https://coolors.co/0b1120-0f172a-182234-2dd4bf-a78bfa */
+/* Donker, editorial thema: warme bijna-zwarte tinten, gebroken witte tekst
+   en één koperkleurig accent. Diepte komt uit kleine verschillen tussen de tinten,
+   niet uit gloed of verlopen.
+   Coolors-palet: https://coolors.co/161513-1f1d1a-ece7dd-a39d91-d4895f
+   Alle tekstcombinaties halen WCAG AA (4,5:1 of hoger). */
 :root {
-    /* Turquoise voor acties; paars uitsluitend voor subtiele accenten. */
-    --primary-color: #2dd4bf;
-    --primary-hover: #5eead4;
-    --primary-active: #14b8a6;
-    --purple-accent: #a78bfa;
-    --button-text: #0b1120;
-    --primary-soft: rgba(45, 212, 191, .1);
-    --primary-soft-active: rgba(45, 212, 191, .18);
-    --primary-border: rgba(45, 212, 191, .55);
-    --purple-soft: rgba(167, 139, 250, .1);
-    --purple-border: rgba(167, 139, 250, .12);
-    --bg-dark: rgb(15, 23, 42);
-    --bg-darker: rgb(11, 17, 32);
-    --header-bg: rgba(11, 17, 32, .96);
-    --nav-bg: rgba(11, 17, 32, .98);
-    --card-bg: rgb(24, 34, 52);
-    --text-color: #e6edf7;
-    --text-muted: #b6c2d4;
-    --border-color: rgba(182, 194, 212, .14);
-    --header-height: 70px;
+    color-scheme: dark;
+
+    /* Basispalet */
+    --bg-primary: #161513;
+    --bg-secondary: #1f1d1a;
+    --text-color: #ece7dd;
+    --text-muted: #a39d91;
+    --accent: #d4895f;
+
+    /* Afgeleide tinten van hetzelfde palet */
+    --bg-card: #262420;
+    --bg-footer: #0f0e0d;
+    --accent-hover: #e2a07a;
+    --border-color: #36332e;
+    --border-strong: #756f64;
+
+    --font-sans: "Schibsted Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", monospace;
+
+    --radius: 8px;
+    --radius-icon: 12px;
+    --radius-card: 6px;
+    --header-height: 68px;
+    --section-space: clamp(64px, 9vw, 112px);
 }
 
 html {
@@ -31,10 +37,11 @@ html {
 }
 
 body {
-    font-family: "Manrope", system-ui, sans-serif;
-    background: var(--bg-dark);
+    font-family: var(--font-sans);
+    background: var(--bg-primary);
     color: var(--text-color);
-    line-height: 1.7;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
 }
 
 p {
@@ -50,36 +57,20 @@ a {
 h1,
 h2,
 h3 {
-    font-weight: 700;
+    font-weight: 600;
+    letter-spacing: -.015em;
 }
 
-.narrow {
-    max-width: 800px;
+::selection {
+    background: var(--accent);
+    color: var(--bg-primary);
 }
 
-.section {
-    padding: 80px 0;
-}
-
-.section-title {
-    margin-bottom: 45px;
-    text-align: center;
-    font-size: 2.3rem;
-}
-
-.section-title::after {
-    content: "";
-    display: block;
-    width: 65px;
-    height: 4px;
-    margin: 12px auto 0;
-    border-radius: 5px;
-    background: var(--primary-color);
-}
-
-:focus-visible {
-    outline: 3px solid var(--primary-color);
-    outline-offset: 5px;
+/* Toetsenbordfocus op de titelknop van een projectkaart toont de rand rond de hele kaart */
+:focus-visible,
+.project-card:has(.project-open:focus-visible) {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
 }
 
 .skip-link {
@@ -87,27 +78,86 @@ h3 {
     top: -80px;
     left: 12px;
     z-index: 20;
-    padding: 10px;
-    background: var(--card-bg);
-    color: var(--text-color);
+    padding: 10px 14px;
+    border-radius: var(--radius);
+    background: var(--text-color);
+    color: var(--bg-primary);
 }
 
 .skip-link:focus {
     top: 12px;
 }
 
+/* Secties: elke sectie opent met een dunne lijn over de volle breedte,
+   daaronder een klein nummer en de titel */
+.section {
+    padding: var(--section-space) 0;
+}
+
+.section-alt {
+    background: var(--bg-secondary);
+}
+
+.section > .container::before,
+.footer > .container::before {
+    content: "";
+    display: block;
+    grid-column: 1 / -1;
+    height: 1px;
+    margin-bottom: 24px;
+    background: var(--border-strong);
+}
+
+.section-head {
+    margin-bottom: 40px;
+}
+
+.section-index {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: .8rem;
+    font-weight: 500;
+}
+
+.section-title {
+    margin: 0;
+    font-size: clamp(1.75rem, 1.3rem + 1.6vw, 2.5rem);
+    line-height: 1.15;
+}
+
+/* Titel links, inhoud rechts op brede schermen */
+@media (min-width: 992px) {
+    .section-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+        column-gap: 64px;
+    }
+
+    .section-grid > .section-head {
+        position: sticky;
+        top: calc(var(--header-height) + 32px);
+        align-self: start;
+    }
+}
+
+.section-body {
+    max-width: 68ch;
+}
+
 /* Navigatie */
-header {
+.site-header {
     position: sticky;
     top: 0;
     z-index: 10;
-    background: var(--header-bg);
+    background: var(--bg-primary);
     border-bottom: 1px solid var(--border-color);
 }
 
 .site-nav {
     min-height: var(--header-height);
-    padding: 12px 30px;
+    padding: 12px 32px;
     gap: 16px;
 }
 
@@ -115,46 +165,57 @@ header {
     display: flex;
     align-items: center;
     gap: 10px;
-    font-weight: 700;
+    font-weight: 600;
+    letter-spacing: -.01em;
 }
 
-.logo img {
+/* Monogram in de huisstijl, in plaats van het favicon */
+.logo-mark {
+    display: inline-flex;
     flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius);
+    color: var(--text-color);
+    font-family: var(--font-mono);
+    font-size: .75rem;
+    font-weight: 500;
+    letter-spacing: .02em;
 }
 
 .nav-links {
     align-items: center;
-    gap: 20px;
+    gap: 28px;
     list-style: none;
     margin: 0;
     padding: 0;
 }
 
 .nav-links a {
-    font-weight: 700;
+    display: inline-block;
+    padding: 6px 0;
+    border-bottom: 2px solid transparent;
+    color: var(--text-muted);
+    font-size: .95rem;
+    font-weight: 500;
+    transition: color .2s ease, border-color .2s ease;
 }
 
 .nav-links i {
-    margin-right: 5px;
+    margin-right: 6px;
+    font-size: .8em;
 }
 
-.nav-links a,
-.social-links a,
-.contact-details a {
-    color: var(--text-muted);
+.nav-links a:hover {
+    color: var(--text-color);
 }
 
-.nav-links i,
-.contact-details i,
-.education-label {
-    color: var(--primary-color);
-}
-
-.nav-links a:hover,
-.nav-links a[aria-current],
-.social-links a:hover,
-.contact-details a:hover {
-    color: var(--primary-color);
+.nav-links a[aria-current] {
+    border-bottom-color: var(--accent);
+    color: var(--text-color);
 }
 
 /* Voortgangsbalk, wordt via JavaScript opgerekt */
@@ -163,8 +224,8 @@ header {
     left: 0;
     bottom: -1px;
     width: 100%;
-    height: 3px;
-    background: linear-gradient(90deg, var(--primary-color), var(--purple-accent));
+    height: 2px;
+    background: var(--accent);
     transform: scaleX(0);
     transform-origin: left;
 }
@@ -173,71 +234,213 @@ header {
     display: none;
 }
 
-/* Intro en knoppen */
+/* Knoppen. Bootstrap gebruikt deze variabelen ook bij focus, active en disabled. */
+.btn {
+    --bs-btn-color: var(--bg-primary);
+    --bs-btn-bg: var(--accent);
+    --bs-btn-border-color: var(--accent);
+    --bs-btn-hover-color: var(--bg-primary);
+    --bs-btn-hover-bg: var(--accent-hover);
+    --bs-btn-hover-border-color: var(--accent-hover);
+    --bs-btn-active-color: var(--bg-primary);
+    --bs-btn-active-bg: var(--accent-hover);
+    --bs-btn-active-border-color: var(--accent-hover);
+    --bs-btn-disabled-color: var(--bg-primary);
+    --bs-btn-disabled-bg: var(--accent);
+    --bs-btn-disabled-border-color: var(--accent);
+    --bs-btn-focus-box-shadow: 0 0 0 2px var(--bg-primary), 0 0 0 4px var(--accent);
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 52px;
+    padding: 12px 24px;
+    border-width: 1px;
+    border-radius: var(--radius);
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.btn i {
+    font-size: .9em;
+}
+
+.btn-secondary {
+    --bs-btn-color: var(--text-color);
+    --bs-btn-bg: transparent;
+    --bs-btn-border-color: var(--text-color);
+    --bs-btn-hover-color: var(--bg-primary);
+    --bs-btn-hover-bg: var(--text-color);
+    --bs-btn-hover-border-color: var(--text-color);
+    --bs-btn-active-color: var(--bg-primary);
+    --bs-btn-active-bg: var(--text-color);
+    --bs-btn-active-border-color: var(--text-color);
+    --bs-btn-disabled-color: var(--text-color);
+    --bs-btn-disabled-bg: transparent;
+    --bs-btn-disabled-border-color: var(--text-color);
+}
+
+/* Intro */
 .hero {
-    min-height: 520px;
-    padding: 70px 20px;
-    text-align: center;
-    /* Onderaan zacht overlopen naar de tekstbalk en de rest van de pagina */
-    background:
-        linear-gradient(transparent 55%, var(--bg-dark)),
-        radial-gradient(circle at 16% 36%, var(--primary-soft), transparent 34%),
-        radial-gradient(ellipse at 84% 12%, var(--purple-soft), transparent 42%),
-        var(--bg-darker);
+    padding: clamp(48px, 8vw, 104px) 0 clamp(48px, 6vw, 80px);
 }
 
-.hero-content {
-    max-width: 680px;
-    margin: auto;
+/* Mobiel: foto, tekst, feiten onder elkaar. Breder: foto rechts naast de tekst. */
+.hero-grid {
+    display: grid;
+    grid-template-areas:
+        "photo"
+        "content"
+        "facts";
+    gap: 28px;
 }
 
-/* Ronde profielfoto boven de begroeting, met een turquoise rand */
 .hero-photo {
+    grid-area: photo;
     display: block;
-    width: 180px;
-    max-width: 100%;
+    width: 112px;
     height: auto;
     aspect-ratio: 1;
-    margin: 0 auto 28px;
-    border: 4px solid var(--primary-border);
     border-radius: 50%;
     object-fit: cover;
     /* Gezicht in het midden van de cirkel houden */
     object-position: 50% 30%;
-    box-shadow: 0 0 0 8px var(--primary-soft), 0 18px 40px rgba(0, 0, 0, .35);
+    background: var(--bg-secondary);
+}
+
+.hero-content {
+    grid-area: content;
 }
 
 .hero h1 {
-    margin-bottom: 20px;
-    font-size: clamp(2.2rem, 5vw, 3.5rem);
-    line-height: 1.2;
+    margin-bottom: 24px;
+    font-size: clamp(2.5rem, 1.6rem + 3.6vw, 4rem);
+    line-height: 1.04;
+    letter-spacing: -.03em;
 }
 
-.hero h1 span {
-    color: var(--primary-color);
+.hero-greeting {
+    display: block;
+    margin-bottom: 14px;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: clamp(.95rem, .9rem + .3vw, 1.05rem);
+    font-weight: 400;
+    letter-spacing: 0;
 }
 
 .hero-subtitle {
-    margin-bottom: 28px;
+    max-width: 38ch;
     color: var(--text-color);
-    font-size: 1.1rem;
-    font-weight: 600;
+    font-size: clamp(1.1rem, 1rem + .4vw, 1.3rem);
+    font-weight: 500;
+    line-height: 1.45;
+}
+
+.hero-intro {
+    max-width: 58ch;
+    margin: 18px 0 32px;
+}
+
+.hero-facts {
+    grid-area: facts;
+    display: grid;
+    gap: 16px;
+    margin: 12px 0 0;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+.hero-facts dt {
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: .75rem;
+    font-weight: 400;
+}
+
+.hero-facts dd {
+    margin: 2px 0 0;
+    font-weight: 500;
+}
+
+@media (min-width: 576px) {
+    .hero-facts {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px;
+    }
+}
+
+/* Eén kolom met de ronde foto bovenaan: alles gecentreerd, als een profielkaart */
+@media (max-width: 767.98px) {
+    .hero-grid {
+        justify-items: center;
+        text-align: center;
+    }
+
+    .hero-subtitle,
+    .hero-intro {
+        margin-inline: auto;
+    }
+
+    .hero-actions {
+        justify-content: center;
+    }
+
+    .hero-facts {
+        justify-self: stretch;
+    }
+}
+
+@media (min-width: 768px) {
+    .hero-grid {
+        grid-template-columns: minmax(0, 1fr) 220px;
+        grid-template-areas:
+            "content photo"
+            "facts facts";
+        column-gap: 48px;
+        align-items: start;
+    }
+
+    .hero-photo {
+        width: 100%;
+    }
+}
+
+@media (min-width: 992px) {
+    .hero-grid {
+        grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
+        grid-template-areas:
+            "content photo"
+            "facts photo";
+        column-gap: 72px;
+    }
+
+    .hero-photo {
+        justify-self: end;
+        max-width: 340px;
+    }
+
+    .hero-facts {
+        align-self: end;
+        margin-top: 40px;
+    }
 }
 
 /* Bewegende tekstbalk onder de intro */
 .marquee {
     overflow: hidden;
     padding: 14px 0;
-    border-block: 1px solid var(--border-color);
+    border-block: 1px solid var(--border-strong);
     /* Tekst en lijnen vervagen aan de zijkanten in plaats van hard af te breken */
-    mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
 }
 
 .marquee-track {
     display: flex;
     width: max-content;
     /* Twee gelijke kopieën: na de helft staat alles weer exact op de beginpositie */
-    animation: marquee 45s linear infinite;
+    animation: marquee 50s linear infinite;
 }
 
 .marquee-group {
@@ -250,10 +453,11 @@ header {
     margin: 0;
     padding: 0;
     list-style: none;
-    color: var(--text-muted);
-    font-size: .8rem;
-    font-weight: 600;
-    letter-spacing: .12em;
+    color: var(--text-color);
+    font-family: var(--font-mono);
+    font-size: .78rem;
+    font-weight: 500;
+    letter-spacing: .08em;
     text-transform: uppercase;
     white-space: nowrap;
 }
@@ -263,7 +467,7 @@ header {
 }
 
 .marquee-group .marquee-dot {
-    color: var(--primary-color);
+    color: var(--accent);
 }
 
 @keyframes marquee {
@@ -272,55 +476,16 @@ header {
     }
 }
 
-.btn {
-    /* Bootstrap gebruikt deze variabelen ook bij focus, active en disabled. */
-    --bs-btn-color: var(--button-text);
-    --bs-btn-bg: var(--primary-color);
-    --bs-btn-border-color: var(--primary-color);
-    --bs-btn-hover-color: var(--button-text);
-    --bs-btn-hover-bg: var(--primary-hover);
-    --bs-btn-hover-border-color: var(--primary-hover);
-    --bs-btn-active-color: var(--button-text);
-    --bs-btn-active-bg: var(--primary-active);
-    --bs-btn-active-border-color: var(--primary-active);
-    --bs-btn-disabled-color: var(--button-text);
-    --bs-btn-disabled-bg: var(--primary-color);
-    --bs-btn-disabled-border-color: var(--primary-color);
-    --bs-btn-focus-box-shadow: 0 0 0 3px var(--bg-darker),
-        0 0 0 6px var(--primary-color);
-
-    padding: 12px 24px;
-    border-width: 2px;
-    border-radius: 8px;
-    font-weight: 700;
-}
-
-.btn i {
-    margin-right: 8px;
-}
-
-.btn-secondary {
-    --bs-btn-color: var(--primary-color);
-    --bs-btn-bg: transparent;
-    --bs-btn-border-color: var(--primary-color);
-    --bs-btn-hover-color: var(--primary-color);
-    --bs-btn-hover-bg: var(--primary-soft);
-    --bs-btn-hover-border-color: var(--primary-color);
-    --bs-btn-active-color: var(--primary-color);
-    --bs-btn-active-bg: var(--primary-soft-active);
-    --bs-btn-active-border-color: var(--primary-color);
-    --bs-btn-disabled-color: var(--primary-color);
-    --bs-btn-disabled-bg: transparent;
-    --bs-btn-disabled-border-color: var(--primary-color);
-}
-
 /* Over mij en opleiding */
-.about {
-    text-align: center;
+/* Eerste alinea van Over mij: iets groter en helderder */
+.lead-text {
+    color: var(--text-color);
+    font-size: clamp(1.1rem, 1rem + .35vw, 1.25rem);
+    line-height: 1.6;
 }
 
-.about p+p,
-.education-card p+p {
+.section-body p + p,
+.read-more-inner p + p {
     margin-top: 18px;
 }
 
@@ -329,12 +494,7 @@ header {
 .read-more {
     display: grid;
     grid-template-rows: 1fr;
-}
-
-/* Ook in "Over mij", waar scroll-reveal een eigen transition op dit blok zet */
-.read-more,
-.read-more.scroll-reveal {
-    transition: grid-template-rows .45s ease, opacity .6s ease, transform .6s ease;
+    transition: grid-template-rows .45s ease;
 }
 
 .read-more-inner {
@@ -352,20 +512,23 @@ header {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    margin-top: 16px;
-    padding: 4px 0;
+    min-height: 44px;
+    margin-top: 8px;
+    padding: 0;
     border: 0;
     background: none;
-    color: var(--primary-color);
-    font-weight: 700;
+    color: var(--accent);
+    font-weight: 600;
 }
 
 .read-more-toggle:hover {
-    color: var(--primary-hover);
+    color: var(--accent-hover);
+    text-decoration: underline;
+    text-underline-offset: 4px;
 }
 
 .read-more-toggle i {
-    font-size: .8rem;
+    font-size: .75rem;
     transition: transform .3s ease;
 }
 
@@ -373,96 +536,100 @@ header {
     transform: rotate(180deg);
 }
 
-.education,
-.projects {
-    background: var(--bg-darker);
-}
-
+/* Kaarten: iets lichter vlak dan de achtergrond, dunne rand, geen zware schaduw */
 .education-card,
 .skill-card,
 .project-card {
     min-width: 0;
-    padding: 30px;
     border: 1px solid var(--border-color);
-    border-radius: 15px;
-    background:
-        linear-gradient(145deg, rgba(255, 255, 255, .025), transparent 58%),
-        var(--card-bg);
-    box-shadow: 0 16px 36px rgba(0, 0, 0, .12);
-    text-align: center;
-    transition: border-color .2s ease, box-shadow .2s ease;
+    border-radius: var(--radius-card);
+    background: var(--bg-card);
+    transition: border-color .2s ease;
 }
 
 .education-card {
-    max-width: 800px;
-    margin: auto;
+    padding: clamp(24px, 4vw, 40px);
 }
 
-/* Icoonvlak, gedeeld door de opleiding en de vaardigheden */
+.education-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+/* Icoonvak, gedeeld door opleiding, vaardigheden en projecten */
 .education-icon,
-.skill-card i {
-    border-radius: 14px;
-    background: var(--primary-soft);
-    color: var(--primary-color);
+.skill-card > i,
+.project-icon {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-icon);
+    background: var(--bg-primary);
+    color: var(--accent);
 }
 
 .education-icon {
-    width: 65px;
-    height: 65px;
-    font-size: 1.8rem;
+    width: 52px;
+    height: 52px;
+    font-size: 1.3rem;
 }
 
 .education-label {
-    font-size: .8rem;
-    font-weight: 700;
-    text-transform: uppercase;
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: .75rem;
+    font-weight: 500;
 }
 
 .education-card h3 {
-    margin: 8px 0 2px;
-    font-size: 1.35rem;
+    margin: 4px 0 2px;
+    font-size: clamp(1.2rem, 1.1rem + .4vw, 1.4rem);
 }
 
 .education-card .education-school {
-    margin-bottom: 12px;
-    font-weight: 700;
+    color: var(--text-color);
+    font-weight: 500;
 }
 
-/* Vaardigheden: inhoud gecentreerd en bovenaan, zodat icoon, titel en tekst
-   in elke kaart op dezelfde hoogte beginnen */
+/* Vaardigheden */
+/* Icoon, titel en tekst horizontaal gecentreerd en bovenaan uitgelijnd,
+   zodat ze in elke kaart op dezelfde hoogte staan */
 .skill-card {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 28px 20px;
+    text-align: center;
 }
 
-.skill-card i {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 56px;
-    height: 56px;
+.skill-card > i {
+    width: 48px;
+    height: 48px;
     margin-bottom: 20px;
-    font-size: 1.6rem;
+    font-size: 1.35rem;
 }
 
 .skill-card h3 {
     margin-bottom: 8px;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 }
 
 .skill-card p {
     font-size: .95rem;
 }
 
-/* Desktop: zelfde breedte als het projectenraster, per vier kaarten gepagineerd.
-   Een onvolledige rij staat gecentreerd onder de titel en de knoppen. */
+/* Desktop: zelfde breedte als het projectenraster, per vier kaarten gepagineerd */
 @media (min-width: 992px) {
     .skill-slides {
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
         gap: 1.5rem;
+        /* Een onvolledige laatste pagina staat in het midden */
+        justify-content: center;
     }
 
     .skill-card {
@@ -485,24 +652,17 @@ header {
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
-    /* Ruimte voor de schaduw van de kaarten */
-    padding-bottom: 16px;
 }
 
 .is-swipeable::-webkit-scrollbar {
     display: none;
 }
 
+/* Eén volle kaart en een stuk van de volgende */
 .is-swipeable > * {
-    flex: 0 0 85%;
-    width: 85%;
+    flex: 0 0 min(85%, 340px);
+    width: min(85%, 340px);
     scroll-snap-align: start;
-}
-
-/* Projectkaarten blijven ook in de veegbare rij smal en staand */
-.project-list.is-swipeable > * {
-    flex-basis: min(85%, 324px);
-    width: min(85%, 324px);
 }
 
 /* Tot aan de schermrand, net als de projectenrij */
@@ -514,38 +674,35 @@ header {
 }
 
 /* Vorige- en Volgende-knoppen van vaardigheden en projecten */
-.skill-buttons .btn,
-.project-pagination .btn {
-    display: inline-flex;
-    align-items: center;
+.pager {
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    gap: 8px;
-    width: 145px;
+    gap: 12px;
+    margin-top: 32px;
+}
+
+.pager .btn {
+    width: 140px;
     max-width: 100%;
     white-space: nowrap;
 }
 
-.skill-buttons .btn i,
-.project-pagination .btn i {
-    margin: 0;
-}
-
-.skill-buttons .btn:disabled,
-.project-pagination .btn:disabled {
+.pager .btn:disabled {
     cursor: not-allowed;
-    opacity: .55;
+    opacity: .4;
 }
 
 /* Verschijnen bij scrollen */
 .scroll-reveal {
     opacity: 0;
-    transform: translateY(24px);
+    transform: translateY(12px);
     transition: opacity .6s ease, transform .6s ease;
 }
 
 .scroll-reveal.is-visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
 }
 
 /* Projecten */
@@ -554,120 +711,89 @@ header {
     display: none !important;
 }
 
-/* Een onvolledige pagina staat gecentreerd, net als bij de vaardigheden */
+/* Een onvolledige pagina staat in het midden, net als bij de vaardigheden */
 .project-list:not(.is-swipeable) {
     justify-content: center;
 }
 
-.project-controls {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    margin: -20px 0 32px;
+/* Titel en sorteermenu in een raster van twee rijen: het nummer staat naast
+   "Sorteren" en de titel naast het menu, telkens op dezelfde lijn */
+.section-head-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 24px;
+    margin-bottom: 40px;
 }
 
-.project-control {
-    display: grid;
-    gap: 6px;
-    width: min(100%, 260px);
+.section-head-row > .section-head,
+.section-head-row > .project-control {
+    display: contents;
+}
+
+.section-head-row .section-index {
+    grid-area: 1 / 1;
+    align-self: end;
+}
+
+.section-head-row .section-title {
+    grid-area: 2 / 1;
+    align-self: center;
+}
+
+.project-control label {
+    grid-area: 1 / 2;
+    align-self: end;
+    margin-bottom: 10px;
     color: var(--text-muted);
-    font-weight: 600;
+    font-family: var(--font-mono);
+    font-size: .8rem;
+    line-height: 1.65;
 }
 
 .project-control select {
-    border-color: var(--border-color);
-    background-color: var(--card-bg);
+    grid-area: 2 / 2;
+    align-self: center;
+    width: 240px;
+    min-height: 44px;
+    border-color: var(--border-strong);
+    border-radius: var(--radius);
+    background-color: var(--bg-card);
     color: var(--text-color);
+    /* Bootstraps pijltje is donker; deze is lichtgrijs zodat hij zichtbaar blijft */
+    --bs-form-select-bg-img: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23ece7dd' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
 }
 
-/* Projectkaart als staande teaser: icoon, titel en één zin bovenaan,
-   tags en "Bekijk details" in een vaste voet onderaan. Alles gecentreerd. */
+.project-control select:focus {
+    border-color: var(--text-color);
+    box-shadow: none;
+}
+
+/* Projectkaart: groot icoon, titel en teaser bovenaan, alles gecentreerd.
+   De voet met tags en "Bekijk details" staat onderaan en is overal even hoog. */
 .project-card {
-    min-height: 480px;
-    padding: 40px 24px 24px;
+    padding: 36px 24px 24px;
+    text-align: center;
     cursor: pointer;
-    transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
 }
 
-.project-icon {
-    width: 72px;
-    height: 72px;
+.project-card .project-icon {
+    width: 68px;
+    height: 68px;
     margin-bottom: 24px;
-    border-radius: 18px;
-    background: linear-gradient(145deg, var(--purple-soft), var(--primary-soft));
-    color: var(--purple-accent);
-    font-size: 1.8rem;
-    box-shadow: inset 0 0 0 1px var(--purple-border);
+    font-size: 1.6rem;
 }
 
-/* Ruimte voor twee titelregels, zodat de teasers overal op één lijn beginnen */
+/* Ruimte voor twee titelregels, zodat de teasers overal op dezelfde hoogte beginnen */
 .project-card h3 {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 2.4em;
-    margin-bottom: 12px;
-    font-size: 1.2rem;
-}
-
-/* Voet altijd onderaan en even hoog (plaats voor twee rijen tags),
-   zodat de lijn en "Bekijk details" in elke kaart op dezelfde hoogte staan */
-.project-footer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 18px;
-    width: 100%;
-    margin-top: auto;
-    padding-top: 20px;
-    border-top: 1px solid var(--border-color);
-}
-
-.project-footer .project-tags {
-    align-content: center;
-    min-height: 70px;
-}
-
-/* Iets compacter dan in het detailvenster, zodat de tags in twee rijen passen */
-.project-footer .project-tags li {
-    padding: 4px 11px;
-    font-size: .8rem;
-}
-
-.project-cta {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    color: var(--primary-color);
-    font-weight: 700;
-}
-
-.project-cta i {
-    font-size: .85rem;
-    transition: transform .2s ease;
-}
-
-/* Alleen met een muis; op touchscreens blijft hover na een tik hangen */
-@media (hover: hover) {
-    .project-card:hover {
-        transform: translateY(-4px);
-    }
-
-    .project-card:hover .project-cta i {
-        transform: translateX(4px);
-    }
-}
-
-/* Toetsenbordfocus op de titelknop toont een rand rond de hele kaart */
-.project-card:has(.project-open:focus-visible) {
-    outline: 3px solid var(--primary-color);
-    outline-offset: 4px;
-}
-
-.project-open:focus-visible {
-    outline: none;
+    min-height: 2.6em;
+    margin: 0 0 12px;
+    font-size: 1.15rem;
+    line-height: 1.3;
+    /* Regels even lang, zodat een titel niet midden in een woord met koppelteken breekt */
+    text-wrap: balance;
 }
 
 /* Titelknop ziet eruit als de gewone titel */
@@ -677,43 +803,90 @@ header {
     background: none;
     color: inherit;
     font: inherit;
+    text-align: inherit;
+    text-underline-offset: 4px;
 }
 
 .project-card p {
     margin-bottom: 24px;
-    font-size: .95rem;
+    font-size: .925rem;
+}
+
+.project-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Altijd onderaan, met een lijn erboven */
+.project-card .project-footer {
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
 }
 
 .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
     margin: 0;
     padding: 0;
     list-style: none;
 }
 
+/* Plaats voor twee rijen tags; één rij staat verticaal in het midden */
+.project-card .project-tags {
+    align-content: center;
+    justify-content: center;
+    min-height: 56px;
+}
+
 .project-tags li {
-    padding: 5px 14px;
-    border-radius: 20px;
-    background: var(--primary-soft);
-    color: var(--primary-color);
-    font-size: .85rem;
+    padding: 2px 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 3px;
+    background: var(--bg-primary);
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: .72rem;
+}
+
+.project-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--accent);
+    font-size: .9rem;
     font-weight: 600;
 }
 
-.project-card:hover,
-.skill-card:hover {
-    border-color: var(--primary-border);
-    box-shadow: 0 18px 40px rgba(0, 0, 0, .2);
+.project-cta i {
+    font-size: .8rem;
+    transition: transform .2s ease;
 }
 
-.project-pagination {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    margin-top: 32px;
+/* Alleen met een muis; op touchscreens blijft hover na een tik hangen */
+@media (hover: hover) {
+    .project-card:hover,
+    .skill-card:hover {
+        border-color: var(--border-strong);
+    }
+
+    .project-card:hover .project-open {
+        text-decoration: underline;
+    }
+
+    .project-card:hover .project-cta i {
+        transform: translateX(3px);
+    }
 }
 
+.project-open:focus-visible {
+    outline: none;
+}
 
 /* Detailvenster van een project */
 html.modal-is-open {
@@ -722,14 +895,16 @@ html.modal-is-open {
 }
 
 .project-modal {
-    width: min(760px, calc(100% - 32px));
+    /* Breedte van screenshot en alles eronder, zodat de tekst niet breder is dan de afbeelding */
+    --modal-content-width: 520px;
+
+    width: min(820px, calc(100% - 32px));
     max-height: calc(100dvh - 32px);
     padding: 0;
     border: 1px solid var(--border-color);
-    border-radius: 15px;
-    background: var(--card-bg);
+    border-radius: var(--radius-card);
+    background: var(--bg-card);
     color: var(--text-color);
-    box-shadow: 0 24px 60px rgba(0, 0, 0, .45);
 }
 
 .project-modal[open] {
@@ -737,14 +912,14 @@ html.modal-is-open {
 }
 
 .project-modal::backdrop {
-    background: rgba(11, 17, 32, .75);
+    background: rgba(10, 9, 8, .75);
     animation: modal-fade .25s ease-out;
 }
 
 @keyframes modal-in {
     from {
         opacity: 0;
-        transform: translateY(16px) scale(.98);
+        transform: translateY(12px);
     }
 }
 
@@ -754,23 +929,15 @@ html.modal-is-open {
     }
 }
 
-/* Zelfde opmaak als de projectkaart, alles gecentreerd */
+/* Zelfde opbouw als de projectkaart: icoon, titel, screenshot en tekst onder elkaar,
+   alles gecentreerd */
 .project-modal-content {
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 28px 32px;
+    padding: 32px clamp(20px, 4vw, 40px);
     text-align: center;
-}
-
-/* Iets kleiner icoon dan op de kaart, zodat het venster even groot blijft als voorheen */
-.project-modal .project-icon {
-    width: 56px;
-    height: 56px;
-    margin-bottom: 14px;
-    border-radius: 15px;
-    font-size: 1.4rem;
 }
 
 .project-modal-close {
@@ -783,124 +950,209 @@ html.modal-is-open {
     width: 44px;
     height: 44px;
     padding: 0;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--border-strong);
     border-radius: 50%;
-    background: var(--bg-darker);
+    background: var(--bg-card);
     color: var(--text-color);
-    font-size: 1.2rem;
-    transition: color .2s ease, border-color .2s ease;
+    font-size: 1.15rem;
+    transition: color .2s ease, background-color .2s ease;
 }
 
 .project-modal-close:hover {
-    border-color: var(--primary-border);
-    color: var(--primary-color);
+    background: var(--text-color);
+    color: var(--bg-primary);
 }
 
-/* Links en rechts evenveel ruimte, zodat de titel gecentreerd blijft naast de sluitknop */
+.project-modal .project-icon {
+    width: 56px;
+    height: 56px;
+    margin-bottom: 16px;
+    font-size: 1.3rem;
+}
+
+/* Links en rechts ruimte, zodat de titel niet onder de sluitknop loopt */
 .project-modal h2 {
-    margin: 0 48px 18px;
-    font-size: 1.5rem;
+    margin: 0 48px 24px;
+    font-size: clamp(1.3rem, 1.1rem + .8vw, 1.6rem);
+    text-wrap: balance;
 }
 
+/* Bewust kleiner dan het venster, zodat de screenshot de tekst niet overheerst */
 .project-modal-image {
     display: block;
     width: 100%;
-    max-width: 640px;
+    max-width: var(--modal-content-width);
     height: auto;
     aspect-ratio: 16 / 10;
     object-fit: cover;
     object-position: top;
     border: 1px solid var(--border-color);
-    border-radius: 10px;
-    background: var(--bg-darker);
+    border-radius: var(--radius);
+    background: var(--bg-secondary);
 }
 
 .project-modal-description {
-    max-width: 600px;
-    margin: 18px 0;
-    font-size: .95rem;
+    max-width: var(--modal-content-width);
+    margin: 24px 0;
+}
+
+.project-modal .project-footer {
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    max-width: var(--modal-content-width);
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+.project-modal .project-tags {
+    justify-content: center;
 }
 
 .project-modal h3 {
     margin: 0;
-    color: var(--text-color);
-    font-size: 1rem;
-    font-weight: 700;
-}
-
-/* In het venster geen vaste hoogte voor de tags nodig */
-.project-modal .project-footer {
-    gap: 14px;
-    padding-top: 18px;
-}
-
-.project-modal .project-footer .project-tags {
-    min-height: 0;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: .75rem;
+    font-weight: 500;
+    letter-spacing: 0;
 }
 
 .project-button {
-    padding-top: 4px;
+    justify-content: center;
+    padding-top: 8px;
+}
+
+/* Compacter dan de andere knoppen, in verhouding met de kleinere screenshot */
+.project-button .btn {
+    gap: 8px;
+    min-height: 42px;
+    padding: 8px 18px;
+    font-size: .9rem;
 }
 
 .back-to-top {
+    --bs-btn-color: var(--text-color);
+    --bs-btn-bg: var(--bg-card);
+    --bs-btn-border-color: var(--border-strong);
+    --bs-btn-hover-color: var(--bg-primary);
+    --bs-btn-hover-bg: var(--text-color);
+    --bs-btn-hover-border-color: var(--text-color);
+    --bs-btn-active-color: var(--bg-primary);
+    --bs-btn-active-bg: var(--text-color);
+    --bs-btn-active-border-color: var(--text-color);
+
     position: fixed;
     right: 24px;
     bottom: 24px;
     z-index: 9;
-    display: inline-flex;
     width: 48px;
     height: 48px;
-    align-items: center;
-    justify-content: center;
+    min-height: 0;
     padding: 0;
-    border-radius: 50%;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, .3);
 }
 
 .back-to-top i {
-    display: block;
-    line-height: 1;
     margin: 0;
+    line-height: 1;
 }
 
-/* Contact */
+/* Contact: de donkerste tint van het palet sluit de pagina af */
 .footer {
-    padding: 70px 0 25px;
-    text-align: center;
-    border-top: 1px solid var(--border-color);
+    padding: var(--section-space) 0 32px;
+    background: var(--bg-footer);
+}
+
+.footer-grid {
+    display: grid;
+    gap: 48px;
+}
+
+@media (min-width: 992px) {
+    .footer-grid {
+        grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+        align-items: end;
+    }
+}
+
+.footer .section-head {
+    margin-bottom: 24px;
 }
 
 .footer-intro {
-    max-width: 560px;
-    margin: 0 auto 28px;
+    max-width: 46ch;
+    margin-bottom: 32px;
+    font-size: 1.05rem;
 }
 
-/* Hoofdactie van de footer */
+/* Hoofdactie van de footer; de focusring sluit aan op de donkerdere achtergrond */
 .footer-cta {
-    display: inline-flex;
-    align-items: center;
-    margin-bottom: 36px;
+    --bs-btn-focus-box-shadow: 0 0 0 2px var(--bg-footer), 0 0 0 4px var(--accent);
 }
 
-.contact-details,
-.social-links {
-    margin-bottom: 30px;
+.footer-details {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.contact-details {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    font-style: normal;
 }
 
 .contact-details a {
     display: flex;
     align-items: center;
+    gap: 12px;
+    min-height: 44px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-color);
+    transition: color .2s ease;
+}
+
+.contact-details a:hover {
+    color: var(--accent);
+}
+
+.contact-details i {
+    width: 1.25rem;
+    color: var(--accent);
+    text-align: center;
+}
+
+.social-links {
+    display: flex;
+    flex-wrap: wrap;
     gap: 10px;
 }
 
 .social-links a {
-    font-size: 1.8rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    transition: color .2s ease, border-color .2s ease;
+}
+
+.social-links a:hover {
+    border-color: var(--text-muted);
+    color: var(--text-color);
 }
 
 .copyright {
+    margin-top: 64px;
     padding-top: 20px;
     border-top: 1px solid var(--border-color);
     font-size: .8rem;
+    text-align: center;
 }
 
 /* Mobiel menu */
@@ -912,10 +1164,11 @@ html.modal-is-open {
         width: 44px;
         height: 44px;
         padding: 0;
-        border: 0;
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius);
         background: none;
-        color: var(--primary-color);
-        font-size: 1.4rem;
+        color: var(--text-color);
+        font-size: 1.15rem;
     }
 
     /* Zijpaneel dat van rechts inschuift, onder de header */
@@ -928,12 +1181,11 @@ html.modal-is-open {
         flex-direction: column;
         align-items: stretch;
         width: min(340px, 85vw);
-        padding: 32px 28px;
-        gap: 4px;
+        padding: 24px 28px;
+        gap: 0;
         overflow-y: auto;
-        background: var(--nav-bg);
+        background: var(--bg-primary);
         border-left: 1px solid var(--border-color);
-        box-shadow: -16px 0 36px rgba(0, 0, 0, .25);
         transform: translateX(100%);
         visibility: hidden;
         transition: transform .3s ease, visibility 0s linear .3s;
@@ -947,13 +1199,19 @@ html.modal-is-open {
 
     .nav-links a {
         display: block;
-        padding: 12px 0;
-        border-bottom: 1px solid transparent;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--border-color);
         font-size: 1.05rem;
     }
 
+    .nav-links i {
+        width: 1.4em;
+        margin-right: 8px;
+        text-align: center;
+    }
+
     .nav-links a[aria-current] {
-        border-bottom-color: var(--primary-color);
+        border-bottom-color: var(--accent);
     }
 
     /* Donkere laag over de pagina; een klik erop sluit het menu */
@@ -962,7 +1220,7 @@ html.modal-is-open {
         position: fixed;
         inset: calc(var(--header-height) + 1px) 0 0;
         z-index: -1;
-        background: rgba(11, 17, 32, .6);
+        background: rgba(10, 9, 8, .6);
         opacity: 0;
         visibility: hidden;
         transition: opacity .3s ease, visibility 0s linear .3s;
@@ -975,15 +1233,19 @@ html.modal-is-open {
     }
 }
 
-/* Tablet en mobiel: veegbare carrousels in plaats van knoppen en paginering */
+/* Tablet en mobiel: veegbare carrousels in plaats van knoppen */
 @media (max-width: 991.98px) {
-    .skills-carousel {
-        max-width: 540px;
-        margin: 0 auto;
+    .skills-carousel .skill-buttons {
+        display: none;
     }
 
-    .skills-carousel .skill-buttons {
-        display: none !important;
+    /* Compacter sorteermenu, in verhouding met de kleinere titel en knoppen */
+    .project-control select {
+        width: 200px;
+        min-height: 40px;
+        padding: 6px 32px 6px 12px;
+        background-position: right 10px center;
+        font-size: .9rem;
     }
 }
 
@@ -1029,55 +1291,52 @@ html.modal-is-open {
 
 /* Kleine schermen */
 @media (max-width: 600px) {
+    /* Sorteermenu onder de titel, links uitgelijnd */
+    .section-head-row {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .project-control label {
+        grid-area: 3 / 1;
+        margin: 24px 0 6px;
+    }
+
+    .project-control select {
+        grid-area: 4 / 1;
+        justify-self: start;
+    }
+
     .site-nav {
         padding: 12px 20px;
     }
 
     .logo {
-        font-size: .85rem;
+        font-size: .9rem;
     }
 
-    .section {
-        padding: 60px 0;
+    /* Compactere knoppen, in verhouding met de kleinere tekst op mobiel */
+    .btn:not(.back-to-top) {
+        gap: 8px;
+        min-height: 44px;
+        padding: 10px 18px;
+        font-size: .925rem;
     }
 
-    .section-title {
-        font-size: 1.8rem;
-    }
-
-    .hero {
-        min-height: auto;
-        padding: 75px 20px;
-    }
-
-    .hero-photo {
-        width: 140px;
-        margin-bottom: 22px;
-    }
-
+    /* Knoppen onder elkaar, allebei even breed en gecentreerd */
     .hero-actions,
     .project-button {
         flex-direction: column;
         align-items: center;
     }
 
-    .hero-actions>.btn,
-    .project-button>.btn {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        max-width: 100%;
-        min-height: 52px;
-        flex: none;
-    }
-
-    .hero-actions>.btn {
-        width: 240px;
-        padding: 12px 16px;
-    }
-
-    .project-button>.btn {
+    .hero-actions > .btn,
+    .project-button > .btn {
         width: 220px;
+        max-width: 100%;
+    }
+
+    .project-button > .btn {
+        width: 200px;
     }
 
     /* Ruimte onderaan, zodat de terug-naar-bovenknop de copyright niet bedekt */
