@@ -881,15 +881,6 @@ html.modal-is-open {
     font-size: .8rem;
 }
 
-.copyright a {
-    color: var(--primary-color);
-    font-weight: 600;
-}
-
-.copyright a:hover {
-    color: var(--primary-hover);
-}
-
 /* Mobiel menu */
 @media (max-width: 1199.98px) {
     .menu-button {

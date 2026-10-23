@@ -8,7 +8,7 @@ The portfolio content describes my background, coursework and current skills.
 
 [View the color palette on Coolors](https://coolors.co/0b1120-0f172a-182234-2dd4bf-a78bfa).
 
-The CSS and JavaScript URLs in `index.html` share one version query string (`?v=18`). Raise both numbers together after a change so browsers load the new files.
+The CSS and JavaScript URLs in `index.html` share one version query string (`?v=19`). Raise both numbers together after a change so browsers load the new files.
 
 ## How to View
 
@@ -25,7 +25,7 @@ HTML, CSS, database normalization, MySQL, Agile & Scrum, and beginner JavaScript
 - "Lees meer" toggles that collapse the longer about and education texts.
 - Skills and projects paginated per four on desktop and swipeable with CSS Scroll Snap on mobile, sharing one pagination function.
 - Project cards as short, playful teasers. Clicking a card opens a detail modal with a screenshot, description, technologies and links to the live demo and the code.
-- A footer with one clear e-mail button, phone, location and social links.
+- A footer with one clear e-mail button, phone, location, social links and a short privacy note (no cookies, no personal data collected).
 - Open Graph tags with a preview image (`images/og-image.jpg`) for sharing on LinkedIn, WhatsApp and other platforms.
 - Animations respect the reduced-motion setting, and everything works with the keyboard.
 
