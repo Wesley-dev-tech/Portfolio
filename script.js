@@ -255,7 +255,7 @@ function vulTags(element, project) {
 
     tags.replaceChildren();
     project.tags.forEach(function (tag) {
-        const label = document.createElement("span");
+        const label = document.createElement("li");
         label.textContent = tag;
         tags.appendChild(label);
     });

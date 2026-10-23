@@ -630,7 +630,7 @@ header {
 }
 
 /* Iets compacter dan in het detailvenster, zodat de tags in twee rijen passen */
-.project-footer .project-tags span {
+.project-footer .project-tags li {
     padding: 4px 11px;
     font-size: .8rem;
 }
@@ -684,7 +684,13 @@ header {
     font-size: .95rem;
 }
 
-.project-tags span {
+.project-tags {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.project-tags li {
     padding: 5px 14px;
     border-radius: 20px;
     background: var(--primary-soft);
@@ -791,7 +797,7 @@ html.modal-is-open {
 }
 
 /* Links en rechts evenveel ruimte, zodat de titel gecentreerd blijft naast de sluitknop */
-.project-modal h3 {
+.project-modal h2 {
     margin: 0 48px 18px;
     font-size: 1.5rem;
 }
@@ -815,7 +821,7 @@ html.modal-is-open {
     font-size: .95rem;
 }
 
-.project-modal h4 {
+.project-modal h3 {
     margin: 0;
     color: var(--text-color);
     font-size: 1rem;
