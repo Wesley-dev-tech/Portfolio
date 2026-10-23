@@ -30,7 +30,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap">
 
-    <link rel="stylesheet" href="style.css?v=19">
+    <link rel="stylesheet" href="style.css?v=21">
     <link rel="icon" href="favicon.ico">
 </head>
 
@@ -94,6 +94,12 @@
         <!-- Intro -->
         <section id="home" class="hero d-flex align-items-center">
             <div class="hero-content">
+                <!-- De browser kiest de kleinste versie die scherp genoeg is voor het scherm -->
+                <img class="hero-photo" src="images/wesley-bogaerts.png"
+                    srcset="images/wesley-bogaerts-360.webp 360w, images/wesley-bogaerts-720.webp 720w"
+                    sizes="(max-width: 600px) 140px, 180px" width="180" height="180"
+                    alt="Wesley Bogaerts aan zijn bureau" fetchpriority="high" decoding="async">
+
                 <h1>
                     Hallo, ik ben<br>
                     <span>Wesley Bogaerts</span>
@@ -547,7 +553,7 @@
         <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
     </button>
 
-    <script src="script.js?v=19"></script>
+    <script src="script.js?v=21"></script>
 </body>
 
 </html>

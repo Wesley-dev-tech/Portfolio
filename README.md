@@ -8,7 +8,7 @@ The portfolio content describes my background, coursework and current skills.
 
 [View the color palette on Coolors](https://coolors.co/0b1120-0f172a-182234-2dd4bf-a78bfa).
 
-The CSS and JavaScript URLs in `index.html` share one version query string (`?v=19`). Raise both numbers together after a change so browsers load the new files.
+The CSS and JavaScript URLs in `index.html` share one version query string (`?v=21`). Raise both numbers together after a change so browsers load the new files.
 
 ## How to View
 
@@ -20,6 +20,7 @@ HTML, CSS, database normalization, MySQL, Agile & Scrum, and beginner JavaScript
 
 ## Features
 
+- A round profile photo above the greeting in the intro. The original `wesley-bogaerts.png` stays untouched; `srcset` serves the 360px or 720px webp version so phones load about 25 KB instead of 2.5 MB, while retina screens stay sharp.
 - Mobile navigation as a side panel that slides in from the right, with an active link that follows the current section.
 - A scroll progress bar and a continuously scrolling text bar (marquee) below the intro, built with CSS only.
 - "Lees meer" toggles that collapse the longer about and education texts.
@@ -46,7 +47,7 @@ Each project has its own GitHub repository. The detail modal of each project lin
 - `index.html`: the portfolio page.
 - `style.css`: responsive styling.
 - `script.js`: mobile navigation and active link, scroll progress bar, read-more toggles, scroll animations, shared pagination for skills and projects, project sorting and detail modal, and scroll-to-top interactions. The project cards are generated from the `projecten` list in this file. To add a project, put it at the bottom of that list with a short `teaser` for the card, a longer `beschrijving` for the modal, and a screenshot in `images/`.
-- `images/`: screenshots of each project for the detail modal, plus the social preview image `og-image.jpg`.
+- `images/`: screenshots of each project for the detail modal, the profile photo `wesley-bogaerts.png` with its webp versions `-360` and `-720`, and the social preview image `og-image.jpg`.
 - `favicon.ico`: the site icon.
 
 The Tailwind product page is a visual demo with sample product information and no purchase or payment functionality. It loads Tailwind through a CDN script.

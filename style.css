@@ -191,6 +191,22 @@ header {
     margin: auto;
 }
 
+/* Ronde profielfoto boven de begroeting, met een turquoise rand */
+.hero-photo {
+    display: block;
+    width: 180px;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    margin: 0 auto 28px;
+    border: 4px solid var(--primary-border);
+    border-radius: 50%;
+    object-fit: cover;
+    /* Gezicht in het midden van de cirkel houden */
+    object-position: 50% 30%;
+    box-shadow: 0 0 0 8px var(--primary-soft), 0 18px 40px rgba(0, 0, 0, .35);
+}
+
 .hero h1 {
     margin-bottom: 20px;
     font-size: clamp(2.2rem, 5vw, 3.5rem);
@@ -1026,6 +1042,11 @@ html.modal-is-open {
     .hero {
         min-height: auto;
         padding: 75px 20px;
+    }
+
+    .hero-photo {
+        width: 140px;
+        margin-bottom: 22px;
     }
 
     .hero-actions,
