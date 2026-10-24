@@ -491,6 +491,22 @@ document.addEventListener("DOMContentLoaded", function () {
         openVenster(document.querySelector("#privacy-modal"), privacyKnop);
     });
 
+    // Links binnen het privacybeleid scrollen in het venster zelf naar het juiste stukje,
+    // zonder het adres in de adresbalk te veranderen
+    document.querySelectorAll(".privacy-jump").forEach(function (link) {
+        link.addEventListener("click", function (gebeurtenis) {
+            const doel = document.querySelector(link.getAttribute("href"));
+
+            if (!doel) {
+                return;
+            }
+
+            gebeurtenis.preventDefault();
+            const rustig = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            doel.scrollIntoView({ behavior: rustig ? "auto" : "smooth", block: "start" });
+        });
+    });
+
     // Detailvenster van een project
     const projectModal = document.querySelector("#project-modal");
     const projectModalAfbeelding = projectModal.querySelector(".project-modal-image");

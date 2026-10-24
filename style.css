@@ -2074,3 +2074,8 @@ html.modal-is-open {
         padding-bottom: 96px;
     }
 }
+
+/* Kopje waar een link in het privacybeleid naartoe springt: wat ruimte boven laten */
+#privacy-derden {
+    scroll-margin-top: 24px;
+}
