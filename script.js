@@ -531,6 +531,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     // Secties en kaarten animeren wanneer ze in beeld komen.
+    // De kolom met de Google Maps-kaart doet niet mee: Safari en de ingebouwde browser van
+    // Facebook tonen een iframe in een element met transform of opacity soms helemaal leeg.
     // Dit staat onderaan, zodat de projectkaarten al bestaan.
     const voorkeurMinderBeweging = window.matchMedia("(prefers-reduced-motion: reduce)");
 
@@ -547,7 +549,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll(
             "#about .about-card, #education .education-card, #cv .cv-card, " +
             "#skills .skills-carousel, #projects .section-head-row, " +
-            "#project-list > *, .footer-grid > *"
+            "#project-list > *, .footer-grid > :not(.footer-details)"
         ).forEach(function (element) {
             element.classList.add("scroll-reveal");
             scrollObserver.observe(element);

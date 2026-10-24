@@ -1700,15 +1700,25 @@ html.modal-is-open {
 
 /* Ingesloten Google Maps-kaart in de footer */
 .footer-map {
+    position: relative;
     overflow: hidden;
     aspect-ratio: 4 / 3;
     max-height: 320px;
+    /* Op gsm evenveel ruimte onder de kaart (24px gap + 16px) als erboven (40px) */
+    margin-bottom: 16px;
     border: 1px solid var(--border-color);
     border-radius: 24px;
     background: var(--bg-card);
+    /* Eigen laag, zodat Safari de iframe netjes binnen de ronde hoeken knipt */
+    isolation: isolate;
+    transform: translateZ(0);
 }
 
+/* Absoluut gepositioneerd: zo heeft de iframe altijd de volle maat van de kaart,
+   ook in browsers die een hoogte van 100% binnen flexbox niet kunnen uitrekenen */
 .footer-map iframe {
+    position: absolute;
+    inset: 0;
     display: block;
     width: 100%;
     height: 100%;
@@ -1728,6 +1738,7 @@ html.modal-is-open {
         aspect-ratio: auto;
         max-height: none;
         min-height: 240px;
+        margin-bottom: 0;
     }
 }
 
