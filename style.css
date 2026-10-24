@@ -1705,6 +1705,9 @@ html.modal-is-open {
     align-items: center;
     gap: 12px;
     min-height: 44px;
+    /* Gelijke ruimte boven en onder de tekst, ook bij het adres over twee regels */
+    padding: 12px 0;
+    line-height: 1.4;
     border-bottom: 1px solid var(--border-color);
     color: var(--text-color);
     transition: color .2s ease;
