@@ -27,6 +27,9 @@ pasThemaToe(opgeslagenThema === "light" ? "light" : "dark");
 
 // De rest werkt met de elementen op de pagina en wacht dus tot de HTML geladen is
 document.addEventListener("DOMContentLoaded", function () {
+    // Bezoekers die minder beweging willen: geen scroll-animaties en direct springen
+    const voorkeurMinderBeweging = window.matchMedia("(prefers-reduced-motion: reduce)");
+
     // Hamburgermenu
     const menuKnop = document.querySelector(".menu-button");
     const menuIcoon = menuKnop.querySelector("i");
@@ -502,8 +505,10 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             gebeurtenis.preventDefault();
-            const rustig = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-            doel.scrollIntoView({ behavior: rustig ? "auto" : "smooth", block: "start" });
+            doel.scrollIntoView({
+                behavior: voorkeurMinderBeweging.matches ? "auto" : "smooth",
+                block: "start"
+            });
         });
     });
 
@@ -550,8 +555,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // De kolom met de Google Maps-kaart doet niet mee: Safari en de ingebouwde browser van
     // Facebook tonen een iframe in een element met transform of opacity soms helemaal leeg.
     // Dit staat onderaan, zodat de projectkaarten al bestaan.
-    const voorkeurMinderBeweging = window.matchMedia("(prefers-reduced-motion: reduce)");
-
     if ("IntersectionObserver" in window && !voorkeurMinderBeweging.matches) {
         const scrollObserver = new IntersectionObserver(function (entries, observer) {
             entries.forEach(function (entry) {

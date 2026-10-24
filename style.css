@@ -32,6 +32,9 @@
     --radius-card: 6px;
     --header-height: 68px;
     --section-space: clamp(64px, 9vw, 112px);
+    /* Maten van het sectienummer en de sectietitel; de footer rekent er ook mee */
+    --section-index-size: .8rem;
+    --section-title-size: clamp(1.75rem, 1.3rem + 1.6vw, 2.5rem);
 }
 
 /* Licht thema: warm gebroken wit als papier, bijna-zwarte tekst en een
@@ -154,13 +157,13 @@ h3 {
     margin-bottom: 10px;
     color: var(--accent);
     font-family: var(--font-mono);
-    font-size: .8rem;
+    font-size: var(--section-index-size);
     font-weight: 500;
 }
 
 .section-title {
     margin: 0;
-    font-size: clamp(1.75rem, 1.3rem + 1.6vw, 2.5rem);
+    font-size: var(--section-title-size);
     line-height: 1.15;
 }
 
@@ -1591,24 +1594,6 @@ html.modal-is-open {
     gap: 40px;
 }
 
-@media (min-width: 992px) {
-    .footer-grid {
-        grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-        align-items: stretch;
-    }
-
-    /* De rechterkolom loopt even hoog als de linker: de kaart begint ter hoogte van de
-       sectietitel en de social links eindigen op dezelfde lijn als de verstuurknop */
-    /* De kaart begint ter hoogte van de titel "Neem contact op": we schuiven de kolom
-       op met de hoogte van het nummer erboven (.section-index: .8rem × 1.65 + 10px marge)
-       plus de halve regelruimte van de titel (line-height 1.15) */
-    .footer-details {
-        height: 100%;
-        padding-top: calc(.8rem * 1.65 + 10px + (1.15 - 1) / 2 * clamp(1.75rem, 1.3rem + 1.6vw, 2.5rem));
-        box-sizing: border-box;
-    }
-}
-
 .footer .section-head {
     margin-bottom: 24px;
 }
@@ -1731,17 +1716,6 @@ html.modal-is-open {
     filter: invert(.92) hue-rotate(180deg) brightness(.95) contrast(.9);
 }
 
-/* Op desktop vult de kaart de rechterkolom, zodat die even hoog is als het formulier */
-@media (min-width: 992px) {
-    .footer-map {
-        flex: 1 1 auto;
-        aspect-ratio: auto;
-        max-height: none;
-        min-height: 240px;
-        margin-bottom: 0;
-    }
-}
-
 .footer-details {
     display: flex;
     flex-direction: column;
@@ -1802,6 +1776,33 @@ html.modal-is-open {
 .social-links a:hover {
     border-color: var(--text-muted);
     color: var(--text-color);
+}
+
+/* Desktop: formulier links, kaart en contactgegevens rechts, even hoog.
+   De kaart begint ter hoogte van de titel "Neem contact op" (de kolom schuift op met
+   het sectienummer: tekstgrootte × regelhoogte 1.65 + 10px marge, plus de halve
+   regelruimte van de titel met line-height 1.15) en de social links eindigen op
+   dezelfde lijn als de verstuurknop. */
+@media (min-width: 992px) {
+    .footer-grid {
+        grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+        align-items: stretch;
+    }
+
+    .footer-details {
+        box-sizing: border-box;
+        height: 100%;
+        padding-top: calc(var(--section-index-size) * 1.65 + 10px
+                + (1.15 - 1) / 2 * var(--section-title-size));
+    }
+
+    .footer-map {
+        flex: 1 1 auto;
+        aspect-ratio: auto;
+        max-height: none;
+        min-height: 240px;
+        margin-bottom: 0;
+    }
 }
 
 .copyright {
