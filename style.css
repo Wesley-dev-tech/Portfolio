@@ -1683,42 +1683,6 @@ html.modal-is-open {
     color: var(--text-color);
 }
 
-.contact-alt {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 6px 10px;
-    margin: 24px 0 0;
-    color: var(--text-muted);
-    font-size: .95rem;
-}
-
-.contact-alt a {
-    color: var(--text-color);
-    overflow-wrap: anywhere;
-}
-
-.copy-email {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    min-height: 36px;
-    padding: 4px 10px;
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius);
-    background: none;
-    color: var(--text-muted);
-    font: inherit;
-    font-size: .85rem;
-    transition: color .2s ease, border-color .2s ease;
-}
-
-.copy-email:hover,
-.copy-email:focus-visible {
-    border-color: var(--text-muted);
-    color: var(--text-color);
-}
-
 .footer-details {
     display: flex;
     flex-direction: column;

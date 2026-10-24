@@ -635,37 +635,4 @@ document.addEventListener("DOMContentLoaded", function () {
             knopTekst.textContent = "Verstuur bericht";
         }
     });
-
-    // E-mailadres kopiëren, handig in in-app browsers waar mailto-links niets doen
-    const kopieerKnop = document.querySelector(".copy-email");
-    const kopieerTekst = kopieerKnop.querySelector("span");
-
-    function kopieerViaSelectie(tekst) {
-        const veld = document.createElement("textarea");
-        veld.value = tekst;
-        veld.setAttribute("readonly", "");
-        veld.style.position = "absolute";
-        veld.style.left = "-10000px";
-        document.body.appendChild(veld);
-        veld.select();
-        const gelukt = document.execCommand("copy");
-        veld.remove();
-        return gelukt;
-    }
-
-    kopieerKnop.addEventListener("click", async function () {
-        const adres = kopieerKnop.dataset.email;
-        let gelukt = false;
-
-        try {
-            await navigator.clipboard.writeText(adres);
-            gelukt = true;
-        } catch (fout) {
-            // Oudere of ingebouwde browsers: terugvallen op de klassieke manier
-            gelukt = kopieerViaSelectie(adres);
-        }
-
-        kopieerTekst.textContent = gelukt ? "Gekopieerd!" : "Kopiëren lukte niet";
-        setTimeout(function () { kopieerTekst.textContent = "Kopieer"; }, 2000);
-    });
 });
