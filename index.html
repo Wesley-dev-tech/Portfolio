@@ -32,13 +32,13 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap">
 
-    <link rel="stylesheet" href="style.css?v=63">
-    <link rel="icon" href="favicon.ico?v=63" sizes="16x16 32x32 48x48">
+    <link rel="stylesheet" href="style.css?v=64">
+    <link rel="icon" href="favicon.ico?v=64" sizes="16x16 32x32 48x48">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
-    <!-- In de head, zodat het thema al staat voor de pagina getekend wordt (geen flits).
+    <!-- In de head, zodat het thema al staat voor de pagina getekend wordt.
          De rest van script.js wacht zelf tot de HTML geladen is. -->
-    <script src="script.js?v=63"></script>
+    <script src="script.js?v=64"></script>
 </head>
 
 <body>
@@ -89,8 +89,8 @@
 
             <!-- Op desktop rechts naast de links, op mobiel naast elkaar rechts van het logo -->
             <div class="nav-actions">
-                <!-- Zonder JavaScript blijft het donkere thema staan, dus dan geen knop -->
-                <button type="button" class="icon-button theme-toggle" hidden>
+                <!-- Zonder JavaScript blijft het donkere thema staan; style.css verbergt de knop dan -->
+                <button type="button" class="icon-button theme-toggle">
                     <i class="fa-solid fa-sun" aria-hidden="true"></i>
                 </button>
 
@@ -109,11 +109,20 @@
         <!-- Intro: tekst links, foto rechts; op mobiel staat de foto bovenaan -->
         <section id="home" class="hero">
             <div class="container hero-grid">
-                <!-- De browser kiest de kleinste versie die scherp genoeg is voor het scherm -->
-                <img class="hero-photo" src="images/wesley-bogaerts.png"
-                    srcset="images/wesley-bogaerts-360.webp 360w, images/wesley-bogaerts-720.webp 720w"
-                    sizes="(max-width: 767.98px) 112px, 340px" width="340" height="340"
-                    alt="Wesley Bogaerts aan zijn bureau" fetchpriority="high" decoding="async">
+                <!-- Eén foto per thema; style.css toont de juiste. De browser kiest de kleinste
+                     versie die scherp genoeg is, en laadt de verborgen foto pas bij het wisselen. -->
+                <div class="hero-photo">
+                    <img class="theme-dark-only" src="images/wesley-bogaerts-dark.png"
+                        srcset="images/wesley-bogaerts-dark-420.webp 420w, images/wesley-bogaerts-dark-840.webp 840w"
+                        sizes="(max-width: 767.98px) 176px, (max-width: 991.98px) 260px, 420px"
+                        width="420" height="420" alt="Wesley Bogaerts aan zijn bureau"
+                        loading="lazy" decoding="async">
+                    <img class="theme-light-only" src="images/wesley-bogaerts-light.png"
+                        srcset="images/wesley-bogaerts-light-420.webp 420w, images/wesley-bogaerts-light-840.webp 840w"
+                        sizes="(max-width: 767.98px) 176px, (max-width: 991.98px) 260px, 420px"
+                        width="420" height="420" alt="Wesley Bogaerts aan zijn bureau"
+                        loading="lazy" decoding="async">
+                </div>
 
                 <div class="hero-content">
                     <h1>
@@ -207,57 +216,91 @@
                     <h2 class="section-title">Over mij</h2>
                 </div>
 
-                <div class="section-body">
-                    <p class="lead-text">
-                        Na meerdere jaren ervaring in boekhouding en administratie maakte ik
-                        bewust de overstap naar IT. In mijn vorige functies ontwikkelde ik een
-                        nauwkeurige en gestructureerde werkhouding. Ik leerde deadlines bewaken,
-                        zorgvuldig omgaan met gevoelige informatie en problemen op een analytische
-                        manier aanpakken.
-                    </p>
+                <!-- Zelfde kaart als bij Mijn opleiding. Desktop: poster links, kop en tekst rechts, zoals in een artikel.
+                     Smaller: kop, poster en tekst onder elkaar. -->
+                <article class="about-card section-body">
+                    <div class="about-layout">
+                        <!-- Poster per thema; style.css toont de juiste. Links van de tekst,
+                             in een smalle kaart erboven en even breed als de tekst. -->
+                        <figure class="about-poster">
+                            <img class="theme-dark-only" src="images/poster-dark.png"
+                                srcset="images/poster-dark-400.webp 400w, images/poster-dark-800.webp 800w"
+                                sizes="(max-width: 1199.98px) 640px, 320px" width="400" height="566"
+                                alt="Poster Wesley Dev &amp; Tech: websites, webdesign, webapplicaties, software op maat en AI-automatisering"
+                                loading="lazy" decoding="async">
+                            <img class="theme-light-only" src="images/poster-light.png"
+                                srcset="images/poster-light-400.webp 400w, images/poster-light-800.webp 800w"
+                                sizes="(max-width: 1199.98px) 640px, 320px" width="400" height="566"
+                                alt="Poster Wesley Dev &amp; Tech: websites, webdesign, webapplicaties, software op maat en AI-automatisering"
+                                loading="lazy" decoding="async">
+                            <figcaption>Wat ik bouw, in één beeld</figcaption>
+                        </figure>
 
-                    <!-- Ingeklapt tot de bezoeker op "Lees meer" klikt (zie script.js) -->
-                    <div class="read-more" id="about-more">
-                        <div class="read-more-inner">
-                            <p>
-                                De afgelopen jaren groeide mijn interesse in IT en technologie. Ik werd
-                                steeds nieuwsgieriger naar hoe websites en applicaties achter de schermen
-                                werken. Op een bepaald moment wilde ik niet langer alleen gebruiker zijn,
-                                maar ook begrijpen hoe zulke toepassingen worden gebouwd. Die nieuwsgierigheid
-                                gaf uiteindelijk de doorslag om me om te scholen tot developer.
+                        <div class="about-text">
+                            <div class="card-header">
+                                <div class="card-icon">
+                                    <i class="fa-solid fa-user" aria-hidden="true"></i>
+                                </div>
+
+                                <div>
+                                    <span class="card-label">Mijn achtergrond</span>
+                                    <h3>Van boekhouding naar IT</h3>
+                                    <p class="card-subtitle">Full Stack Developer in opleiding</p>
+                                </div>
+                            </div>
+
+                            <p class="lead-text">
+                                Na meerdere jaren ervaring in boekhouding en administratie maakte ik
+                                bewust de overstap naar IT. In mijn vorige functies ontwikkelde ik een
+                                nauwkeurige en gestructureerde werkhouding. Ik leerde deadlines bewaken,
+                                zorgvuldig omgaan met gevoelige informatie en problemen op een analytische
+                                manier aanpakken.
                             </p>
 
-                            <p>
-                                Wat mij aanspreekt in programmeren, is het zoeken naar oplossingen. Niet
-                                alles werkt meteen zoals verwacht, en net dat maakt het interessant. Ik
-                                probeer te begrijpen waar iets fout loopt, test verschillende mogelijkheden
-                                en pas mijn aanpak aan tot ik een oplossing vind. Mijn ervaring in de
-                                boekhouding komt daarbij goed van pas, vooral wanneer het gaat om logisch
-                                nadenken en aandacht voor details.
-                            </p>
+                            <!-- Ingeklapt tot de bezoeker op "Lees meer" klikt (zie script.js) -->
+                            <div class="read-more" id="about-more">
+                                <div class="read-more-inner">
+                                    <p>
+                                        De afgelopen jaren groeide mijn interesse in IT en technologie. Ik werd
+                                        steeds nieuwsgieriger naar hoe websites en applicaties achter de schermen
+                                        werken. Op een bepaald moment wilde ik niet langer alleen gebruiker zijn,
+                                        maar ook begrijpen hoe zulke toepassingen worden gebouwd. Die nieuwsgierigheid
+                                        gaf uiteindelijk de doorslag om me om te scholen tot developer.
+                                    </p>
 
-                            <p>
-                                De overstap naar IT is voor mij een bewuste keuze. Ik weet dat leren
-                                programmeren tijd en doorzettingsvermogen vraagt, maar ik ben gemotiveerd
-                                om me hierin verder te ontwikkelen. Door regelmatig te oefenen, feedback
-                                te verwerken en uit mijn fouten te leren, bouw ik stap voor stap mijn
-                                kennis op.
-                            </p>
+                                    <p>
+                                        Wat mij aanspreekt in programmeren, is het zoeken naar oplossingen. Niet
+                                        alles werkt meteen zoals verwacht, en net dat maakt het interessant. Ik
+                                        probeer te begrijpen waar iets fout loopt, test verschillende mogelijkheden
+                                        en pas mijn aanpak aan tot ik een oplossing vind. Mijn ervaring in de
+                                        boekhouding komt daarbij goed van pas, vooral wanneer het gaat om logisch
+                                        nadenken en aandacht voor details.
+                                    </p>
 
-                            <p>
-                                Ik wil mijn eerdere werkervaring combineren met mijn nieuwe technische
-                                vaardigheden om toepassingen te ontwikkelen die niet alleen goed werken,
-                                maar ook praktisch en gebruiksvriendelijk zijn.
-                            </p>
+                                    <p>
+                                        De overstap naar IT is voor mij een bewuste keuze. Ik weet dat leren
+                                        programmeren tijd en doorzettingsvermogen vraagt, maar ik ben gemotiveerd
+                                        om me hierin verder te ontwikkelen. Door regelmatig te oefenen, feedback
+                                        te verwerken en uit mijn fouten te leren, bouw ik stap voor stap mijn
+                                        kennis op.
+                                    </p>
+
+                                    <p>
+                                        Ik wil mijn eerdere werkervaring combineren met mijn nieuwe technische
+                                        vaardigheden om toepassingen te ontwikkelen die niet alleen goed werken,
+                                        maar ook praktisch en gebruiksvriendelijk zijn.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <button type="button" class="read-more-toggle" aria-expanded="false"
+                                aria-controls="about-more">
+                                <span>Lees meer</span>
+                                <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                            </button>
                         </div>
                     </div>
-
-                    <button type="button" class="read-more-toggle" aria-expanded="false"
-                        aria-controls="about-more" hidden>
-                        <span>Lees meer</span>
-                        <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                    </button>
-                </div>
+                </article>
             </div>
         </section>
 
@@ -270,15 +313,15 @@
                 </div>
 
                 <article class="education-card section-body">
-                    <div class="education-header">
-                        <div class="education-icon">
+                    <div class="card-header">
+                        <div class="card-icon">
                             <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
                         </div>
 
                         <div>
-                            <span class="education-label">Momenteel student</span>
+                            <span class="card-label">Momenteel student</span>
                             <h3>Full Stack &amp; AI Automation Developer</h3>
-                            <p class="education-school">SyntraPXL</p>
+                            <p class="card-subtitle">SyntraPXL</p>
                         </div>
                     </div>
 
@@ -344,7 +387,7 @@
                     </div>
 
                     <button type="button" class="read-more-toggle" aria-expanded="false"
-                        aria-controls="education-more" hidden>
+                        aria-controls="education-more">
                         <span>Lees meer</span>
                         <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
                     </button>
@@ -518,9 +561,9 @@
     </main>
 
     <!-- Detailvenster van een project; script.js vult het in -->
-    <dialog id="project-modal" class="project-modal" aria-labelledby="project-modal-title">
-        <div class="project-modal-content">
-            <button type="button" class="project-modal-close" aria-label="Sluiten" title="Sluiten">
+    <dialog id="project-modal" class="dialog project-modal" aria-labelledby="project-modal-title">
+        <div class="dialog-content">
+            <button type="button" class="dialog-close" aria-label="Sluiten" title="Sluiten">
                 <i class="fa-solid fa-xmark" aria-hidden="true"></i>
             </button>
 
@@ -549,6 +592,95 @@
                     </a>
                 </div>
             </div>
+        </div>
+    </dialog>
+
+    <!-- Privacybeleid; opent via de knop onderaan de footer -->
+    <dialog id="privacy-modal" class="dialog privacy-modal" aria-labelledby="privacy-title">
+        <div class="dialog-content">
+            <button type="button" class="dialog-close" aria-label="Sluiten" title="Sluiten">
+                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+            </button>
+
+            <h2 id="privacy-title">Privacybeleid</h2>
+            <p class="privacy-updated">Laatst bijgewerkt op 24 oktober 2026</p>
+
+            <p>
+                Dit is mijn persoonlijke portfolio. Ik vind privacy belangrijk en hou het
+                daarom eenvoudig: deze site verzamelt zelf geen persoonsgegevens.
+            </p>
+
+            <h3>Wie is verantwoordelijk?</h3>
+            <p>
+                Wesley Bogaerts, Balen (België). Vragen over privacy stuur je naar
+                <a href="mailto:wesleybogaerts@hotmail.com">wesleybogaerts@hotmail.com</a>.
+            </p>
+
+            <h3>Wat deze site niet doet</h3>
+            <ul>
+                <li>Geen cookies.</li>
+                <li>Geen statistieken, analytics of tracking.</li>
+                <li>Geen advertenties en geen formulieren die gegevens opslaan.</li>
+            </ul>
+
+            <h3>Je themakeuze</h3>
+            <p>
+                Kies je het lichte of donkere thema, dan onthoudt je browser die keuze
+                (onder de naam <strong>thema</strong>) in de lokale opslag van je toestel.
+                Dat is geen cookie en het wordt nooit naar mij of naar iemand anders
+                gestuurd. Je wist het door de sitegegevens in je browser te verwijderen.
+            </p>
+
+            <h3>Diensten van derden</h3>
+            <p>
+                Om de site te tonen, laadt je browser bestanden van deze diensten. Daarbij
+                ontvangen zij technische gegevens zoals je IP-adres en browsertype:
+            </p>
+            <ul>
+                <li>
+                    <strong>GitHub Pages</strong> host de site
+                    (<a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement"
+                        target="_blank" rel="noopener noreferrer">privacyverklaring</a>).
+                </li>
+                <li>
+                    <strong>Google Fonts</strong> levert de lettertypes
+                    (<a href="https://policies.google.com/privacy"
+                        target="_blank" rel="noopener noreferrer">privacybeleid</a>).
+                </li>
+                <li>
+                    <strong>jsDelivr</strong> levert Bootstrap
+                    (<a href="https://www.jsdelivr.com/terms/privacy-policy-jsdelivr-net"
+                        target="_blank" rel="noopener noreferrer">privacybeleid</a>).
+                </li>
+                <li>
+                    <strong>cdnjs (Cloudflare)</strong> levert de iconen van Font Awesome
+                    (<a href="https://www.cloudflare.com/privacypolicy/"
+                        target="_blank" rel="noopener noreferrer">privacybeleid</a>).
+                </li>
+            </ul>
+
+            <h3>Als je contact opneemt</h3>
+            <p>
+                Stuur je me een e-mail, bel je me of stuur je een bericht via WhatsApp, dan
+                gebruik ik je naam, contactgegevens en bericht alleen om je te antwoorden.
+                Ik deel ze met niemand en verwijder ze zodra ze niet meer nodig zijn.
+                WhatsApp is een dienst van Meta, met een eigen privacybeleid.
+            </p>
+
+            <h3>Links naar andere sites</h3>
+            <p>
+                Links naar GitHub, LinkedIn, WhatsApp en mijn projecten openen een andere
+                site. Daar geldt het privacybeleid van die site.
+            </p>
+
+            <h3>Jouw rechten</h3>
+            <p>
+                Volgens de AVG (GDPR) mag je vragen welke gegevens ik van je heb, ze laten
+                verbeteren of laten verwijderen. Stuur me daarvoor een e-mail. Ben je niet
+                tevreden over mijn antwoord, dan kun je een klacht indienen bij de
+                <a href="https://www.gegevensbeschermingsautoriteit.be"
+                    target="_blank" rel="noopener noreferrer">Gegevensbeschermingsautoriteit</a>.
+            </p>
         </div>
     </dialog>
 
@@ -610,7 +742,9 @@
             <p class="copyright">
                 &copy; <span id="copyright-year">2026</span> Wesley Bogaerts
                 <span aria-hidden="true">·</span> Alle rechten voorbehouden
-                <span aria-hidden="true">·</span> Privacy: deze site gebruikt geen cookies en verzamelt geen persoonsgegevens
+                <span aria-hidden="true">·</span>
+                <button type="button" class="privacy-open" aria-haspopup="dialog"
+                    aria-controls="privacy-modal">Privacybeleid</button>
             </p>
         </div>
     </footer>
@@ -620,5 +754,4 @@
         <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
     </button>
 </body>
-
 </html>

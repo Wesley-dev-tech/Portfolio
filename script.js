@@ -1,3 +1,7 @@
+// Meteen laten weten dat JavaScript werkt, nog voor de pagina getekend wordt. style.css klapt
+// dan de lange teksten al in en toont de knoppen, zodat er bij het laden niets verspringt.
+document.documentElement.classList.add("js");
+
 // Licht of donker thema, meteen toegepast zodra dit script in de head geladen wordt,
 // zodat de pagina nooit eerst in het verkeerde thema verschijnt.
 // Een eerder gekozen thema wint, anders volgt de site de instelling van het toestel.
@@ -104,7 +108,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     zetThema(document.documentElement.dataset.theme);
-    themaKnop.hidden = false;
 
     // Actieve link in de navigatie
     const secties = document.querySelectorAll("main section[id], footer[id]");
@@ -137,26 +140,31 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Lees meer: zonder JavaScript blijft alle tekst gewoon zichtbaar
+    // Lees meer: style.css toont de tekst al ingeklapt zolang de klasse is-open ontbreekt.
+    // Zonder JavaScript blijft alle tekst gewoon zichtbaar.
     document.querySelectorAll(".read-more-toggle").forEach(function (knop) {
         const tekst = document.getElementById(knop.getAttribute("aria-controls"));
         const label = knop.querySelector("span");
 
-        tekst.classList.add("is-collapsed");
-        knop.hidden = false;
+        // Alleen na een klik op "Lees minder" de knop terug in beeld brengen
+        let ingeklaptDoorBezoeker = false;
 
         knop.addEventListener("click", function () {
-            const open = tekst.classList.toggle("is-collapsed") === false;
+            const open = tekst.classList.toggle("is-open");
 
+            ingeklaptDoorBezoeker = !open;
             knop.setAttribute("aria-expanded", open);
             label.textContent = open ? "Lees minder" : "Lees meer";
         });
 
         // Na het inklappen staat de knop soms onder de header of erboven; dan terug in beeld brengen
         tekst.addEventListener("transitionend", function (event) {
-            if (event.propertyName === "grid-template-rows"
-                && tekst.classList.contains("is-collapsed")
-                && knop.getBoundingClientRect().top < navigatie.offsetHeight) {
+            if (event.propertyName !== "grid-template-rows" || !ingeklaptDoorBezoeker) {
+                return;
+            }
+
+            ingeklaptDoorBezoeker = false;
+            if (knop.getBoundingClientRect().top < navigatie.offsetHeight) {
                 knop.scrollIntoView({ block: "center" });
             }
         });
@@ -215,14 +223,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    mobieleWeergave.addEventListener("change", function () {
-        toonSkillpagina(huidigeSkillpagina);
-    });
-
     toonSkillpagina(1);
 
     // Projecten, van oud naar nieuw. Een nieuw project zet je gewoon onderaan de lijst,
     // met een korte teaser voor de kaart en een screenshot in images/ voor het detailvenster.
+    // Heeft een project ook een lichte versie, zet die dan in afbeeldingLicht.
     const projecten = [
         {
             titel: "Polestar 6",
@@ -292,7 +297,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 + "en JavaScript. Je zit er middenin, dus dit venster is eigenlijk ook een project. "
                 + "Werkt op mijn smartphone en desktop, en hopelijk ook op de jouwe.",
             tags: ["HTML", "CSS", "JavaScript", "Flexbox", "Bootstrap"],
-            afbeelding: "images/portfolio.webp",
+            afbeelding: "images/portfolio-dark.webp",
+            afbeeldingLicht: "images/portfolio-light.webp",
             code: "https://github.com/Wesley-dev-tech/Portfolio"
         },
         {
@@ -388,7 +394,9 @@ document.addEventListener("DOMContentLoaded", function () {
         toonProjectpagina(huidigeProjectpagina + 1);
     });
 
+    // Bij de wissel tussen carrousel en paginering beide lijsten opnieuw tonen
     mobieleWeergave.addEventListener("change", function () {
+        toonSkillpagina(huidigeSkillpagina);
         toonProjectpagina(huidigeProjectpagina);
     });
 
@@ -416,9 +424,25 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    // Over mij op desktop: ingeklapt rekt style.css de poster zelf uit tot de hoogte van de
+    // tekstkolom. Die hoogte wordt hier bewaard, zodat de poster na "Lees meer" niet meegroeit.
+    const desktopWeergave = window.matchMedia("(min-width: 1200px)");
+    const overMijIndeling = document.querySelector(".about-layout");
+    const overMijTekst = overMijIndeling.querySelector(".about-text");
+    const overMijLeesMeer = overMijTekst.querySelector(".read-more");
+
+    function maakPosterEvenHoog() {
+        if (!desktopWeergave.matches) {
+            overMijIndeling.style.removeProperty("--tekst-hoogte");
+        } else if (!overMijLeesMeer.classList.contains("is-open")) {
+            overMijIndeling.style.setProperty("--tekst-hoogte", overMijTekst.offsetHeight + "px");
+        }
+    }
+
     function maakAlleKaartenEvenHoog() {
         maakKaartenEvenHoog(skillKaarten);
         maakKaartenEvenHoog(projectKaarten);
+        maakPosterEvenHoog();
     }
 
     // Opnieuw meten zodra het lettertype geladen is en bij een andere schermbreedte
@@ -426,10 +450,48 @@ document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener("resize", maakAlleKaartenEvenHoog);
     maakAlleKaartenEvenHoog();
 
+    // Vensters (projectdetail en privacybeleid): openen, sluiten en de focus terugzetten
+    let vensterOpener = null;
+
+    // showModal zet de focus op de sluitknop; na het sluiten gaat ze terug naar de opener
+    function openVenster(venster, opener) {
+        vensterOpener = opener;
+        document.documentElement.classList.add("modal-is-open");
+        venster.showModal();
+    }
+
+    document.querySelectorAll(".dialog").forEach(function (venster) {
+        venster.querySelector(".dialog-close").addEventListener("click", function () {
+            venster.close();
+        });
+
+        // Een klik op de donkere achtergrond valt op het dialog-element zelf
+        venster.addEventListener("click", function (event) {
+            if (event.target === venster) {
+                venster.close();
+            }
+        });
+
+        // Escape sluit het venster al vanzelf; ook dan opruimen
+        venster.addEventListener("close", function () {
+            document.documentElement.classList.remove("modal-is-open");
+
+            if (vensterOpener) {
+                vensterOpener.focus({ preventScroll: true });
+            }
+        });
+    });
+
+    // Privacybeleid in de footer
+    const privacyKnop = document.querySelector(".privacy-open");
+
+    privacyKnop.addEventListener("click", function () {
+        openVenster(document.querySelector("#privacy-modal"), privacyKnop);
+    });
+
     // Detailvenster van een project
     const projectModal = document.querySelector("#project-modal");
     const projectModalAfbeelding = projectModal.querySelector(".project-modal-image");
-    let projectModalOpener = null;
 
     function openProjectModal(kaart) {
         const project = projecten[Number(kaart.dataset.order)];
@@ -437,7 +499,11 @@ document.addEventListener("DOMContentLoaded", function () {
         projectModal.querySelector(".project-icon i").className = "fa-solid " + project.icoon;
         projectModal.querySelector("#project-modal-title").textContent = project.titel;
         projectModal.querySelector(".project-modal-description").textContent = project.beschrijving;
-        projectModalAfbeelding.src = project.afbeelding;
+        // Screenshot in het thema dat nu actief is, als het project er een lichte versie van heeft
+        const lichtThema = document.documentElement.dataset.theme === "light";
+        projectModalAfbeelding.src = lichtThema && project.afbeeldingLicht
+            ? project.afbeeldingLicht
+            : project.afbeelding;
         projectModalAfbeelding.alt = "Screenshot van " + project.titel;
         vulTags(projectModal, project);
 
@@ -449,10 +515,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         projectModal.querySelector(".project-code").href = project.code;
 
-        // showModal zet de focus op de sluitknop; na het sluiten gaat ze terug naar deze kaart
-        projectModalOpener = kaart.querySelector(".project-open");
-        document.documentElement.classList.add("modal-is-open");
-        projectModal.showModal();
+        openVenster(projectModal, kaart.querySelector(".project-open"));
     }
 
     // De hele kaart is klikbaar; de titelknop zorgt voor de toetsenbordbediening
@@ -464,25 +527,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    projectModal.querySelector(".project-modal-close").addEventListener("click", function () {
-        projectModal.close();
-    });
-
-    // Een klik op de donkere achtergrond valt op het dialog-element zelf
-    projectModal.addEventListener("click", function (event) {
-        if (event.target === projectModal) {
-            projectModal.close();
-        }
-    });
-
-    // Escape sluit het venster al vanzelf; ook dan opruimen
-    projectModal.addEventListener("close", function () {
-        document.documentElement.classList.remove("modal-is-open");
-
-        if (projectModalOpener) {
-            projectModalOpener.focus({ preventScroll: true });
-        }
-    });
 
     // Secties en kaarten animeren wanneer ze in beeld komen.
     // Dit staat onderaan, zodat de projectkaarten al bestaan.
@@ -499,7 +543,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }, { threshold: 0.12 });
 
         document.querySelectorAll(
-            "#about .section-body, #education .education-card, " +
+            "#about .about-card, #education .education-card, " +
             "#skills .skills-carousel, #projects .section-head-row, " +
             "#project-list > *, .footer-grid > *"
         ).forEach(function (element) {
