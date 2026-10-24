@@ -1599,8 +1599,13 @@ html.modal-is-open {
 
     /* De rechterkolom loopt even hoog als de linker: de kaart begint ter hoogte van de
        sectietitel en de social links eindigen op dezelfde lijn als de verstuurknop */
+    /* De kaart begint ter hoogte van de titel "Neem contact op": we schuiven de kolom
+       op met de hoogte van het nummer erboven (.section-index: .8rem × 1.65 + 10px marge)
+       plus de halve regelruimte van de titel (line-height 1.15) */
     .footer-details {
         height: 100%;
+        padding-top: calc(.8rem * 1.65 + 10px + (1.15 - 1) / 2 * clamp(1.75rem, 1.3rem + 1.6vw, 2.5rem));
+        box-sizing: border-box;
     }
 }
 
@@ -1736,6 +1741,8 @@ html.modal-is-open {
     display: flex;
     flex-direction: column;
     margin: 0;
+    /* Lijn erboven én eronder: het telefoonnummer staat zo mooi in het midden */
+    border-top: 1px solid var(--border-color);
     font-style: normal;
 }
 
