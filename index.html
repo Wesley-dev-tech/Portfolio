@@ -31,13 +31,13 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap">
 
-    <link rel="stylesheet" href="style.css?v=76">
-    <link rel="icon" href="favicon.ico?v=76" sizes="16x16 32x32 48x48">
+    <link rel="stylesheet" href="style.css?v=77">
+    <link rel="icon" href="favicon.ico?v=77" sizes="16x16 32x32 48x48">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
     <!-- In de head, zodat het thema al staat voor de pagina getekend wordt.
          De rest van script.js wacht zelf tot de HTML geladen is. -->
-    <script src="script.js?v=76"></script>
+    <script src="script.js?v=77"></script>
 </head>
 
 <body>
@@ -883,7 +883,7 @@
 
             <h3>Wat deze site niet doet</h3>
             <ul>
-                <li>Geen cookies.</li>
+                <li>Geen eigen cookies. Alleen de ingesloten kaart van Google Maps kan cookies plaatsen (zie hieronder).</li>
                 <li>Geen statistieken, analytics of tracking.</li>
                 <li>Geen advertenties en geen formulieren die gegevens opslaan.</li>
             </ul>
@@ -909,6 +909,12 @@
                 </li>
                 <li>
                     <strong>Google Fonts</strong> levert de lettertypes
+                    (<a href="https://policies.google.com/privacy" target="_blank"
+                        rel="noopener noreferrer">privacybeleid</a>).
+                </li>
+                <li>
+                    <strong>Google Maps</strong> toont de kaart met mijn locatie in de footer. Google kan
+                    daarbij cookies plaatsen
                     (<a href="https://policies.google.com/privacy" target="_blank"
                         rel="noopener noreferrer">privacybeleid</a>).
                 </li>
@@ -1010,6 +1016,13 @@
                 </div>
 
                 <div class="footer-details">
+                    <!-- Kaart van Google Maps; style.css maakt ze donker in het donkere thema -->
+                    <div class="footer-map">
+                        <iframe title="Mijn locatie in Balen op Google Maps"
+                            src="https://maps.google.com/maps?q=Gasthuisstraat+7,+2490+Balen,+Belgi%C3%AB&amp;z=15&amp;hl=nl&amp;output=embed"
+                            loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+                    </div>
+
                     <address class="contact-details">
                         <a href="tel:+32472254248">
                             <i class="fa-solid fa-phone" aria-hidden="true"></i>
