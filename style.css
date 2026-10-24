@@ -1594,7 +1594,13 @@ html.modal-is-open {
 @media (min-width: 992px) {
     .footer-grid {
         grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-        align-items: end;
+        align-items: stretch;
+    }
+
+    /* De rechterkolom loopt even hoog als de linker: de kaart begint ter hoogte van de
+       sectietitel en de social links eindigen op dezelfde lijn als de verstuurknop */
+    .footer-details {
+        height: 100%;
     }
 }
 
@@ -1691,7 +1697,7 @@ html.modal-is-open {
 .footer-map {
     overflow: hidden;
     aspect-ratio: 4 / 3;
-    max-height: 300px;
+    max-height: 320px;
     border: 1px solid var(--border-color);
     border-radius: 24px;
     background: var(--bg-card);
@@ -1708,6 +1714,16 @@ html.modal-is-open {
    de kleuren om en draaien de tinten terug, zodat wegen donker worden maar de pin rood blijft */
 :root:not([data-theme="light"]) .footer-map iframe {
     filter: invert(.92) hue-rotate(180deg) brightness(.95) contrast(.9);
+}
+
+/* Op desktop vult de kaart de rechterkolom, zodat die even hoog is als het formulier */
+@media (min-width: 992px) {
+    .footer-map {
+        flex: 1 1 auto;
+        aspect-ratio: auto;
+        max-height: none;
+        min-height: 240px;
+    }
 }
 
 .footer-details {
