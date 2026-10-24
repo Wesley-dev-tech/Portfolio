@@ -387,10 +387,11 @@ h3 {
     gap: 28px;
 }
 
-/* Ronde houder met een foto per thema */
+/* Ronde houder met een foto per thema. Op een gsm groeit hij mee met de schermbreedte:
+   262px op een iPhone SE, 273px op een iPhone 15 en 300px op een Pro Max. */
 .hero-photo {
     grid-area: photo;
-    width: 176px;
+    width: clamp(220px, 70vw, 300px);
     aspect-ratio: 1;
     overflow: hidden;
     border-radius: 50%;
@@ -658,12 +659,6 @@ h3 {
     padding: clamp(24px, 4vw, 40px);
 }
 
-/* In de bredere opleidingskaart blijven de regels even lang en dus goed leesbaar */
-.education-card > p,
-.education-card > .read-more {
-    max-width: 68ch;
-}
-
 /* Kop van de tekstkaart: icoon, label, titel en ondertitel naast elkaar */
 .card-header {
     display: flex;
@@ -709,16 +704,17 @@ h3 {
     font-weight: 500;
 }
 
-/* Over mij: grote poster links en tekst rechts, zoals een afbeelding naast een artikel.
-   Allebei bovenaan uitgelijnd; ook de uitgeklapte tekst blijft in de tekstkolom. */
-/* Desktop: poster links, bovenaan gelijk met de sectietitel; kop en tekst rechts */
-.about-layout {
+/* Over mij en opleiding: grote poster naast de tekst, zoals een afbeelding naast een artikel.
+   Allebei bovenaan uitgelijnd, gelijk met de sectietitel; ook de uitgeklapte tekst blijft in
+   de tekstkolom. Over mij zet de poster links, de opleiding (article-layout-reverse) rechts:
+   daar staat de poster in de HTML na de tekst. */
+.article-layout {
     display: flex;
     align-items: flex-start;
     gap: clamp(28px, 4vw, 48px);
 }
 
-.about-poster {
+.article-poster {
     flex: 0 0 42%;
     max-width: 340px;
     margin: 0;
@@ -727,7 +723,7 @@ h3 {
     top: calc(var(--header-height) + 24px);
 }
 
-.about-poster img {
+.article-poster img {
     display: block;
     width: 100%;
     height: auto;
@@ -736,7 +732,7 @@ h3 {
     background: var(--bg-secondary);
 }
 
-.about-poster figcaption {
+.article-poster figcaption {
     margin-top: 10px;
     color: var(--text-muted);
     font-family: var(--font-mono);
@@ -744,61 +740,90 @@ h3 {
     text-align: center;
 }
 
-.about-text {
+.article-text {
     flex: 1 1 0;
     min-width: 0;
 }
 
-/* Desktop: poster even hoog als de tekstkolom (van de kop tot "Lees meer"), met Flexbox
-   uitgerekt. De afbeelding vult de rest naast het onderschrift; wat niet past, valt rechts
-   weg, zodat logo, titel en diensten links op de poster zichtbaar blijven. */
+/* Desktop: poster en tekstkolom even hoog, zodat "Lees meer" onderaan gelijk staat met de
+   poster. Beide kaarten geven de poster dezelfde breedte. */
 @media (min-width: 1200px) {
-    .about-poster {
-        display: flex;
+    .article-poster {
         flex: 0 0 46%;
-        flex-direction: column;
-        align-self: stretch;
         max-width: none;
     }
 
+    /* Over mij: de tekstkolom bepaalt de hoogte en Flexbox rekt de poster mee. De afbeelding
+       vult de rest naast het onderschrift; wat niet past, valt rechts weg, zodat logo, titel
+       en diensten links op de poster zichtbaar blijven.
+       Opleiding: andersom. De volledige poster bepaalt de hoogte en de tekstkolom rekt mee. */
+    .article-layout:not(.article-layout-reverse) .article-poster,
+    .article-layout-reverse .article-text {
+        display: flex;
+        flex-direction: column;
+        align-self: stretch;
+    }
+
     /* Uitgeklapt blijft de poster op de ingeklapte hoogte, gemeten door script.js */
-    .about-layout:has(.read-more.is-open) .about-poster {
+    .article-layout:not(.article-layout-reverse):has(.read-more.is-open) .article-poster {
         align-self: flex-start;
         height: var(--tekst-hoogte, auto);
     }
 
-    .about-poster img {
+    /* Hoogte 0 als vertrekpunt: zo telt alleen de tekst mee voor de hoogte van de rij,
+       ook als de tekst korter is dan de poster van nature zou zijn */
+    .article-layout:not(.article-layout-reverse) .article-poster img {
         flex: 1 1 auto;
+        height: 0;
         min-height: 0;
         object-fit: cover;
         object-position: 15% top;
+    }
+
+    /* Opleiding: ingeklapt vult de tekst de vrije ruimte, met "Lees meer" onderaan. De poster
+       is iets breder, zodat hij ook in de smalle tekstkolom van 1200 tot 1399px hoog genoeg is. */
+    .article-layout-reverse .article-poster {
+        flex-basis: 50%;
+    }
+
+    .js .article-layout-reverse .read-more:not(.is-open) {
+        flex: 1 1 0;
+        min-height: 0;
+        grid-template-rows: 1fr;
+        mask-image: linear-gradient(#000 calc(100% - 4.5em), transparent);
+    }
+
+    .article-layout-reverse .read-more-toggle {
+        align-self: flex-start;
     }
 }
 
 /* Onder desktop (zelfde grens als het hamburgermenu): kop, poster en tekst onder elkaar.
    De poster loopt precies even breed als de tekst, zoals een afbeelding bovenaan een artikel. */
 @media (max-width: 1199.98px) {
-    .about-layout {
+    .article-layout {
         flex-direction: column;
         align-items: stretch;
         gap: 0;
     }
 
-    /* De tekstkolom valt weg, zodat de kop met order boven de poster komt */
-    .about-text {
+    /* De tekstkolom valt weg, zodat de kop met order boven de poster komt, ook waar de
+       poster in de HTML na de tekst staat */
+    .article-text {
         display: contents;
     }
 
-    .about-text > .card-header {
-        order: -1;
+    .article-text > .card-header {
+        order: -2;
     }
 
-    .about-text > .read-more-toggle {
+    .article-text > .read-more-toggle {
         align-self: flex-start;
     }
 
-    .about-poster {
+    .article-poster {
         flex: none;
+        order: -1;
         position: static;
         width: 100%;
         max-width: none;

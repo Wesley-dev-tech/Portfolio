@@ -149,23 +149,30 @@ document.addEventListener("DOMContentLoaded", function () {
         // Alleen na een klik op "Lees minder" de knop terug in beeld brengen
         let ingeklaptDoorBezoeker = false;
 
+        // Na het inklappen staat de knop soms onder de header of erboven; dan terug in beeld brengen
+        function brengKnopInBeeld() {
+            ingeklaptDoorBezoeker = false;
+            if (knop.getBoundingClientRect().top < navigatie.offsetHeight) {
+                knop.scrollIntoView({ block: "center" });
+            }
+        }
+
         knop.addEventListener("click", function () {
             const open = tekst.classList.toggle("is-open");
 
             ingeklaptDoorBezoeker = !open;
             knop.setAttribute("aria-expanded", open);
             label.textContent = open ? "Lees minder" : "Lees meer";
+
+            // De opleiding op desktop klapt zonder overgang in (style.css); dan meteen controleren
+            if (ingeklaptDoorBezoeker && tekst.getAnimations().length === 0) {
+                brengKnopInBeeld();
+            }
         });
 
-        // Na het inklappen staat de knop soms onder de header of erboven; dan terug in beeld brengen
         tekst.addEventListener("transitionend", function (event) {
-            if (event.propertyName !== "grid-template-rows" || !ingeklaptDoorBezoeker) {
-                return;
-            }
-
-            ingeklaptDoorBezoeker = false;
-            if (knop.getBoundingClientRect().top < navigatie.offsetHeight) {
-                knop.scrollIntoView({ block: "center" });
+            if (event.propertyName === "grid-template-rows" && ingeklaptDoorBezoeker) {
+                brengKnopInBeeld();
             }
         });
     });
@@ -426,23 +433,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Over mij op desktop: ingeklapt rekt style.css de poster zelf uit tot de hoogte van de
     // tekstkolom. Die hoogte wordt hier bewaard, zodat de poster na "Lees meer" niet meegroeit.
+    // Bij de opleiding bepaalt de poster zelf de hoogte; daar valt niets te meten.
     const desktopWeergave = window.matchMedia("(min-width: 1200px)");
-    const overMijIndeling = document.querySelector(".about-layout");
-    const overMijTekst = overMijIndeling.querySelector(".about-text");
-    const overMijLeesMeer = overMijTekst.querySelector(".read-more");
+    const artikelIndelingen = document.querySelectorAll(".article-layout:not(.article-layout-reverse)");
 
-    function maakPosterEvenHoog() {
+    function maakPosterEvenHoog(indeling) {
+        const tekst = indeling.querySelector(".article-text");
+
         if (!desktopWeergave.matches) {
-            overMijIndeling.style.removeProperty("--tekst-hoogte");
-        } else if (!overMijLeesMeer.classList.contains("is-open")) {
-            overMijIndeling.style.setProperty("--tekst-hoogte", overMijTekst.offsetHeight + "px");
+            indeling.style.removeProperty("--tekst-hoogte");
+        } else if (!tekst.querySelector(".read-more").classList.contains("is-open")) {
+            indeling.style.setProperty("--tekst-hoogte", tekst.offsetHeight + "px");
         }
     }
 
     function maakAlleKaartenEvenHoog() {
         maakKaartenEvenHoog(skillKaarten);
         maakKaartenEvenHoog(projectKaarten);
-        maakPosterEvenHoog();
+        artikelIndelingen.forEach(maakPosterEvenHoog);
     }
 
     // Opnieuw meten zodra het lettertype geladen is en bij een andere schermbreedte
