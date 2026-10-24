@@ -40,7 +40,7 @@ The light theme uses warm off-white "paper" tones, near-black text and a deeper 
 
 All colors, radii and spacing live as CSS variables at the top of `style.css`. Type is set in Schibsted Grotesk, with IBM Plex Mono for small technical details such as section numbers, labels and the scrolling text bar.
 
-The CSS and JavaScript URLs in `index.html` share one version query string (`?v=65`). Raise both numbers together after a change so browsers load the new files.
+The CSS and JavaScript URLs in `index.html` share one version query string (`?v=66`). Raise both numbers together after a change so browsers load the new files.
 
 ## How to View
 
@@ -80,7 +80,7 @@ Each project has its own GitHub repository. The detail modal of each project lin
 
 ## Files
 
-HTML, CSS and JavaScript are strictly separated: no inline scripts or styles.
+HTML, CSS and JavaScript are strictly separated: no inline scripts or styles, no HTML strings in JavaScript, and no style rules set from JavaScript. Where a value can only be measured in the browser, `script.js` passes just that number as a CSS variable (`--kaart-hoogte` for equal card heights, `--tekst-hoogte` for the poster, `--voortgang` for the scroll progress bar), and `style.css` decides what to do with it.
 
 - `index.html`: the portfolio page.
 - `style.css`: responsive styling, with the dark theme on `:root` and the light theme on `:root[data-theme="light"]`.

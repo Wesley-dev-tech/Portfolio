@@ -415,7 +415,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         kaarten.forEach(function (kaart) {
-            kaart.style.minHeight = "";
+            kaart.style.removeProperty("--kaart-hoogte");
             kaart.hidden = false;
         });
 
@@ -426,8 +426,9 @@ document.addEventListener("DOMContentLoaded", function () {
         verborgenKaarten.forEach(function (kaart) {
             kaart.hidden = true;
         });
+        // Alleen de gemeten waarde; style.css gebruikt ze als min-height
         kaarten.forEach(function (kaart) {
-            kaart.style.minHeight = hoogste + "px";
+            kaart.style.setProperty("--kaart-hoogte", hoogste + "px");
         });
     }
 
@@ -580,7 +581,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Op iPhones kan je even voorbij de rand scrollen, dus tussen 0 en 1 houden
         voortgang = Math.min(Math.max(voortgang, 0), 1);
-        voortgangsbalk.style.transform = "scaleX(" + voortgang + ")";
+        // Alleen de waarde; style.css zet ze om in de breedte van de balk
+        voortgangsbalk.style.setProperty("--voortgang", voortgang);
     }
 
     // Alles wat meebeweegt met de scrollpositie, in één listener
