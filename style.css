@@ -1588,7 +1588,7 @@ html.modal-is-open {
 
 .footer-grid {
     display: grid;
-    gap: 48px;
+    gap: 40px;
 }
 
 @media (min-width: 992px) {
@@ -1670,9 +1670,13 @@ html.modal-is-open {
 }
 
 .contact-status {
-    min-height: 1.5em;
     margin: 0;
     font-size: .95rem;
+}
+
+/* Leeg neemt de statusregel geen ruimte in, zodat er onder de knop geen gat ontstaat */
+.contact-status:empty {
+    display: none;
 }
 
 .contact-status.is-ok {
@@ -1741,7 +1745,7 @@ html.modal-is-open {
 }
 
 .copyright {
-    margin-top: 64px;
+    margin-top: clamp(40px, 5vw, 56px);
     padding-top: 20px;
     border-top: 1px solid var(--border-color);
     font-size: .8rem;
