@@ -1613,6 +1613,112 @@ html.modal-is-open {
     --bs-btn-focus-box-shadow: 0 0 0 2px var(--bg-footer), 0 0 0 4px var(--accent);
 }
 
+/* Contactformulier in de footer */
+.contact-form {
+    display: grid;
+    gap: 16px;
+    max-width: 520px;
+}
+
+.contact-row {
+    display: grid;
+    gap: 6px;
+}
+
+.contact-row label {
+    color: var(--text-muted);
+    font-size: .9rem;
+}
+
+.contact-row input,
+.contact-row textarea {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    padding: 10px 12px;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius);
+    background: var(--bg-primary);
+    color: var(--text-color);
+    font: inherit;
+    font-size: 1rem; /* 16px voorkomt inzoomen op iPhone */
+}
+
+.contact-row textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.contact-row input:focus,
+.contact-row textarea:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+    border-color: var(--accent);
+}
+
+.contact-form .btn {
+    justify-self: start;
+}
+
+/* Honeypot voor spambots, buiten beeld */
+.contact-honey {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+
+.contact-status {
+    min-height: 1.5em;
+    margin: 0;
+    font-size: .95rem;
+}
+
+.contact-status.is-ok {
+    color: var(--accent);
+}
+
+.contact-status.is-fout {
+    color: var(--text-color);
+}
+
+.contact-alt {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 10px;
+    margin: 24px 0 0;
+    color: var(--text-muted);
+    font-size: .95rem;
+}
+
+.contact-alt a {
+    color: var(--text-color);
+    overflow-wrap: anywhere;
+}
+
+.copy-email {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 36px;
+    padding: 4px 10px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    background: none;
+    color: var(--text-muted);
+    font: inherit;
+    font-size: .85rem;
+    transition: color .2s ease, border-color .2s ease;
+}
+
+.copy-email:hover,
+.copy-email:focus-visible {
+    border-color: var(--text-muted);
+    color: var(--text-color);
+}
+
 .footer-details {
     display: flex;
     flex-direction: column;

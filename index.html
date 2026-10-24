@@ -31,13 +31,13 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap">
 
-    <link rel="stylesheet" href="style.css?v=68">
-    <link rel="icon" href="favicon.ico?v=68" sizes="16x16 32x32 48x48">
+    <link rel="stylesheet" href="style.css?v=69">
+    <link rel="icon" href="favicon.ico?v=69" sizes="16x16 32x32 48x48">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
     <!-- In de head, zodat het thema al staat voor de pagina getekend wordt.
          De rest van script.js wacht zelf tot de HTML geladen is. -->
-    <script src="script.js?v=68"></script>
+    <script src="script.js?v=69"></script>
 </head>
 
 <body>
@@ -926,9 +926,12 @@
 
             <h3>Als je contact opneemt</h3>
             <p>
-                Stuur je me een e-mail, bel je me of stuur je een bericht via WhatsApp, dan
+                Stuur je me een bericht via het contactformulier, een e-mail, bel je me of stuur je een bericht via WhatsApp, dan
                 gebruik ik je naam, contactgegevens en bericht alleen om je te antwoorden.
                 Ik deel ze met niemand en verwijder ze zodra ze niet meer nodig zijn.
+                Het contactformulier wordt verstuurd via
+                <a href="https://formsubmit.co/" target="_blank" rel="noopener noreferrer">FormSubmit</a>,
+                dat je bericht doorstuurt naar mijn mailbox.
                 WhatsApp is een dienst van Meta, met een eigen privacybeleid.
             </p>
 
@@ -964,11 +967,52 @@
                         Stuur me gerust een bericht of bel even, ik hoor graag van je.
                     </p>
 
-                    <a class="btn footer-cta" href="mailto:wesleybogaerts@hotmail.com"
-                        title="wesleybogaerts@hotmail.com">
-                        <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
-                        Stuur me een e-mail
-                    </a>
+                    <!-- Formulier via FormSubmit: werkt ook in de ingebouwde browser van Facebook,
+                         Instagram en Messenger, waar mailto-links vaak niets doen -->
+                    <form class="contact-form" id="contact-form"
+                        action="https://formsubmit.co/wesleybogaerts@hotmail.com" method="POST">
+                        <input type="hidden" name="_subject" value="Nieuw bericht via je portfolio">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_next" value="https://wesley-dev-tech.github.io/Portfolio/#contact">
+                        <!-- Honeypot: onzichtbaar voor mensen, spambots vullen het wel in -->
+                        <input type="text" name="_honey" class="contact-honey" tabindex="-1" autocomplete="off"
+                            aria-hidden="true">
+
+                        <div class="contact-row">
+                            <label for="contact-naam">Naam</label>
+                            <input id="contact-naam" name="naam" type="text" autocomplete="name" required
+                                maxlength="100">
+                        </div>
+
+                        <div class="contact-row">
+                            <label for="contact-email">E-mailadres</label>
+                            <input id="contact-email" name="email" type="email" autocomplete="email" required
+                                maxlength="200">
+                        </div>
+
+                        <div class="contact-row">
+                            <label for="contact-bericht">Bericht</label>
+                            <textarea id="contact-bericht" name="bericht" rows="5" required
+                                maxlength="5000"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn footer-cta">
+                            <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+                            <span>Verstuur bericht</span>
+                        </button>
+
+                        <p class="contact-status" id="contact-status" role="status" aria-live="polite"></p>
+                    </form>
+
+                    <p class="contact-alt">
+                        Liever zelf mailen?
+                        <a href="mailto:wesleybogaerts@hotmail.com">wesleybogaerts@hotmail.com</a>
+                        <button type="button" class="copy-email" data-email="wesleybogaerts@hotmail.com">
+                            <i class="fa-regular fa-copy" aria-hidden="true"></i>
+                            <span>Kopieer</span>
+                        </button>
+                    </p>
                 </div>
 
                 <div class="footer-details">
