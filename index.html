@@ -31,13 +31,13 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap">
 
-    <link rel="stylesheet" href="style.css?v=67">
-    <link rel="icon" href="favicon.ico?v=67" sizes="16x16 32x32 48x48">
+    <link rel="stylesheet" href="style.css?v=68">
+    <link rel="icon" href="favicon.ico?v=68" sizes="16x16 32x32 48x48">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
     <!-- In de head, zodat het thema al staat voor de pagina getekend wordt.
          De rest van script.js wacht zelf tot de HTML geladen is. -->
-    <script src="script.js?v=67"></script>
+    <script src="script.js?v=68"></script>
 </head>
 
 <body>
@@ -69,6 +69,11 @@
                     </a>
                 </li>
                 <li>
+                    <a href="#cv">
+                        <i class="fa-solid fa-file-lines" aria-hidden="true"></i> CV
+                    </a>
+                </li>
+                <li>
                     <a href="#skills">
                         <i class="fa-solid fa-code" aria-hidden="true"></i> Vaardigheden
                     </a>
@@ -87,8 +92,12 @@
 
             <!-- Op desktop rechts naast de links, op mobiel naast elkaar rechts van het logo -->
             <div class="nav-actions">
-                <!-- Zonder JavaScript blijft het donkere thema staan; style.css verbergt de knop dan -->
-                <button type="button" class="icon-button theme-toggle">
+                <!-- Schakelaar met maan en zon naast elkaar; het bolletje schuift onder het actieve thema.
+                     Zonder JavaScript blijft het donkere thema staan; style.css verbergt de knop dan. -->
+                <button type="button" class="theme-toggle" role="switch" aria-checked="false"
+                    aria-label="Licht thema">
+                    <span class="theme-toggle-thumb" aria-hidden="true"></span>
+                    <i class="fa-solid fa-moon" aria-hidden="true"></i>
                     <i class="fa-solid fa-sun" aria-hidden="true"></i>
                 </button>
 
@@ -411,11 +420,258 @@
             </div>
         </section>
 
-        <!-- Vaardigheden -->
-        <section id="skills" class="section">
-            <div class="container">
+        <!-- Cv: zelfde kaart als Over mij en Mijn opleiding, met de titel links ernaast.
+             In de kaart: werkervaring links, opleidingen en profiel rechts, zoals op mijn papieren cv. -->
+        <section id="cv" class="section">
+            <div class="container section-grid">
                 <div class="section-head">
                     <span class="section-index" aria-hidden="true">03</span>
+                    <h2 class="section-title">Mijn cv</h2>
+                </div>
+
+                <article class="cv-card section-body">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fa-solid fa-file-lines" aria-hidden="true"></i>
+                        </div>
+
+                        <div>
+                            <span class="card-label">Curriculum vitae</span>
+                            <h3>Werkervaring en opleidingen</h3>
+                            <p class="card-subtitle">Van administratie en finance naar IT</p>
+                        </div>
+                    </div>
+
+                    <p class="lead-text">
+                        Leergierige en analytisch ingestelde student Full Stack &amp; AI Automation
+                        Developer met een sterke professionele achtergrond in administratie en finance.
+                    </p>
+
+                    <!-- Ingeklapt tot de bezoeker op "Lees meer" klikt (zie script.js). De kolommen
+                         staan in een raster, zodat ze bovenaan en onderaan gelijk lopen. -->
+                    <div class="read-more" id="cv-more">
+                        <div class="read-more-inner">
+                            <div class="cv-columns">
+                                <section class="cv-panel" aria-labelledby="cv-work-title">
+                                    <h4 class="cv-panel-title" id="cv-work-title">
+                                        <i class="fa-solid fa-briefcase" aria-hidden="true"></i>
+                                        Werkervaring
+                                    </h4>
+
+                                    <ol class="cv-timeline">
+                                        <li class="cv-item">
+                                            <p class="cv-date">
+                                                <time datetime="2025-02">Februari 2025</time> -
+                                                <time datetime="2026-09">september 2026</time>
+                                            </p>
+                                            <h5>Assistent accountant</h5>
+                                            <p class="cv-place">Soudal NV</p>
+                                            <ul class="cv-tasks">
+                                                <li>Valideren en verwerken van aankoopfacturen in SAP</li>
+                                                <li>Opvolgen van leveranciersbalansen en crediteurenbeheer</li>
+                                                <li>Verwerken en boeken van bankverrichtingen</li>
+                                                <li>Ondersteunen en fungeren als back-up van collega’s</li>
+                                                <li>Voorbereiden en ondersteunen bij audits</li>
+                                            </ul>
+                                        </li>
+
+                                        <li class="cv-item">
+                                            <p class="cv-date">
+                                                <time datetime="2022-08">Augustus 2022</time> -
+                                                <time datetime="2025-01">januari 2025</time>
+                                            </p>
+                                            <h5>Finance assistent</h5>
+                                            <p class="cv-place">Oqema NV <span aria-hidden="true">·</span> Pelt</p>
+                                            <ul class="cv-tasks">
+                                                <li>Debiteuren- en crediteurenbeheer</li>
+                                                <li>Voorbereiden en indienen van de maandelijkse btw-, ICO- en Intrastat-aangiftes</li>
+                                                <li>Verwerken van verkoop- en aankoopfacturen in SAP</li>
+                                                <li>Verwerken en boeken van bankverrichtingen en klaarzetten van betalingen</li>
+                                                <li>Ondersteunen bij maandafsluitingen en aanleveren van data voor externe audits</li>
+                                                <li>Opvolgen van achterstallige betalingen en versturen van wekelijkse aanmaningen</li>
+                                                <li>Uitvoeren van diverse financiële en administratieve taken</li>
+                                            </ul>
+                                        </li>
+
+                                        <li class="cv-item">
+                                            <p class="cv-date">
+                                                <time datetime="2021-10">Oktober 2021</time> -
+                                                <time datetime="2022-06">juni 2022</time>
+                                            </p>
+                                            <h5>Medewerker boekhouding <span class="cv-note">(tijdelijk project)</span></h5>
+                                            <p class="cv-place">Smet Group <span aria-hidden="true">·</span> Dessel</p>
+                                            <ul class="cv-tasks">
+                                                <li>Verwerken van facturen en bankverrichtingen in WIC en BouwOffice</li>
+                                                <li>Verantwoordelijke crediteurenbeheer</li>
+                                                <li>Klaarzetten van betalingen in SEPA-betaallijsten</li>
+                                            </ul>
+                                        </li>
+
+                                        <li class="cv-item">
+                                            <p class="cv-date">
+                                                <time datetime="2021-08">Augustus 2021</time> -
+                                                <time datetime="2021-10">oktober 2021</time>
+                                            </p>
+                                            <h5>Junior dossierbeheerder</h5>
+                                            <p class="cv-place">ToMik Consultancy <span aria-hidden="true">·</span> Dessel</p>
+                                            <ul class="cv-tasks">
+                                                <li>Verwerken van facturen en bankverrichtingen</li>
+                                                <li>Verwerken van CODA-bestanden</li>
+                                                <li>Verwerken van kas- en dagontvangsten</li>
+                                            </ul>
+                                        </li>
+
+                                        <li class="cv-item">
+                                            <p class="cv-date">
+                                                <time datetime="2021-02">Februari 2021</time> -
+                                                <time datetime="2021-05">mei 2021</time>
+                                            </p>
+                                            <h5>Admin &amp; customer service</h5>
+                                            <p class="cv-place">Recycling Partners Belgium <span aria-hidden="true">·</span> Turnhout</p>
+                                            <ul class="cv-tasks">
+                                                <li>Eindverantwoordelijke data-input Waste Management Online</li>
+                                                <li>Customer service</li>
+                                                <li>Sorteerinstructies op maat van de klant opstellen in PowerPoint</li>
+                                            </ul>
+                                        </li>
+
+                                        <li class="cv-item">
+                                            <p class="cv-date">
+                                                <time datetime="2010-01">Januari 2010</time> -
+                                                <time datetime="2020-03">maart 2020</time>
+                                            </p>
+                                            <h5>Administratief bediende</h5>
+                                            <p class="cv-place">Happyland <span aria-hidden="true">·</span> Herenthout</p>
+                                            <ul class="cv-tasks">
+                                                <li>Eindverantwoordelijke verwerken en verifiëren van orders</li>
+                                                <li>Customer service en klachtenbehandeling</li>
+                                                <li>Verantwoordelijke voor social media en folders</li>
+                                            </ul>
+                                        </li>
+                                    </ol>
+                                </section>
+
+                                <!-- Rechterkolom: het profiel rekt mee tot onderaan de werkervaring -->
+                                <div class="cv-side">
+                                    <section class="cv-panel" aria-labelledby="cv-education-title">
+                                        <h4 class="cv-panel-title" id="cv-education-title">
+                                            <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
+                                            Opleidingen
+                                        </h4>
+
+                                        <!-- De lopende opleiding krijgt een gevuld bolletje -->
+                                        <ol class="cv-timeline">
+                                            <li class="cv-item is-current">
+                                                <p class="cv-date"><time datetime="2026">2026</time> - heden</p>
+                                                <h5>Full Stack &amp; AI Automation Developer</h5>
+                                                <p class="cv-place">SyntraPXL <span aria-hidden="true">·</span> Genk</p>
+                                            </li>
+
+                                            <li class="cv-item">
+                                                <p class="cv-date"><time datetime="2021">2021</time> - <time datetime="2024">2024</time></p>
+                                                <h5>Graduaat Accounting &amp; Administration</h5>
+                                                <p class="cv-place">Thomas More Hogeschool <span aria-hidden="true">·</span> Geel</p>
+                                            </li>
+
+                                            <li class="cv-item">
+                                                <p class="cv-date"><time datetime="2020">2020</time> - <time datetime="2021">2021</time></p>
+                                                <h5>Boekhoudkundig bediende</h5>
+                                                <p class="cv-place">Cevora, Campus Boomgaard <span aria-hidden="true">·</span> Turnhout</p>
+                                            </li>
+
+                                            <li class="cv-item">
+                                                <p class="cv-date"><time datetime="2006">2006</time> - <time datetime="2008">2008</time></p>
+                                                <h5>Opleiding kleuteronderwijs</h5>
+                                                <p class="cv-place">Katholieke Hogeschool Kempen <span aria-hidden="true">·</span> Vorselaar</p>
+                                            </li>
+
+                                            <li class="cv-item">
+                                                <p class="cv-date"><time datetime="2005">2005</time> - <time datetime="2006">2006</time></p>
+                                                <h5>Bedrijfsbeheer</h5>
+                                                <p class="cv-place">Francesco Paviljoen <span aria-hidden="true">·</span> Herentals</p>
+                                            </li>
+
+                                            <li class="cv-item">
+                                                <p class="cv-date"><time datetime="1999">1999</time> - <time datetime="2005">2005</time></p>
+                                                <h5>Administratief commercieel medewerker</h5>
+                                                <p class="cv-place">Francesco Paviljoen <span aria-hidden="true">·</span> Herentals</p>
+                                            </li>
+                                        </ol>
+                                    </section>
+
+                                    <section class="cv-panel" aria-labelledby="cv-profile-title">
+                                        <h4 class="cv-panel-title" id="cv-profile-title">
+                                            <i class="fa-solid fa-id-card" aria-hidden="true"></i>
+                                            Profiel
+                                        </h4>
+
+                                        <div class="cv-group">
+                                            <h5 class="cv-subhead">IT-vaardigheden</h5>
+                                            <ul class="tag-list">
+                                                <li>HTML</li>
+                                                <li>CSS</li>
+                                                <li>Bootstrap</li>
+                                                <li>Tailwind</li>
+                                                <li>JavaScript</li>
+                                                <li>Angular</li>
+                                                <li>Laravel</li>
+                                                <li>PHP (OOP)</li>
+                                                <li>Databasenormalisatie</li>
+                                                <li>MySQL</li>
+                                                <li>API’s</li>
+                                                <li>AI automation</li>
+                                                <li>Agent orchestration</li>
+                                                <li>Harness</li>
+                                                <li>Agile</li>
+                                                <li>Scrum</li>
+                                                <li>PRINCE2</li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="cv-group">
+                                            <h5 class="cv-subhead">Talenkennis</h5>
+                                            <dl class="cv-languages">
+                                                <div>
+                                                    <dt>Nederlands</dt>
+                                                    <dd>Moedertaal</dd>
+                                                </div>
+                                                <div>
+                                                    <dt>Engels</dt>
+                                                    <dd>Goede kennis</dd>
+                                                </div>
+                                            </dl>
+                                        </div>
+
+                                        <div class="cv-group">
+                                            <h5 class="cv-subhead">Persoonlijke kenmerken</h5>
+                                            <ul class="cv-traits">
+                                                <li>Leergierig</li>
+                                                <li>Analytisch</li>
+                                                <li>Probleemoplossend</li>
+                                                <li>Nauwkeurig</li>
+                                                <li>Zelfstandig</li>
+                                                <li>Nieuwsgierig</li>
+                                            </ul>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" class="read-more-toggle" aria-expanded="false" aria-controls="cv-more">
+                        <span>Lees meer</span>
+                        <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </button>
+                </article>
+            </div>
+        </section>
+
+        <!-- Vaardigheden -->
+        <section id="skills" class="section section-alt">
+            <div class="container">
+                <div class="section-head">
+                    <span class="section-index" aria-hidden="true">04</span>
                     <h2 class="section-title">Mijn vaardigheden</h2>
                 </div>
 
@@ -501,11 +757,11 @@
         </section>
 
         <!-- Projecten -->
-        <section id="projects" class="section section-alt">
+        <section id="projects" class="section">
             <div class="container">
                 <div class="section-head-row">
                     <div class="section-head">
-                        <span class="section-index" aria-hidden="true">04</span>
+                        <span class="section-index" aria-hidden="true">05</span>
                         <h2 class="section-title">Mijn projecten</h2>
                     </div>
 
@@ -699,7 +955,7 @@
             <div class="footer-grid">
                 <div>
                     <div class="section-head">
-                        <span class="section-index" aria-hidden="true">05</span>
+                        <span class="section-index" aria-hidden="true">06</span>
                         <h2 class="section-title">Neem contact op</h2>
                     </div>
 

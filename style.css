@@ -292,13 +292,62 @@ h3 {
     transition: border-color .2s ease;
 }
 
+/* Themaschakelaar: maan en zon altijd zichtbaar naast elkaar, zodat bezoekers zien dat er
+   twee standen zijn. Het koperen bolletje schuift onder het actieve thema; de stand volgt
+   rechtstreeks uit data-theme, script.js zet alleen aria-checked en de tooltip. */
 .theme-toggle {
-    font-size: 1.05rem;
+    position: relative;
+    display: inline-grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    width: 80px;
+    height: 44px;
+    padding: 3px;
+    border: 1px solid var(--border-strong);
+    border-radius: 999px;
+    background: var(--bg-secondary);
+    font-size: .95rem;
+    transition: border-color .2s ease;
+}
+
+.theme-toggle i {
+    position: relative;
+    text-align: center;
+    color: var(--text-muted);
+    transition: color .3s ease;
+}
+
+.theme-toggle-thumb {
+    position: absolute;
+    top: 3px;
+    bottom: 3px;
+    left: 3px;
+    width: calc(50% - 3px);
+    border-radius: 999px;
+    background: var(--accent);
+    transition: transform .3s ease;
+}
+
+/* Actief icoon in de achtergrondkleur op het koperen bolletje */
+:root:not([data-theme="light"]) .theme-toggle .fa-moon,
+:root[data-theme="light"] .theme-toggle .fa-sun {
+    color: var(--bg-primary);
+}
+
+:root[data-theme="light"] .theme-toggle-thumb {
+    transform: translateX(100%);
 }
 
 @media (hover: hover) {
-    .icon-button:hover {
-        border-color: var(--border-strong);
+    .icon-button:hover,
+    .theme-toggle:hover {
+        border-color: var(--text-muted);
+    }
+
+    /* Het icoon van het andere thema licht op: daar ga je naartoe */
+    :root:not([data-theme="light"]) .theme-toggle:hover .fa-sun,
+    :root[data-theme="light"] .theme-toggle:hover .fa-moon {
+        color: var(--text-color);
     }
 }
 
@@ -318,11 +367,11 @@ h3 {
         border-left: 1px solid var(--border-color);
     }
 
-    /* Iets kleiner, in verhouding met de tekstlinks ernaast */
+    /* Iets lager, in verhouding met de tekstlinks ernaast */
     .theme-toggle {
-        width: 40px;
+        width: 76px;
         height: 40px;
-        font-size: .95rem;
+        font-size: .9rem;
     }
 }
 
@@ -644,6 +693,7 @@ h3 {
 /* Kaarten: iets lichter vlak dan de achtergrond, dunne rand, geen zware schaduw */
 .about-card,
 .education-card,
+.cv-card,
 .skill-card,
 .project-card {
     min-width: 0;
@@ -659,9 +709,10 @@ h3 {
     min-height: var(--kaart-hoogte, auto);
 }
 
-/* Over mij en opleiding: dezelfde tekstkaart, over de volle kolom naast de titel */
+/* Over mij, opleiding en cv: dezelfde tekstkaart, over de volle kolom naast de titel */
 .about-card,
-.education-card {
+.education-card,
+.cv-card {
     max-width: none;
     padding: clamp(24px, 4vw, 40px);
 }
@@ -835,6 +886,235 @@ h3 {
         width: 100%;
         max-width: none;
         margin-bottom: 28px;
+    }
+}
+
+/* Cv: in de kaart werkervaring links, opleidingen en profiel rechts, zoals op het papieren cv.
+   Beide kolommen beginnen op dezelfde hoogte en eindigen samen: de werkervaring bepaalt de
+   hoogte en het profiel rekt mee. Onder 1400px staan de drie vlakken onder elkaar. */
+.cv-columns {
+    display: grid;
+    gap: 20px;
+}
+
+.cv-side {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Het profiel rekt de laatste paar pixels mee, zodat de onderkanten precies gelijk lopen */
+.cv-side > :last-child {
+    flex: 1 1 auto;
+}
+
+/* Naast elkaar pas vanaf 1400px; smaller wordt de rechterkolom te krap.
+   De verhouding is zo gekozen dat beide kolommen van nature bijna even hoog zijn
+   (gemeten: 12px verschil), zodat er geen lege ruimte of uitgerekte tussenruimte nodig is. */
+@media (min-width: 1400px) {
+    .cv-columns {
+        grid-template-columns: minmax(0, 8fr) minmax(0, 5fr);
+    }
+}
+
+/* Ingeklapt blijft het begin van beide kolommen zichtbaar, net zoals bij de andere kaarten */
+.cv-card .read-more-inner {
+    min-height: 16em;
+}
+
+/* Vlak per onderdeel: de achtergrondtint van de icoonvakken, met een dunne rand */
+.cv-panel {
+    padding: clamp(20px, 2.5vw, 28px);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    background: var(--bg-primary);
+}
+
+.cv-panel-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 24px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 1.1rem;
+}
+
+.cv-panel-title i {
+    color: var(--accent);
+    font-size: .9em;
+}
+
+/* Tijdlijn: een dunne lijn met per functie of opleiding een koperen bolletje */
+.cv-timeline {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.cv-item {
+    position: relative;
+    padding: 0 0 28px 30px;
+}
+
+.cv-item:last-child {
+    padding-bottom: 0;
+}
+
+/* Lijn van dit bolletje tot het volgende; het volgende bolletje ligt erover */
+.cv-item::before {
+    content: "";
+    position: absolute;
+    top: 9px;
+    bottom: -9px;
+    left: 5px;
+    width: 1px;
+    background: var(--border-strong);
+}
+
+.cv-item:last-child::before {
+    display: none;
+}
+
+.cv-item::after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 0;
+    width: 11px;
+    height: 11px;
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    background: var(--bg-primary);
+}
+
+/* Lopend: gevuld bolletje */
+.cv-item.is-current::after {
+    background: var(--accent);
+}
+
+.cv-date {
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: .72rem;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+}
+
+.cv-item h5 {
+    margin: 6px 0 2px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: -.01em;
+}
+
+.cv-note {
+    color: var(--text-muted);
+    font-weight: 400;
+}
+
+.cv-place {
+    font-size: .9rem;
+    font-weight: 500;
+}
+
+.cv-tasks {
+    margin: 10px 0 0;
+    padding-left: 1.1rem;
+    color: var(--text-muted);
+    font-size: .925rem;
+}
+
+.cv-tasks li + li {
+    margin-top: 4px;
+}
+
+.cv-tasks li::marker {
+    color: var(--border-strong);
+}
+
+/* Ruimte onder elk onderdeel van het profiel */
+.cv-group:not(:last-child) {
+    padding-bottom: 28px;
+}
+
+.cv-subhead {
+    margin: 0 0 12px;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: .75rem;
+    font-weight: 500;
+    letter-spacing: 0;
+}
+
+/* Links uitgelijnd, onder het kopje; de gedeelde tagstijl centreert */
+.cv-card .tag-list {
+    justify-content: flex-start;
+}
+
+.cv-languages {
+    display: grid;
+    margin: 0;
+}
+
+.cv-languages div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.cv-languages div:first-child {
+    padding-top: 0;
+}
+
+.cv-languages dt {
+    font-weight: 400;
+}
+
+.cv-languages dd {
+    margin: 0;
+    color: var(--text-muted);
+}
+
+/* Kenmerken met een koperen streepje ervoor; twee kolommen waar er plaats is,
+   anders één, zodat een lang woord als "Probleemoplossend" nooit overlapt */
+.cv-traits {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 8px 16px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.cv-traits li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cv-traits li::before {
+    content: "";
+    flex-shrink: 0;
+    width: 12px;
+    height: 2px;
+    background: var(--accent);
+}
+
+/* Smalle gsm's: iets compacter, zodat de lange lijst niet eindeloos wordt */
+@media (max-width: 575.98px) {
+    .cv-item {
+        padding-left: 26px;
+    }
+
+    .cv-tasks {
+        font-size: .9rem;
     }
 }
 
@@ -1071,7 +1351,8 @@ h3 {
     margin-top: auto;
 }
 
-.project-tags {
+.project-tags,
+.tag-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -1087,7 +1368,8 @@ h3 {
     min-height: 56px;
 }
 
-.project-tags li {
+.project-tags li,
+.tag-list li {
     padding: 2px 8px;
     border: 1px solid var(--border-color);
     border-radius: 3px;

@@ -4,7 +4,7 @@ document.documentElement.classList.add("js");
 
 // Licht of donker thema, meteen toegepast zodra dit script in de head geladen wordt,
 // zodat de pagina nooit eerst in het verkeerde thema verschijnt.
-// Een eerder gekozen thema wint, anders volgt de site de instelling van het toestel.
+// Een eerder gekozen thema wint, anders start de site altijd in het donkere thema.
 const themaKleur = document.querySelector('meta[name="theme-color"]');
 
 // De kleur van de browserbalk komt uit style.css, zodat de kleuren maar op één plek staan.
@@ -20,14 +20,10 @@ let opgeslagenThema = null;
 try {
     opgeslagenThema = localStorage.getItem("thema");
 } catch (fout) {
-    // Opslag geblokkeerd (bv. privévenster): dan gewoon de toestelinstelling
+    // Opslag geblokkeerd (bv. privévenster): dan gewoon het donkere thema
 }
 
-if (opgeslagenThema === "light" || opgeslagenThema === "dark") {
-    pasThemaToe(opgeslagenThema);
-} else {
-    pasThemaToe(window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
-}
+pasThemaToe(opgeslagenThema === "light" ? "light" : "dark");
 
 // De rest werkt met de elementen op de pagina en wacht dus tot de HTML geladen is
 document.addEventListener("DOMContentLoaded", function () {
@@ -79,19 +75,16 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Themaknop. Het thema zelf staat al (zie bovenaan); hier komt alleen de knop bij om te wisselen.
+    // Themaschakelaar. Het thema zelf staat al (zie bovenaan); hier komt alleen de knop bij om te wisselen.
+    // style.css schuift het bolletje mee; hier alleen de stand voor schermlezers en de tooltip.
     const themaKnop = document.querySelector(".theme-toggle");
-    const themaIcoon = themaKnop.querySelector("i");
 
-    // De knop toont het thema waar je naartoe gaat: een maan in het lichte thema, een zon in het donkere
     function zetThema(thema) {
         const licht = thema === "light";
-        const label = licht ? "Donker thema inschakelen" : "Licht thema inschakelen";
 
         pasThemaToe(thema);
-        themaIcoon.className = licht ? "fa-solid fa-moon" : "fa-solid fa-sun";
-        themaKnop.setAttribute("aria-label", label);
-        themaKnop.title = label;
+        themaKnop.setAttribute("aria-checked", licht);
+        themaKnop.title = licht ? "Wissel naar het donkere thema" : "Wissel naar het lichte thema";
     }
 
     themaKnop.addEventListener("click", function () {
@@ -552,7 +545,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }, { threshold: 0.12 });
 
         document.querySelectorAll(
-            "#about .about-card, #education .education-card, " +
+            "#about .about-card, #education .education-card, #cv .cv-card, " +
             "#skills .skills-carousel, #projects .section-head-row, " +
             "#project-list > *, .footer-grid > *"
         ).forEach(function (element) {

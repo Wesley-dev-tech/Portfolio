@@ -8,7 +8,7 @@ The portfolio content describes my background, coursework and current skills.
 
 ## Design
 
-An editorial look in two themes, dark and light. Visitors switch with the button in the header.
+An editorial look in two themes, dark and light. Visitors switch with the switch in the header; the dark theme is the default.
 
 ### Dark theme
 
@@ -26,7 +26,7 @@ Warm near-black backgrounds, off-white text and one copper accent. Depth comes f
 
 ### Light theme
 
-The light theme uses warm off-white "paper" tones, near-black text and a deeper copper so the accent stays readable on light backgrounds; every text color meets WCAG AA here too. The choice is saved in `localStorage`; without a saved choice the site follows the device setting.
+The light theme uses warm off-white "paper" tones, near-black text and a deeper copper so the accent stays readable on light backgrounds; every text color meets WCAG AA here too. The choice is saved in `localStorage`; without a saved choice the site always starts in the dark theme.
 
 [View the light color palette on Coolors](https://coolors.co/f7f4ee-efe9df-1f1d1a-5c574e-9c4b26):
 
@@ -40,7 +40,7 @@ The light theme uses warm off-white "paper" tones, near-black text and a deeper 
 
 All colors, radii and spacing live as CSS variables at the top of `style.css`. Type is set in Schibsted Grotesk, with IBM Plex Mono for small technical details such as section numbers, labels and the scrolling text bar.
 
-The CSS and JavaScript URLs in `index.html` share one version query string (`?v=66`). Raise both numbers together after a change so browsers load the new files.
+The CSS and JavaScript URLs in `index.html` share one version query string (`?v=68`). Raise both numbers together after a change so browsers load the new files.
 
 ## How to View
 
@@ -54,6 +54,7 @@ HTML, CSS, database normalization, MySQL, Agile & Scrum, and JavaScript (current
 
 - An intro with a round profile photo next to the greeting on desktop (up to 420px). On phones the intro is centered with the photo on top; the photo grows with the screen (70% of the width, between 220px and 300px, so 273px on an iPhone 15). On tablets (260px) it sits next to the text. There is a dark and a light version of the photo, matching the theme: CSS shows the right one, and the hidden one is lazy-loaded so it only downloads after switching themes. The original PNGs stay untouched; `srcset` serves the 420px or 840px webp version, so a phone loads about 90 to 100 KB instead of 2.3 MB and retina screens stay sharp.
 - The about and education sections use the same card, with the same header (icon, label, title and subtitle; shared `.card-header` classes), over the full column next to the section title. Inside both cards, one shared flexbox layout (`.article-layout`, `.article-poster` and `.article-text`) places the content like an article: a large poster with a caption next to the card header and all text, including the expanded "Lees meer" part. Each poster has a dark and a light version. In "Over mij" the "Wesley Dev & Tech" poster is on the left. In "Mijn opleiding" the "Full Stack" poster is on the right (`.article-layout-reverse`; the poster comes after the text in the HTML). On desktop each poster is top-aligned with the section title, and "Lees meer" lines up with the bottom of the poster. In "Over mij" the collapsed text column sets the height: flexbox stretches the poster to that height from the first paint, the image starts at height 0 so only the text counts, and `object-fit: cover` crops the right side of the poster where needed. When that text is expanded, the poster keeps the collapsed height that `script.js` stores in `--tekst-hoogte`. In "Mijn opleiding" it works the other way around: the full, uncropped poster sets the height, the text column stretches along, and the collapsed text fills the free space with "Lees meer" at the bottom. That poster takes 50% of the card instead of 46%, so it is still tall enough next to the narrow text column between 1200 and 1399px. Both sections open with a larger first paragraph (`.lead-text`). Because that card collapses without a transition, `script.js` brings the button back into view right after "Lees minder" instead of waiting for `transitionend`. Both posters are sticky, so they stay in view while reading the expanded text. Below 1200px (the same breakpoint as the hamburger menu), header, poster and text stack in that order in both cards: `.article-text` gets `display: contents` so the header and poster can move to the top with flexbox `order`. Stacked, the poster is exactly as wide as the text below it. The project screenshot in the detail dialog is likewise exactly as wide as the description below it.
+- A "Mijn cv" section (03, between education and skills, "CV" in the navigation) with the content of my CV, in the same card as the about and education sections: the section title on the left, and in the card the shared header, a larger first paragraph and a "Lees meer" toggle. Behind "Lees meer" are three panels: work experience as a timeline with dates, roles, companies and tasks, education as a second timeline (the current course has a filled dot), and a profile with IT skills as tags, languages and personal traits. From 1400px the work experience is on the left and education and profile on the right, like the paper CV. The column ratio (8fr to 5fr) was measured so both columns are naturally almost the same height; the profile panel stretches the last few pixels so they start and end together, without stretched gaps. Collapsed, the start of both columns stays visible and fades out. Below 1400px the three panels stack, because the right column gets too narrow. Home address and year of birth are left out on purpose; the footer already has the contact details.
 - Mobile navigation as a side panel that slides in from the right, with an active link that follows the current section.
 - A scroll progress bar and a continuously scrolling text bar (marquee) below the intro, built with CSS only.
 - "Lees meer" toggles that collapse the longer about and education texts. The first line of `script.js` adds a `js` class to `<html>` before the page is drawn, so the texts are collapsed and the JavaScript-only buttons are in place from the first paint: nothing jumps on load. Without JavaScript all text stays visible and those buttons are hidden.
@@ -63,7 +64,7 @@ HTML, CSS, database normalization, MySQL, Agile & Scrum, and JavaScript (current
 - A footer with one clear e-mail button, phone, location, social links and a "Privacybeleid" button. It opens a privacy policy in a dialog: no cookies or tracking, the theme choice stored in `localStorage`, the third-party services that load files (GitHub Pages, Google Fonts, jsDelivr, cdnjs), what happens when you get in touch, and your GDPR rights.
 - The project details and the privacy policy share one dialog setup (`.dialog` in `style.css`, `openVenster` in `script.js`). The class is deliberately not called `.modal`, because Bootstrap hides that class.
 - Open Graph tags with a preview image (`images/og-image.jpg`) for sharing on LinkedIn, WhatsApp and other platforms.
-- A light and a dark theme with a toggle button in the header (next to the menu button on phones and tablets). The choice is remembered, and the browser bar color follows the theme.
+- A light and a dark theme with a switch in the header (next to the menu button on phones and tablets). The moon and the sun are always visible side by side, and a copper thumb slides under the active theme, so visitors see there are two options; on hover the other icon lights up. It is a `role="switch"` button with `aria-checked`, and its position follows from `data-theme` in CSS. The dark theme is the default; the choice is remembered, and the browser bar color follows the theme.
 - Animations respect the reduced-motion setting, and everything works with the keyboard.
 
 ## Projects
@@ -84,7 +85,7 @@ HTML, CSS and JavaScript are strictly separated: no inline scripts or styles, no
 
 - `index.html`: the portfolio page.
 - `style.css`: responsive styling, with the dark theme on `:root` and the light theme on `:root[data-theme="light"]`.
-- `script.js`: loaded in the `<head>` so the saved or device theme is applied before the page is drawn (no flash); everything else waits for `DOMContentLoaded`. Also handles the theme toggle, mobile navigation and active link, scroll progress bar, read-more toggles, scroll animations, shared pagination for skills and projects, project sorting, the project and privacy dialogs, and scroll-to-top interactions. The project cards are generated from the `projecten` list in this file. To add a project, put it at the bottom of that list with a short `teaser` for the card, a longer `beschrijving` for the modal, and a screenshot in `images/`. Add an optional `afbeeldingLicht` for a light-theme screenshot.
+- `script.js`: loaded in the `<head>` so the saved theme (or the default dark theme) is applied before the page is drawn (no flash); everything else waits for `DOMContentLoaded`. Also handles the theme toggle, mobile navigation and active link, scroll progress bar, read-more toggles, scroll animations, shared pagination for skills and projects, project sorting, the project and privacy dialogs, and scroll-to-top interactions. The project cards are generated from the `projecten` list in this file. To add a project, put it at the bottom of that list with a short `teaser` for the card, a longer `beschrijving` for the modal, and a screenshot in `images/`. Add an optional `afbeeldingLicht` for a light-theme screenshot.
 - `images/`: screenshots of each project for the detail modal, `portfolio-dark.webp` and `portfolio-light.webp` for this portfolio, the posters `poster-dark.png` and `poster-light.png` (about) and `poster-opleiding-dark.png` and `poster-opleiding-light.png` (education) with their webp versions `-400` and `-800`, the profile photos `wesley-bogaerts-dark.png` and `wesley-bogaerts-light.png` with their webp versions `-420` and `-840`, and the social preview image `og-image.jpg` (dark theme).
 - `favicon.ico` and `apple-touch-icon.png`: the site icon (a "WB" monogram in the site colors) at 16, 32, 48 and 180 px.
 
