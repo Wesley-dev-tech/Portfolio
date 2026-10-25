@@ -30,6 +30,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // Bezoekers die minder beweging willen: geen scroll-animaties en direct springen
     const voorkeurMinderBeweging = window.matchMedia("(prefers-reduced-motion: reduce)");
 
+    function scrollGedrag() {
+        return voorkeurMinderBeweging.matches ? "auto" : "smooth";
+    }
+
     // Hamburgermenu
     const menuKnop = document.querySelector(".menu-button");
     const menuIcoon = menuKnop.querySelector("i");
@@ -517,7 +521,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             gebeurtenis.preventDefault();
             doel.scrollIntoView({
-                behavior: voorkeurMinderBeweging.matches ? "auto" : "smooth",
+                behavior: scrollGedrag(),
                 block: "start"
             });
         });
@@ -535,9 +539,12 @@ document.addEventListener("DOMContentLoaded", function () {
         projectModal.querySelector(".project-modal-description").textContent = project.beschrijving;
         // Screenshot en demo in het thema dat nu actief is, als het project er een lichte versie van heeft
         const lichtThema = document.documentElement.dataset.theme === "light";
-        projectModalAfbeelding.src = lichtThema && project.afbeeldingLicht
-            ? project.afbeeldingLicht
-            : project.afbeelding;
+
+        function inThema(donker, licht) {
+            return lichtThema && licht ? licht : donker;
+        }
+
+        projectModalAfbeelding.src = inThema(project.afbeelding, project.afbeeldingLicht);
         projectModalAfbeelding.alt = "Screenshot van " + project.titel;
         vulTags(projectModal, project);
 
@@ -545,7 +552,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const demoLink = projectModal.querySelector(".project-demo");
         demoLink.hidden = !project.demo;
         if (project.demo) {
-            demoLink.href = lichtThema && project.demoLicht ? project.demoLicht : project.demo;
+            demoLink.href = inThema(project.demo, project.demoLicht);
         }
         projectModal.querySelector(".project-code").href = project.code;
 
@@ -560,7 +567,6 @@ document.addEventListener("DOMContentLoaded", function () {
             openProjectModal(kaart);
         }
     });
-
 
     // Secties en kaarten animeren wanneer ze in beeld komen.
     // De kolom met de Google Maps-kaart doet niet mee: Safari en de ingebouwde browser van
@@ -594,7 +600,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     terugNaarBovenKnop.addEventListener("click", function () {
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        window.scrollTo({ top: 0, behavior: scrollGedrag() });
     });
 
     // Voortgangsbalk onder de header
