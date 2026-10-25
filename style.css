@@ -1477,9 +1477,18 @@ html.modal-is-open {
     transition: color .2s ease, background-color .2s ease;
 }
 
-.dialog-close:hover {
+/* Touchscreens kennen geen hover, dus daar hetzelfde effect zolang je de knop indrukt.
+   Hover alleen met een muis, anders blijft de knop na een tik wit hangen. */
+.dialog-close:active {
     background: var(--text-color);
     color: var(--bg-primary);
+}
+
+@media (hover: hover) {
+    .dialog-close:hover {
+        background: var(--text-color);
+        color: var(--bg-primary);
+    }
 }
 
 /* Links en rechts ruimte, zodat de titel niet onder de sluitknop loopt */

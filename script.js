@@ -469,9 +469,14 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     document.querySelectorAll(".dialog").forEach(function (venster) {
-        venster.querySelector(".dialog-close").addEventListener("click", function () {
+        const sluitKnop = venster.querySelector(".dialog-close");
+
+        sluitKnop.addEventListener("click", function () {
             venster.close();
         });
+
+        // Lege touch-listener: zonder zet Safari op iPhone :active niet, en dat geeft het hover-effect op gsm
+        sluitKnop.addEventListener("touchstart", function () {}, { passive: true });
 
         // Een klik op de donkere achtergrond valt op het dialog-element zelf
         venster.addEventListener("click", function (event) {
