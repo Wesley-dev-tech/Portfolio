@@ -913,10 +913,11 @@ h3 {
 
 /* Naast elkaar pas vanaf 1400px; smaller wordt de rechterkolom te krap.
    De verhouding is zo gekozen dat beide kolommen van nature bijna even hoog zijn
-   (gemeten: 12px verschil), zodat er geen lege ruimte of uitgerekte tussenruimte nodig is. */
+   (gemeten: 7px verschil), zodat er geen lege ruimte of uitgerekte tussenruimte nodig is.
+   Komen er tags of functies bij, meet dit dan opnieuw. */
 @media (min-width: 1400px) {
     .cv-columns {
-        grid-template-columns: minmax(0, 8fr) minmax(0, 5fr);
+        grid-template-columns: minmax(0, 11fr) minmax(0, 6fr);
     }
 }
 
