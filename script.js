@@ -621,6 +621,24 @@ document.addEventListener("DOMContentLoaded", function () {
     const contactFormulier = document.querySelector("#contact-form");
     const contactStatus = document.querySelector("#contact-status");
 
+    // Berichtveld op touchscreens laten meegroeien, voor browsers die field-sizing (style.css) niet kennen
+    const berichtVeld = document.querySelector("#contact-bericht");
+    const groeitZelf = !CSS.supports("field-sizing", "content")
+        && window.matchMedia("(pointer: coarse)").matches;
+
+    function pasBerichtHoogteAan() {
+        if (!groeitZelf) {
+            return;
+        }
+
+        // Eerst terug naar de minimumhoogte, zodat het veld ook weer kan krimpen
+        berichtVeld.style.height = "auto";
+        const rand = berichtVeld.offsetHeight - berichtVeld.clientHeight;
+        berichtVeld.style.height = berichtVeld.scrollHeight + rand + "px";
+    }
+
+    berichtVeld.addEventListener("input", pasBerichtHoogteAan);
+
     function toonContactStatus(tekst, gelukt) {
         contactStatus.textContent = tekst;
         contactStatus.classList.toggle("is-ok", gelukt);
@@ -651,6 +669,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             contactFormulier.reset();
+            pasBerichtHoogteAan();
             toonContactStatus("Bedankt! Je bericht is verstuurd, ik antwoord zo snel mogelijk.", true);
         } catch (fout) {
             toonContactStatus("Versturen lukte niet. Mail me rechtstreeks of bel me even.", false);

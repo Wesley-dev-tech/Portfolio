@@ -1645,6 +1645,18 @@ html.modal-is-open {
     min-height: 120px;
 }
 
+/* Op touchscreens kun je niet aan het hoekje trekken (iPhone toont het zelfs niet),
+   dus daar groeit het veld vanzelf mee met de tekst. Browsers zonder field-sizing
+   krijgen hetzelfde via script.js. */
+@media (pointer: coarse) {
+    .contact-row textarea {
+        resize: none;
+        field-sizing: content;
+        /* field-sizing negeert rows="5", dus leeg even hoog houden: 5 regels plus padding en rand */
+        min-height: calc(5lh + 22px);
+    }
+}
+
 .contact-row input:focus,
 .contact-row textarea:focus {
     outline: 2px solid var(--accent);
