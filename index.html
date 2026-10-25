@@ -35,19 +35,19 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap">
 
-    <link rel="stylesheet" href="style.css?v=105">
-    <link rel="icon" href="favicon.ico?v=105" sizes="16x16 32x32 48x48">
+    <link rel="stylesheet" href="style.css?v=106">
+    <link rel="icon" href="favicon.ico?v=106" sizes="16x16 32x32 48x48">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
     <!-- In de head, zodat het thema al staat voor de pagina getekend wordt.
          De rest van script.js wacht zelf tot de HTML geladen is. -->
-    <script src="script.js?v=105"></script>
+    <script src="script.js?v=106"></script>
 
     <!-- jsPDF en mijn eigen script dat er de cv-pdf mee tekent; defer laadt ze zonder de pagina op te houden -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
         integrity="sha384-JcnsjUPPylna1s1fvi1u12X5qjY5OL56iySh75FdtrwhO/SWXgMjoVqcKyIIWOLk" crossorigin="anonymous"
         defer></script>
-    <script src="cv-pdf.js?v=105" defer></script>
+    <script src="cv-pdf.js?v=106" defer></script>
 </head>
 
 <body>
@@ -910,34 +910,39 @@
 
             <h2 id="quick-title">Wesley in 30 seconden</h2>
 
-            <dl class="quick-facts">
-                <div>
-                    <dt><i class="fa-solid fa-user" aria-hidden="true"></i> Wie</dt>
-                    <dd>Student Full Stack &amp; AI Automation Developer aan SyntraPXL in Genk</dd>
+            <!-- Pitch van ongeveer 30 seconden: eerst wat ik wil bouwen, dan wat ik meebreng,
+                 waar ik naartoe wil en wat ik zoek -->
+            <div class="quick-pitch">
+                <p class="quick-pitch-lead">
+                    Ik bouw applicaties die werken voor iedereen die ze gebruikt, van front-end tot back-end.
+                </p>
+
+                <div class="quick-pitch-part">
+                    <h3 class="card-label">Wat ik meebreng</h3>
+                    <p>
+                        Ruim tien jaar werkte ik in de administratie en vijf jaar in de boekhouding. Daar leerde ik
+                        logisch nadenken en oog hebben voor details. En ik ken de processen in een bedrijf van
+                        binnenuit. Dat is het begin van goede software.
+                    </p>
                 </div>
-                <div>
-                    <dt><i class="fa-solid fa-briefcase" aria-hidden="true"></i> Sterkte</dt>
-                    <dd>Meer dan vijftien jaar ervaring in administratie en finance: ik ken de processen
-                        achter de software die ik bouw</dd>
+
+                <div class="quick-pitch-part">
+                    <h3 class="card-label">Waar ik naartoe wil</h3>
+                    <p>
+                        Ik groei tijdens mijn opleiding naar een Junior Developer die zelfstandig een volledige
+                        applicatie oplevert en met AI repetitieve taken uit processen haalt. AI blijft daarbij een hulpmiddel. Waarom mijn code werkt
+                        zoals ze werkt, kan ik zelf uitleggen.
+                    </p>
                 </div>
-                <div>
-                    <dt><i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i> Kennis</dt>
-                    <dd>
-                        <ul class="tag-list">
-                            <li>HTML</li>
-                            <li>CSS</li>
-                            <li>Databasenormalisatie</li>
-                            <li>MySQL</li>
-                            <li>Agile &amp; Scrum</li>
-                            <li>JavaScript</li>
-                        </ul>
-                    </dd>
+
+                <div class="quick-pitch-part quick-pitch-ask">
+                    <h3 class="card-label">Wat ik zoek</h3>
+                    <p>
+                        Een vaste job als Junior Developer vanaf juni 2027, in de Kempen of Limburg, of hybride.
+                        Als freelancer bouw ik graag aan websites, webapplicaties en software op maat.
+                    </p>
                 </div>
-                <div>
-                    <dt><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Waar</dt>
-                    <dd>Balen, in de Kempen</dd>
-                </div>
-            </dl>
+            </div>
 
             <div class="project-button d-flex flex-wrap gap-3">
                 <!-- Zelfde pdf als onder het cv (cv-pdf.js) -->
@@ -945,11 +950,13 @@
                     <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
                     Download mijn cv
                 </button>
-                <a class="btn btn-secondary quick-contact" href="#contact">
+                <a class="btn btn-secondary" href="#contact">
                     <i class="fa-solid fa-envelope" aria-hidden="true"></i>
                     Neem contact op
                 </a>
             </div>
+
+            <a class="quick-projects" href="#projects">Of bekijk eerst mijn projecten</a>
         </div>
     </dialog>
 

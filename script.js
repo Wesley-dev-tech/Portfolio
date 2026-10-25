@@ -545,9 +545,11 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // Eerst het venster sluiten; daarna springt de link naar het contactformulier
-    snelVenster.querySelector(".quick-contact").addEventListener("click", function () {
-        snelVenster.close();
+    // Eerst het venster sluiten; daarna springt de link naar het contactformulier of de projecten
+    snelVenster.querySelectorAll("a[href^='#']").forEach(function (link) {
+        link.addEventListener("click", function () {
+            snelVenster.close();
+        });
     });
 
     // Links binnen het privacybeleid scrollen in het venster zelf naar het juiste stukje,
