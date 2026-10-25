@@ -230,7 +230,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Projecten, van oud naar nieuw. Een nieuw project zet je gewoon onderaan de lijst,
     // met een korte teaser voor de kaart en een screenshot in images/ voor het detailvenster.
-    // Heeft een project ook een lichte versie, zet die dan in afbeeldingLicht.
+    // Heeft een project ook een lichte versie, zet die dan in afbeeldingLicht (en demoLicht).
     const projecten = [
         {
             titel: "Polestar 6",
@@ -286,10 +286,11 @@ document.addEventListener("DOMContentLoaded", function () {
             icoon: "fa-window-maximize",
             beschrijving: "Een fictief browservenster met een cursor die rondzweeft en een pagina die "
                 + "vanzelf scrolt. Nul regels JavaScript, alleen HTML en CSS die hun best doen. Vink "
-                + "Animatie afspelen uit en de cursor gaat in slaapstand. Vink Licht thema aan en "
+                + "Animatie afspelen uit en de cursor gaat in slaapstand. Vink Thema wisselen aan en "
                 + "het hele venster gaat mee.",
             tags: ["HTML", "CSS"],
-            demo: "https://wesley-dev-tech.github.io/Animated_browser_mockup/?v=2",
+            demo: "https://wesley-dev-tech.github.io/Animated_browser_mockup/?v=3",
+            demoLicht: "https://wesley-dev-tech.github.io/Animated_browser_mockup/?v=3#licht",
             afbeelding: "images/browsermockup-dark.webp",
             afbeeldingLicht: "images/browsermockup-light.webp",
             code: "https://github.com/Wesley-dev-tech/Animated_browser_mockup"
@@ -524,7 +525,7 @@ document.addEventListener("DOMContentLoaded", function () {
         projectModal.querySelector(".project-icon i").className = "fa-solid " + project.icoon;
         projectModal.querySelector("#project-modal-title").textContent = project.titel;
         projectModal.querySelector(".project-modal-description").textContent = project.beschrijving;
-        // Screenshot in het thema dat nu actief is, als het project er een lichte versie van heeft
+        // Screenshot en demo in het thema dat nu actief is, als het project er een lichte versie van heeft
         const lichtThema = document.documentElement.dataset.theme === "light";
         projectModalAfbeelding.src = lichtThema && project.afbeeldingLicht
             ? project.afbeeldingLicht
@@ -536,7 +537,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const demoLink = projectModal.querySelector(".project-demo");
         demoLink.hidden = !project.demo;
         if (project.demo) {
-            demoLink.href = project.demo;
+            demoLink.href = lichtThema && project.demoLicht ? project.demoLicht : project.demo;
         }
         projectModal.querySelector(".project-code").href = project.code;
 
