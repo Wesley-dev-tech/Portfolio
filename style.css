@@ -2231,35 +2231,34 @@ html.modal-is-open {
     scroll-margin-top: 24px;
 }
 
-/* Afdrukken en "Opslaan als pdf": alleen het cv, op wit papier in het lichte palet,
-   met naam en contactgegevens bovenaan. Geldt ook voor Ctrl+P op de hele pagina. */
+/* Afdrukken en "Opslaan als pdf": alleen het cv, op één A4, in het thema dat de bezoeker
+   gekozen heeft. Zelfde opbouw als de cv-kaart op de site: de pagina in de kaarttint,
+   de drie vlakken in de achtergrondtint. Geldt ook voor Ctrl+P op de hele pagina. */
 @page {
     size: A4;
-    margin: 14mm;
+    /* Geen witte rand: de achtergrondkleur loopt tot aan de rand van het papier */
+    margin: 0;
 }
 
 @media print {
-    :root,
-    :root[data-theme="light"] {
-        --bg-primary: #fff;
-        --bg-secondary: #fff;
-        --bg-card: #fff;
-        --text-color: #1f1d1a;
-        --text-muted: #5c574e;
-        --accent: #9c4b26;
-        --border-color: #ddd5c8;
-        --border-strong: #857e71;
-    }
-
-    /* Kleinere basismaat (alle maten in rem schalen mee), zodat het cv op twee pagina's past */
+    /* Achtergrondkleuren meedrukken; browsers laten die anders weg om inkt te sparen */
     html {
-        color-scheme: light;
-        background: #fff;
-        font-size: 12px;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+        /* Kleinere basismaat: alle maten in rem schalen mee */
+        font-size: 9.5px;
+        background: var(--bg-card);
     }
 
+    /* Het cv verticaal in het midden, zodat de witruimte boven en onder even groot is */
     body {
-        background: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 297mm;
+        padding: 11mm 12mm;
+        background: var(--bg-card);
+        line-height: 1.45;
     }
 
     /* Alles behalve het cv verbergen. De id's en klassen erbij, omdat bv. .btn van de
@@ -2278,8 +2277,9 @@ html.modal-is-open {
 
     #cv,
     #cv .container {
-        padding: 0;
+        display: block;
         max-width: none;
+        padding: 0;
     }
 
     /* Geen scheidingslijn boven de sectie; de kop met mijn naam heeft er al een */
@@ -2287,32 +2287,72 @@ html.modal-is-open {
         content: none;
     }
 
+    /* Kop: monogram, naam en opleiding links, contactgegevens rechts */
     .cv-print-header {
-        display: block;
-        margin-bottom: 16px;
-        padding-bottom: 12px;
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 4mm;
+        margin-bottom: 5mm;
+        padding-bottom: 5mm;
         border-bottom: 2px solid var(--accent);
+    }
+
+    .cv-print-header .logo-mark {
+        width: 15mm;
+        height: 15mm;
+        font-size: 13pt;
     }
 
     .cv-print-header p {
         margin: 0;
-        color: var(--text-muted);
-        font-size: 9.5pt;
     }
 
-    .cv-print-header .cv-print-name {
+    .cv-print-name {
         color: var(--text-color);
-        font-size: 20pt;
+        font-size: 22pt;
         font-weight: 600;
-        line-height: 1.2;
+        line-height: 1.1;
+        letter-spacing: -.015em;
     }
 
-    /* Kaart zonder rand en zonder animatie; de ingeklapte tekst helemaal open */
+    .cv-print-role {
+        margin-top: 1mm;
+        color: var(--accent);
+        font-family: var(--font-mono);
+        font-size: 8.5pt;
+        font-weight: 500;
+    }
+
+    .cv-print-contact {
+        display: grid;
+        gap: 1mm;
+        margin: 0;
+        padding: 0;
+        color: var(--text-muted);
+        font-size: 7.5pt;
+        list-style: none;
+    }
+
+    .cv-print-contact i {
+        width: 3.5mm;
+        margin-right: 1.5mm;
+        color: var(--accent);
+        text-align: center;
+    }
+
+    /* Kaart zonder eigen vlak en zonder animatie; de ingeklapte tekst helemaal open */
     #cv .cv-card {
         padding: 0;
         border: 0;
+        background: none;
         opacity: 1;
         transform: none;
+    }
+
+    #cv .lead-text {
+        font-size: 10pt;
+        line-height: 1.5;
     }
 
     .js #cv .read-more:not(.is-open) {
@@ -2323,26 +2363,109 @@ html.modal-is-open {
 
     #cv .read-more-inner {
         min-height: 0;
-        padding-top: 12px;
+        padding-top: 4mm;
+        overflow: visible;
     }
 
-    /* Werkervaring en de rechterkolom naast elkaar, zoals op desktop */
+    /* Werkervaring links, opleidingen en profiel rechts, net als op desktop;
+       de onderkanten lopen gelijk doordat het profiel meerekt */
     .cv-columns {
-        grid-template-columns: minmax(0, 11fr) minmax(0, 6fr);
-        gap: 14px;
+        grid-template-columns: minmax(0, 11fr) minmax(0, 7fr);
+        gap: 4mm;
+    }
+
+    .cv-side {
+        gap: 4mm;
     }
 
     .cv-panel {
-        padding: 14px;
-    }
-
-    /* Geen functie of opleiding die over twee pagina's gesplitst wordt */
-    .cv-item,
-    .cv-group {
-        break-inside: avoid;
+        padding: 4mm 4.5mm;
+        background: var(--bg-primary);
     }
 
     .cv-panel-title {
-        break-after: avoid;
+        gap: 2mm;
+        margin-bottom: 3.5mm;
+        padding-bottom: 2.5mm;
+        font-size: 10.5pt;
+    }
+
+    .cv-item {
+        padding: 0 0 3.2mm 6mm;
+    }
+
+    .cv-item:last-child {
+        padding-bottom: 0;
+    }
+
+    .cv-date {
+        font-size: 6.5pt;
+    }
+
+    .cv-item h5 {
+        margin: .6mm 0 0;
+        font-size: 9pt;
+    }
+
+    .cv-place {
+        font-size: 7.5pt;
+    }
+
+    .cv-tasks {
+        margin-top: 1.2mm;
+        padding-left: 3.5mm;
+        font-size: 7.5pt;
+        line-height: 1.4;
+    }
+
+    .cv-tasks li + li {
+        margin-top: .4mm;
+    }
+
+    .cv-group:not(:last-child) {
+        padding-bottom: 3.5mm;
+    }
+
+    /* Het profiel rekt mee tot de onderkant van de werkervaring; die extra ruimte gaat
+       gelijk naar de drie onderdelen in plaats van onderaan samen te klonteren */
+    .cv-side > :last-child {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .cv-side > :last-child .cv-group {
+        flex: 1 1 auto;
+    }
+
+    .cv-subhead {
+        margin-bottom: 2mm;
+        font-size: 6.5pt;
+    }
+
+    .cv-card .tag-list li {
+        font-size: 6.5pt;
+    }
+
+    .cv-languages,
+    .cv-traits {
+        font-size: 7.5pt;
+    }
+
+    .cv-languages div {
+        padding: 1.2mm 0;
+    }
+
+    /* Kenmerken in twee kolommen, zodat het profiel niet langer wordt dan nodig */
+    .cv-traits {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.2mm 3mm;
+    }
+
+    .cv-traits li {
+        gap: 2mm;
+    }
+
+    .cv-traits li::before {
+        width: 2.5mm;
     }
 }

@@ -34,13 +34,13 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap">
 
-    <link rel="stylesheet" href="style.css?v=99">
-    <link rel="icon" href="favicon.ico?v=99" sizes="16x16 32x32 48x48">
+    <link rel="stylesheet" href="style.css?v=100">
+    <link rel="icon" href="favicon.ico?v=100" sizes="16x16 32x32 48x48">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
     <!-- In de head, zodat het thema al staat voor de pagina getekend wordt.
          De rest van script.js wacht zelf tot de HTML geladen is. -->
-    <script src="script.js?v=99"></script>
+    <script src="script.js?v=100"></script>
 </head>
 
 <body>
@@ -438,15 +438,23 @@
                     <h2 class="section-title">Mijn cv</h2>
                 </div>
 
-                <!-- Alleen op papier en in de pdf (zie @media print in style.css): wie ik ben en hoe je me bereikt -->
+                <!-- Alleen op papier en in de pdf (zie @media print in style.css): monogram, naam en
+                     opleiding links, contactgegevens rechts, zoals de header van de site -->
                 <div class="cv-print-header">
-                    <p class="cv-print-name">Wesley Bogaerts</p>
-                    <p>Student Full Stack &amp; AI Automation Developer <span aria-hidden="true">·</span> Balen</p>
-                    <p>
-                        +32 (0)472 25 42 48 <span aria-hidden="true">·</span> wesleybogaerts@hotmail.com
-                        <span aria-hidden="true">·</span> wesley-dev-tech.github.io/Portfolio
-                        <span aria-hidden="true">·</span> linkedin.com/in/wesley-bogaerts
-                    </p>
+                    <span class="logo-mark" aria-hidden="true">WB</span>
+
+                    <div>
+                        <p class="cv-print-name">Wesley Bogaerts</p>
+                        <p class="cv-print-role">Student Full Stack &amp; AI Automation Developer</p>
+                    </div>
+
+                    <ul class="cv-print-contact">
+                        <li><i class="fa-solid fa-phone" aria-hidden="true"></i> +32 (0)472 25 42 48</li>
+                        <li><i class="fa-solid fa-envelope" aria-hidden="true"></i> wesleybogaerts@hotmail.com</li>
+                        <li><i class="fa-solid fa-globe" aria-hidden="true"></i> wesley-dev-tech.github.io/Portfolio</li>
+                        <li><i class="fa-brands fa-linkedin" aria-hidden="true"></i> linkedin.com/in/wesley-bogaerts</li>
+                        <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Balen, België</li>
+                    </ul>
                 </div>
 
                 <article class="cv-card section-body">
