@@ -286,10 +286,12 @@ document.addEventListener("DOMContentLoaded", function () {
             icoon: "fa-window-maximize",
             beschrijving: "Een fictief browservenster met een cursor die rondzweeft en een pagina die "
                 + "vanzelf scrolt. Nul regels JavaScript, alleen HTML en CSS die hun best doen. Vink "
-                + "Animatie afspelen uit en de cursor gaat in slaapstand.",
+                + "Animatie afspelen uit en de cursor gaat in slaapstand. Vink Licht thema aan en "
+                + "het hele venster gaat mee.",
             tags: ["HTML", "CSS"],
             demo: "https://wesley-dev-tech.github.io/Animated_browser_mockup/",
-            afbeelding: "images/browsermockup.webp",
+            afbeelding: "images/browsermockup-dark.webp",
+            afbeeldingLicht: "images/browsermockup-light.webp",
             code: "https://github.com/Wesley-dev-tech/Animated_browser_mockup"
         },
         {
