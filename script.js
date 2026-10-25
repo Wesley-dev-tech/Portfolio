@@ -535,12 +535,14 @@ document.addEventListener("DOMContentLoaded", function () {
         openVenster(document.querySelector("#privacy-modal"), privacyKnop);
     });
 
-    // In 30 seconden: kort overzicht voor recruiters, via de knop in de intro
-    const snelKnop = document.querySelector(".quick-open");
+    // In 30 seconden: kort overzicht voor recruiters. Twee knoppen openen hetzelfde venster:
+    // de bliksem in de header en de uitgeschreven knop in de intro.
     const snelVenster = document.querySelector("#quick-modal");
 
-    snelKnop.addEventListener("click", function () {
-        openVenster(snelVenster, snelKnop);
+    document.querySelectorAll("[aria-controls='quick-modal']").forEach(function (snelKnop) {
+        snelKnop.addEventListener("click", function () {
+            openVenster(snelVenster, snelKnop);
+        });
     });
 
     // Eerst het venster sluiten; daarna springt de link naar het contactformulier
