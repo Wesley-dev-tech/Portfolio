@@ -35,19 +35,19 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap">
 
-    <link rel="stylesheet" href="style.css?v=106">
-    <link rel="icon" href="favicon.ico?v=106" sizes="16x16 32x32 48x48">
+    <link rel="stylesheet" href="style.css?v=107">
+    <link rel="icon" href="favicon.ico?v=107" sizes="16x16 32x32 48x48">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
     <!-- In de head, zodat het thema al staat voor de pagina getekend wordt.
          De rest van script.js wacht zelf tot de HTML geladen is. -->
-    <script src="script.js?v=106"></script>
+    <script src="script.js?v=107"></script>
 
     <!-- jsPDF en mijn eigen script dat er de cv-pdf mee tekent; defer laadt ze zonder de pagina op te houden -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
         integrity="sha384-JcnsjUPPylna1s1fvi1u12X5qjY5OL56iySh75FdtrwhO/SWXgMjoVqcKyIIWOLk" crossorigin="anonymous"
         defer></script>
-    <script src="cv-pdf.js?v=106" defer></script>
+    <script src="cv-pdf.js?v=107" defer></script>
 </head>
 
 <body>
@@ -1033,7 +1033,7 @@
             <h3>Als je contact opneemt</h3>
             <p>
                 Stuur je me een bericht via het contactformulier, een e-mail, bel je me of stuur je een bericht via WhatsApp of Messenger, dan
-                gebruik ik je naam, contactgegevens en bericht alleen om je te antwoorden.
+                gebruik ik je naam, contactgegevens, bericht en eventueel je bedrijfsnaam alleen om je te antwoorden.
                 Ik deel ze met niemand en verwijder ze zodra ze niet meer nodig zijn.
                 Het contactformulier wordt verstuurd via
                 <a href="https://formsubmit.co/" target="_blank" rel="noopener noreferrer">FormSubmit</a>,
@@ -1087,22 +1087,40 @@
                         <input type="text" name="_honey" class="contact-honey" tabindex="-1" autocomplete="off"
                             aria-hidden="true">
 
-                        <div class="contact-row">
-                            <label for="contact-naam">Naam</label>
-                            <input id="contact-naam" name="naam" type="text" autocomplete="name" required
-                                maxlength="100">
+                        <!-- Verplichte velden: een koperen sterretje bij het label; het required-attribuut doet de controle -->
+                        <!-- Vanaf tablet per twee naast elkaar, zodat het formulier niet hoger wordt dan de kaart ernaast -->
+                        <div class="contact-pair">
+                            <div class="contact-row">
+                                <label for="contact-naam">Naam<span class="contact-required" aria-hidden="true">*</span></label>
+                                <input id="contact-naam" name="naam" type="text" autocomplete="name" required
+                                    maxlength="100" placeholder="Naam">
+                            </div>
+
+                            <div class="contact-row">
+                                <label for="contact-bedrijf">Bedrijfsnaam</label>
+                                <input id="contact-bedrijf" name="bedrijf" type="text" autocomplete="organization"
+                                    maxlength="100" placeholder="Bedrijfsnaam">
+                            </div>
+                        </div>
+
+                        <div class="contact-pair">
+                            <div class="contact-row">
+                                <label for="contact-email">E-mailadres<span class="contact-required" aria-hidden="true">*</span></label>
+                                <input id="contact-email" name="email" type="email" autocomplete="email" required
+                                    maxlength="200" placeholder="E-mailadres">
+                            </div>
+
+                            <div class="contact-row">
+                                <label for="contact-telefoon">Telefoonnummer<span class="contact-required" aria-hidden="true">*</span></label>
+                                <input id="contact-telefoon" name="telefoon" type="tel" autocomplete="tel" required
+                                    maxlength="30" placeholder="Telefoonnummer">
+                            </div>
                         </div>
 
                         <div class="contact-row">
-                            <label for="contact-email">E-mailadres</label>
-                            <input id="contact-email" name="email" type="email" autocomplete="email" required
-                                maxlength="200">
-                        </div>
-
-                        <div class="contact-row">
-                            <label for="contact-bericht">Bericht</label>
+                            <label for="contact-bericht">Bericht<span class="contact-required" aria-hidden="true">*</span></label>
                             <textarea id="contact-bericht" name="bericht" rows="5" required
-                                maxlength="5000"></textarea>
+                                maxlength="5000" placeholder="Laat hier je boodschap achter"></textarea>
                         </div>
 
                         <button type="submit" class="btn footer-cta">

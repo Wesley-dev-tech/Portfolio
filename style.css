@@ -1717,6 +1717,31 @@ html.modal-is-open {
     font-size: 1rem; /* 16px voorkomt inzoomen op iPhone */
 }
 
+/* Twee velden naast elkaar vanaf tablet; op gsm onder elkaar */
+.contact-pair {
+    display: grid;
+    gap: 16px;
+}
+
+@media (min-width: 576px) {
+    .contact-pair {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* Sterretje bij verplichte velden, in de accentkleur */
+.contact-required {
+    margin-left: 2px;
+    color: var(--accent);
+}
+
+/* Voorbeeldtekst in de velden: duidelijk lichter dan wat de bezoeker zelf typt */
+.contact-row input::placeholder,
+.contact-row textarea::placeholder {
+    color: var(--text-muted);
+    opacity: .7;
+}
+
 .contact-row textarea {
     resize: vertical;
     min-height: 120px;
