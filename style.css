@@ -681,7 +681,6 @@ h3 {
 /* Knoppen die alleen met JavaScript werken; vanaf de eerste weergave op hun plaats */
 :root:not(.js) .read-more-toggle,
 :root:not(.js) .theme-toggle,
-:root:not(.js) .cv-print,
 :root:not(.js) .quick-open {
     display: none;
 }

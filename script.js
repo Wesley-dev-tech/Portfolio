@@ -548,12 +548,6 @@ document.addEventListener("DOMContentLoaded", function () {
         snelVenster.close();
     });
 
-    // Zelfde pdf als de knop onder het cv (zie drukCvAf verderop)
-    snelVenster.querySelector(".quick-print").addEventListener("click", function () {
-        snelVenster.close();
-        drukCvAf();
-    });
-
     // Links binnen het privacybeleid scrollen in het venster zelf naar het juiste stukje,
     // zonder het adres in de adresbalk te veranderen
     document.querySelectorAll(".privacy-jump").forEach(function (link) {
@@ -689,16 +683,9 @@ document.addEventListener("DOMContentLoaded", function () {
         bijgewerkt.setAttribute("datetime", publicatieDatum.toISOString().slice(0, 10));
     }
 
-    // Cv als pdf: de knop opent het afdrukvenster, waar je "Opslaan als pdf" kiest.
-    // style.css toont op papier alleen het cv. De titel wordt de voorgestelde bestandsnaam.
-    // Ook de knop in het venster In 30 seconden gebruikt deze functie.
+    // Afdrukken met Ctrl+P: style.css toont op papier alleen het cv (zoals de pdf's in cv/).
+    // De titel wordt de voorgestelde bestandsnaam bij "Opslaan als pdf".
     const paginaTitel = document.title;
-
-    function drukCvAf() {
-        window.print();
-    }
-
-    document.querySelector(".cv-print").addEventListener("click", drukCvAf);
 
     window.addEventListener("beforeprint", function () {
         document.title = "Cv Wesley Bogaerts";
