@@ -31,13 +31,13 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap">
 
-    <link rel="stylesheet" href="style.css?v=88">
-    <link rel="icon" href="favicon.ico?v=88" sizes="16x16 32x32 48x48">
+    <link rel="stylesheet" href="style.css?v=89">
+    <link rel="icon" href="favicon.ico?v=89" sizes="16x16 32x32 48x48">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
     <!-- In de head, zodat het thema al staat voor de pagina getekend wordt.
          De rest van script.js wacht zelf tot de HTML geladen is. -->
-    <script src="script.js?v=88"></script>
+    <script src="script.js?v=89"></script>
 </head>
 
 <body>
@@ -826,7 +826,7 @@
     </main>
 
     <!-- Detailvenster van een project; script.js vult het in -->
-    <dialog id="project-modal" class="dialog project-modal" aria-labelledby="project-modal-title">
+    <dialog id="project-modal" class="dialog project-modal" tabindex="-1" aria-labelledby="project-modal-title">
         <div class="dialog-content">
             <button type="button" class="dialog-close" aria-label="Sluiten" title="Sluiten">
                 <i class="fa-solid fa-xmark" aria-hidden="true"></i>
@@ -861,7 +861,7 @@
     </dialog>
 
     <!-- Privacybeleid; opent via de knop onderaan de footer -->
-    <dialog id="privacy-modal" class="dialog privacy-modal" aria-labelledby="privacy-title">
+    <dialog id="privacy-modal" class="dialog privacy-modal" tabindex="-1" aria-labelledby="privacy-title">
         <div class="dialog-content">
             <button type="button" class="dialog-close" aria-label="Sluiten" title="Sluiten">
                 <i class="fa-solid fa-xmark" aria-hidden="true"></i>

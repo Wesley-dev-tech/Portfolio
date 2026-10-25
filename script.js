@@ -461,11 +461,14 @@ document.addEventListener("DOMContentLoaded", function () {
     // Vensters (projectdetail en privacybeleid): openen, sluiten en de focus terugzetten
     let vensterOpener = null;
 
-    // showModal zet de focus op de sluitknop; na het sluiten gaat ze terug naar de opener
+    // showModal zet de focus op de sluitknop, met een koperen focusring rond het kruisje als gevolg.
+    // Daarom krijgt het venster zelf de focus (tabindex="-1" in de HTML); Tab gaat dan naar het kruisje.
+    // Na het sluiten gaat de focus terug naar de opener.
     function openVenster(venster, opener) {
         vensterOpener = opener;
         document.documentElement.classList.add("modal-is-open");
         venster.showModal();
+        venster.focus();
     }
 
     document.querySelectorAll(".dialog").forEach(function (venster) {

@@ -1432,6 +1432,11 @@ html.modal-is-open {
     color: var(--text-color);
 }
 
+/* Het venster krijgt bij het openen zelf de focus (zie script.js); daar hoort geen ring rond */
+.dialog:focus {
+    outline: none;
+}
+
 .dialog[open] {
     animation: modal-in .25s ease-out;
 }
