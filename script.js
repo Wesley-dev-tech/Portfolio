@@ -710,10 +710,11 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        // Eerst terug naar de minimumhoogte, zodat het veld ook weer kan krimpen
-        berichtVeld.style.height = "auto";
+        // Eerst terug naar de minimumhoogte, zodat het veld ook weer kan krimpen.
+        // Alleen de gemeten waarde; style.css gebruikt ze als hoogte.
+        berichtVeld.style.removeProperty("--bericht-hoogte");
         const rand = berichtVeld.offsetHeight - berichtVeld.clientHeight;
-        berichtVeld.style.height = berichtVeld.scrollHeight + rand + "px";
+        berichtVeld.style.setProperty("--bericht-hoogte", berichtVeld.scrollHeight + rand + "px");
     }
 
     berichtVeld.addEventListener("input", pasBerichtHoogteAan);

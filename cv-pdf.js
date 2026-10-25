@@ -1,7 +1,7 @@
-// Cv als pdf, getekend met jsPDF (zoals de offerte van mijn vloerder-project).
+// Cv als pdf, getekend met jsPDF
 // De inhoud komt uit het cv in index.html en de kleuren uit style.css, dus de pdf volgt vanzelf
-// elke wijziging aan het cv en het thema dat de bezoeker gekozen heeft.
-// pdf.save() maakt het bestand in de browser, zodat het meteen in de map Downloads komt.
+// elke wijziging aan het cv en het thema dat de bezoeker gekozen heeft
+// pdf.save() maakt het bestand in de browser, zodat het meteen in de map Downloads komtS
 document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".cv-pdf").forEach(function (knop) {
         knop.addEventListener("click", function () {

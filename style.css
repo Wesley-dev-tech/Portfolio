@@ -1718,6 +1718,8 @@ html.modal-is-open {
         field-sizing: content;
         /* field-sizing negeert rows="5", dus leeg even hoog houden: 5 regels plus padding en rand */
         min-height: calc(5lh + 22px);
+        /* Zonder field-sizing meet script.js de tekst en geeft die hoogte hier door */
+        height: var(--bericht-hoogte, auto);
     }
 }
 
