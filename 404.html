@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina niet gevonden · Portfolio Wesley Bogaerts</title>
+    <meta name="robots" content="noindex">
+    <meta name="theme-color" content="#161513">
+
+    <!-- GitHub Pages toont deze pagina op elk onbestaand adres onder /Portfolio/,
+         dus alle links zijn absoluut -->
+    <link rel="icon" href="/Portfolio/favicon.ico" sizes="16x16 32x32 48x48">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=Schibsted+Grotesk:wght@400;600&display=swap">
+
+    <!-- Zelfde palet als style.css; los gehouden zodat deze pagina niets anders nodig heeft -->
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg-primary: #161513;
+            --bg-card: #262420;
+            --text-color: #ece7dd;
+            --text-muted: #a39d91;
+            --accent: #d4895f;
+            --accent-hover: #e2a07a;
+            --border-color: #36332e;
+        }
+
+        :root[data-theme="light"] {
+            color-scheme: light;
+            --bg-primary: #f7f4ee;
+            --bg-card: #fdfbf7;
+            --text-color: #1f1d1a;
+            --text-muted: #5c574e;
+            --accent: #9c4b26;
+            --accent-hover: #7f3d1f;
+            --border-color: #ddd5c8;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            display: grid;
+            place-items: center;
+            min-height: 100vh;
+            min-height: 100dvh;
+            margin: 0;
+            padding: 16px;
+            background: var(--bg-primary);
+            color: var(--text-color);
+            font-family: "Schibsted Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        main {
+            width: 100%;
+            max-width: 520px;
+            padding: clamp(28px, 6vw, 48px);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background: var(--bg-card);
+            text-align: center;
+        }
+
+        .code {
+            margin: 0 0 8px;
+            color: var(--accent);
+            font-family: "IBM Plex Mono", ui-monospace, monospace;
+            font-size: .85rem;
+            font-weight: 500;
+        }
+
+        h1 {
+            margin: 0 0 12px;
+            font-size: clamp(1.5rem, 1.2rem + 1.5vw, 2rem);
+            font-weight: 600;
+            letter-spacing: -.015em;
+        }
+
+        p {
+            margin: 0 0 28px;
+            color: var(--text-muted);
+        }
+
+        a {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 8px;
+            background: var(--accent);
+            color: var(--bg-primary);
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color .2s ease;
+        }
+
+        a:hover {
+            background: var(--accent-hover);
+        }
+
+        a:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 3px;
+        }
+    </style>
+
+    <!-- Het thema dat de bezoeker op het portfolio koos (zelfde opslag als script.js) -->
+    <script>
+        try {
+            if (localStorage.getItem("thema") === "light") {
+                document.documentElement.dataset.theme = "light";
+                document.querySelector('meta[name="theme-color"]').content = "#f7f4ee";
+            }
+        } catch (fout) {
+            // Opslag geblokkeerd: dan gewoon het donkere thema
+        }
+    </script>
+</head>
+
+<body>
+    <main>
+        <p class="code">404</p>
+        <h1>Deze pagina bestaat niet</h1>
+        <p>Misschien is de link verouderd of zit er een tikfout in het adres. Mijn portfolio staat gelukkig nog gewoon op zijn plek.</p>
+        <a href="/Portfolio/">Naar de startpagina</a>
+    </main>
+</body>
+
+</html>
