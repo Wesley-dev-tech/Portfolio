@@ -34,13 +34,19 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap">
 
-    <link rel="stylesheet" href="style.css?v=102">
-    <link rel="icon" href="favicon.ico?v=102" sizes="16x16 32x32 48x48">
+    <link rel="stylesheet" href="style.css?v=103">
+    <link rel="icon" href="favicon.ico?v=103" sizes="16x16 32x32 48x48">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
     <!-- In de head, zodat het thema al staat voor de pagina getekend wordt.
          De rest van script.js wacht zelf tot de HTML geladen is. -->
-    <script src="script.js?v=102"></script>
+    <script src="script.js?v=103"></script>
+
+    <!-- jsPDF en mijn eigen script dat er de cv-pdf mee tekent; defer laadt ze zonder de pagina op te houden -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
+        integrity="sha384-JcnsjUPPylna1s1fvi1u12X5qjY5OL56iySh75FdtrwhO/SWXgMjoVqcKyIIWOLk" crossorigin="anonymous"
+        defer></script>
+    <script src="cv-pdf.js?v=103" defer></script>
 </head>
 
 <body>
@@ -674,24 +680,17 @@
                         </div>
                     </div>
 
-                    <!-- Lees meer links, pdf rechts. Eén pdf per thema; style.css toont de juiste link,
-                         zoals bij de profielfoto. download laat de browser het bestand meteen opslaan. -->
+                    <!-- Lees meer links, pdf rechts. cv-pdf.js tekent de pdf met jsPDF en slaat hem meteen op. -->
                     <div class="cv-actions">
                         <button type="button" class="read-more-toggle" aria-expanded="false" aria-controls="cv-more">
                             <span>Lees meer</span>
                             <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
                         </button>
 
-                        <a class="cv-print theme-dark-only" href="cv/cv-wesley-bogaerts-donker.pdf"
-                            download="Cv Wesley Bogaerts.pdf">
+                        <button type="button" class="cv-pdf">
                             <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
                             <span>Download als pdf</span>
-                        </a>
-                        <a class="cv-print theme-light-only" href="cv/cv-wesley-bogaerts-licht.pdf"
-                            download="Cv Wesley Bogaerts.pdf">
-                            <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
-                            <span>Download als pdf</span>
-                        </a>
+                        </button>
                     </div>
                 </article>
             </div>
@@ -933,15 +932,11 @@
             </dl>
 
             <div class="project-button d-flex flex-wrap gap-3">
-                <!-- Zelfde pdf's als onder het cv, één per thema -->
-                <a class="btn theme-dark-only" href="cv/cv-wesley-bogaerts-donker.pdf" download="Cv Wesley Bogaerts.pdf">
+                <!-- Zelfde pdf als onder het cv (cv-pdf.js) -->
+                <button type="button" class="btn cv-pdf">
                     <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
                     Download mijn cv
-                </a>
-                <a class="btn theme-light-only" href="cv/cv-wesley-bogaerts-licht.pdf" download="Cv Wesley Bogaerts.pdf">
-                    <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
-                    Download mijn cv
-                </a>
+                </button>
                 <a class="btn btn-secondary quick-contact" href="#contact">
                     <i class="fa-solid fa-envelope" aria-hidden="true"></i>
                     Neem contact op

@@ -681,12 +681,13 @@ h3 {
 /* Knoppen die alleen met JavaScript werken; vanaf de eerste weergave op hun plaats */
 :root:not(.js) .read-more-toggle,
 :root:not(.js) .theme-toggle,
-:root:not(.js) .quick-open {
+:root:not(.js) .quick-open,
+:root:not(.js) .cv-pdf {
     display: none;
 }
 
 .read-more-toggle,
-.cv-print {
+.cv-actions .cv-pdf {
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -700,7 +701,7 @@ h3 {
 }
 
 .read-more-toggle:hover,
-.cv-print:hover {
+.cv-actions .cv-pdf:hover {
     color: var(--accent-hover);
     text-decoration: underline;
     text-underline-offset: 4px;
@@ -723,7 +724,7 @@ h3 {
     column-gap: 24px;
 }
 
-.cv-print i {
+.cv-actions .cv-pdf i {
     font-size: .9rem;
 }
 
