@@ -289,7 +289,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 + "Animatie afspelen uit en de cursor gaat in slaapstand. Vink Licht thema aan en "
                 + "het hele venster gaat mee.",
             tags: ["HTML", "CSS"],
-            demo: "https://wesley-dev-tech.github.io/Animated_browser_mockup/",
+            demo: "https://wesley-dev-tech.github.io/Animated_browser_mockup/?v=2",
             afbeelding: "images/browsermockup-dark.webp",
             afbeeldingLicht: "images/browsermockup-light.webp",
             code: "https://github.com/Wesley-dev-tech/Animated_browser_mockup"
