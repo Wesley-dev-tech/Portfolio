@@ -91,7 +91,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         pasThemaToe(thema);
         themaKnop.setAttribute("aria-checked", licht);
-        themaKnop.title = licht ? "Wissel naar het donkere thema" : "Wissel naar het lichte thema";
+        themaKnop.title = (licht ? "Wissel naar het donkere thema" : "Wissel naar het lichte thema")
+            + " (sneltoets T)";
     }
 
     themaKnop.addEventListener("click", function () {
@@ -108,6 +109,31 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     zetThema(document.documentElement.dataset.theme);
+
+    // Sneltoets T wisselt het thema, behalve tijdens het typen in een veld
+    // of samen met Ctrl, Alt of Cmd (zodat bv. Ctrl+T gewoon een nieuw tabblad opent)
+    document.addEventListener("keydown", function (event) {
+        const typtInVeld = event.target.closest("input, textarea, select, [contenteditable]");
+        const metToets = event.ctrlKey || event.altKey || event.metaKey;
+
+        if (event.key.toLowerCase() === "t" && !typtInVeld && !metToets && !event.repeat) {
+            themaKnop.click();
+        }
+    });
+
+    // Begroeting in de intro volgens het uur van de bezoeker; zonder JavaScript blijft "Hallo"
+    const begroeting = document.querySelector(".hero-greeting");
+    const uur = new Date().getHours();
+
+    if (uur >= 5 && uur < 12) {
+        begroeting.textContent = "Goeiemorgen, ik ben";
+    } else if (uur >= 12 && uur < 18) {
+        begroeting.textContent = "Goeiemiddag, ik ben";
+    } else if (uur >= 18 && uur < 23) {
+        begroeting.textContent = "Goeienavond, ik ben";
+    } else {
+        begroeting.textContent = "Nog wakker? Ik ben";
+    }
 
     // Actieve link in de navigatie
     const secties = document.querySelectorAll("main section[id], footer[id]");
@@ -629,6 +655,36 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Jaartal in de footer altijd actueel houden
     document.querySelector("#copyright-year").textContent = new Date().getFullYear();
+
+    // Laatst bijgewerkt: GitHub Pages geeft de datum van de laatste publicatie mee,
+    // dus die hoeft niemand met de hand aan te passen
+    const bijgewerkt = document.querySelector("#last-updated");
+    const publicatieDatum = new Date(document.lastModified);
+
+    if (!isNaN(publicatieDatum)) {
+        bijgewerkt.textContent = publicatieDatum.toLocaleDateString("nl-BE", {
+            day: "numeric",
+            month: "long",
+            year: "numeric"
+        });
+        bijgewerkt.setAttribute("datetime", publicatieDatum.toISOString().slice(0, 10));
+    }
+
+    // Cv als pdf: de knop opent het afdrukvenster, waar je "Opslaan als pdf" kiest.
+    // style.css toont op papier alleen het cv. De titel wordt de voorgestelde bestandsnaam.
+    const paginaTitel = document.title;
+
+    document.querySelector(".cv-print").addEventListener("click", function () {
+        window.print();
+    });
+
+    window.addEventListener("beforeprint", function () {
+        document.title = "Cv Wesley Bogaerts";
+    });
+
+    window.addEventListener("afterprint", function () {
+        document.title = paginaTitel;
+    });
 
     // Contactformulier: versturen zonder de pagina te verlaten.
     // Zonder JavaScript post het formulier gewoon naar FormSubmit en komt de bezoeker terug.

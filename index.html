@@ -34,13 +34,13 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap">
 
-    <link rel="stylesheet" href="style.css?v=95">
-    <link rel="icon" href="favicon.ico?v=95" sizes="16x16 32x32 48x48">
+    <link rel="stylesheet" href="style.css?v=96">
+    <link rel="icon" href="favicon.ico?v=96" sizes="16x16 32x32 48x48">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
     <!-- In de head, zodat het thema al staat voor de pagina getekend wordt.
          De rest van script.js wacht zelf tot de HTML geladen is. -->
-    <script src="script.js?v=95"></script>
+    <script src="script.js?v=96"></script>
 </head>
 
 <body>
@@ -98,7 +98,7 @@
                 <!-- Schakelaar met maan en zon naast elkaar; het bolletje schuift onder het actieve thema.
                      Zonder JavaScript blijft het donkere thema staan; style.css verbergt de knop dan. -->
                 <button type="button" class="theme-toggle" role="switch" aria-checked="false"
-                    aria-label="Licht thema">
+                    aria-label="Licht thema" aria-keyshortcuts="t">
                     <span class="theme-toggle-thumb" aria-hidden="true"></span>
                     <i class="fa-solid fa-moon" aria-hidden="true"></i>
                     <i class="fa-solid fa-sun" aria-hidden="true"></i>
@@ -432,6 +432,17 @@
                     <h2 class="section-title">Mijn cv</h2>
                 </div>
 
+                <!-- Alleen op papier en in de pdf (zie @media print in style.css): wie ik ben en hoe je me bereikt -->
+                <div class="cv-print-header">
+                    <p class="cv-print-name">Wesley Bogaerts</p>
+                    <p>Student Full Stack &amp; AI Automation Developer <span aria-hidden="true">·</span> Balen</p>
+                    <p>
+                        +32 (0)472 25 42 48 <span aria-hidden="true">·</span> wesleybogaerts@hotmail.com
+                        <span aria-hidden="true">·</span> wesley-dev-tech.github.io/Portfolio
+                        <span aria-hidden="true">·</span> linkedin.com/in/wesley-bogaerts
+                    </p>
+                </div>
+
                 <article class="cv-card section-body">
                     <div class="card-header">
                         <div class="card-icon">
@@ -651,10 +662,18 @@
                         </div>
                     </div>
 
-                    <button type="button" class="read-more-toggle" aria-expanded="false" aria-controls="cv-more">
-                        <span>Lees meer</span>
-                        <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                    </button>
+                    <!-- Lees meer links, pdf rechts; de pdf-knop opent het afdrukvenster (zie script.js) -->
+                    <div class="cv-actions">
+                        <button type="button" class="read-more-toggle" aria-expanded="false" aria-controls="cv-more">
+                            <span>Lees meer</span>
+                            <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                        </button>
+
+                        <button type="button" class="cv-print">
+                            <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
+                            <span>Download als pdf</span>
+                        </button>
+                    </div>
                 </article>
             </div>
         </section>
@@ -1053,6 +1072,11 @@
                 <span aria-hidden="true">·</span>
                 <button type="button" class="privacy-open" aria-haspopup="dialog"
                     aria-controls="privacy-modal">Privacybeleid</button>
+            </p>
+
+            <!-- script.js vult de datum van de laatste publicatie in; dit is de terugval zonder JavaScript -->
+            <p class="last-updated">
+                Laatst bijgewerkt op <time id="last-updated" datetime="2026-10-25">25 oktober 2026</time>
             </p>
 
             <p class="slop-badge">

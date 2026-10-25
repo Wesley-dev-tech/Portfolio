@@ -661,11 +661,13 @@ h3 {
 
 /* Knoppen die alleen met JavaScript werken; vanaf de eerste weergave op hun plaats */
 :root:not(.js) .read-more-toggle,
-:root:not(.js) .theme-toggle {
+:root:not(.js) .theme-toggle,
+:root:not(.js) .cv-print {
     display: none;
 }
 
-.read-more-toggle {
+.read-more-toggle,
+.cv-print {
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -678,7 +680,8 @@ h3 {
     font-weight: 600;
 }
 
-.read-more-toggle:hover {
+.read-more-toggle:hover,
+.cv-print:hover {
     color: var(--accent-hover);
     text-decoration: underline;
     text-underline-offset: 4px;
@@ -691,6 +694,23 @@ h3 {
 
 .read-more-toggle[aria-expanded="true"] i {
     transform: rotate(180deg);
+}
+
+/* Onder het cv: Lees meer links, pdf rechts; op een smal scherm onder elkaar */
+.cv-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    column-gap: 24px;
+}
+
+.cv-print i {
+    font-size: .9rem;
+}
+
+/* Kop met naam en contactgegevens: alleen op papier (zie @media print onderaan) */
+.cv-print-header {
+    display: none;
 }
 
 /* Kaarten: iets lichter vlak dan de achtergrond, dunne rand, geen zware schaduw */
@@ -1847,6 +1867,12 @@ html.modal-is-open {
     text-align: center;
 }
 
+.last-updated {
+    margin-top: 6px;
+    font-size: .8rem;
+    text-align: center;
+}
+
 /* Externe badge onder de copyrightregel */
 .slop-badge {
     margin: 12px 0 0;
@@ -2113,4 +2139,120 @@ html.modal-is-open {
 /* Kopje waar een link in het privacybeleid naartoe springt: wat ruimte boven laten */
 #privacy-derden {
     scroll-margin-top: 24px;
+}
+
+/* Afdrukken en "Opslaan als pdf": alleen het cv, op wit papier in het lichte palet,
+   met naam en contactgegevens bovenaan. Geldt ook voor Ctrl+P op de hele pagina. */
+@page {
+    size: A4;
+    margin: 14mm;
+}
+
+@media print {
+    :root,
+    :root[data-theme="light"] {
+        --bg-primary: #fff;
+        --bg-secondary: #fff;
+        --bg-card: #fff;
+        --text-color: #1f1d1a;
+        --text-muted: #5c574e;
+        --accent: #9c4b26;
+        --border-color: #ddd5c8;
+        --border-strong: #857e71;
+    }
+
+    /* Kleinere basismaat (alle maten in rem schalen mee), zodat het cv op twee pagina's past */
+    html {
+        color-scheme: light;
+        background: #fff;
+        font-size: 12px;
+    }
+
+    body {
+        background: #fff;
+    }
+
+    /* Alles behalve het cv verbergen. De id's en klassen erbij, omdat bv. .btn van de
+       terug-naar-bovenknop anders sterker is dan de algemene regel. */
+    body > :not(main),
+    .site-header,
+    .footer,
+    .dialog,
+    #back-to-top,
+    main > :not(#cv),
+    #cv .section-head,
+    #cv .cv-actions,
+    #cv .card-header {
+        display: none;
+    }
+
+    #cv,
+    #cv .container {
+        padding: 0;
+        max-width: none;
+    }
+
+    /* Geen scheidingslijn boven de sectie; de kop met mijn naam heeft er al een */
+    #cv > .container::before {
+        content: none;
+    }
+
+    .cv-print-header {
+        display: block;
+        margin-bottom: 16px;
+        padding-bottom: 12px;
+        border-bottom: 2px solid var(--accent);
+    }
+
+    .cv-print-header p {
+        margin: 0;
+        color: var(--text-muted);
+        font-size: 9.5pt;
+    }
+
+    .cv-print-header .cv-print-name {
+        color: var(--text-color);
+        font-size: 20pt;
+        font-weight: 600;
+        line-height: 1.2;
+    }
+
+    /* Kaart zonder rand en zonder animatie; de ingeklapte tekst helemaal open */
+    #cv .cv-card {
+        padding: 0;
+        border: 0;
+        opacity: 1;
+        transform: none;
+    }
+
+    .js #cv .read-more:not(.is-open) {
+        grid-template-rows: 1fr;
+        mask-image: none;
+        transition: none;
+    }
+
+    #cv .read-more-inner {
+        min-height: 0;
+        padding-top: 12px;
+    }
+
+    /* Werkervaring en de rechterkolom naast elkaar, zoals op desktop */
+    .cv-columns {
+        grid-template-columns: minmax(0, 11fr) minmax(0, 6fr);
+        gap: 14px;
+    }
+
+    .cv-panel {
+        padding: 14px;
+    }
+
+    /* Geen functie of opleiding die over twee pagina's gesplitst wordt */
+    .cv-item,
+    .cv-group {
+        break-inside: avoid;
+    }
+
+    .cv-panel-title {
+        break-after: avoid;
+    }
 }
