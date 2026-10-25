@@ -34,13 +34,13 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap">
 
-    <link rel="stylesheet" href="style.css?v=97">
-    <link rel="icon" href="favicon.ico?v=97" sizes="16x16 32x32 48x48">
+    <link rel="stylesheet" href="style.css?v=98">
+    <link rel="icon" href="favicon.ico?v=98" sizes="16x16 32x32 48x48">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
     <!-- In de head, zodat het thema al staat voor de pagina getekend wordt.
          De rest van script.js wacht zelf tot de HTML geladen is. -->
-    <script src="script.js?v=97"></script>
+    <script src="script.js?v=98"></script>
 </head>
 
 <body>
@@ -52,7 +52,7 @@
 
             <a class="logo" href="#home">
                 <span class="logo-mark" aria-hidden="true">WB</span>
-                <span><span class="logo-prefix">Portfolio - </span>Wesley Bogaerts</span>
+                <span class="logo-name"><span class="logo-prefix">Portfolio - </span>Wesley Bogaerts</span>
             </a>
 
             <ul class="nav-links d-xl-flex" id="nav-links">
@@ -95,6 +95,12 @@
 
             <!-- Op desktop rechts naast de links, op mobiel naast elkaar rechts van het logo -->
             <div class="nav-actions">
+                <!-- Kort overzicht voor recruiters (venster onderaan de pagina); zonder JavaScript verborgen -->
+                <button type="button" class="icon-button quick-open" aria-haspopup="dialog" aria-controls="quick-modal"
+                    aria-label="In 30 seconden" title="In 30 seconden">
+                    <i class="fa-solid fa-bolt" aria-hidden="true"></i>
+                </button>
+
                 <!-- Schakelaar met maan en zon naast elkaar; het bolletje schuift onder het actieve thema.
                      Zonder JavaScript blijft het donkere thema staan; style.css verbergt de knop dan. -->
                 <button type="button" class="theme-toggle" role="switch" aria-checked="false"
@@ -160,12 +166,6 @@
                             <i class="fa-solid fa-envelope" aria-hidden="true"></i>
                             Neem contact op
                         </a>
-
-                        <!-- Kort overzicht voor recruiters; opent het venster onderaan de pagina -->
-                        <button type="button" class="quick-open" aria-haspopup="dialog" aria-controls="quick-modal">
-                            <i class="fa-solid fa-bolt" aria-hidden="true"></i>
-                            <span>In 30 seconden</span>
-                        </button>
                     </div>
                 </div>
 
