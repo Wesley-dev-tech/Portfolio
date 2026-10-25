@@ -913,7 +913,7 @@ h3 {
 
 /* Naast elkaar pas vanaf 1400px; smaller wordt de rechterkolom te krap.
    De verhouding is zo gekozen dat beide kolommen van nature bijna even hoog zijn
-   (gemeten: 7px verschil), zodat er geen lege ruimte of uitgerekte tussenruimte nodig is.
+   (gemeten: 9px verschil), zodat er geen lege ruimte of uitgerekte tussenruimte nodig is.
    Komen er tags of functies bij, meet dit dan opnieuw. */
 @media (min-width: 1400px) {
     .cv-columns {
@@ -1057,6 +1057,13 @@ h3 {
 /* Links uitgelijnd, onder het kopje; de gedeelde tagstijl centreert */
 .cv-card .tag-list {
     justify-content: flex-start;
+}
+
+/* Talen en kenmerken in dezelfde rustige tekst als de taken, zodat ze niet vet ogen */
+.cv-languages,
+.cv-traits {
+    color: var(--text-muted);
+    font-size: .925rem;
 }
 
 .cv-languages {
