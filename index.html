@@ -34,13 +34,13 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap">
 
-    <link rel="stylesheet" href="style.css?v=96">
-    <link rel="icon" href="favicon.ico?v=96" sizes="16x16 32x32 48x48">
+    <link rel="stylesheet" href="style.css?v=97">
+    <link rel="icon" href="favicon.ico?v=97" sizes="16x16 32x32 48x48">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
     <!-- In de head, zodat het thema al staat voor de pagina getekend wordt.
          De rest van script.js wacht zelf tot de HTML geladen is. -->
-    <script src="script.js?v=96"></script>
+    <script src="script.js?v=97"></script>
 </head>
 
 <body>
@@ -160,6 +160,12 @@
                             <i class="fa-solid fa-envelope" aria-hidden="true"></i>
                             Neem contact op
                         </a>
+
+                        <!-- Kort overzicht voor recruiters; opent het venster onderaan de pagina -->
+                        <button type="button" class="quick-open" aria-haspopup="dialog" aria-controls="quick-modal">
+                            <i class="fa-solid fa-bolt" aria-hidden="true"></i>
+                            <span>In 30 seconden</span>
+                        </button>
                     </div>
                 </div>
 
@@ -867,6 +873,61 @@
                         Bekijk code
                     </a>
                 </div>
+            </div>
+        </div>
+    </dialog>
+
+    <!-- Wie ik ben in 30 seconden, voor recruiters; opent via de knop in de intro -->
+    <dialog id="quick-modal" class="dialog quick-modal" tabindex="-1" aria-labelledby="quick-title">
+        <div class="dialog-content">
+            <button type="button" class="dialog-close" aria-label="Sluiten" title="Sluiten">
+                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+            </button>
+
+            <div class="project-icon">
+                <i class="fa-solid fa-bolt" aria-hidden="true"></i>
+            </div>
+
+            <h2 id="quick-title">Wesley in 30 seconden</h2>
+
+            <dl class="quick-facts">
+                <div>
+                    <dt><i class="fa-solid fa-user" aria-hidden="true"></i> Wie</dt>
+                    <dd>Student Full Stack &amp; AI Automation Developer aan SyntraPXL in Genk</dd>
+                </div>
+                <div>
+                    <dt><i class="fa-solid fa-briefcase" aria-hidden="true"></i> Sterkte</dt>
+                    <dd>Meer dan vijftien jaar ervaring in administratie en finance: ik ken de processen
+                        achter de software die ik bouw</dd>
+                </div>
+                <div>
+                    <dt><i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i> Kennis</dt>
+                    <dd>
+                        <ul class="tag-list">
+                            <li>HTML</li>
+                            <li>CSS</li>
+                            <li>Databasenormalisatie</li>
+                            <li>MySQL</li>
+                            <li>Agile &amp; Scrum</li>
+                            <li>JavaScript</li>
+                        </ul>
+                    </dd>
+                </div>
+                <div>
+                    <dt><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Waar</dt>
+                    <dd>Balen, in de Kempen</dd>
+                </div>
+            </dl>
+
+            <div class="project-button d-flex flex-wrap gap-3">
+                <button type="button" class="btn quick-print">
+                    <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
+                    Download mijn cv
+                </button>
+                <a class="btn btn-secondary quick-contact" href="#contact">
+                    <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                    Neem contact op
+                </a>
             </div>
         </div>
     </dialog>

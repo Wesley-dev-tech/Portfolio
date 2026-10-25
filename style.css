@@ -662,12 +662,14 @@ h3 {
 /* Knoppen die alleen met JavaScript werken; vanaf de eerste weergave op hun plaats */
 :root:not(.js) .read-more-toggle,
 :root:not(.js) .theme-toggle,
-:root:not(.js) .cv-print {
+:root:not(.js) .cv-print,
+:root:not(.js) .quick-open {
     display: none;
 }
 
 .read-more-toggle,
-.cv-print {
+.cv-print,
+.quick-open {
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -681,7 +683,8 @@ h3 {
 }
 
 .read-more-toggle:hover,
-.cv-print:hover {
+.cv-print:hover,
+.quick-open:hover {
     color: var(--accent-hover);
     text-decoration: underline;
     text-underline-offset: 4px;
@@ -704,8 +707,15 @@ h3 {
     column-gap: 24px;
 }
 
-.cv-print i {
+.cv-print i,
+.quick-open i {
     font-size: .9rem;
+}
+
+/* In de intro even hoog als de knoppen ernaast, zodat de tekst op dezelfde lijn staat */
+.quick-open {
+    min-height: 52px;
+    margin-top: 0;
 }
 
 /* Kop met naam en contactgegevens: alleen op papier (zie @media print onderaan) */
@@ -1538,15 +1548,17 @@ html.modal-is-open {
 }
 
 /* Zelfde opbouw als de projectkaart: icoon, titel, screenshot en tekst onder elkaar,
-   alles gecentreerd */
-.project-modal .dialog-content {
+   alles gecentreerd. Het venster In 30 seconden volgt dezelfde opbouw. */
+.project-modal .dialog-content,
+.quick-modal .dialog-content {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
 }
 
-.project-modal .project-icon {
+.project-modal .project-icon,
+.quick-modal .project-icon {
     width: 56px;
     height: 56px;
     margin-bottom: 16px;
@@ -1898,6 +1910,68 @@ html.modal-is-open {
 
 .privacy-open:hover {
     color: var(--accent);
+}
+
+/* In 30 seconden: smal venster met vier korte regels, label links en tekst rechts */
+.quick-modal {
+    width: min(560px, calc(100% - 32px));
+}
+
+.quick-facts {
+    display: grid;
+    width: 100%;
+    max-width: 440px;
+    margin: 0 0 24px;
+    text-align: left;
+}
+
+.quick-facts div {
+    display: grid;
+    grid-template-columns: 100px minmax(0, 1fr);
+    gap: 12px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.quick-facts div:first-child {
+    padding-top: 0;
+}
+
+.quick-facts dt {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    align-self: start;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: .75rem;
+    font-weight: 500;
+    line-height: 1.9rem;
+}
+
+.quick-facts dt i {
+    width: 14px;
+    color: var(--accent);
+    text-align: center;
+}
+
+.quick-facts dd {
+    margin: 0;
+    font-size: .95rem;
+}
+
+/* Links uitgelijnd naast het label; de gedeelde tagstijl centreert */
+.quick-facts .tag-list {
+    justify-content: flex-start;
+    padding-top: 4px;
+}
+
+/* Smalle gsm's: label boven de tekst */
+@media (max-width: 399.98px) {
+    .quick-facts div {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 4px;
+    }
 }
 
 /* Privacybeleid: smaller dan het projectvenster, met links uitgelijnde leestekst */

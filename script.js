@@ -535,6 +535,25 @@ document.addEventListener("DOMContentLoaded", function () {
         openVenster(document.querySelector("#privacy-modal"), privacyKnop);
     });
 
+    // In 30 seconden: kort overzicht voor recruiters, via de knop in de intro
+    const snelKnop = document.querySelector(".quick-open");
+    const snelVenster = document.querySelector("#quick-modal");
+
+    snelKnop.addEventListener("click", function () {
+        openVenster(snelVenster, snelKnop);
+    });
+
+    // Eerst het venster sluiten; daarna springt de link naar het contactformulier
+    snelVenster.querySelector(".quick-contact").addEventListener("click", function () {
+        snelVenster.close();
+    });
+
+    // Zelfde pdf als de knop onder het cv (zie drukCvAf verderop)
+    snelVenster.querySelector(".quick-print").addEventListener("click", function () {
+        snelVenster.close();
+        drukCvAf();
+    });
+
     // Links binnen het privacybeleid scrollen in het venster zelf naar het juiste stukje,
     // zonder het adres in de adresbalk te veranderen
     document.querySelectorAll(".privacy-jump").forEach(function (link) {
@@ -672,11 +691,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Cv als pdf: de knop opent het afdrukvenster, waar je "Opslaan als pdf" kiest.
     // style.css toont op papier alleen het cv. De titel wordt de voorgestelde bestandsnaam.
+    // Ook de knop in het venster In 30 seconden gebruikt deze functie.
     const paginaTitel = document.title;
 
-    document.querySelector(".cv-print").addEventListener("click", function () {
+    function drukCvAf() {
         window.print();
-    });
+    }
+
+    document.querySelector(".cv-print").addEventListener("click", drukCvAf);
 
     window.addEventListener("beforeprint", function () {
         document.title = "Cv Wesley Bogaerts";
