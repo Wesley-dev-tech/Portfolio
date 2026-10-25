@@ -40,7 +40,7 @@ The light theme uses warm off-white "paper" tones, near-black text and a deeper 
 
 All colors, radii and spacing live as CSS variables at the top of `style.css`. Type is set in Schibsted Grotesk, with IBM Plex Mono for small technical details such as section numbers, labels and the scrolling text bar.
 
-The CSS and JavaScript URLs in `index.html` share one version query string (`?v=94`). Raise both numbers together after a change so browsers load the new files.
+The CSS and JavaScript URLs in `index.html` share one version query string (`?v=95`). Raise both numbers together after a change so browsers load the new files.
 
 ## How to View
 
@@ -87,7 +87,6 @@ HTML, CSS and JavaScript are strictly separated: no inline scripts or styles, no
 - `style.css`: responsive styling, with the dark theme on `:root` and the light theme on `:root[data-theme="light"]`.
 - `script.js`: loaded in the `<head>` so the saved theme (or the default dark theme) is applied before the page is drawn (no flash); everything else waits for `DOMContentLoaded`. Also handles the theme toggle, mobile navigation and active link, scroll progress bar, read-more toggles, scroll animations, shared pagination for skills and projects, project sorting, the project and privacy dialogs, and scroll-to-top interactions. The project cards are generated from the `projecten` list in this file. To add a project, put it at the bottom of that list with a short `teaser` for the card, a longer `beschrijving` for the modal, and a screenshot in `images/`. Add an optional `afbeeldingLicht` for a light-theme screenshot and `demoLicht` for a light-theme demo link.
 - `images/`: screenshots of each project for the detail modal (with `-dark` and `-light` versions where a project has a light theme), `portfolio-dark.webp` and `portfolio-light.webp` for this portfolio, the posters `poster-dark` and `poster-light` (about) and `poster-opleiding-dark` and `poster-opleiding-light` (education) as webp at `-400` and `-800`, the profile photos `wesley-bogaerts-dark` and `wesley-bogaerts-light` as webp at `-420` and `-840`, and the social preview image `og-image.jpg` (dark theme). The high-resolution PNG originals of the posters and photos are no longer in the repo; restore them from Git history with `git checkout aceddad -- images/<name>.png` when you need to export new sizes.
-- `404.html`, `404.css` and `404.js`: the "page not found" page in the site colors, with its own small stylesheet and a script that applies the saved theme. GitHub Pages serves it for any unknown address under `/Portfolio/`, so all its links are absolute. Raise the `?v=` on its CSS and JS after a change.
 - `sitemap.xml`: the sitemap for search engines; update `lastmod` after a bigger change. A `robots.txt` only works at the root of `wesley-dev-tech.github.io`, so there is none in this repo.
 - `favicon.ico` and `apple-touch-icon.png`: the site icon (a "WB" monogram in the site colors) at 16, 32, 48 and 180 px.
 
