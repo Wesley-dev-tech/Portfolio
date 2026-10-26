@@ -1908,17 +1908,6 @@ html.modal-is-open {
     text-align: center;
 }
 
-/* Externe badge onder de copyrightregel */
-.slop-badge {
-    margin: 12px 0 0;
-    text-align: center;
-}
-
-.slop-badge img {
-    display: inline-block;
-    vertical-align: middle;
-}
-
 /* Knop die eruitziet als een onderlijnde link in de lopende tekst */
 .privacy-open {
     padding: 4px 0;
