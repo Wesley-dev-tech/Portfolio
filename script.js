@@ -731,22 +731,21 @@ document.addEventListener("DOMContentLoaded", function () {
         toonContactStatus("", true);
 
         try {
-            const antwoord = await fetch(ajaxAdres, {
+            // no-cors: FormSubmit stuurt bij de code uit de activatiemail geen CORS-toestemming mee.
+            // De browser blokkeerde daardoor het antwoord en toonde een fout, terwijl het bericht
+            // wel aankwam. Het antwoord lezen we niet meer; fetch faalt alleen nog als er geen
+            // verbinding is.
+            await fetch(ajaxAdres, {
                 method: "POST",
-                headers: { Accept: "application/json" },
+                mode: "no-cors",
                 body: new FormData(contactFormulier)
             });
-            const resultaat = await antwoord.json().catch(function () { return {}; });
-
-            if (!antwoord.ok || resultaat.success === "false" || resultaat.success === false) {
-                throw new Error(resultaat.message || "Versturen mislukt");
-            }
 
             contactFormulier.reset();
             pasBerichtHoogteAan();
             toonContactStatus("Bedankt! Je bericht is verstuurd, ik antwoord zo snel mogelijk.", true);
         } catch (fout) {
-            toonContactStatus("Versturen lukte niet. Mail me rechtstreeks of bel me even.", false);
+            toonContactStatus("Versturen lukte niet. Controleer je internetverbinding of bel me even.", false);
         } finally {
             verstuurKnop.disabled = false;
             knopTekst.textContent = "Verstuur bericht";
