@@ -535,6 +535,13 @@ document.addEventListener("DOMContentLoaded", function () {
         openVenster(document.querySelector("#privacy-modal"), privacyKnop);
     });
 
+    // Link naar het contactformulier: eerst het venster sluiten, daarna springt de link naar de footer
+    document.querySelectorAll(".privacy-close").forEach(function (link) {
+        link.addEventListener("click", function () {
+            link.closest("dialog").close();
+        });
+    });
+
     // Links binnen het privacybeleid scrollen in het venster zelf naar het juiste stukje,
     // zonder het adres in de adresbalk te veranderen
     document.querySelectorAll(".privacy-jump").forEach(function (link) {
