@@ -690,7 +690,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Contactformulier: versturen zonder de pagina te verlaten.
-    // Zonder JavaScript post het formulier gewoon naar FormSubmit en ziet de bezoeker verzonden.html.
+    // Zonder JavaScript post het formulier gewoon naar FormSubmit en komt de bezoeker terug.
     const contactFormulier = document.querySelector("#contact-form");
     const contactStatus = document.querySelector("#contact-status");
 
@@ -719,66 +719,37 @@ document.addEventListener("DOMContentLoaded", function () {
         contactStatus.classList.toggle("is-fout", !gelukt);
     }
 
-    // Versturen in een onzichtbaar venster: een gewone formulierpost heeft geen CORS nodig,
-    // dus de browser blokkeert niets. FormSubmit stuurt daarna door naar verzonden.html;
-    // zodra die in het venster laadt, is het bericht verstuurd.
-    const verzendVenster = document.querySelector("#contact-verzending");
-    const verstuurKnop = contactFormulier.querySelector('button[type="submit"]');
-    const knopTekst = verstuurKnop.querySelector("span");
-    let wachtTimer = null;
+    contactFormulier.addEventListener("submit", async function (gebeurtenis) {
+        gebeurtenis.preventDefault();
 
-    contactFormulier.target = verzendVenster.name;
+        const verstuurKnop = contactFormulier.querySelector('button[type="submit"]');
+        const knopTekst = verstuurKnop.querySelector("span");
+        const ajaxAdres = contactFormulier.action.replace("formsubmit.co/", "formsubmit.co/ajax/");
 
-    function rondVerzendingAf(gelukt) {
-        clearTimeout(wachtTimer);
-        wachtTimer = null;
-        verstuurKnop.disabled = false;
-        knopTekst.textContent = "Verstuur bericht";
+        verstuurKnop.disabled = true;
+        knopTekst.textContent = "Bezig met versturen…";
+        toonContactStatus("", true);
 
-        if (gelukt) {
+        try {
+            const antwoord = await fetch(ajaxAdres, {
+                method: "POST",
+                headers: { Accept: "application/json" },
+                body: new FormData(contactFormulier)
+            });
+            const resultaat = await antwoord.json().catch(function () { return {}; });
+
+            if (!antwoord.ok || resultaat.success === "false" || resultaat.success === false) {
+                throw new Error(resultaat.message || "Versturen mislukt");
+            }
+
             contactFormulier.reset();
             pasBerichtHoogteAan();
             toonContactStatus("Bedankt! Je bericht is verstuurd, ik antwoord zo snel mogelijk.", true);
-        } else {
-            toonContactStatus("Versturen duurde te lang. Probeer het opnieuw of bel me even.", false);
-        }
-    }
-
-    // Geen preventDefault: de browser verstuurt het formulier zelf, in het venster.
-    // De knop gaat pas na het versturen uit, anders telt de klik niet mee.
-    contactFormulier.addEventListener("submit", function (gebeurtenis) {
-        if (!navigator.onLine) {
-            gebeurtenis.preventDefault();
-            toonContactStatus("Je bent offline. Controleer je internetverbinding of bel me even.", false);
-            return;
-        }
-
-        toonContactStatus("", true);
-        knopTekst.textContent = "Bezig met versturen…";
-        setTimeout(function () {
-            verstuurKnop.disabled = true;
-        });
-
-        // Komt er na 20 seconden niets terug, dan blijft de knop niet eeuwig hangen
-        wachtTimer = setTimeout(function () {
-            rondVerzendingAf(false);
-        }, 20000);
-    });
-
-    // Gelukt als de bedankpagina in het venster staat. Die komt van deze site, dus het adres
-    // is leesbaar; een pagina van FormSubmit zelf niet, en die telt dus niet als verstuurd.
-    // Het lege venster laadt ook bij het openen van de pagina; dat negeren we.
-    verzendVenster.addEventListener("load", function () {
-        if (!wachtTimer) {
-            return;
-        }
-
-        try {
-            if (verzendVenster.contentWindow.location.pathname.endsWith("/verzonden.html")) {
-                rondVerzendingAf(true);
-            }
         } catch (fout) {
-            // Andere website in het venster: wachten op de doorverwijzing of de tijdslimiet
+            toonContactStatus("Versturen lukte niet. Mail me rechtstreeks of bel me even.", false);
+        } finally {
+            verstuurKnop.disabled = false;
+            knopTekst.textContent = "Verstuur bericht";
         }
     });
 });
