@@ -1745,6 +1745,32 @@ html.modal-is-open {
     justify-self: start;
 }
 
+/* Onzichtbaar venster waarin script.js het formulier verstuurt */
+.contact-frame {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 0;
+    visibility: hidden;
+}
+
+/* Bedankpagina na het formulier (verzonden.html), vooral voor bezoekers zonder JavaScript */
+.sent-page {
+    display: grid;
+    min-height: 100vh;
+    place-items: center;
+    padding: 24px;
+}
+
+.sent-card {
+    max-width: 480px;
+}
+
+.sent-card p {
+    margin: 16px 0 28px;
+    color: var(--text-muted);
+}
+
 /* Honeypot voor spambots, buiten beeld */
 .contact-honey {
     position: absolute;
