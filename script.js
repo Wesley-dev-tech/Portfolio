@@ -746,23 +746,14 @@ document.addEventListener("DOMContentLoaded", function () {
             const resultaat = await antwoord.json().catch(function () { return {}; });
 
             if (!antwoord.ok || resultaat.success !== true) {
-                throw new Error("Web3Forms " + antwoord.status + ": " + (resultaat.message || "geen uitleg"));
+                throw new Error(resultaat.message || "Versturen mislukt");
             }
 
             contactFormulier.reset();
             pasBerichtHoogteAan();
             toonContactStatus("Bedankt! Je bericht is verstuurd, ik antwoord zo snel mogelijk.", true);
         } catch (fout) {
-            // Tijdelijk: de reden erbij tonen, om het probleem met versturen op te sporen
-            let reden = fout.message;
-
-            if (fout.name === "AbortError") {
-                reden = "geen antwoord binnen 20 seconden";
-            } else if (fout.name === "TypeError") {
-                reden = "geen verbinding met Web3Forms";
-            }
-
-            toonContactStatus("Versturen lukte niet. Probeer het opnieuw of bel me even. (" + reden + ")", false);
+            toonContactStatus("Versturen lukte niet. Probeer het opnieuw of bel me even.", false);
         } finally {
             clearTimeout(wachtTimer);
             verstuurKnop.disabled = false;
