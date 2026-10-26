@@ -271,7 +271,7 @@ h3 {
     transform-origin: left;
 }
 
-/* Knop In 30 seconden, themaknop en menuknop rechts in de header */
+/* Themaknop en menuknop rechts in de header */
 .nav-actions {
     display: flex;
     flex-shrink: 0;
@@ -358,12 +358,6 @@ h3 {
     display: none;
 }
 
-/* In 30 seconden: zelfde vierkante knop als het menu, met een koperen bliksem */
-.quick-open {
-    color: var(--accent);
-    font-size: 1rem;
-}
-
 /* Desktop: links rechts uitgelijnd, de themaknop daarachter na een dunne scheidingslijn */
 @media (min-width: 1200px) {
     .nav-links {
@@ -381,11 +375,6 @@ h3 {
         width: 76px;
         height: 40px;
         font-size: .9rem;
-    }
-
-    .quick-open {
-        width: 40px;
-        height: 40px;
     }
 }
 
@@ -442,19 +431,6 @@ h3 {
     --bs-btn-disabled-color: var(--text-color);
     --bs-btn-disabled-bg: transparent;
     --bs-btn-disabled-border-color: var(--text-color);
-}
-
-/* Derde knopstijl: koperen rand en tekst, vult zich bij hover. Voor In 30 seconden in de intro. */
-.btn-accent-outline {
-    --bs-btn-color: var(--accent);
-    --bs-btn-bg: transparent;
-    --bs-btn-border-color: var(--accent);
-    --bs-btn-hover-color: var(--bg-primary);
-    --bs-btn-hover-bg: var(--accent);
-    --bs-btn-hover-border-color: var(--accent);
-    --bs-btn-active-color: var(--bg-primary);
-    --bs-btn-active-bg: var(--accent-hover);
-    --bs-btn-active-border-color: var(--accent-hover);
 }
 
 /* Intro */
@@ -694,7 +670,6 @@ h3 {
 /* Knoppen die alleen met JavaScript werken; vanaf de eerste weergave op hun plaats */
 :root:not(.js) .read-more-toggle,
 :root:not(.js) .theme-toggle,
-:root:not(.js) [aria-controls="quick-modal"],
 :root:not(.js) .cv-pdf {
     display: none;
 }
@@ -1571,17 +1546,15 @@ html.modal-is-open {
 }
 
 /* Zelfde opbouw als de projectkaart: icoon, titel, screenshot en tekst onder elkaar,
-   alles gecentreerd. Het venster In 30 seconden volgt dezelfde opbouw. */
-.project-modal .dialog-content,
-.quick-modal .dialog-content {
+   alles gecentreerd */
+.project-modal .dialog-content {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
 }
 
-.project-modal .project-icon,
-.quick-modal .project-icon {
+.project-modal .project-icon {
     width: 56px;
     height: 56px;
     margin-bottom: 16px;
@@ -1962,65 +1935,6 @@ html.modal-is-open {
     color: var(--accent);
 }
 
-/* In 30 seconden: een korte pitch in secties. De openingszin groter,
-   de vraag onderaan met een koperen lijn, zodat recruiters die twee eerst zien. */
-.quick-modal {
-    width: min(580px, calc(100% - 32px));
-}
-
-.quick-pitch {
-    max-width: 470px;
-    margin: 0 0 28px;
-    color: var(--text-muted);
-    text-align: left;
-}
-
-.quick-pitch p {
-    margin: 0;
-}
-
-.quick-pitch .quick-pitch-lead {
-    margin-bottom: 24px;
-}
-
-.quick-pitch-lead {
-    color: var(--text-color);
-    font-size: 1.15rem;
-    line-height: 1.55;
-}
-
-.quick-pitch-part + .quick-pitch-part {
-    margin-top: 18px;
-}
-
-.quick-pitch-part h3 {
-    margin: 0 0 4px;
-    line-height: 1.6;
-}
-
-.quick-pitch-ask {
-    padding-left: 16px;
-    border-left: 2px solid var(--accent);
-}
-
-.quick-pitch-ask p {
-    color: var(--text-color);
-}
-
-/* Rustige link onder de knoppen: wie eerst bewijs wil zien, gaat naar de projecten */
-.quick-projects {
-    margin-top: 20px;
-    color: var(--accent);
-    font-weight: 500;
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 5px;
-}
-
-.quick-projects:hover {
-    color: var(--accent-hover);
-}
-
 /* Privacybeleid: smaller dan het projectvenster, met links uitgelijnde leestekst */
 .privacy-modal {
     width: min(680px, calc(100% - 32px));
@@ -2250,7 +2164,7 @@ html.modal-is-open {
     }
 
     .hero-actions > .btn {
-        width: 260px;
+        width: 220px;
     }
 
     .project-button > .btn {

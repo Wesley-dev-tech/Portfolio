@@ -35,19 +35,19 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap">
 
-    <link rel="stylesheet" href="style.css?v=109">
-    <link rel="icon" href="favicon.ico?v=109" sizes="16x16 32x32 48x48">
+    <link rel="stylesheet" href="style.css?v=110">
+    <link rel="icon" href="favicon.ico?v=110" sizes="16x16 32x32 48x48">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
     <!-- In de head, zodat het thema al staat voor de pagina getekend wordt.
          De rest van script.js wacht zelf tot de HTML geladen is. -->
-    <script src="script.js?v=109"></script>
+    <script src="script.js?v=110"></script>
 
     <!-- jsPDF en mijn eigen script dat er de cv-pdf mee tekent; defer laadt ze zonder de pagina op te houden -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
         integrity="sha384-JcnsjUPPylna1s1fvi1u12X5qjY5OL56iySh75FdtrwhO/SWXgMjoVqcKyIIWOLk" crossorigin="anonymous"
         defer></script>
-    <script src="cv-pdf.js?v=109" defer></script>
+    <script src="cv-pdf.js?v=110" defer></script>
 </head>
 
 <body>
@@ -102,12 +102,6 @@
 
             <!-- Op desktop rechts naast de links, op mobiel naast elkaar rechts van het logo -->
             <div class="nav-actions">
-                <!-- Kort overzicht voor recruiters (venster onderaan de pagina); zonder JavaScript verborgen -->
-                <button type="button" class="icon-button quick-open" aria-haspopup="dialog" aria-controls="quick-modal"
-                    aria-label="In 30 seconden" title="In 30 seconden">
-                    <i class="fa-solid fa-bolt" aria-hidden="true"></i>
-                </button>
-
                 <!-- Schakelaar met maan en zon naast elkaar; het bolletje schuift onder het actieve thema.
                      Zonder JavaScript blijft het donkere thema staan; style.css verbergt de knop dan. -->
                 <button type="button" class="theme-toggle" role="switch" aria-checked="false"
@@ -174,13 +168,6 @@
                             <i class="fa-solid fa-envelope" aria-hidden="true"></i>
                             Neem contact op
                         </a>
-
-                        <!-- Zelfde venster als de bliksemknop in de header, maar hier met volledige uitleg -->
-                        <button type="button" class="btn btn-accent-outline" aria-haspopup="dialog"
-                            aria-controls="quick-modal">
-                            <i class="fa-solid fa-bolt" aria-hidden="true"></i>
-                            Wesley in 30 seconden
-                        </button>
                     </div>
                 </div>
 
@@ -895,69 +882,6 @@
                     </a>
                 </div>
             </div>
-        </div>
-    </dialog>
-
-    <!-- Wie ik ben in 30 seconden, voor recruiters; opent via de knop in de intro -->
-    <dialog id="quick-modal" class="dialog quick-modal" tabindex="-1" aria-labelledby="quick-title">
-        <div class="dialog-content">
-            <button type="button" class="dialog-close" aria-label="Sluiten" title="Sluiten">
-                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
-            </button>
-
-            <div class="project-icon">
-                <i class="fa-solid fa-bolt" aria-hidden="true"></i>
-            </div>
-
-            <h2 id="quick-title">Wesley in 30 seconden</h2>
-
-            <!-- Pitch van ongeveer 30 seconden: eerst wat ik wil bouwen, dan wat ik meebreng,
-                 waar ik naartoe wil en wat ik zoek -->
-            <div class="quick-pitch">
-                <p class="quick-pitch-lead">
-                    Ik bouw applicaties die werken voor iedereen die ze gebruikt, van front-end tot back-end.
-                </p>
-
-                <div class="quick-pitch-part">
-                    <h3 class="card-label">Wat ik meebreng</h3>
-                    <p>
-                        Ruim tien jaar werkte ik in de administratie en vijf jaar in de boekhouding. Daar leerde ik
-                        logisch nadenken en oog hebben voor details. En ik ken de processen in een bedrijf van
-                        binnenuit. Dat is het begin van goede software.
-                    </p>
-                </div>
-
-                <div class="quick-pitch-part">
-                    <h3 class="card-label">Waar ik naartoe wil</h3>
-                    <p>
-                        Ik groei tijdens mijn opleiding naar een Junior Developer die zelfstandig een volledige
-                        applicatie oplevert en met AI repetitieve taken uit processen automatiseert. AI blijft
-                        daarbij een hulpmiddel. Waarom mijn code werkt zoals ze werkt, kan ik zelf uitleggen.
-                    </p>
-                </div>
-
-                <div class="quick-pitch-part quick-pitch-ask">
-                    <h3 class="card-label">Wat ik zoek</h3>
-                    <p>
-                        Een vaste job als Junior Developer vanaf juni 2027, in de Kempen of Limburg, of hybride.
-                        Als freelancer bouw ik graag aan websites, webapplicaties en software op maat.
-                    </p>
-                </div>
-            </div>
-
-            <div class="project-button d-flex flex-wrap gap-3">
-                <!-- Zelfde pdf als onder het cv (cv-pdf.js) -->
-                <button type="button" class="btn cv-pdf">
-                    <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
-                    Download mijn cv
-                </button>
-                <a class="btn btn-secondary" href="#contact">
-                    <i class="fa-solid fa-envelope" aria-hidden="true"></i>
-                    Neem contact op
-                </a>
-            </div>
-
-            <a class="quick-projects" href="#projects">Of bekijk eerst mijn projecten</a>
         </div>
     </dialog>
 

@@ -1,20 +1,9 @@
 // Cv als pdf, getekend met jsPDF
 // De inhoud komt uit het cv in index.html en de kleuren uit style.css, dus de pdf volgt vanzelf
 // elke wijziging aan het cv en het thema dat de bezoeker gekozen heeft
-// pdf.save() maakt het bestand in de browser, zodat het meteen in de map Downloads komtS
+// pdf.save() maakt het bestand in de browser, zodat het meteen in de map Downloads komt
 document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll(".cv-pdf").forEach(function (knop) {
-        knop.addEventListener("click", function () {
-            // Vanuit het venster In 30 seconden: dat venster eerst sluiten
-            const venster = knop.closest("dialog");
-
-            if (venster) {
-                venster.close();
-            }
-
-            maakCvPdf();
-        });
-    });
+    document.querySelector(".cv-pdf").addEventListener("click", maakCvPdf);
 });
 
 // A4 in millimeter, met dezelfde verhouding tussen de kolommen als op de site (11 : 6)
