@@ -35,19 +35,19 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap">
 
-    <link rel="stylesheet" href="style.css?v=118">
-    <link rel="icon" href="favicon.ico?v=118" sizes="16x16 32x32 48x48">
+    <link rel="stylesheet" href="style.css?v=119">
+    <link rel="icon" href="favicon.ico?v=119" sizes="16x16 32x32 48x48">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
     <!-- In de head, zodat het thema al staat voor de pagina getekend wordt.
          De rest van script.js wacht zelf tot de HTML geladen is. -->
-    <script src="script.js?v=118"></script>
+    <script src="script.js?v=119"></script>
 
     <!-- jsPDF en mijn eigen script dat er de cv-pdf mee tekent; defer laadt ze zonder de pagina op te houden -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
         integrity="sha384-JcnsjUPPylna1s1fvi1u12X5qjY5OL56iySh75FdtrwhO/SWXgMjoVqcKyIIWOLk" crossorigin="anonymous"
         defer></script>
-    <script src="cv-pdf.js?v=118" defer></script>
+    <script src="cv-pdf.js?v=119" defer></script>
 </head>
 
 <body>
@@ -961,7 +961,7 @@
                 gebruik ik je naam, contactgegevens, bericht en eventueel je bedrijfsnaam alleen om je te antwoorden.
                 Ik deel ze met niemand en verwijder ze zodra ze niet meer nodig zijn.
                 Het contactformulier wordt verstuurd via
-                <a href="https://formsubmit.co/" target="_blank" rel="noopener noreferrer">FormSubmit</a>,
+                <a href="https://web3forms.com/privacy" target="_blank" rel="noopener noreferrer">Web3Forms</a>,
                 dat je bericht doorstuurt naar mijn mailbox.
                 WhatsApp en Messenger zijn diensten van Meta, met een eigen
                 <a href="https://www.facebook.com/privacy/policy/" target="_blank"
@@ -1000,16 +1000,18 @@
                         Stuur me gerust een bericht of bel even, ik hoor graag van je.
                     </p>
 
-                    <!-- Formulier via FormSubmit: werkt ook in de ingebouwde browser van Facebook,
-                         Instagram en Messenger, waar mailto-links vaak niets doen -->
-                    <form class="contact-form" id="contact-form"
-                        action="https://formsubmit.co/wesleybogaerts@hotmail.com" method="POST">
-                        <input type="hidden" name="_subject" value="Nieuw bericht via je portfolio">
-                        <input type="hidden" name="_template" value="table">
-                        <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_next" value="https://wesley-dev-tech.github.io/Portfolio/#contact">
-                        <!-- Honeypot: onzichtbaar voor mensen, spambots vullen het wel in -->
-                        <input type="text" name="_honey" class="contact-honey" tabindex="-1" autocomplete="off"
+                    <!-- Formulier via Web3Forms: de access key vervangt mijn mailadres, dat dus niet in de
+                         paginabron staat. Werkt ook in de ingebouwde browser van Facebook, Instagram en
+                         Messenger, waar mailto-links vaak niets doen -->
+                    <form class="contact-form" id="contact-form" action="https://api.web3forms.com/submit"
+                        method="POST">
+                        <input type="hidden" name="access_key" value="4e80ba01-21d3-4a91-b3dc-b2d17dbfe71a">
+                        <input type="hidden" name="subject" value="Nieuw bericht via je portfolio">
+                        <input type="hidden" name="from_name" value="Portfolio Wesley Bogaerts">
+                        <!-- Zonder JavaScript stuurt Web3Forms de bezoeker hierna terug naar de site -->
+                        <input type="hidden" name="redirect" value="https://wesley-dev-tech.github.io/Portfolio/#contact">
+                        <!-- Honeypot: onzichtbaar voor mensen, spambots vinken het wel aan -->
+                        <input type="checkbox" name="botcheck" class="contact-honey" tabindex="-1" autocomplete="off"
                             aria-hidden="true">
 
                         <!-- Verplichte velden: een koperen sterretje bij het label; het required-attribuut doet de controle -->

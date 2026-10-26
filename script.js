@@ -690,7 +690,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Contactformulier: versturen zonder de pagina te verlaten.
-    // Zonder JavaScript post het formulier gewoon naar FormSubmit en komt de bezoeker terug.
+    // Zonder JavaScript post het formulier gewoon naar Web3Forms en komt de bezoeker terug.
     const contactFormulier = document.querySelector("#contact-form");
     const contactStatus = document.querySelector("#contact-status");
 
@@ -724,21 +724,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const verstuurKnop = contactFormulier.querySelector('button[type="submit"]');
         const knopTekst = verstuurKnop.querySelector("span");
-        const ajaxAdres = contactFormulier.action.replace("formsubmit.co/", "formsubmit.co/ajax/");
 
         verstuurKnop.disabled = true;
         knopTekst.textContent = "Bezig met versturen…";
         toonContactStatus("", true);
 
+        // Na 20 seconden zonder antwoord breken we af, zodat de knop nooit blijft hangen
+        const afbreker = new AbortController();
+        const wachtTimer = setTimeout(function () {
+            afbreker.abort();
+        }, 20000);
+
         try {
-            const antwoord = await fetch(ajaxAdres, {
+            // Web3Forms staat verzoeken van andere websites toe en antwoordt altijd met JSON
+            const antwoord = await fetch(contactFormulier.action, {
                 method: "POST",
                 headers: { Accept: "application/json" },
-                body: new FormData(contactFormulier)
+                body: new FormData(contactFormulier),
+                signal: afbreker.signal
             });
             const resultaat = await antwoord.json().catch(function () { return {}; });
 
-            if (!antwoord.ok || resultaat.success === "false" || resultaat.success === false) {
+            if (!antwoord.ok || resultaat.success !== true) {
                 throw new Error(resultaat.message || "Versturen mislukt");
             }
 
@@ -746,8 +753,9 @@ document.addEventListener("DOMContentLoaded", function () {
             pasBerichtHoogteAan();
             toonContactStatus("Bedankt! Je bericht is verstuurd, ik antwoord zo snel mogelijk.", true);
         } catch (fout) {
-            toonContactStatus("Versturen lukte niet. Mail me rechtstreeks of bel me even.", false);
+            toonContactStatus("Versturen lukte niet. Probeer het opnieuw of bel me even.", false);
         } finally {
+            clearTimeout(wachtTimer);
             verstuurKnop.disabled = false;
             knopTekst.textContent = "Verstuur bericht";
         }
