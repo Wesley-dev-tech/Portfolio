@@ -365,8 +365,7 @@ document.addEventListener("DOMContentLoaded", function () {
             punten: "96 / 100",
             feedback: "Wauw Wesley, echt een topexamen afgeleverd! Je website ziet er geweldig uit met die "
                 + "gelaagde illustraties van het kasteel, de vleermuizen en dat subtiele mist-effectje "
-                + "onderaan de hero, en ook je 3NF-schema (met alle naamgevingsconventies en aannames netjes "
-                + "ernaast uitgeschreven!) Nu nog de javascript klik vinden en dan ben je vertrokken!"
+                + "onderaan de hero! Nu nog de javascript klik vinden en dan ben je vertrokken!"
         },
     ];
 
