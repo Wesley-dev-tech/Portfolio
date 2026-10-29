@@ -40,7 +40,7 @@ The light theme uses warm off-white "paper" tones, near-black text and a deeper 
 
 All colors, radii and spacing live as CSS variables at the top of `style.css`. Type is set in Schibsted Grotesk, with IBM Plex Mono for small technical details such as section numbers, labels and the scrolling text bar.
 
-The CSS and JavaScript URLs in `index.html` (`style.css`, `favicon.ico`, `script.js` and `cv-pdf.js`) share one version query string (`?v=121`). Raise all of them together after a change so browsers load the new files.
+The CSS and JavaScript URLs in `index.html` (`style.css`, `favicon.ico`, `script.js` and `cv-pdf.js`) share one version query string (`?v=122`). Raise all of them together after a change so browsers load the new files.
 
 ## How to View
 
@@ -78,8 +78,9 @@ HTML, CSS, database normalization, MySQL, Agile & Scrum, and JavaScript (current
 - Tailwind product page: my fourth course project, an AirPods product card styled with Tailwind CSS.
 - Animated browser mockup featuring a CSS cursor and scrolling animation.
 - Vloermeesters tile price calculator: a course project for a fictional tiling company, with JavaScript price calculations and downloadable PDF quotes made with jsPDF.
+- Griezelnacht exam: my exam for the Fundamentals & tooling module, a fictional Halloween night at Kasteel Ravenhoek built with Bootstrap, Flexbox, CSS variables and Google Fonts, plus a reservation table normalized to 3NF. It has no repository or live demo; its modal shows the score (96/100) and my teacher's feedback.
 
-Each project has its own GitHub repository. The detail modal of each project links to the live demo on GitHub Pages (`https://wesley-dev-tech.github.io/<repo>/`) and to the code on GitHub.
+Each project except the exam has its own GitHub repository. The detail modal links to the live demo on GitHub Pages (`https://wesley-dev-tech.github.io/<repo>/`) and to the code on GitHub.
 
 ## Files
 
@@ -87,7 +88,7 @@ HTML, CSS and JavaScript are strictly separated: no inline scripts or styles, no
 
 - `index.html`: the portfolio page.
 - `style.css`: responsive styling, a print stylesheet that prints only the CV on one A4 page in the theme the visitor chose (with the WB monogram, name and contact details on top; background colours are kept with `print-color-adjust`), with the dark theme on `:root` and the light theme on `:root[data-theme="light"]`.
-- `script.js`: loaded in the `<head>` so the saved theme (or the default dark theme) is applied before the page is drawn (no flash); everything else waits for `DOMContentLoaded`. Also handles the theme toggle, mobile navigation and active link, scroll progress bar, read-more toggles, scroll animations, shared pagination for skills and projects, project sorting, the project and privacy dialogs, scroll-to-top interactions, the greeting that follows the time of day, the `T` shortcut for the theme, and the "last updated" date in the footer (taken from the publish date GitHub Pages sends). The project cards are generated from the `projecten` list in this file. To add a project, put it at the bottom of that list with a short `teaser` for the card, a longer `beschrijving` for the modal, and a screenshot in `images/`. Add an optional `afbeeldingLicht` for a light-theme screenshot and `demoLicht` for a light-theme demo link.
+- `script.js`: loaded in the `<head>` so the saved theme (or the default dark theme) is applied before the page is drawn (no flash); everything else waits for `DOMContentLoaded`. Also handles the theme toggle, mobile navigation and active link, scroll progress bar, read-more toggles, scroll animations, shared pagination for skills and projects, project sorting, the project and privacy dialogs, scroll-to-top interactions, the greeting that follows the time of day, the `T` shortcut for the theme, and the "last updated" date in the footer (taken from the publish date GitHub Pages sends). The project cards are generated from the `projecten` list in this file. To add a project, put it at the bottom of that list with a short `teaser` for the card, a longer `beschrijving` for the modal, and a screenshot in `images/`. Add an optional `afbeeldingLicht` for a light-theme screenshot and `demoLicht` for a light-theme demo link. Leave out `demo` or `code` and its button is hidden; add `punten` and `feedback` to show an exam score and teacher feedback in the modal.
 - `images/`: screenshots of each project for the detail modal (with `-dark` and `-light` versions where a project has a light theme), `portfolio-dark.webp` and `portfolio-light.webp` for this portfolio, the posters `poster-dark` and `poster-light` (about) and `poster-opleiding-dark` and `poster-opleiding-light` (education) as webp at `-400` and `-800`, the profile photos `wesley-bogaerts-dark` and `wesley-bogaerts-light` as webp at `-420` and `-840`, and the social preview image `og-image.jpg` (dark theme). The high-resolution PNG originals of the posters and photos are no longer in the repo; restore them from Git history with `git checkout aceddad -- images/<name>.png` when you need to export new sizes.
 - `sitemap.xml`: the sitemap for search engines; update `lastmod` after a bigger change. A `robots.txt` only works at the root of `wesley-dev-tech.github.io`, so there is none in this repo.
 - `google0260c9b0f0763512.html`: verifies ownership of the site in Google Search Console. Keep it, or the access to Search Console is lost.

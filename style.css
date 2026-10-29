@@ -1580,6 +1580,40 @@ html.modal-is-open {
     margin: 24px 0;
 }
 
+/* Score en feedback van de docent, in een kader tussen de beschrijving en de technologieën */
+.project-modal-grade {
+    width: 100%;
+    max-width: var(--modal-content-width);
+    margin: 0 0 24px;
+    padding: 20px 24px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    background: var(--bg-secondary);
+}
+
+.project-modal-score {
+    margin: 6px 0 14px;
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 1.75rem;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.project-modal-grade blockquote {
+    margin: 0;
+    font-style: italic;
+}
+
+.project-modal-grade blockquote::before { content: "\201C"; }
+.project-modal-grade blockquote::after { content: "\201D"; }
+
+.project-modal-grade figcaption {
+    margin-top: 12px;
+    color: var(--text-muted);
+    font-size: .875rem;
+}
+
 .project-modal .project-footer {
     gap: 14px;
     max-width: var(--modal-content-width);

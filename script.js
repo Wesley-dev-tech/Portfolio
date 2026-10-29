@@ -349,6 +349,24 @@ document.addEventListener("DOMContentLoaded", function () {
             afbeelding: "images/vloermeesters.webp",
             code: "https://github.com/Wesley-dev-tech/Flooring_price_calculator"
         },
+        {
+            titel: "Examen Griezelnacht",
+            teaser: "Een fictieve griezelnacht in Kasteel Ravenhoek, en mijn examen. De spoken waren mild: 96 op 100.",
+            icoon: "fa-graduation-cap",
+            beschrijving: "Mijn examen voor de module Fundamentals & tooling: een fictieve Griezelnacht in "
+                + "Kasteel Ravenhoek, nagebouwd vanaf een ontwerp met Bootstrap, Flexbox, CSS-variabelen en "
+                + "Google Fonts. De maan, het spookje, de pompoen en de vleermuizen zijn losse afbeeldingen "
+                + "die elk hun eigen plekje kregen. Daarnaast normaliseerde ik een reservatietabel tot 3NF "
+                + "in een spreadsheet.",
+            tags: ["HTML", "CSS", "Bootstrap", "Flexbox", "3NF"],
+            afbeelding: "images/examen-ravenhoek.webp",
+            // Alleen bij een examen: de score en de feedback van mijn docent
+            punten: "96 / 100",
+            feedback: "Wauw Wesley, echt een topexamen afgeleverd! Je website ziet er geweldig uit met die "
+                + "gelaagde illustraties van het kasteel, de vleermuizen en dat subtiele mist-effectje "
+                + "onderaan de hero, en ook je 3NF-schema (met alle naamgevingsconventies en aannames netjes "
+                + "ernaast uitgeschreven!) Nu nog de javascript klik vinden en dan ben je vertrokken!"
+        },
     ];
 
     const projectLijst = document.querySelector("#project-list");
@@ -587,7 +605,21 @@ document.addEventListener("DOMContentLoaded", function () {
         if (project.demo) {
             demoLink.href = inThema(project.demo, project.demoLicht);
         }
-        projectModal.querySelector(".project-code").href = project.code;
+
+        // Zonder repository op GitHub ook geen codeknop
+        const codeLink = projectModal.querySelector(".project-code");
+        codeLink.hidden = !project.code;
+        if (project.code) {
+            codeLink.href = project.code;
+        }
+
+        // Score en feedback alleen tonen bij een project met punten
+        const beoordeling = projectModal.querySelector(".project-modal-grade");
+        beoordeling.hidden = !project.punten;
+        if (project.punten) {
+            beoordeling.querySelector(".project-modal-score").textContent = project.punten;
+            beoordeling.querySelector("blockquote").textContent = project.feedback;
+        }
 
         openVenster(projectModal, kaart.querySelector(".project-open"));
     }
