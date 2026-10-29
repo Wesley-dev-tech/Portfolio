@@ -356,9 +356,8 @@ document.addEventListener("DOMContentLoaded", function () {
             beschrijving: "Mijn examen voor de module Fundamentals & tooling: een fictieve Griezelnacht in "
                 + "Kasteel Ravenhoek, nagebouwd vanaf een ontwerp met Bootstrap, Flexbox, CSS-variabelen en "
                 + "Google Fonts. De maan, het spookje, de pompoen en de vleermuizen zijn losse afbeeldingen "
-                + "die elk hun eigen plekje kregen. Daarnaast normaliseerde ik een reservatietabel tot 3NF "
-                + "in een spreadsheet.",
-            tags: ["HTML", "CSS", "Bootstrap", "Flexbox", "3NF"],
+                + "die elk hun eigen plekje kregen. Onderaan hangt een subtiel mistje boven de grond.",
+            tags: ["HTML", "CSS", "Bootstrap", "Flexbox"],
             afbeelding: "images/examen-ravenhoek.webp",
             // Alleen bij een examen: de score en de feedback van mijn docent
             punten: "96 / 100",
