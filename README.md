@@ -40,7 +40,7 @@ The light theme uses warm off-white "paper" tones, near-black text and a deeper 
 
 All colors, radii and spacing live as CSS variables at the top of `style.css`. Type is set in Schibsted Grotesk, with IBM Plex Mono for small technical details such as section numbers, labels and the scrolling text bar.
 
-The CSS and JavaScript URLs in `index.html` (`style.css`, `favicon.ico`, `script.js` and `cv-pdf.js`) share one version query string (`?v=123`). Raise all of them together after a change so browsers load the new files.
+The CSS and JavaScript URLs in `index.html` (`style.css`, `favicon.ico`, `script.js` and `cv-pdf.js`) share one version query string (`?v=124`). Raise all of them together after a change so browsers load the new files.
 
 ## How to View
 
@@ -78,9 +78,9 @@ HTML, CSS, database normalization, MySQL, Agile & Scrum, and JavaScript (current
 - Tailwind product page: my fourth course project, an AirPods product card styled with Tailwind CSS.
 - Animated browser mockup featuring a CSS cursor and scrolling animation.
 - Vloermeesters tile price calculator: a course project for a fictional tiling company, with JavaScript price calculations and downloadable PDF quotes made with jsPDF.
-- Griezelnacht exam: my exam for the Fundamentals & tooling module, a fictional Halloween night at Kasteel Ravenhoek built with Bootstrap, Flexbox, CSS variables and Google Fonts. It has no repository or live demo; its modal shows the score (96/100) and my teacher's feedback.
+- Griezelnacht exam: my exam for the Fundamentals & tooling module, a fictional Halloween night at Kasteel Ravenhoek built with Bootstrap, Flexbox, CSS variables and Google Fonts. Its modal also shows the score (96/100) and my teacher's feedback.
 
-Each project except the exam has its own GitHub repository. The detail modal links to the live demo on GitHub Pages (`https://wesley-dev-tech.github.io/<repo>/`) and to the code on GitHub.
+Each project has its own GitHub repository. The detail modal of each project links to the live demo on GitHub Pages (`https://wesley-dev-tech.github.io/<repo>/`) and to the code on GitHub.
 
 ## Files
 
