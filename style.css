@@ -1401,9 +1401,9 @@ h3 {
     list-style: none;
 }
 
-/* Plaats voor twee rijen tags; één rij staat verticaal in het midden */
+/* Plaats voor twee rijen tags; de eerste rij begint in elke kaart op dezelfde hoogte */
 .project-card .project-tags {
-    align-content: center;
+    align-content: flex-start;
     min-height: 56px;
 }
 
