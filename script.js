@@ -359,7 +359,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 + "die elk hun eigen plekje kregen. Onderaan hangt een subtiel mistje boven de grond.",
             tags: ["HTML", "CSS", "Bootstrap", "Flexbox"],
             demo: "https://wesley-dev-tech.github.io/Examen_Griezelnacht/",
-            afbeelding: "images/examen-ravenhoek.webp",
+            afbeelding: "images/examen-ravenhoek.webp?v=2",
             code: "https://github.com/Wesley-dev-tech/Examen_Griezelnacht",
             // Alleen bij een examen: de score en de feedback van mijn docent
             punten: "96 / 100",
