@@ -812,11 +812,6 @@ h3 {
     transition: border-color .2s ease;
 }
 
-/* Even hoog als de hoogste kaart in dezelfde lijst; script.js meet die hoogte */
-.project-card {
-    min-height: var(--kaart-hoogte, auto);
-}
-
 /* Over mij, opleiding en cv: dezelfde tekstkaart, over de volle kolom naast de titel */
 .about-card,
 .education-card,
@@ -1488,7 +1483,9 @@ h3 {
 
 /* Projectkaart: groot icoon, titel en teaser bovenaan, alles gecentreerd.
    De voet met tags en "Bekijk details" staat onderaan en is overal even hoog. */
+/* Even hoog als de hoogste kaart in de lijst; script.js meet die hoogte */
 .project-card {
+    min-height: var(--kaart-hoogte, auto);
     padding: 36px 24px 24px;
     text-align: center;
     cursor: pointer;

@@ -197,8 +197,6 @@ const TAAL_NL = {
     "projects.nieuwste": "Nieuwste eerst",
     "projects.oudste": "Oudste eerst",
     "projects.alfabetisch": "Alfabetisch (A-Z)",
-    "projects.noscript": "Zet JavaScript aan om mijn projecten te zien, of bekijk ze op "
-        + "<a class=\"text-decoration-underline\" href=\"https://github.com/Wesley-dev-tech\">GitHub</a>.",
     "projects.details": "Bekijk details",
     "projects.paginering": "Paginering projecten",
     "projects.vorigeLabel": "Vorige projectpagina",
