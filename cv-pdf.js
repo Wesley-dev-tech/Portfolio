@@ -64,7 +64,8 @@ function leesCv() {
         opleidingen: leesTijdlijn(panelen[1]),
         profielTitel: tekstVan(profiel.querySelector(".cv-panel-title")),
         kopjes: Array.from(profiel.querySelectorAll(".cv-subhead")).map(tekstVan),
-        tags: Array.from(profiel.querySelectorAll(".tag-list li")).map(tekstVan),
+        // Op de site logo's, in de pdf gewoon de namen als tags
+        tags: Array.from(profiel.querySelectorAll(".skill-name, .tag-list li")).map(tekstVan),
         talen: Array.from(profiel.querySelectorAll(".cv-languages div")).map(function (taal) {
             return [tekstVan(taal.querySelector("dt")), tekstVan(taal.querySelector("dd"))];
         }),

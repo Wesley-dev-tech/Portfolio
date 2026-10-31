@@ -725,7 +725,6 @@ h3 {
 .about-card,
 .education-card,
 .cv-card,
-.skill-card,
 .project-card {
     min-width: 0;
     border: 1px solid var(--border-color);
@@ -735,7 +734,6 @@ h3 {
 }
 
 /* Even hoog als de hoogste kaart in dezelfde lijst; script.js meet die hoogte */
-.skill-card,
 .project-card {
     min-height: var(--kaart-hoogte, auto);
 }
@@ -756,9 +754,8 @@ h3 {
     margin-bottom: 24px;
 }
 
-/* Icoonvak, gedeeld door de tekstkaarten, vaardigheden en projecten */
+/* Icoonvak, gedeeld door de tekstkaarten en projecten */
 .card-icon,
-.skill-card > i,
 .project-icon {
     display: inline-flex;
     flex-shrink: 0;
@@ -1157,55 +1154,108 @@ h3 {
     }
 }
 
-/* Vaardigheden */
-/* Icoon, titel en tekst horizontaal gecentreerd en bovenaan uitgelijnd,
-   zodat ze in elke kaart op dezelfde hoogte staan */
-.skill-card {
+/* Vaardigheden: per groep een kopje en een rij logo's, gescheiden door een dunne lijn */
+.skill-group + .skill-group {
+    margin-top: 32px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border-color);
+}
+
+.skill-group h3 {
+    margin-bottom: 20px;
+    font-size: 1.25rem;
+}
+
+.skill-icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Vast vak per logo, zodat de naam erboven gecentreerd kan staan */
+.skill-icons li {
+    position: relative;
+    display: flex;
+}
+
+.skill-icons img {
+    width: 60px;
+    height: 60px;
+    transition: transform .2s ease;
+}
+
+/* Naam boven het logo, pas zichtbaar bij hover (of een tik op touchscreens).
+   Met opacity in plaats van display: none, zodat schermlezers de naam wel voorlezen. */
+.skill-name {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    z-index: 2;
+    padding: 3px 8px;
+    border-radius: 3px;
+    background: var(--text-color);
+    color: var(--bg-primary);
+    font-family: var(--font-mono);
+    font-size: .72rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, 4px);
+    transition: opacity .2s ease, transform .2s ease;
+}
+
+.skill-icons li:hover .skill-name {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+/* Kleinere logo's in het cv */
+.skill-icons-small {
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.skill-icons-small img {
+    width: 36px;
+    height: 36px;
+}
+
+/* Concepten: icoon, vetgedrukte naam en uitleg op één regel */
+.skill-concepts {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 28px 20px;
+    gap: 16px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.skill-concepts li {
+    display: flex;
+    gap: 12px;
+}
+
+.skill-concepts i {
+    flex-shrink: 0;
+    width: 1.5rem;
+    margin-top: .3rem;
+    color: var(--accent);
     text-align: center;
 }
 
-.skill-card > i {
-    width: 48px;
-    height: 48px;
-    margin-bottom: 20px;
-    font-size: 1.35rem;
+.skill-concepts p {
+    margin: 0;
+    color: var(--text-muted);
 }
 
-.skill-card h3 {
-    margin-bottom: 8px;
-    font-size: 1.1rem;
+.skill-concepts strong {
+    color: var(--text-color);
 }
 
-.skill-card p {
-    font-size: .95rem;
-}
-
-/* Desktop: zelfde breedte als het projectenraster, per vier kaarten gepagineerd */
-@media (min-width: 992px) {
-    .skill-slides {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1.5rem;
-        /* Een onvolledige laatste pagina staat in het midden */
-        justify-content: center;
-    }
-
-    .skill-card {
-        flex: 0 0 calc((100% - 1.5rem) / 2);
-    }
-}
-
-@media (min-width: 1200px) {
-    .skill-card {
-        flex-basis: calc((100% - 4.5rem) / 4);
-    }
-}
-
-/* Mobiel: veegbare rij voor vaardigheden en projecten; script.js zet deze klasse */
+/* Mobiel: veegbare rij voor de projecten; script.js zet deze klasse */
 .is-swipeable {
     display: flex;
     flex-wrap: nowrap;
@@ -1227,15 +1277,7 @@ h3 {
     scroll-snap-align: start;
 }
 
-/* Tot aan de schermrand, net als de projectenrij */
-.skill-slides.is-swipeable {
-    gap: 16px;
-    margin-inline: calc(var(--bs-gutter-x) * -.5);
-    padding-inline: calc(var(--bs-gutter-x) * .5);
-    scroll-padding-inline: calc(var(--bs-gutter-x) * .5);
-}
-
-/* Vorige- en Volgende-knoppen van vaardigheden en projecten */
+/* Vorige- en Volgende-knoppen van de projecten */
 .pager {
     display: flex;
     flex-wrap: wrap;
@@ -1434,9 +1476,12 @@ h3 {
 
 /* Alleen met een muis; op touchscreens blijft hover na een tik hangen */
 @media (hover: hover) {
-    .project-card:hover,
-    .skill-card:hover {
+    .project-card:hover {
         border-color: var(--border-strong);
+    }
+
+    .skill-icons li:hover img {
+        transform: translateY(-3px);
     }
 
     .project-card:hover .project-open {
@@ -2074,9 +2119,6 @@ html.modal-is-open {
 
 /* Tablet en mobiel: veegbare carrousels in plaats van knoppen */
 @media (max-width: 991.98px) {
-    .skills-carousel .skill-buttons {
-        display: none;
-    }
 
     /* Compacter sorteermenu, in verhouding met de kleinere titel en knoppen */
     .project-control select {
@@ -2418,6 +2460,16 @@ html.modal-is-open {
 
     .cv-card .tag-list li {
         font-size: 6.5pt;
+    }
+
+    .skill-icons-small {
+        gap: 1.5mm;
+        margin-bottom: 1.5mm;
+    }
+
+    .skill-icons-small img {
+        width: 6mm;
+        height: 6mm;
     }
 
     .cv-languages,

@@ -203,8 +203,8 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // Paginering per vier kaarten, gedeeld door vaardigheden en projecten.
-    // Onder deze breedte worden beide een veegbare carrousel zonder paginering.
+    // Paginering van de projecten per vier kaarten.
+    // Onder deze breedte wordt de lijst een veegbare carrousel zonder paginering.
     const mobieleWeergave = window.matchMedia("(max-width: 991.98px)");
     const kaartenPerPagina = 4;
 
@@ -224,39 +224,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         return aantalPaginas;
     }
-
-    // Vaardigheden
-    const skillSlides = document.querySelector("#skill-slides");
-    const skillKaarten = Array.from(skillSlides.querySelectorAll(".skill-card"));
-    const vorigeKnop = document.querySelector("#skill-prev");
-    const volgendeKnop = document.querySelector("#skill-next");
-    let huidigeSkillpagina = 1;
-
-    function toonSkillpagina(pagina) {
-        huidigeSkillpagina = pagina;
-        toonPagina(skillSlides, skillKaarten, pagina, vorigeKnop, volgendeKnop);
-    }
-
-    // Uitgeschakelde knoppen sturen geen klik, dus de grenzen bewaken zichzelf
-    vorigeKnop.addEventListener("click", function () {
-        toonSkillpagina(huidigeSkillpagina - 1);
-    });
-
-    volgendeKnop.addEventListener("click", function () {
-        toonSkillpagina(huidigeSkillpagina + 1);
-    });
-
-    // Pijltjestoetsen bladeren op desktop; op mobiel scrollen ze de rij al vanzelf
-    skillSlides.addEventListener("keydown", function (event) {
-        const knop = { ArrowLeft: vorigeKnop, ArrowRight: volgendeKnop }[event.key];
-
-        if (knop && !mobieleWeergave.matches) {
-            event.preventDefault();
-            knop.click();
-        }
-    });
-
-    toonSkillpagina(1);
 
     // Projecten, van oud naar nieuw. Een nieuw project zet je gewoon onderaan de lijst,
     // met een korte teaser voor de kaart en een screenshot in images/ voor het detailvenster.
@@ -448,9 +415,8 @@ document.addEventListener("DOMContentLoaded", function () {
         toonProjectpagina(huidigeProjectpagina + 1);
     });
 
-    // Bij de wissel tussen carrousel en paginering beide lijsten opnieuw tonen
+    // Bij de wissel tussen carrousel en paginering de projecten opnieuw tonen
     mobieleWeergave.addEventListener("change", function () {
-        toonSkillpagina(huidigeSkillpagina);
         toonProjectpagina(huidigeProjectpagina);
     });
 
@@ -496,7 +462,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function maakAlleKaartenEvenHoog() {
-        maakKaartenEvenHoog(skillKaarten);
         maakKaartenEvenHoog(projectKaarten);
         artikelIndelingen.forEach(maakPosterEvenHoog);
     }
@@ -649,7 +614,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         document.querySelectorAll(
             "#about .about-card, #education .education-card, #cv .cv-card, " +
-            "#skills .skills-carousel, #projects .section-head-row, " +
+            "#skills .skill-group, #projects .section-head-row, " +
             "#project-list > *, .footer-grid > :not(.footer-details)"
         ).forEach(function (element) {
             element.classList.add("scroll-reveal");

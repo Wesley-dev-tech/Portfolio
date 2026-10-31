@@ -35,19 +35,19 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap">
 
-    <link rel="stylesheet" href="style.css?v=127">
-    <link rel="icon" href="favicon.ico?v=127" sizes="16x16 32x32 48x48">
+    <link rel="stylesheet" href="style.css?v=128">
+    <link rel="icon" href="favicon.ico?v=128" sizes="16x16 32x32 48x48">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
     <!-- In de head, zodat het thema al staat voor de pagina getekend wordt.
          De rest van script.js wacht zelf tot de HTML geladen is. -->
-    <script src="script.js?v=127"></script>
+    <script src="script.js?v=128"></script>
 
     <!-- jsPDF en mijn eigen script dat er de cv-pdf mee tekent; defer laadt ze zonder de pagina op te houden -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
         integrity="sha384-JcnsjUPPylna1s1fvi1u12X5qjY5OL56iySh75FdtrwhO/SWXgMjoVqcKyIIWOLk" crossorigin="anonymous"
         defer></script>
-    <script src="cv-pdf.js?v=127" defer></script>
+    <script src="cv-pdf.js?v=128" defer></script>
 </head>
 
 <body>
@@ -635,13 +635,54 @@
 
                                         <div class="cv-group">
                                             <h5 class="cv-subhead">IT-vaardigheden</h5>
+                                            <!-- Dezelfde logo's als bij Mijn vaardigheden, kleiner -->
+                                            <ul class="skill-icons skill-icons-small">
+                                                <li>
+                                                    <img src="images/skills/html.svg" alt="" width="36" height="36">
+                                                    <span class="skill-name">HTML</span>
+                                                </li>
+                                                <li>
+                                                    <img src="images/skills/css.svg" alt="" width="36" height="36">
+                                                    <span class="skill-name">CSS</span>
+                                                </li>
+                                                <li>
+                                                    <img src="images/skills/js.svg" alt="" width="36" height="36">
+                                                    <span class="skill-name">JavaScript</span>
+                                                </li>
+                                                <li>
+                                                    <img src="images/skills/bootstrap.svg" alt="" width="36" height="36">
+                                                    <span class="skill-name">Bootstrap</span>
+                                                </li>
+                                                <li>
+                                                    <img src="images/skills/tailwind.svg" alt="" width="36" height="36">
+                                                    <span class="skill-name">Tailwind CSS</span>
+                                                </li>
+                                                <li>
+                                                    <img class="theme-dark-only" src="images/skills/mysql-dark.svg" alt="" width="36" height="36">
+                                                    <img class="theme-light-only" src="images/skills/mysql-light.svg" alt="" width="36" height="36">
+                                                    <span class="skill-name">MySQL</span>
+                                                </li>
+                                                <li>
+                                                    <img src="images/skills/git.svg" alt="" width="36" height="36">
+                                                    <span class="skill-name">Git</span>
+                                                </li>
+                                                <li>
+                                                    <img class="theme-dark-only" src="images/skills/github-dark.svg" alt="" width="36" height="36">
+                                                    <img class="theme-light-only" src="images/skills/github-light.svg" alt="" width="36" height="36">
+                                                    <span class="skill-name">GitHub</span>
+                                                </li>
+                                                <li>
+                                                    <img src="images/skills/vscode.svg" alt="" width="36" height="36">
+                                                    <span class="skill-name">VS Code</span>
+                                                </li>
+                                                <li>
+                                                    <img src="images/skills/trello.svg" alt="" width="36" height="36">
+                                                    <span class="skill-name">Trello</span>
+                                                </li>
+                                            </ul>
                                             <ul class="tag-list">
-                                                <li>HTML</li>
-                                                <li>CSS</li>
                                                 <li>Databasenormalisatie</li>
-                                                <li>MySQL</li>
                                                 <li>Agile &amp; Scrum</li>
-                                                <li>JavaScript</li>
                                             </ul>
                                         </div>
 
@@ -700,83 +741,90 @@
                     <h2 class="section-title">Mijn vaardigheden</h2>
                 </div>
 
-                <div class="skills-carousel" role="region" aria-roledescription="carrousel"
-                    aria-label="Mijn vaardigheden">
+                <!-- Logo's van skillicons.dev, bewaard in images/skills. De naam verschijnt bij hover. -->
+                <div class="skills-stack">
+                    <section class="skill-group" aria-labelledby="skills-frontend">
+                        <h3 id="skills-frontend">Frontend</h3>
+                        <ul class="skill-icons">
+                            <li>
+                                <img src="images/skills/html.svg" alt="" width="60" height="60">
+                                <span class="skill-name">HTML</span>
+                            </li>
+                            <li>
+                                <img src="images/skills/css.svg" alt="" width="60" height="60">
+                                <span class="skill-name">CSS</span>
+                            </li>
+                            <li>
+                                <img src="images/skills/js.svg" alt="" width="60" height="60">
+                                <span class="skill-name">JavaScript</span>
+                            </li>
+                            <li>
+                                <img src="images/skills/bootstrap.svg" alt="" width="60" height="60">
+                                <span class="skill-name">Bootstrap</span>
+                            </li>
+                            <li>
+                                <img src="images/skills/tailwind.svg" alt="" width="60" height="60">
+                                <span class="skill-name">Tailwind CSS</span>
+                            </li>
+                        </ul>
+                    </section>
 
-                    <div id="skill-slides" class="skill-slides" tabindex="0">
-                        <article class="skill-card">
-                            <i class="fa-brands fa-html5" aria-hidden="true"></i>
-                            <h3>HTML</h3>
-                            <p>
-                                Ik bouw webpagina's op met een duidelijke HTML-structuur en
-                                gebruik de juiste elementen om de inhoud logisch in te delen.
-                            </p>
-                        </article>
+                    <section class="skill-group" aria-labelledby="skills-backend">
+                        <h3 id="skills-backend">Backend</h3>
+                        <ul class="skill-icons">
+                            <li>
+                                <img class="theme-dark-only" src="images/skills/mysql-dark.svg" alt="" width="60" height="60">
+                                <img class="theme-light-only" src="images/skills/mysql-light.svg" alt="" width="60" height="60">
+                                <span class="skill-name">MySQL</span>
+                            </li>
+                        </ul>
+                    </section>
 
-                        <article class="skill-card">
-                            <i class="fa-brands fa-css3-alt" aria-hidden="true"></i>
-                            <h3>CSS</h3>
-                            <p>
-                                Met CSS geef ik mijn websites vorm. Ik werk met Flexbox,
-                                Bootstrap en Tailwind en zorg ervoor dat mijn pagina's zich
-                                aanpassen aan verschillende schermformaten.
-                            </p>
-                        </article>
+                    <section class="skill-group" aria-labelledby="skills-tools">
+                        <h3 id="skills-tools">Tools &amp; development</h3>
+                        <ul class="skill-icons">
+                            <li>
+                                <img src="images/skills/git.svg" alt="" width="60" height="60">
+                                <span class="skill-name">Git</span>
+                            </li>
+                            <li>
+                                <img class="theme-dark-only" src="images/skills/github-dark.svg" alt="" width="60" height="60">
+                                <img class="theme-light-only" src="images/skills/github-light.svg" alt="" width="60" height="60">
+                                <span class="skill-name">GitHub</span>
+                            </li>
+                            <li>
+                                <img src="images/skills/vscode.svg" alt="" width="60" height="60">
+                                <span class="skill-name">VS Code</span>
+                            </li>
+                            <li>
+                                <img src="images/skills/trello.svg" alt="" width="60" height="60">
+                                <span class="skill-name">Trello</span>
+                            </li>
+                        </ul>
+                    </section>
 
-                        <article class="skill-card">
-                            <i class="fa-solid fa-sitemap" aria-hidden="true"></i>
-                            <h3>Database<wbr>normalisatie</h3>
-                            <p>
-                                Ik leer gegevens logisch structureren en databanken normaliseren
-                                van 0NF tot 3NF, zodat informatie overzichtelijk blijft en
-                                onnodige herhaling wordt vermeden.
-                            </p>
-                        </article>
-
-                        <article class="skill-card">
-                            <i class="fa-solid fa-database" aria-hidden="true"></i>
-                            <h3>MySQL</h3>
-                            <p>
-                                In MySQL maak ik relationele tabellen aan en schrijf ik
-                                SQL-queries om gegevens op te vragen, te filteren en met
-                                JOIN-queries te combineren.
-                            </p>
-                        </article>
-
-                        <article class="skill-card">
-                            <i class="fa-solid fa-people-group" aria-hidden="true"></i>
-                            <h3>Agile &amp; Scrum</h3>
-                            <p>
-                                Tijdens de lessen leerde ik werken met Agile en Scrum. We
-                                oefenden met het plannen van sprints, het inschatten van taken
-                                via planning poker en het opvolgen van de voortgang op een
-                                kanbanbord in Trello.
-                            </p>
-                        </article>
-
-                        <article class="skill-card">
-                            <i class="fa-brands fa-js" aria-hidden="true"></i>
-                            <h3>JavaScript</h3>
-                            <p>
-                                Momenteel leer ik de basis van JavaScript en pas ik die kennis
-                                toe op mijn portfolio. Ik wil begrijpen hoe de code werkt en
-                                zelf interactieve functies kunnen bouwen.
-                            </p>
-                        </article>
-                    </div>
-
-                    <div class="skill-buttons pager">
-                        <button id="skill-prev" class="btn btn-secondary" type="button" aria-controls="skill-slides">
-                            <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
-                            Vorige
-                        </button>
-
-                        <button id="skill-next" class="btn btn-secondary" type="button" aria-controls="skill-slides">
-                            Volgende
-                            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
-                        </button>
-                    </div>
-
+                    <section class="skill-group" aria-labelledby="skills-concepts">
+                        <h3 id="skills-concepts">Concepten &amp; methodologieën</h3>
+                        <ul class="skill-concepts">
+                            <li>
+                                <i class="fa-solid fa-sitemap" aria-hidden="true"></i>
+                                <p>
+                                    <strong>Databasenormalisatie</strong> — ik leer gegevens logisch
+                                    structureren en databanken normaliseren van 0NF tot 3NF, zodat
+                                    informatie overzichtelijk blijft en onnodige herhaling wordt vermeden.
+                                </p>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-people-group" aria-hidden="true"></i>
+                                <p>
+                                    <strong>Agile &amp; Scrum</strong> — tijdens de lessen leerde ik werken
+                                    met Agile en Scrum. We oefenden met het plannen van sprints, het
+                                    inschatten van taken via planning poker en het opvolgen van de
+                                    voortgang op een kanbanbord in Trello.
+                                </p>
+                            </li>
+                        </ul>
+                    </section>
                 </div>
             </div>
         </section>
