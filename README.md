@@ -40,7 +40,7 @@ The light theme uses warm off-white "paper" tones, near-black text and a deeper 
 
 All colors, radii and spacing live as CSS variables at the top of `style.css`. Type is set in Schibsted Grotesk, with IBM Plex Mono for small technical details such as section numbers, labels and the scrolling text bar.
 
-The CSS and JavaScript URLs in `index.html` (`style.css`, `favicon.ico`, `script.js` and `cv-pdf.js`) share one version query string (`?v=132`). Raise all of them together after a change so browsers load the new files.
+The CSS and JavaScript URLs in `index.html` (`style.css`, `favicon.ico`, `script.js` and `cv-pdf.js`) share one version query string (`?v=133`). Raise all of them together after a change so browsers load the new files.
 
 ## How to View
 
