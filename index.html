@@ -35,19 +35,19 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap">
 
-    <link rel="stylesheet" href="style.css?v=129">
-    <link rel="icon" href="favicon.ico?v=129" sizes="16x16 32x32 48x48">
+    <link rel="stylesheet" href="style.css?v=130">
+    <link rel="icon" href="favicon.ico?v=130" sizes="16x16 32x32 48x48">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
     <!-- In de head, zodat het thema al staat voor de pagina getekend wordt.
          De rest van script.js wacht zelf tot de HTML geladen is. -->
-    <script src="script.js?v=129"></script>
+    <script src="script.js?v=130"></script>
 
     <!-- jsPDF en mijn eigen script dat er de cv-pdf mee tekent; defer laadt ze zonder de pagina op te houden -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
         integrity="sha384-JcnsjUPPylna1s1fvi1u12X5qjY5OL56iySh75FdtrwhO/SWXgMjoVqcKyIIWOLk" crossorigin="anonymous"
         defer></script>
-    <script src="cv-pdf.js?v=129" defer></script>
+    <script src="cv-pdf.js?v=130" defer></script>
 </head>
 
 <body>
@@ -126,17 +126,13 @@
         <!-- Intro: tekst links, foto rechts; op mobiel staat de foto bovenaan -->
         <section id="home" class="hero">
             <div class="container hero-grid">
-                <!-- Eén foto per thema; style.css toont de juiste. De browser kiest de kleinste
-                     versie die scherp genoeg is, en laadt de verborgen foto pas bij het wisselen. -->
+                <!-- Mijn avatar, dezelfde in beide thema's. De browser kiest de kleinste
+                     versie die scherp genoeg is. -->
                 <div class="hero-photo">
-                    <img class="theme-dark-only" src="images/wesley-bogaerts-dark-840.webp"
-                        srcset="images/wesley-bogaerts-dark-420.webp 420w, images/wesley-bogaerts-dark-840.webp 840w"
+                    <img src="images/wesley-bogaerts-avatar-840.webp"
+                        srcset="images/wesley-bogaerts-avatar-420.webp 420w, images/wesley-bogaerts-avatar-840.webp 840w"
                         sizes="(max-width: 767.98px) 300px, (max-width: 991.98px) 260px, 420px" width="420" height="420"
-                        alt="Wesley Bogaerts aan zijn bureau" loading="lazy" decoding="async">
-                    <img class="theme-light-only" src="images/wesley-bogaerts-light-840.webp"
-                        srcset="images/wesley-bogaerts-light-420.webp 420w, images/wesley-bogaerts-light-840.webp 840w"
-                        sizes="(max-width: 767.98px) 300px, (max-width: 991.98px) 260px, 420px" width="420" height="420"
-                        alt="Wesley Bogaerts aan zijn bureau" loading="lazy" decoding="async">
+                        alt="Avatar van Wesley Bogaerts met zonnebril" decoding="async">
                 </div>
 
                 <div class="hero-content">
