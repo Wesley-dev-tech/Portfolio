@@ -6,13 +6,13 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelector(".cv-pdf").addEventListener("click", maakCvPdf);
 });
 
-// A4 in millimeter, met dezelfde verhouding tussen de kolommen als op de site (11 : 6)
+// A4 in millimeter, met dezelfde verhouding tussen de kolommen als op de site (18 : 13)
 const PAGINA_BREEDTE = 210;
 const PAGINA_HOOGTE = 297;
 const MARGE = 12;
 const INHOUD_BREEDTE = PAGINA_BREEDTE - MARGE * 2;
 const KOLOM_RUIMTE = 4;
-const LINKER_KOLOM = (INHOUD_BREEDTE - KOLOM_RUIMTE) * 11 / 17;
+const LINKER_KOLOM = (INHOUD_BREEDTE - KOLOM_RUIMTE) * 18 / 31;
 const PT = 0.3528; // 1 punt in millimeter
 
 // Tekst van een element, met de witruimte uit de HTML samengevoegd tot één spatie
@@ -29,6 +29,19 @@ function regelHoogte(grootte) {
 // om bolletjes en streepjes mooi naast de tekst te zetten
 function tekstMidden(grootte) {
     return grootte * PT * 0.55;
+}
+
+// jsPDF kan geen svg tekenen: het logo eerst op een canvas zetten en als png bewaren.
+// Het logo van het actieve thema, net als op de site.
+function logoAlsPng(item) {
+    const licht = document.documentElement.dataset.theme === "light";
+    const logo = item.querySelector(licht ? "img:not(.theme-dark-only)" : "img:not(.theme-light-only)");
+    const canvas = document.createElement("canvas");
+
+    canvas.width = 128;
+    canvas.height = 128;
+    canvas.getContext("2d").drawImage(logo, 0, 0, 128, 128);
+    return canvas.toDataURL("image/png");
 }
 
 // Het cv uit index.html lezen: dezelfde tekst als op de site
@@ -64,8 +77,28 @@ function leesCv() {
         opleidingen: leesTijdlijn(panelen[1]),
         profielTitel: tekstVan(profiel.querySelector(".cv-panel-title")),
         kopjes: Array.from(profiel.querySelectorAll(".cv-subhead")).map(tekstVan),
-        // Op de site logo's, in de pdf gewoon de namen als tags
-        tags: Array.from(profiel.querySelectorAll(".skill-name, .tag-list li")).map(tekstVan),
+        // Per groep (Frontend, Backend, ...) de logo's, of de namen bij een groep zonder logo's
+        // (de concepten). De lijst staat telkens net onder het kopje van de groep.
+        vaardigheden: Array.from(profiel.querySelectorAll(".cv-category")).map(function (groep) {
+            const items = Array.from(groep.nextElementSibling.children);
+            const metLogos = groep.nextElementSibling.classList.contains("skill-icons");
+            let logos = [];
+
+            // Geopend als bestand (file://) blokkeert de browser het canvas; dan de namen als tags
+            if (metLogos) {
+                try {
+                    logos = items.map(logoAlsPng);
+                } catch (fout) {
+                    logos = [];
+                }
+            }
+
+            return {
+                titel: tekstVan(groep),
+                logos: logos,
+                namen: items.map(tekstVan)
+            };
+        }),
         talen: Array.from(profiel.querySelectorAll(".cv-languages div")).map(function (taal) {
             return [tekstVan(taal.querySelector("dt")), tekstVan(taal.querySelector("dd"))];
         }),
@@ -101,6 +134,28 @@ function maakCvPdf() {
     const pdf = new window.jspdf.jsPDF({ unit: "mm", format: "a4" });
     const cv = leesCv();
     const kleuren = leesKleuren();
+
+    // Kolombreedte: dezelfde als op de site. Alleen als de werkervaring duidelijk (10 mm) korter is
+    // (bijvoorbeeld met tags in plaats van logo's), de rechterkolom millimeter per millimeter
+    // breder maken en de breedte houden waarbij het cv het kortst is: daar eindigen beide
+    // kolommen het meest gelijk. tekenCv bewaart in cv.werkRuimte hoeveel korter links is.
+    // De werkervaring blijft wel minstens 54% van de breedte, zodat de verhouding klopt.
+    cv.linkerKolom = LINKER_KOLOM;
+    let kortste = tekenCv(pdf, cv, kleuren, 1, false, 0);
+    const smalste = cv.werkRuimte > 10 ? INHOUD_BREEDTE * 0.54 : LINKER_KOLOM;
+
+    for (let breedte = LINKER_KOLOM - 1; breedte >= smalste; breedte -= 1) {
+        const linkerKolom = cv.linkerKolom;
+
+        cv.linkerKolom = breedte;
+        const hoogteNu = tekenCv(pdf, cv, kleuren, 1, false, 0);
+
+        if (hoogteNu < kortste - 0.5) {
+            kortste = hoogteNu;
+        } else {
+            cv.linkerKolom = linkerKolom;
+        }
+    }
 
     // Eerst meten: past het niet op één pagina, dan alles een beetje kleiner maken
     let schaal = 1;
@@ -178,7 +233,9 @@ function tekenCv(pdf, cv, k, s, teken, boven) {
     }
 
     // Vlak met een tijdlijn: werkervaring of opleidingen. Geeft de hoogte terug.
-    function tijdlijn(titel, items, x, y, breedte) {
+    // Met extra komt er voor elke taak en tussen elke twee items evenveel ruimte bij
+    // (zie onderaan tekenCv), zodat die ruimte gelijk over de hele kolom verdeeld is.
+    function tijdlijn(titel, items, x, y, breedte, extra = 0) {
         const begin = y;
         const binnen = 4.5 * s;
         const bolX = x + binnen + 1.3 * s;
@@ -228,6 +285,8 @@ function tekenCv(pdf, cv, k, s, teken, boven) {
                 item.taken.forEach(function (taak) {
                     const regels = pdf.splitTextToSize(taak, tekstBreedte - 3.5 * s);
 
+                    y += extra;
+
                     if (teken) {
                         pdf.setDrawColor(k.randSterk);
                         pdf.setLineWidth(0.25);
@@ -240,7 +299,7 @@ function tekenCv(pdf, cv, k, s, teken, boven) {
             }
 
             if (index < items.length - 1) {
-                y += 3.2 * s;
+                y += 3.2 * s + extra;
             }
         });
 
@@ -259,13 +318,16 @@ function tekenCv(pdf, cv, k, s, teken, boven) {
     }
 
     // Vlak met het profiel. De extra ruimte (om samen met de werkervaring te eindigen)
-    // gaat gelijk naar de drie onderdelen, zoals in style.css.
+    // wordt in kleine stukjes over het hele profiel verdeeld.
     function profiel(x, y, breedte, extra) {
         const begin = y;
         const binnen = 4.5 * s;
         const links = x + binnen;
         const rechts = x + breedte - binnen;
-        const tussen = 3.5 * s + extra / 3;
+        // De extra ruimte gaat in kleine stukjes naar elke plek tussen de groepen en onderdelen
+        // en onder elke taal, zodat niets zichtbaar uitgerekt wordt
+        const stukje = extra / (cv.vaardigheden.length - 1 + 2 + cv.talen.length);
+        const tussen = 3.5 * s + stukje;
 
         function kopje(tekst) {
             letter("courier", "bold", 6.5, k.gedempt);
@@ -275,46 +337,69 @@ function tekenCv(pdf, cv, k, s, teken, boven) {
 
         y = paneelTitel(cv.profielTitel, x, y + 4 * s, breedte);
 
-        // IT-vaardigheden als tags, die naar de volgende regel gaan als ze niet meer passen
+        // IT-vaardigheden per groep: een vet kopje en daaronder de logo's (of de namen als tags),
+        // die naar de volgende regel gaan als ze niet meer passen
         kopje(cv.kopjes[0]);
-        letter("courier", "normal", 6.5, k.gedempt);
 
-        const tagHoogte = regelHoogte(6.5 * s) + 1.4 * s;
-        let tagX = links;
+        const tagHoogte = regelHoogte(5.5 * s) + 1 * s;
+        // Zo klein dat de dertien frontendlogo's op één rij passen
+        const logoMaat = 4 * s;
 
-        cv.tags.forEach(function (tag) {
-            const tagBreedte = pdf.getTextWidth(tag) + 4 * s;
-
-            if (tagX + tagBreedte > rechts) {
-                tagX = links;
-                y += tagHoogte + 1.5 * s;
+        cv.vaardigheden.forEach(function (groep, index) {
+            if (index > 0) {
+                y += 3.5 * s + stukje;
             }
 
-            vlak(tagX, y, tagBreedte, tagHoogte, 0.6, k.vlak, k.rand);
-            schrijf(tag, tagX + 2 * s, y + 0.7 * s);
-            tagX += tagBreedte + 1.5 * s;
-        });
+            letter("helvetica", "bold", 7, k.tekst);
+            schrijf(groep.titel, links, y);
+            y += regelHoogte(7 * s) + 1.2 * s;
 
-        y += tagHoogte + tussen;
+            let logoX = links;
 
-        // Talen: taal links, niveau rechts, met een dunne lijn eronder
-        kopje(cv.kopjes[1]);
-        letter("helvetica", "normal", 7.5, k.gedempt);
+            groep.logos.forEach(function (logo) {
+                if (logoX + logoMaat > rechts) {
+                    logoX = links;
+                    y += logoMaat + 1 * s;
+                }
 
-        cv.talen.forEach(function (taal) {
-            schrijf(taal[0], links, y);
-            schrijf(taal[1], rechts, y, { align: "right" });
-            y += regelHoogte(7.5 * s) + 1.2 * s;
-            lijn(links, y, rechts, y, k.rand, 0.25);
-            y += 1.2 * s;
+                if (teken) {
+                    // "FAST" comprimeert het logo, anders wordt de pdf enkele megabytes groot
+                    pdf.addImage(logo, "PNG", logoX, y, logoMaat, logoMaat, undefined, "FAST");
+                }
+                logoX += logoMaat + 1 * s;
+            });
+
+            if (groep.logos.length > 0) {
+                y += logoMaat;
+                return;
+            }
+
+            // Compacte tags, zodat ook de namen (zonder logo's) ongeveer even veel plaats innemen
+            letter("courier", "normal", 5.5, k.gedempt);
+            let tagX = links;
+
+            groep.namen.forEach(function (tag) {
+                const tagBreedte = pdf.getTextWidth(tag) + 2.5 * s;
+
+                if (tagX + tagBreedte > rechts) {
+                    tagX = links;
+                    y += tagHoogte + 0.8 * s;
+                }
+
+                vlak(tagX, y, tagBreedte, tagHoogte, 0.6, k.vlak, k.rand);
+                schrijf(tag, tagX + 1.25 * s, y + 0.5 * s);
+                tagX += tagBreedte + 0.8 * s;
+            });
+
+            y += tagHoogte;
         });
 
         y += tussen;
 
-        // Kenmerken in twee kolommen, met een koperen streepje ervoor. De eerste kolom is zo breed
-        // als haar langste kenmerk; past de tweede er dan niet meer naast, dan staan ze in één kolom.
-        kopje(cv.kopjes[2]);
-        letter("helvetica", "normal", 7.5, k.gedempt);
+        // Talen en kenmerken in 7 pt: zo groot tegenover de tags als op de site (ongeveer 1,3 keer).
+        // Beide in dezelfde twee kolommen, met een koperen streepje ervoor. De eerste kolom is zo
+        // breed als het langste kenmerk; past de tweede er dan niet meer naast, dan staat alles in één kolom.
+        letter("helvetica", "normal", 7, k.gedempt);
 
         const streepje = 4.5 * s;
 
@@ -328,17 +413,47 @@ function tekenCv(pdf, cv, k, s, teken, boven) {
 
         const kolomBreedte = Math.max((rechts - links) / 2, streepje + langsteVan(0) + 3 * s);
         const kolommen = kolomBreedte + streepje + langsteVan(1) <= rechts - links ? 2 : 1;
-        const rij = regelHoogte(7.5 * s) + 1.2 * s;
+        const rij = regelHoogte(7 * s) + 1 * s;
+
+        function streepjeVoor(sx, sy) {
+            lijn(sx, sy + tekstMidden(7 * s), sx + 2 * s, sy + tekstMidden(7 * s), k.accent, 0.6 * s);
+        }
+
+        // Talen: de taal in de eerste kolom, het niveau in de tweede (onder de kenmerken),
+        // allebei met een streepje ervoor. Is er maar één kolom, dan staat het niveau eronder.
+        kopje(cv.kopjes[1]);
+        letter("helvetica", "normal", 7, k.gedempt);
+
+        cv.talen.forEach(function (taal) {
+            streepjeVoor(links, y);
+            schrijf(taal[0], links + streepje, y);
+
+            if (kolommen === 1) {
+                y += rij;
+            }
+
+            const nx = links + (kolommen - 1) * kolomBreedte;
+
+            streepjeVoor(nx, y);
+            schrijf(taal[1], nx + streepje, y);
+            y += rij + stukje;
+        });
+
+        y += tussen;
+
+        // Kenmerken in twee kolommen
+        kopje(cv.kopjes[2]);
+        letter("helvetica", "normal", 7, k.gedempt);
 
         cv.kenmerken.forEach(function (kenmerk, index) {
             const kx = links + (index % kolommen) * kolomBreedte;
             const ky = y + Math.floor(index / kolommen) * rij;
 
-            lijn(kx, ky + tekstMidden(7.5 * s), kx + 2.5 * s, ky + tekstMidden(7.5 * s), k.accent, 0.6 * s);
+            streepjeVoor(kx, ky);
             schrijf(kenmerk, kx + streepje, ky);
         });
 
-        y += Math.ceil(cv.kenmerken.length / kolommen) * rij + extra / 3;
+        y += Math.ceil(cv.kenmerken.length / kolommen) * rij;
 
         return y + 4 * s - begin;
     }
@@ -397,23 +512,33 @@ function tekenCv(pdf, cv, k, s, teken, boven) {
 
     // Werkervaring links, opleidingen en profiel rechts; eerst meten, dan de vlakken en de inhoud
     const linksX = MARGE;
-    const rechtsX = MARGE + LINKER_KOLOM + KOLOM_RUIMTE;
-    const rechtsBreedte = INHOUD_BREEDTE - LINKER_KOLOM - KOLOM_RUIMTE;
+    const rechtsX = MARGE + cv.linkerKolom + KOLOM_RUIMTE;
+    const rechtsBreedte = INHOUD_BREEDTE - cv.linkerKolom - KOLOM_RUIMTE;
     const nuTekenen = teken;
 
     teken = false;
-    const werkHoogte = tijdlijn(cv.werkTitel, cv.werk, linksX, y, LINKER_KOLOM);
+    const werkHoogte = tijdlijn(cv.werkTitel, cv.werk, linksX, y, cv.linkerKolom);
     const opleidingHoogte = tijdlijn(cv.opleidingTitel, cv.opleidingen, rechtsX, y, rechtsBreedte);
     const profielHoogte = profiel(rechtsX, y, rechtsBreedte, 0);
     teken = nuTekenen;
 
-    // Beide kolommen eindigen samen: het kortste vlak rekt mee
+    // Beide kolommen eindigen samen. Is de werkervaring korter, dan gaat de extra ruimte in
+    // kleine stukjes naar elke taak en elke plek tussen de functies, zodat er geen grote
+    // tussenruimtes of een leeg vlak onderaan ontstaan. Is de rechterkolom korter, dan rekt
+    // het profiel mee.
     const kolomHoogte = Math.max(werkHoogte, opleidingHoogte + KOLOM_RUIMTE + profielHoogte);
+    let aantalTaken = 0;
+
+    cv.werk.forEach(function (functie) {
+        aantalTaken += functie.taken.length;
+    });
+    const werkExtra = (kolomHoogte - werkHoogte) / (aantalTaken + cv.werk.length - 1);
+    cv.werkRuimte = kolomHoogte - werkHoogte;
     const profielY = y + opleidingHoogte + KOLOM_RUIMTE;
     const profielExtra = kolomHoogte - (opleidingHoogte + KOLOM_RUIMTE + profielHoogte);
 
-    vlak(linksX, y, LINKER_KOLOM, kolomHoogte, 2, k.vlak, k.rand);
-    tijdlijn(cv.werkTitel, cv.werk, linksX, y, LINKER_KOLOM);
+    vlak(linksX, y, cv.linkerKolom, kolomHoogte, 2, k.vlak, k.rand);
+    tijdlijn(cv.werkTitel, cv.werk, linksX, y, cv.linkerKolom, werkExtra);
 
     vlak(rechtsX, y, rechtsBreedte, opleidingHoogte, 2, k.vlak, k.rand);
     tijdlijn(cv.opleidingTitel, cv.opleidingen, rechtsX, y, rechtsBreedte);

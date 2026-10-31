@@ -938,11 +938,27 @@ h3 {
 
 /* Naast elkaar pas vanaf 1400px; smaller wordt de rechterkolom te krap.
    De verhouding is zo gekozen dat beide kolommen van nature bijna even hoog zijn
-   (gemeten: 9px verschil), zodat er geen lege ruimte of uitgerekte tussenruimte nodig is.
-   Komen er tags of functies bij, meet dit dan opnieuw. */
+   (gemeten: 41px verschil). Een smallere rechterkolom helpt niet: dan springt er een rij
+   logo's naar een nieuwe regel en wordt die kolom te lang. Komen er logo's of functies bij,
+   meet dit dan opnieuw. */
 @media (min-width: 1400px) {
     .cv-columns {
-        grid-template-columns: minmax(0, 11fr) minmax(0, 6fr);
+        grid-template-columns: minmax(0, 18fr) minmax(0, 13fr);
+    }
+
+    /* Het profiel rekt mee tot de onderkant van de werkervaring. Die paar pixels gaan in
+       kleine stukjes naar de plekken tussen de kopjes en logo's van de IT-vaardigheden,
+       zodat de laatste regel van beide kolommen op dezelfde hoogte staat zonder groot gat. */
+    .cv-side > :last-child {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .cv-side > :last-child .cv-group:first-of-type {
+        display: flex;
+        flex: 1 1 auto;
+        flex-direction: column;
+        justify-content: space-between;
     }
 }
 
@@ -1079,6 +1095,18 @@ h3 {
     letter-spacing: 0;
 }
 
+/* Groepen binnen de IT-vaardigheden: Frontend, Backend, Tools en Concepten */
+.cv-category {
+    margin: 0 0 8px;
+    color: var(--text-color);
+    font-size: .85rem;
+    font-weight: 600;
+}
+
+.cv-category:not(:first-of-type) {
+    margin-top: 24px;
+}
+
 /* Links uitgelijnd, onder het kopje; de gedeelde tagstijl centreert */
 .cv-card .tag-list {
     justify-content: flex-start;
@@ -1091,35 +1119,23 @@ h3 {
     font-size: .925rem;
 }
 
+/* Talen: altijd de taal links en het niveau rechts, op elke schermbreedte. Eén raster voor
+   alle talen (de rijen doen niet mee door display: contents), zodat de niveaus onder elkaar
+   beginnen. Elke kolom is minstens zo breed als haar tekst; is er meer plaats, dan zijn ze
+   even breed, net als de twee kolommen van de kenmerken. */
 .cv-languages {
     display: grid;
+    grid-template-columns: repeat(2, minmax(max-content, 1fr));
+    gap: 8px 16px;
     margin: 0;
 }
 
 .cv-languages div {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 16px;
-    padding: 8px 0;
-    border-bottom: 1px solid var(--border-color);
+    display: contents;
 }
 
-.cv-languages div:first-child {
-    padding-top: 0;
-}
-
-.cv-languages dt {
-    font-weight: 400;
-}
-
-.cv-languages dd {
-    margin: 0;
-    color: var(--text-muted);
-}
-
-/* Kenmerken met een koperen streepje ervoor; twee kolommen waar er plaats is,
-   anders één, zodat een lang woord als "Probleemoplossend" nooit overlapt */
+/* Kenmerken: twee kolommen waar er plaats is, anders één, zodat een lang woord als
+   "Probleemoplossend" nooit overlapt */
 .cv-traits {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
@@ -1129,12 +1145,24 @@ h3 {
     list-style: none;
 }
 
+.cv-languages dt {
+    font-weight: 400;
+}
+
+.cv-languages dd {
+    margin: 0;
+}
+
+.cv-languages dt,
+.cv-languages dd,
 .cv-traits li {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
+.cv-languages dt::before,
+.cv-languages dd::before,
 .cv-traits li::before {
     content: "";
     flex-shrink: 0;
@@ -1169,7 +1197,8 @@ h3 {
 .skill-icons {
     display: flex;
     flex-wrap: wrap;
-    gap: 18px;
+    /* Kleine logo's, in verhouding met de tekst; vijftien passen ruim op één rij */
+    gap: 12px;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -1182,8 +1211,8 @@ h3 {
 }
 
 .skill-icons img {
-    width: 60px;
-    height: 60px;
+    width: 44px;
+    height: 44px;
     transition: transform .2s ease;
 }
 
@@ -1214,13 +1243,13 @@ h3 {
 
 /* Kleinere logo's in het cv */
 .skill-icons-small {
-    gap: 10px;
-    margin-bottom: 10px;
+    gap: 8px;
+    margin-bottom: 0;
 }
 
 .skill-icons-small img {
-    width: 36px;
-    height: 36px;
+    width: 28px;
+    height: 28px;
 }
 
 /* Concepten: icoon, vetgedrukte naam en uitleg op één regel */
@@ -2386,7 +2415,7 @@ html.modal-is-open {
     /* Werkervaring links, opleidingen en profiel rechts, net als op desktop;
        de onderkanten lopen gelijk doordat het profiel meerekt */
     .cv-columns {
-        grid-template-columns: minmax(0, 11fr) minmax(0, 7fr);
+        grid-template-columns: minmax(0, 18fr) minmax(0, 13fr);
         gap: 4mm;
     }
 
@@ -2462,9 +2491,18 @@ html.modal-is-open {
         font-size: 6.5pt;
     }
 
+    .cv-category {
+        margin-bottom: 1.2mm;
+        font-size: 7pt;
+    }
+
+    .cv-category:not(:first-of-type) {
+        margin-top: 3.5mm;
+    }
+
     .skill-icons-small {
         gap: 1.5mm;
-        margin-bottom: 1.5mm;
+        margin-bottom: 0;
     }
 
     .skill-icons-small img {
@@ -2477,20 +2515,21 @@ html.modal-is-open {
         font-size: 7.5pt;
     }
 
-    .cv-languages div {
-        padding: 1.2mm 0;
-    }
-
-    /* Kenmerken in twee kolommen, zodat het profiel niet langer wordt dan nodig */
+    /* Talen en kenmerken in twee kolommen, zodat het profiel niet langer wordt dan nodig */
+    .cv-languages,
     .cv-traits {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 1.2mm 3mm;
     }
 
+    .cv-languages dt,
+    .cv-languages dd,
     .cv-traits li {
         gap: 2mm;
     }
 
+    .cv-languages dt::before,
+    .cv-languages dd::before,
     .cv-traits li::before {
         width: 2.5mm;
     }

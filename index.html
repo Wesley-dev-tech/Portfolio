@@ -35,19 +35,19 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap">
 
-    <link rel="stylesheet" href="style.css?v=128">
-    <link rel="icon" href="favicon.ico?v=128" sizes="16x16 32x32 48x48">
+    <link rel="stylesheet" href="style.css?v=129">
+    <link rel="icon" href="favicon.ico?v=129" sizes="16x16 32x32 48x48">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
     <!-- In de head, zodat het thema al staat voor de pagina getekend wordt.
          De rest van script.js wacht zelf tot de HTML geladen is. -->
-    <script src="script.js?v=128"></script>
+    <script src="script.js?v=129"></script>
 
     <!-- jsPDF en mijn eigen script dat er de cv-pdf mee tekent; defer laadt ze zonder de pagina op te houden -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
         integrity="sha384-JcnsjUPPylna1s1fvi1u12X5qjY5OL56iySh75FdtrwhO/SWXgMjoVqcKyIIWOLk" crossorigin="anonymous"
         defer></script>
-    <script src="cv-pdf.js?v=128" defer></script>
+    <script src="cv-pdf.js?v=129" defer></script>
 </head>
 
 <body>
@@ -635,54 +635,200 @@
 
                                         <div class="cv-group">
                                             <h5 class="cv-subhead">IT-vaardigheden</h5>
-                                            <!-- Dezelfde logo's als bij Mijn vaardigheden, kleiner -->
+                                            <!-- Dezelfde indeling en logo's als bij Mijn vaardigheden, kleiner -->
+                                            <h6 class="cv-category">Frontend</h6>
                                             <ul class="skill-icons skill-icons-small">
                                                 <li>
-                                                    <img src="images/skills/html.svg" alt="" width="36" height="36">
+                                                    <img src="images/skills/html.svg" alt="" width="28" height="28">
                                                     <span class="skill-name">HTML</span>
                                                 </li>
                                                 <li>
-                                                    <img src="images/skills/css.svg" alt="" width="36" height="36">
+                                                    <img src="images/skills/css.svg" alt="" width="28" height="28">
                                                     <span class="skill-name">CSS</span>
                                                 </li>
                                                 <li>
-                                                    <img src="images/skills/js.svg" alt="" width="36" height="36">
+                                                    <img src="images/skills/javascript.svg" alt="" width="28" height="28">
                                                     <span class="skill-name">JavaScript</span>
                                                 </li>
                                                 <li>
-                                                    <img src="images/skills/bootstrap.svg" alt="" width="36" height="36">
+                                                    <img src="images/skills/typescript.svg" alt="" width="28" height="28">
+                                                    <span class="skill-name">TypeScript</span>
+                                                </li>
+                                                <li>
+                                                    <img class="theme-dark-only" src="images/skills/react-dark.svg" alt="" width="28" height="28">
+                                                    <img class="theme-light-only" src="images/skills/react-light.svg" alt="" width="28" height="28">
+                                                    <span class="skill-name">React</span>
+                                                </li>
+                                                <li>
+                                                    <img class="theme-dark-only" src="images/skills/angular-dark.svg" alt="" width="28" height="28">
+                                                    <img class="theme-light-only" src="images/skills/angular-light.svg" alt="" width="28" height="28">
+                                                    <span class="skill-name">Angular</span>
+                                                </li>
+                                                <li>
+                                                    <img class="theme-dark-only" src="images/skills/vite-dark.svg" alt="" width="28" height="28">
+                                                    <img class="theme-light-only" src="images/skills/vite-light.svg" alt="" width="28" height="28">
+                                                    <span class="skill-name">Vite</span>
+                                                </li>
+                                                <li>
+                                                    <img src="images/skills/bootstrap.svg" alt="" width="28" height="28">
                                                     <span class="skill-name">Bootstrap</span>
                                                 </li>
                                                 <li>
-                                                    <img src="images/skills/tailwind.svg" alt="" width="36" height="36">
-                                                    <span class="skill-name">Tailwind CSS</span>
+                                                    <img class="theme-dark-only" src="images/skills/tailwind-dark.svg" alt="" width="28" height="28">
+                                                    <img class="theme-light-only" src="images/skills/tailwind-light.svg" alt="" width="28" height="28">
+                                                    <span class="skill-name">Tailwind</span>
                                                 </li>
                                                 <li>
-                                                    <img class="theme-dark-only" src="images/skills/mysql-dark.svg" alt="" width="36" height="36">
-                                                    <img class="theme-light-only" src="images/skills/mysql-light.svg" alt="" width="36" height="36">
+                                                    <img class="theme-dark-only" src="images/skills/nextjs-dark.svg" alt="" width="28" height="28">
+                                                    <img class="theme-light-only" src="images/skills/nextjs-light.svg" alt="" width="28" height="28">
+                                                    <span class="skill-name">Next.js</span>
+                                                </li>
+                                                <li>
+                                                    <img class="theme-dark-only" src="images/skills/vercel-dark.svg" alt="" width="28" height="28">
+                                                    <img class="theme-light-only" src="images/skills/vercel-light.svg" alt="" width="28" height="28">
+                                                    <span class="skill-name">Vercel</span>
+                                                </li>
+                                                <li>
+                                                    <img class="theme-dark-only" src="images/skills/netlify-dark.svg" alt="" width="28" height="28">
+                                                    <img class="theme-light-only" src="images/skills/netlify-light.svg" alt="" width="28" height="28">
+                                                    <span class="skill-name">Netlify</span>
+                                                </li>
+                                                <li>
+                                                    <img class="theme-dark-only" src="images/skills/apachecordova-dark.svg" alt="" width="28" height="28">
+                                                    <img class="theme-light-only" src="images/skills/apachecordova-light.svg" alt="" width="28" height="28">
+                                                    <span class="skill-name">Apache Cordova</span>
+                                                </li>
+                                            </ul>
+                                            <h6 class="cv-category">Backend</h6>
+                                            <ul class="skill-icons skill-icons-small">
+                                                <li>
+                                                    <img class="theme-dark-only" src="images/skills/nodejs-dark.svg" alt="" width="28" height="28">
+                                                    <img class="theme-light-only" src="images/skills/nodejs-light.svg" alt="" width="28" height="28">
+                                                    <span class="skill-name">Node.js</span>
+                                                </li>
+                                                <li>
+                                                    <img class="theme-dark-only" src="images/skills/expressjs-dark.svg" alt="" width="28" height="28">
+                                                    <img class="theme-light-only" src="images/skills/expressjs-light.svg" alt="" width="28" height="28">
+                                                    <span class="skill-name">Express.js</span>
+                                                </li>
+                                                <li>
+                                                    <img class="theme-dark-only" src="images/skills/php-dark.svg" alt="" width="28" height="28">
+                                                    <img class="theme-light-only" src="images/skills/php-light.svg" alt="" width="28" height="28">
+                                                    <span class="skill-name">PHP</span>
+                                                </li>
+                                                <li>
+                                                    <img class="theme-dark-only" src="images/skills/laravel-dark.svg" alt="" width="28" height="28">
+                                                    <img class="theme-light-only" src="images/skills/laravel-light.svg" alt="" width="28" height="28">
+                                                    <span class="skill-name">Laravel</span>
+                                                </li>
+                                                <li>
+                                                    <img class="theme-dark-only" src="images/skills/hono-dark.svg" alt="" width="28" height="28">
+                                                    <img class="theme-light-only" src="images/skills/hono-light.svg" alt="" width="28" height="28">
+                                                    <span class="skill-name">Hono.js</span>
+                                                </li>
+                                                <li>
+                                                    <img class="theme-dark-only" src="images/skills/fastify-dark.svg" alt="" width="28" height="28">
+                                                    <img class="theme-light-only" src="images/skills/fastify-light.svg" alt="" width="28" height="28">
+                                                    <span class="skill-name">Fastify.js</span>
+                                                </li>
+                                                <li>
+                                                    <img class="theme-dark-only" src="images/skills/python-dark.svg" alt="" width="28" height="28">
+                                                    <img class="theme-light-only" src="images/skills/python-light.svg" alt="" width="28" height="28">
+                                                    <span class="skill-name">Python</span>
+                                                </li>
+                                                <li>
+                                                    <img class="theme-dark-only" src="images/skills/mysql-dark.svg" alt="" width="28" height="28">
+                                                    <img class="theme-light-only" src="images/skills/mysql-light.svg" alt="" width="28" height="28">
                                                     <span class="skill-name">MySQL</span>
                                                 </li>
                                                 <li>
-                                                    <img src="images/skills/git.svg" alt="" width="36" height="36">
+                                                    <img class="theme-dark-only" src="images/skills/supabase-dark.svg" alt="" width="28" height="28">
+                                                    <img class="theme-light-only" src="images/skills/supabase-light.svg" alt="" width="28" height="28">
+                                                    <span class="skill-name">Supabase</span>
+                                                </li>
+                                            </ul>
+                                            <h6 class="cv-category">Tools &amp; Development</h6>
+                                            <ul class="skill-icons skill-icons-small">
+                                                <li>
+                                                    <img src="images/skills/git.svg" alt="" width="28" height="28">
                                                     <span class="skill-name">Git</span>
                                                 </li>
                                                 <li>
-                                                    <img class="theme-dark-only" src="images/skills/github-dark.svg" alt="" width="36" height="36">
-                                                    <img class="theme-light-only" src="images/skills/github-light.svg" alt="" width="36" height="36">
+                                                    <img class="theme-dark-only" src="images/skills/github-dark.svg" alt="" width="28" height="28">
+                                                    <img class="theme-light-only" src="images/skills/github-light.svg" alt="" width="28" height="28">
                                                     <span class="skill-name">GitHub</span>
                                                 </li>
                                                 <li>
-                                                    <img src="images/skills/vscode.svg" alt="" width="36" height="36">
-                                                    <span class="skill-name">VS Code</span>
+                                                    <img class="theme-dark-only" src="images/skills/githubactions-dark.svg" alt="" width="28" height="28">
+                                                    <img class="theme-light-only" src="images/skills/githubactions-light.svg" alt="" width="28" height="28">
+                                                    <span class="skill-name">GitHub Actions (CI/CD)</span>
                                                 </li>
                                                 <li>
-                                                    <img src="images/skills/trello.svg" alt="" width="36" height="36">
+                                                    <img class="theme-dark-only" src="images/skills/githubcopilot-dark.svg" alt="" width="28" height="28">
+                                                    <img class="theme-light-only" src="images/skills/githubcopilot-light.svg" alt="" width="28" height="28">
+                                                    <span class="skill-name">GitHub Copilot</span>
+                                                </li>
+                                                <li>
+                                                    <img class="theme-dark-only" src="images/skills/jenkins-dark.svg" alt="" width="28" height="28">
+                                                    <img class="theme-light-only" src="images/skills/jenkins-light.svg" alt="" width="28" height="28">
+                                                    <span class="skill-name">Jenkins</span>
+                                                </li>
+                                                <li>
+                                                    <img class="theme-dark-only" src="images/skills/linux-dark.svg" alt="" width="28" height="28">
+                                                    <img class="theme-light-only" src="images/skills/linux-light.svg" alt="" width="28" height="28">
+                                                    <span class="skill-name">Linux</span>
+                                                </li>
+                                                <li>
+                                                    <img class="theme-dark-only" src="images/skills/jira-dark.svg" alt="" width="28" height="28">
+                                                    <img class="theme-light-only" src="images/skills/jira-light.svg" alt="" width="28" height="28">
+                                                    <span class="skill-name">Jira</span>
+                                                </li>
+                                                <li>
+                                                    <img class="theme-dark-only" src="images/skills/trello-dark.svg" alt="" width="28" height="28">
+                                                    <img class="theme-light-only" src="images/skills/trello-light.svg" alt="" width="28" height="28">
                                                     <span class="skill-name">Trello</span>
                                                 </li>
+                                                <li>
+                                                    <img class="theme-dark-only" src="images/skills/clickup-dark.svg" alt="" width="28" height="28">
+                                                    <img class="theme-light-only" src="images/skills/clickup-light.svg" alt="" width="28" height="28">
+                                                    <span class="skill-name">ClickUp</span>
+                                                </li>
+                                                <li>
+                                                    <img class="theme-dark-only" src="images/skills/notion-dark.svg" alt="" width="28" height="28">
+                                                    <img class="theme-light-only" src="images/skills/notion-light.svg" alt="" width="28" height="28">
+                                                    <span class="skill-name">Notion</span>
+                                                </li>
+                                                <li>
+                                                    <img class="theme-dark-only" src="images/skills/cursor-dark.svg" alt="" width="28" height="28">
+                                                    <img class="theme-light-only" src="images/skills/cursor-light.svg" alt="" width="28" height="28">
+                                                    <span class="skill-name">Cursor</span>
+                                                </li>
+                                                <li>
+                                                    <img class="theme-dark-only" src="images/skills/openai-dark.svg" alt="" width="28" height="28">
+                                                    <img class="theme-light-only" src="images/skills/openai-light.svg" alt="" width="28" height="28">
+                                                    <span class="skill-name">OpenAI API (ChatGPT &amp; Whisper)</span>
+                                                </li>
+                                                <li>
+                                                    <img class="theme-dark-only" src="images/skills/vitest-dark.svg" alt="" width="28" height="28">
+                                                    <img class="theme-light-only" src="images/skills/vitest-light.svg" alt="" width="28" height="28">
+                                                    <span class="skill-name">Vitest</span>
+                                                </li>
+                                                <li>
+                                                    <img src="images/skills/jest.svg" alt="" width="28" height="28">
+                                                    <span class="skill-name">Jest</span>
+                                                </li>
+                                                <li>
+                                                    <img class="theme-dark-only" src="images/skills/insomnia-dark.svg" alt="" width="28" height="28">
+                                                    <img class="theme-light-only" src="images/skills/insomnia-light.svg" alt="" width="28" height="28">
+                                                    <span class="skill-name">Insomnia</span>
+                                                </li>
                                             </ul>
+                                            <h6 class="cv-category">Concepten &amp; methodologieën</h6>
                                             <ul class="tag-list">
-                                                <li>Databasenormalisatie</li>
-                                                <li>Agile &amp; Scrum</li>
+                                                <li>Monday</li>
+                                                <li>Scrum</li>
+                                                <li>REST API</li>
+                                                <li>MCP</li>
                                             </ul>
                                         </div>
 
@@ -741,30 +887,70 @@
                     <h2 class="section-title">Mijn vaardigheden</h2>
                 </div>
 
-                <!-- Logo's van skillicons.dev, bewaard in images/skills. De naam verschijnt bij hover. -->
+                <!-- Dezelfde logo's als op mijn GitHub-profiel, bewaard in images/skills. De naam verschijnt bij hover. -->
                 <div class="skills-stack">
                     <section class="skill-group" aria-labelledby="skills-frontend">
                         <h3 id="skills-frontend">Frontend</h3>
                         <ul class="skill-icons">
                             <li>
-                                <img src="images/skills/html.svg" alt="" width="60" height="60">
+                                <img src="images/skills/html.svg" alt="" width="44" height="44">
                                 <span class="skill-name">HTML</span>
                             </li>
                             <li>
-                                <img src="images/skills/css.svg" alt="" width="60" height="60">
+                                <img src="images/skills/css.svg" alt="" width="44" height="44">
                                 <span class="skill-name">CSS</span>
                             </li>
                             <li>
-                                <img src="images/skills/js.svg" alt="" width="60" height="60">
+                                <img src="images/skills/javascript.svg" alt="" width="44" height="44">
                                 <span class="skill-name">JavaScript</span>
                             </li>
                             <li>
-                                <img src="images/skills/bootstrap.svg" alt="" width="60" height="60">
+                                <img src="images/skills/typescript.svg" alt="" width="44" height="44">
+                                <span class="skill-name">TypeScript</span>
+                            </li>
+                            <li>
+                                <img class="theme-dark-only" src="images/skills/react-dark.svg" alt="" width="44" height="44">
+                                <img class="theme-light-only" src="images/skills/react-light.svg" alt="" width="44" height="44">
+                                <span class="skill-name">React</span>
+                            </li>
+                            <li>
+                                <img class="theme-dark-only" src="images/skills/angular-dark.svg" alt="" width="44" height="44">
+                                <img class="theme-light-only" src="images/skills/angular-light.svg" alt="" width="44" height="44">
+                                <span class="skill-name">Angular</span>
+                            </li>
+                            <li>
+                                <img class="theme-dark-only" src="images/skills/vite-dark.svg" alt="" width="44" height="44">
+                                <img class="theme-light-only" src="images/skills/vite-light.svg" alt="" width="44" height="44">
+                                <span class="skill-name">Vite</span>
+                            </li>
+                            <li>
+                                <img src="images/skills/bootstrap.svg" alt="" width="44" height="44">
                                 <span class="skill-name">Bootstrap</span>
                             </li>
                             <li>
-                                <img src="images/skills/tailwind.svg" alt="" width="60" height="60">
-                                <span class="skill-name">Tailwind CSS</span>
+                                <img class="theme-dark-only" src="images/skills/tailwind-dark.svg" alt="" width="44" height="44">
+                                <img class="theme-light-only" src="images/skills/tailwind-light.svg" alt="" width="44" height="44">
+                                <span class="skill-name">Tailwind</span>
+                            </li>
+                            <li>
+                                <img class="theme-dark-only" src="images/skills/nextjs-dark.svg" alt="" width="44" height="44">
+                                <img class="theme-light-only" src="images/skills/nextjs-light.svg" alt="" width="44" height="44">
+                                <span class="skill-name">Next.js</span>
+                            </li>
+                            <li>
+                                <img class="theme-dark-only" src="images/skills/vercel-dark.svg" alt="" width="44" height="44">
+                                <img class="theme-light-only" src="images/skills/vercel-light.svg" alt="" width="44" height="44">
+                                <span class="skill-name">Vercel</span>
+                            </li>
+                            <li>
+                                <img class="theme-dark-only" src="images/skills/netlify-dark.svg" alt="" width="44" height="44">
+                                <img class="theme-light-only" src="images/skills/netlify-light.svg" alt="" width="44" height="44">
+                                <span class="skill-name">Netlify</span>
+                            </li>
+                            <li>
+                                <img class="theme-dark-only" src="images/skills/apachecordova-dark.svg" alt="" width="44" height="44">
+                                <img class="theme-light-only" src="images/skills/apachecordova-light.svg" alt="" width="44" height="44">
+                                <span class="skill-name">Apache Cordova</span>
                             </li>
                         </ul>
                     </section>
@@ -773,32 +959,128 @@
                         <h3 id="skills-backend">Backend</h3>
                         <ul class="skill-icons">
                             <li>
-                                <img class="theme-dark-only" src="images/skills/mysql-dark.svg" alt="" width="60" height="60">
-                                <img class="theme-light-only" src="images/skills/mysql-light.svg" alt="" width="60" height="60">
+                                <img class="theme-dark-only" src="images/skills/nodejs-dark.svg" alt="" width="44" height="44">
+                                <img class="theme-light-only" src="images/skills/nodejs-light.svg" alt="" width="44" height="44">
+                                <span class="skill-name">Node.js</span>
+                            </li>
+                            <li>
+                                <img class="theme-dark-only" src="images/skills/expressjs-dark.svg" alt="" width="44" height="44">
+                                <img class="theme-light-only" src="images/skills/expressjs-light.svg" alt="" width="44" height="44">
+                                <span class="skill-name">Express.js</span>
+                            </li>
+                            <li>
+                                <img class="theme-dark-only" src="images/skills/php-dark.svg" alt="" width="44" height="44">
+                                <img class="theme-light-only" src="images/skills/php-light.svg" alt="" width="44" height="44">
+                                <span class="skill-name">PHP</span>
+                            </li>
+                            <li>
+                                <img class="theme-dark-only" src="images/skills/laravel-dark.svg" alt="" width="44" height="44">
+                                <img class="theme-light-only" src="images/skills/laravel-light.svg" alt="" width="44" height="44">
+                                <span class="skill-name">Laravel</span>
+                            </li>
+                            <li>
+                                <img class="theme-dark-only" src="images/skills/hono-dark.svg" alt="" width="44" height="44">
+                                <img class="theme-light-only" src="images/skills/hono-light.svg" alt="" width="44" height="44">
+                                <span class="skill-name">Hono.js</span>
+                            </li>
+                            <li>
+                                <img class="theme-dark-only" src="images/skills/fastify-dark.svg" alt="" width="44" height="44">
+                                <img class="theme-light-only" src="images/skills/fastify-light.svg" alt="" width="44" height="44">
+                                <span class="skill-name">Fastify.js</span>
+                            </li>
+                            <li>
+                                <img class="theme-dark-only" src="images/skills/python-dark.svg" alt="" width="44" height="44">
+                                <img class="theme-light-only" src="images/skills/python-light.svg" alt="" width="44" height="44">
+                                <span class="skill-name">Python</span>
+                            </li>
+                            <li>
+                                <img class="theme-dark-only" src="images/skills/mysql-dark.svg" alt="" width="44" height="44">
+                                <img class="theme-light-only" src="images/skills/mysql-light.svg" alt="" width="44" height="44">
                                 <span class="skill-name">MySQL</span>
+                            </li>
+                            <li>
+                                <img class="theme-dark-only" src="images/skills/supabase-dark.svg" alt="" width="44" height="44">
+                                <img class="theme-light-only" src="images/skills/supabase-light.svg" alt="" width="44" height="44">
+                                <span class="skill-name">Supabase</span>
                             </li>
                         </ul>
                     </section>
 
                     <section class="skill-group" aria-labelledby="skills-tools">
-                        <h3 id="skills-tools">Tools &amp; development</h3>
+                        <h3 id="skills-tools">Tools &amp; Development</h3>
                         <ul class="skill-icons">
                             <li>
-                                <img src="images/skills/git.svg" alt="" width="60" height="60">
+                                <img src="images/skills/git.svg" alt="" width="44" height="44">
                                 <span class="skill-name">Git</span>
                             </li>
                             <li>
-                                <img class="theme-dark-only" src="images/skills/github-dark.svg" alt="" width="60" height="60">
-                                <img class="theme-light-only" src="images/skills/github-light.svg" alt="" width="60" height="60">
+                                <img class="theme-dark-only" src="images/skills/github-dark.svg" alt="" width="44" height="44">
+                                <img class="theme-light-only" src="images/skills/github-light.svg" alt="" width="44" height="44">
                                 <span class="skill-name">GitHub</span>
                             </li>
                             <li>
-                                <img src="images/skills/vscode.svg" alt="" width="60" height="60">
-                                <span class="skill-name">VS Code</span>
+                                <img class="theme-dark-only" src="images/skills/githubactions-dark.svg" alt="" width="44" height="44">
+                                <img class="theme-light-only" src="images/skills/githubactions-light.svg" alt="" width="44" height="44">
+                                <span class="skill-name">GitHub Actions (CI/CD)</span>
                             </li>
                             <li>
-                                <img src="images/skills/trello.svg" alt="" width="60" height="60">
+                                <img class="theme-dark-only" src="images/skills/githubcopilot-dark.svg" alt="" width="44" height="44">
+                                <img class="theme-light-only" src="images/skills/githubcopilot-light.svg" alt="" width="44" height="44">
+                                <span class="skill-name">GitHub Copilot</span>
+                            </li>
+                            <li>
+                                <img class="theme-dark-only" src="images/skills/jenkins-dark.svg" alt="" width="44" height="44">
+                                <img class="theme-light-only" src="images/skills/jenkins-light.svg" alt="" width="44" height="44">
+                                <span class="skill-name">Jenkins</span>
+                            </li>
+                            <li>
+                                <img class="theme-dark-only" src="images/skills/linux-dark.svg" alt="" width="44" height="44">
+                                <img class="theme-light-only" src="images/skills/linux-light.svg" alt="" width="44" height="44">
+                                <span class="skill-name">Linux</span>
+                            </li>
+                            <li>
+                                <img class="theme-dark-only" src="images/skills/jira-dark.svg" alt="" width="44" height="44">
+                                <img class="theme-light-only" src="images/skills/jira-light.svg" alt="" width="44" height="44">
+                                <span class="skill-name">Jira</span>
+                            </li>
+                            <li>
+                                <img class="theme-dark-only" src="images/skills/trello-dark.svg" alt="" width="44" height="44">
+                                <img class="theme-light-only" src="images/skills/trello-light.svg" alt="" width="44" height="44">
                                 <span class="skill-name">Trello</span>
+                            </li>
+                            <li>
+                                <img class="theme-dark-only" src="images/skills/clickup-dark.svg" alt="" width="44" height="44">
+                                <img class="theme-light-only" src="images/skills/clickup-light.svg" alt="" width="44" height="44">
+                                <span class="skill-name">ClickUp</span>
+                            </li>
+                            <li>
+                                <img class="theme-dark-only" src="images/skills/notion-dark.svg" alt="" width="44" height="44">
+                                <img class="theme-light-only" src="images/skills/notion-light.svg" alt="" width="44" height="44">
+                                <span class="skill-name">Notion</span>
+                            </li>
+                            <li>
+                                <img class="theme-dark-only" src="images/skills/cursor-dark.svg" alt="" width="44" height="44">
+                                <img class="theme-light-only" src="images/skills/cursor-light.svg" alt="" width="44" height="44">
+                                <span class="skill-name">Cursor</span>
+                            </li>
+                            <li>
+                                <img class="theme-dark-only" src="images/skills/openai-dark.svg" alt="" width="44" height="44">
+                                <img class="theme-light-only" src="images/skills/openai-light.svg" alt="" width="44" height="44">
+                                <span class="skill-name">OpenAI API (ChatGPT &amp; Whisper)</span>
+                            </li>
+                            <li>
+                                <img class="theme-dark-only" src="images/skills/vitest-dark.svg" alt="" width="44" height="44">
+                                <img class="theme-light-only" src="images/skills/vitest-light.svg" alt="" width="44" height="44">
+                                <span class="skill-name">Vitest</span>
+                            </li>
+                            <li>
+                                <img src="images/skills/jest.svg" alt="" width="44" height="44">
+                                <span class="skill-name">Jest</span>
+                            </li>
+                            <li>
+                                <img class="theme-dark-only" src="images/skills/insomnia-dark.svg" alt="" width="44" height="44">
+                                <img class="theme-light-only" src="images/skills/insomnia-light.svg" alt="" width="44" height="44">
+                                <span class="skill-name">Insomnia</span>
                             </li>
                         </ul>
                     </section>
@@ -807,20 +1089,33 @@
                         <h3 id="skills-concepts">Concepten &amp; methodologieën</h3>
                         <ul class="skill-concepts">
                             <li>
-                                <i class="fa-solid fa-sitemap" aria-hidden="true"></i>
+                                <i class="fa-solid fa-list-check" aria-hidden="true"></i>
                                 <p>
-                                    <strong>Databasenormalisatie</strong> — ik leer gegevens logisch
-                                    structureren en databanken normaliseren van 0NF tot 3NF, zodat
-                                    informatie overzichtelijk blijft en onnodige herhaling wordt vermeden.
+                                    <strong>Monday</strong> — hierin plan ik mijn taken, volg ik op hoever
+                                    een project staat en stem ik het werk af wanneer we in team werken.
                                 </p>
                             </li>
                             <li>
                                 <i class="fa-solid fa-people-group" aria-hidden="true"></i>
                                 <p>
-                                    <strong>Agile &amp; Scrum</strong> — tijdens de lessen leerde ik werken
-                                    met Agile en Scrum. We oefenden met het plannen van sprints, het
-                                    inschatten van taken via planning poker en het opvolgen van de
-                                    voortgang op een kanbanbord in Trello.
+                                    <strong>Scrum</strong> — in de lessen werk ik in sprints: we schatten
+                                    taken in met planning poker, volgen ze op een kanbanbord in Trello en
+                                    bespreken na elke sprint wat beter kan.
+                                </p>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-plug" aria-hidden="true"></i>
+                                <p>
+                                    <strong>REST API</strong> — met JavaScript vraag ik gegevens op via
+                                    HTTP-verzoeken en toon ik het antwoord van de API op mijn pagina.
+                                </p>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-cubes" aria-hidden="true"></i>
+                                <p>
+                                    <strong>MCP</strong> — hiermee koppel ik
+                                    AI-assistenten aan mijn eigen tools, zoals GitHub en Google Drive,
+                                    zodat ze rechtstreeks met mijn bestanden en gegevens kunnen werken.
                                 </p>
                             </li>
                         </ul>
