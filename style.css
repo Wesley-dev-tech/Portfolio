@@ -354,6 +354,60 @@ h3 {
     }
 }
 
+/* Taalkeuze EN | NL: dezelfde pilvorm als de themaschakelaar, maar rustiger (geen koperen
+   bolletje). De actieve taal is vet, in de tekstkleur en koper onderstreept, dus ook zonder
+   kleurverschil herkenbaar. */
+.lang-switch {
+    display: inline-flex;
+    align-items: center;
+    height: 44px;
+    padding: 3px;
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+    background: var(--bg-secondary);
+    transition: border-color .2s ease;
+}
+
+.lang-option {
+    min-width: 36px;
+    height: 100%;
+    padding: 0 6px;
+    border: 0;
+    border-radius: 999px;
+    background: none;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: .78rem;
+    font-weight: 500;
+    letter-spacing: .04em;
+    text-decoration: underline 2px transparent;
+    text-underline-offset: 5px;
+    transition: color .2s ease, text-decoration-color .2s ease;
+}
+
+.lang-option[aria-pressed="true"] {
+    color: var(--text-color);
+    font-weight: 700;
+    text-decoration-color: var(--accent);
+}
+
+/* Dunne verticale lijn tussen EN en NL */
+.lang-divider {
+    width: 1px;
+    height: 16px;
+    background: var(--border-strong);
+}
+
+@media (hover: hover) {
+    .lang-switch:hover {
+        border-color: var(--text-muted);
+    }
+
+    .lang-option[aria-pressed="false"]:hover {
+        color: var(--text-color);
+    }
+}
+
 .menu-button {
     display: none;
 }
@@ -376,6 +430,10 @@ h3 {
         height: 40px;
         font-size: .9rem;
     }
+
+    .lang-switch {
+        height: 40px;
+    }
 }
 
 /* Net boven de desktopgrens is het krap: iets minder ruimte tussen de links,
@@ -383,6 +441,20 @@ h3 {
 @media (min-width: 1200px) and (max-width: 1279.98px) {
     .nav-links {
         gap: 22px;
+    }
+}
+
+/* Met de taalkeuze erbij past "Portfolio - Wesley Bogaerts" op deze breedtes niet meer naast
+   de links of de knoppen (gemeten: de header werd twee regels hoog). Dan alleen de naam;
+   schermlezers lezen het woord Portfolio wel nog voor. */
+@media (min-width: 1200px) and (max-width: 1339.98px), (min-width: 480px) and (max-width: 519.98px) {
+    .logo-prefix {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip-path: inset(50%);
+        white-space: nowrap;
     }
 }
 
@@ -670,8 +742,15 @@ h3 {
 /* Knoppen die alleen met JavaScript werken; vanaf de eerste weergave op hun plaats */
 :root:not(.js) .read-more-toggle,
 :root:not(.js) .theme-toggle,
+:root:not(.js) .lang-switch,
 :root:not(.js) .cv-pdf {
     display: none;
+}
+
+/* Nederlands gekozen: script.js vertaalt de pagina bij het laden. Tot dan blijft ze onzichtbaar,
+   zodat je nooit eerst de Engelse tekst ziet. */
+.taal-laden body {
+    visibility: hidden;
 }
 
 .read-more-toggle,
@@ -944,6 +1023,12 @@ h3 {
 @media (min-width: 1400px) {
     .cv-columns {
         grid-template-columns: minmax(0, 18fr) minmax(0, 13fr);
+    }
+
+    /* In het Engels zijn de taken links korter en de titels rechts langer; daar eindigen
+       de kolommen van nature gelijk bij 5 : 4 (gemeten: 5px verschil, tegenover 100px bij 18 : 13) */
+    :root[lang="en"] .cv-columns {
+        grid-template-columns: minmax(0, 5fr) minmax(0, 4fr);
     }
 
     /* Het profiel rekt mee tot de onderkant van de werkervaring. Die paar pixels gaan in

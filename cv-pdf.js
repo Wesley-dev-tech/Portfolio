@@ -1,6 +1,6 @@
 // Cv als pdf, getekend met jsPDF
 // De inhoud komt uit het cv in index.html en de kleuren uit style.css, dus de pdf volgt vanzelf
-// elke wijziging aan het cv en het thema dat de bezoeker gekozen heeft
+// elke wijziging aan het cv, de gekozen taal en het thema dat de bezoeker gekozen heeft
 // pdf.save() maakt het bestand in de browser, zodat het meteen in de map Downloads komt
 document.addEventListener("DOMContentLoaded", function () {
     document.querySelector(".cv-pdf").addEventListener("click", maakCvPdf);
@@ -127,7 +127,7 @@ function leesKleuren() {
 
 function maakCvPdf() {
     if (!window.jspdf) {
-        alert("De pdf kon niet gemaakt worden. Controleer je internetverbinding en probeer opnieuw.");
+        alert(t("pdf.fout"));
         return;
     }
 
@@ -169,8 +169,9 @@ function maakCvPdf() {
     // Dan tekenen, verticaal in het midden van de pagina
     tekenCv(pdf, cv, kleuren, schaal, true, (PAGINA_HOOGTE - hoogte) / 2);
 
-    pdf.setProperties({ title: "Cv " + cv.naam, author: cv.naam });
-    pdf.save("Cv " + cv.naam + ".pdf");
+    // Bestandsnaam in de actieve taal: "Resume Wesley Bogaerts.pdf" of "Cv Wesley Bogaerts.pdf"
+    pdf.setProperties({ title: t("pdf.bestand") + " " + cv.naam, author: cv.naam });
+    pdf.save(t("pdf.bestand") + " " + cv.naam + ".pdf");
 }
 
 // Tekent het hele cv vanaf hoogte boven en geeft de totale hoogte terug.

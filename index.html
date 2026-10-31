@@ -1,25 +1,27 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio Wesley Bogaerts</title>
-    <meta name="description"
-        content="Portfolio van Wesley Bogaerts uit Balen, student Full Stack &amp; AI Automation Developer aan SyntraPXL.">
+    <meta name="description" data-i18n-content="meta.description"
+        content="Portfolio of Wesley Bogaerts from Balen, Belgium, student Full Stack &amp; AI Automation Developer at SyntraPXL.">
     <meta name="theme-color" content="#161513">
     <meta name="google-site-verification" content="WN1eTiJH5sM6zJX7ucIGocJQkgAMF39M5ueUJV-ISRI" />
 
     <meta property="og:title" content="Portfolio Wesley Bogaerts">
     <meta property="og:description"
-        content="Ontdek de projecten en ontwikkeling van Wesley Bogaerts, student Full Stack &amp; AI Automation Developer aan SyntraPXL.">
+        content="Explore the projects and progress of Wesley Bogaerts, student Full Stack &amp; AI Automation Developer at SyntraPXL.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://wesley-dev-tech.github.io/Portfolio/">
     <!-- Voorbeeldafbeelding bij delen op LinkedIn, WhatsApp en andere platformen -->
     <meta property="og:image" content="https://wesley-dev-tech.github.io/Portfolio/images/og-image.jpg?v=3">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Startpagina van het portfolio van Wesley Bogaerts">
+    <meta property="og:image:alt" content="Home page of the portfolio of Wesley Bogaerts">
+    <meta property="og:locale" content="en_GB">
+    <meta property="og:locale:alternate" content="nl_BE">
     <meta name="twitter:card" content="summary_large_image">
 
     <!-- Het officiële adres van deze pagina, ook als ze met ?v= of een #anker geopend wordt -->
@@ -35,27 +37,29 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap">
 
-    <link rel="stylesheet" href="style.css?v=130">
-    <link rel="icon" href="favicon.ico?v=130" sizes="16x16 32x32 48x48">
+    <link rel="stylesheet" href="style.css?v=131">
+    <link rel="icon" href="favicon.ico?v=131" sizes="16x16 32x32 48x48">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
-    <!-- In de head, zodat het thema al staat voor de pagina getekend wordt.
-         De rest van script.js wacht zelf tot de HTML geladen is. -->
-    <script src="script.js?v=130"></script>
+    <!-- De teksten per taal, en daarna script.js. Allebei in de head, zodat het thema en de taal al
+         staan voor de pagina getekend wordt. De rest van script.js wacht zelf tot de HTML geladen is. -->
+    <script src="lang/en.js?v=131"></script>
+    <script src="lang/nl.js?v=131"></script>
+    <script src="script.js?v=131"></script>
 
     <!-- jsPDF en mijn eigen script dat er de cv-pdf mee tekent; defer laadt ze zonder de pagina op te houden -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
         integrity="sha384-JcnsjUPPylna1s1fvi1u12X5qjY5OL56iySh75FdtrwhO/SWXgMjoVqcKyIIWOLk" crossorigin="anonymous"
         defer></script>
-    <script src="cv-pdf.js?v=130" defer></script>
+    <script src="cv-pdf.js?v=131" defer></script>
 </head>
 
 <body>
-    <a class="skip-link" href="#main-content">Ga naar de inhoud</a>
+    <a class="skip-link" href="#main-content" data-i18n="nav.skip">Skip to content</a>
 
     <!-- Navigatie -->
     <header class="site-header">
-        <nav class="site-nav d-flex justify-content-between align-items-center" aria-label="Hoofdnavigatie">
+        <nav class="site-nav d-flex justify-content-between align-items-center" aria-label="Main navigation" data-i18n-aria-label="nav.label">
 
             <a class="logo" href="#home">
                 <span class="logo-mark" aria-hidden="true">WB</span>
@@ -70,27 +74,27 @@
                 </li>
                 <li>
                     <a href="#about">
-                        <i class="fa-solid fa-user" aria-hidden="true"></i> Over mij
+                        <i class="fa-solid fa-user" aria-hidden="true"></i> <span data-i18n="nav.about">About Me</span>
                     </a>
                 </li>
                 <li>
                     <a href="#education">
-                        <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Opleiding
+                        <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> <span data-i18n="nav.education">Education</span>
                     </a>
                 </li>
                 <li>
                     <a href="#cv">
-                        <i class="fa-solid fa-file-lines" aria-hidden="true"></i> CV
+                        <i class="fa-solid fa-file-lines" aria-hidden="true"></i> <span data-i18n="nav.cv">Resume</span>
                     </a>
                 </li>
                 <li>
                     <a href="#skills">
-                        <i class="fa-solid fa-code" aria-hidden="true"></i> Vaardigheden
+                        <i class="fa-solid fa-code" aria-hidden="true"></i> <span data-i18n="nav.skills">Tech Stack</span>
                     </a>
                 </li>
                 <li>
                     <a href="#projects">
-                        <i class="fa-solid fa-folder-open" aria-hidden="true"></i> Projecten
+                        <i class="fa-solid fa-folder-open" aria-hidden="true"></i> <span data-i18n="nav.projects">Projects</span>
                     </a>
                 </li>
                 <li>
@@ -102,16 +106,26 @@
 
             <!-- Op desktop rechts naast de links, op mobiel naast elkaar rechts van het logo -->
             <div class="nav-actions">
+                <!-- Taalkeuze: twee knoppen, de actieve heeft aria-pressed="true" (en is vet en onderstreept).
+                     Zonder JavaScript blijft de pagina Engels; style.css verbergt de keuze dan. -->
+                <div class="lang-switch" role="group" aria-label="Language" data-i18n-aria-label="nav.taal">
+                    <button type="button" class="lang-option" data-lang="en" lang="en" aria-pressed="true"
+                        title="English">EN</button>
+                    <span class="lang-divider" aria-hidden="true"></span>
+                    <button type="button" class="lang-option" data-lang="nl" lang="nl" aria-pressed="false"
+                        title="Nederlands">NL</button>
+                </div>
+
                 <!-- Schakelaar met maan en zon naast elkaar; het bolletje schuift onder het actieve thema.
                      Zonder JavaScript blijft het donkere thema staan; style.css verbergt de knop dan. -->
                 <button type="button" class="theme-toggle" role="switch" aria-checked="false"
-                    aria-label="Licht thema" aria-keyshortcuts="t">
+                    aria-label="Light theme" data-i18n-aria-label="thema.label" aria-keyshortcuts="t">
                     <span class="theme-toggle-thumb" aria-hidden="true"></span>
                     <i class="fa-solid fa-moon" aria-hidden="true"></i>
                     <i class="fa-solid fa-sun" aria-hidden="true"></i>
                 </button>
 
-                <button type="button" class="icon-button menu-button" aria-label="Menu openen" aria-controls="nav-links"
+                <button type="button" class="icon-button menu-button" aria-label="Open menu" aria-controls="nav-links"
                     aria-expanded="false">
                     <i class="fa-solid fa-bars" aria-hidden="true"></i>
                 </button>
@@ -132,12 +146,12 @@
                     <img src="images/wesley-bogaerts-avatar-840.webp"
                         srcset="images/wesley-bogaerts-avatar-420.webp 420w, images/wesley-bogaerts-avatar-840.webp 840w"
                         sizes="(max-width: 767.98px) 300px, (max-width: 991.98px) 260px, 420px" width="420" height="420"
-                        alt="Avatar van Wesley Bogaerts met zonnebril" decoding="async">
+                        alt="Avatar of Wesley Bogaerts wearing sunglasses" data-i18n-alt="hero.avatarAlt" decoding="async">
                 </div>
 
                 <div class="hero-content">
                     <h1>
-                        <span class="hero-greeting">Hallo, ik ben</span>
+                        <span class="hero-greeting">Hi, I'm</span>
                         Wesley Bogaerts
                     </h1>
 
@@ -145,40 +159,39 @@
                         Student Full Stack &amp; AI Automation Developer
                     </p>
 
-                    <p class="hero-intro">
-                        Na meerdere jaren in de administratie en de boekhouding leer ik
-                        nu websites, webapplicaties en software op maat bouwen.
-                        Hieronder staan de projecten uit mijn opleiding, van mijn eerste
-                        Flexbox-pagina tot een prijscalculator die een PDF-offerte
-                        maakt. Heb je een idee voor een website of een vraag over mijn
-                        code? Stuur me gerust een bericht.
+                    <p class="hero-intro" data-i18n="hero.intro">
+                        After several years in administration and accounting, I'm now learning
+                        to build websites, web applications and custom software. Below you'll
+                        find the projects from my course, from my first Flexbox page to a price
+                        calculator that creates a PDF quote. Have an idea for a website or a
+                        question about my code? Feel free to send me a message.
                     </p>
 
                     <div class="hero-actions d-flex flex-wrap gap-3">
                         <a class="btn" href="#projects">
                             <i class="fa-solid fa-folder-open" aria-hidden="true"></i>
-                            Bekijk mijn projecten
+                            <span data-i18n="hero.projecten">View my projects</span>
                         </a>
 
                         <a class="btn btn-secondary" href="#contact">
                             <i class="fa-solid fa-envelope" aria-hidden="true"></i>
-                            Neem contact op
+                            <span data-i18n="hero.contact">Get in touch</span>
                         </a>
                     </div>
                 </div>
 
                 <dl class="hero-facts">
                     <div>
-                        <dt>Opleiding</dt>
-                        <dd>SyntraPXL, voltijds</dd>
+                        <dt data-i18n="hero.opleiding">Education</dt>
+                        <dd data-i18n="hero.opleidingWaarde">SyntraPXL, full-time</dd>
                     </div>
                     <div>
-                        <dt>Nu aan het leren</dt>
+                        <dt data-i18n="hero.leren">Currently learning</dt>
                         <dd>JavaScript</dd>
                     </div>
                     <div>
-                        <dt>Locatie</dt>
-                        <dd>Balen, België</dd>
+                        <dt data-i18n="hero.locatie">Location</dt>
+                        <dd data-i18n="algemeen.locatie">Balen, Belgium</dd>
                     </div>
                 </dl>
             </div>
@@ -189,31 +202,31 @@
             <div class="marquee">
                 <div class="marquee-track">
                     <ul class="marquee-group">
-                        <li>Full Stack Developer in opleiding</li>
+                        <li data-i18n="marquee.opleiding">Full Stack Developer in training</li>
                         <li class="marquee-dot" aria-hidden="true">•</li>
-                        <li>Webdesign</li>
+                        <li data-i18n="marquee.webdesign">Web design</li>
                         <li class="marquee-dot" aria-hidden="true">•</li>
                         <li>Websites</li>
                         <li class="marquee-dot" aria-hidden="true">•</li>
-                        <li>Webapplicaties</li>
+                        <li data-i18n="marquee.webapps">Web applications</li>
                         <li class="marquee-dot" aria-hidden="true">•</li>
-                        <li>Software op maat</li>
+                        <li data-i18n="marquee.software">Custom software</li>
                         <li class="marquee-dot" aria-hidden="true">•</li>
-                        <li>AI automatisering</li>
+                        <li data-i18n="marquee.ai">AI automation</li>
                         <li class="marquee-dot" aria-hidden="true">•</li>
                     </ul>
                     <ul class="marquee-group" aria-hidden="true">
-                        <li>Full Stack Developer in opleiding</li>
+                        <li data-i18n="marquee.opleiding">Full Stack Developer in training</li>
                         <li class="marquee-dot">•</li>
-                        <li>Webdesign</li>
+                        <li data-i18n="marquee.webdesign">Web design</li>
                         <li class="marquee-dot">•</li>
                         <li>Websites</li>
                         <li class="marquee-dot">•</li>
-                        <li>Webapplicaties</li>
+                        <li data-i18n="marquee.webapps">Web applications</li>
                         <li class="marquee-dot">•</li>
-                        <li>Software op maat</li>
+                        <li data-i18n="marquee.software">Custom software</li>
                         <li class="marquee-dot">•</li>
-                        <li>AI automatisering</li>
+                        <li data-i18n="marquee.ai">AI automation</li>
                         <li class="marquee-dot">•</li>
                     </ul>
                 </div>
@@ -225,7 +238,7 @@
             <div class="container section-grid">
                 <div class="section-head">
                     <span class="section-index" aria-hidden="true">01</span>
-                    <h2 class="section-title">Over mij</h2>
+                    <h2 class="section-title" data-i18n="about.titel">About Me</h2>
                 </div>
 
                 <!-- Zelfde kaart als bij Mijn opleiding. Desktop: poster links, kop en tekst rechts, zoals in een artikel.
@@ -238,14 +251,16 @@
                             <img class="theme-dark-only" src="images/poster-dark-800.webp"
                                 srcset="images/poster-dark-400.webp 400w, images/poster-dark-800.webp 800w"
                                 sizes="(max-width: 1199.98px) 640px, 320px" width="400" height="566"
-                                alt="Poster Wesley Dev &amp; Tech: websites, webdesign, webapplicaties, software op maat en AI-automatisering"
+                                alt="Wesley Dev &amp; Tech poster (in Dutch): websites, web design, web applications, custom software and AI automation"
+                                data-i18n-alt="about.posterAlt"
                                 loading="lazy" decoding="async">
                             <img class="theme-light-only" src="images/poster-light-800.webp"
                                 srcset="images/poster-light-400.webp 400w, images/poster-light-800.webp 800w"
                                 sizes="(max-width: 1199.98px) 640px, 320px" width="400" height="566"
-                                alt="Poster Wesley Dev &amp; Tech: websites, webdesign, webapplicaties, software op maat en AI-automatisering"
+                                alt="Wesley Dev &amp; Tech poster (in Dutch): websites, web design, web applications, custom software and AI automation"
+                                data-i18n-alt="about.posterAlt"
                                 loading="lazy" decoding="async">
-                            <figcaption>Wat ik bouw, in één beeld</figcaption>
+                            <figcaption data-i18n="about.posterOnderschrift">What I build, in one picture</figcaption>
                         </figure>
 
                         <div class="article-text">
@@ -255,59 +270,57 @@
                                 </div>
 
                                 <div>
-                                    <span class="card-label">Mijn achtergrond</span>
-                                    <h3>Van boekhouding naar IT</h3>
-                                    <p class="card-subtitle">Full Stack Developer in opleiding</p>
+                                    <span class="card-label" data-i18n="about.label">My background</span>
+                                    <h3 data-i18n="about.kop">From accounting to IT</h3>
+                                    <p class="card-subtitle" data-i18n="about.ondertitel">Full Stack Developer in training</p>
                                 </div>
                             </div>
 
-                            <p class="lead-text">
-                                Na meerdere jaren ervaring in boekhouding en administratie maakte ik
-                                bewust de overstap naar IT. In mijn vorige functies ontwikkelde ik een
-                                nauwkeurige en gestructureerde werkhouding. Ik leerde deadlines bewaken,
-                                zorgvuldig omgaan met gevoelige informatie en problemen op een analytische
-                                manier aanpakken.
+                            <p class="lead-text" data-i18n="about.lead">
+                                After several years of experience in accounting and administration, I made a
+                                deliberate switch to IT. My previous roles taught me to work accurately and in
+                                a structured way. I learned to keep an eye on deadlines, handle sensitive
+                                information with care and approach problems analytically.
                             </p>
 
                             <!-- Ingeklapt tot de bezoeker op "Lees meer" klikt (zie script.js) -->
                             <div class="read-more" id="about-more">
                                 <div class="read-more-inner">
-                                    <p>
-                                        De afgelopen jaren groeide mijn interesse in IT en technologie. Ik werd
-                                        steeds nieuwsgieriger naar hoe websites en applicaties achter de schermen
-                                        werken. Op een bepaald moment wilde ik niet langer alleen gebruiker zijn,
-                                        maar ook begrijpen hoe zulke toepassingen worden gebouwd. Die nieuwsgierigheid
-                                        gaf uiteindelijk de doorslag om me om te scholen tot developer.
+                                    <p data-i18n="about.p1">
+                                        Over the past few years, my interest in IT and technology kept growing. I
+                                        became more and more curious about how websites and applications work behind
+                                        the scenes. At some point I no longer wanted to just use them; I wanted to
+                                        understand how they are built. That curiosity is what finally made me
+                                        retrain as a developer.
                                     </p>
 
-                                    <p>
-                                        Wat mij aanspreekt in programmeren, is het zoeken naar oplossingen. Niet
-                                        alles werkt meteen zoals verwacht, en net dat maakt het interessant. Ik
-                                        probeer te begrijpen waar iets fout loopt, test verschillende mogelijkheden
-                                        en pas mijn aanpak aan tot ik een oplossing vind. Mijn ervaring in de
-                                        boekhouding komt daarbij goed van pas, vooral wanneer het gaat om logisch
-                                        nadenken en aandacht voor details.
+                                    <p data-i18n="about.p2">
+                                        What I enjoy most about programming is finding solutions. Not everything
+                                        works as expected straight away, and that is exactly what makes it
+                                        interesting. I try to understand where something goes wrong, test different
+                                        options and adjust my approach until I find a solution. My accounting
+                                        background comes in handy here, especially when it comes to logical
+                                        thinking and attention to detail.
                                     </p>
 
-                                    <p>
-                                        De overstap naar IT is voor mij een bewuste keuze. Ik weet dat leren
-                                        programmeren tijd en doorzettingsvermogen vraagt, maar ik ben gemotiveerd
-                                        om me hierin verder te ontwikkelen. Door regelmatig te oefenen, feedback
-                                        te verwerken en uit mijn fouten te leren, bouw ik stap voor stap mijn
-                                        kennis op.
+                                    <p data-i18n="about.p3">
+                                        Moving into IT was a conscious choice. I know that learning to program takes
+                                        time and perseverance, but I'm motivated to keep growing. By practising
+                                        regularly, taking feedback on board and learning from my mistakes, I'm
+                                        building my knowledge step by step.
                                     </p>
 
-                                    <p>
-                                        Ik wil mijn eerdere werkervaring combineren met mijn nieuwe technische
-                                        vaardigheden om toepassingen te ontwikkelen die niet alleen goed werken,
-                                        maar ook praktisch en gebruiksvriendelijk zijn.
+                                    <p data-i18n="about.p4">
+                                        I want to combine my previous work experience with my new technical skills
+                                        to build applications that don't just work well, but are also practical and
+                                        user-friendly.
                                     </p>
                                 </div>
                             </div>
 
                             <button type="button" class="read-more-toggle" aria-expanded="false"
                                 aria-controls="about-more">
-                                <span>Lees meer</span>
+                                <span>Read more</span>
                                 <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
                             </button>
                         </div>
@@ -321,7 +334,7 @@
             <div class="container section-grid">
                 <div class="section-head">
                     <span class="section-index" aria-hidden="true">02</span>
-                    <h2 class="section-title">Mijn opleiding</h2>
+                    <h2 class="section-title" data-i18n="education.titel">My Education</h2>
                 </div>
 
                 <article class="education-card section-body">
@@ -333,76 +346,71 @@
                                 </div>
 
                                 <div>
-                                    <span class="card-label">Momenteel student</span>
+                                    <span class="card-label" data-i18n="education.label">Currently studying</span>
                                     <h3>Full Stack &amp; AI Automation Developer</h3>
                                     <p class="card-subtitle">SyntraPXL</p>
                                 </div>
                             </div>
 
-                            <p class="lead-text">
-                                Ik volg de voltijdse dagopleiding Full Stack &amp; AI Automation
-                                Developer aan SyntraPXL. Tijdens deze opleiding leer ik stap voor
-                                stap hoe ik zelf websites en applicaties kan ontwikkelen.
+                            <p class="lead-text" data-i18n="education.lead">
+                                I'm taking the full-time day course Full Stack &amp; AI Automation
+                                Developer at SyntraPXL. Step by step, this course is teaching me how
+                                to build websites and applications myself.
                             </p>
 
                             <div class="read-more" id="education-more">
                                 <div class="read-more-inner">
-                                    <p>
-                                        We zijn gestart met HTML en CSS. Daarbij leerde ik werken met
-                                        Flexbox en responsive design, zodat websites goed functioneren op
-                                        verschillende schermformaten. Daarna kwamen Bootstrap en Tailwind
-                                        aan bod. Met Bootstrap Grid leerde ik pagina’s opbouwen met rijen
-                                        en kolommen. Met Tailwind oefende ik dan weer om elementen
-                                        rechtstreeks via classes vorm te geven.
+                                    <p data-i18n="education.p1">
+                                        We started with HTML and CSS. Along the way I learned to work with
+                                        Flexbox and responsive design, so websites work well on different
+                                        screen sizes. Then came Bootstrap and Tailwind. With Bootstrap Grid I
+                                        learned to build pages from rows and columns, while Tailwind taught me
+                                        to style elements directly with classes.
                                     </p>
 
-                                    <p>
-                                        Ook het visuele aspect van websites kwam uitgebreid aan bod. Zo
-                                        leerde ik werken met Google Fonts voor lettertypes, Font Awesome
-                                        voor iconen en Coolors.co om kleurencombinaties te kiezen die goed
-                                        bij elkaar passen. Met die kennis heb ik ondertussen verschillende
-                                        projecten gemaakt, waaronder mijn eigen portfolio.
+                                    <p data-i18n="education.p2">
+                                        The visual side of websites got plenty of attention too. I learned
+                                        to use Google Fonts for typefaces, Font Awesome for icons and
+                                        Coolors.co to pick colour combinations that go well together. With
+                                        that knowledge I have since built several projects, including my
+                                        own portfolio.
                                     </p>
 
-                                    <p>
-                                        Naast het bouwen en vormgeven van websites heb ik ook geleerd hoe
-                                        relationele databanken werken. In MySQL oefende ik met het opbouwen
-                                        van tabellen, het normaliseren van gegevens en het schrijven van
-                                        SQL-queries. Momenteel zijn we bezig met JavaScript en API’s,
-                                        waarmee ik mijn programmeerkennis verder uitbreid.
+                                    <p data-i18n="education.p3">
+                                        Besides building and styling websites, I also learned how relational
+                                        databases work. In MySQL I practised building tables, normalising
+                                        data and writing SQL queries. We're currently working on JavaScript
+                                        and APIs, which is how I'm expanding my programming knowledge further.
                                     </p>
 
-                                    <p>
-                                        Tijdens de opleiding maakte ik ook kennis met Agile en Scrum. We
-                                        oefenden onder andere met het plannen van sprints, planning poker
-                                        en het opvolgen van taken via een kanbanbord in Trello. Daardoor
-                                        kreeg ik een beter beeld van hoe developers binnen een team
-                                        samenwerken en hun werk organiseren.
+                                    <p data-i18n="education.p4">
+                                        The course also introduced me to Agile and Scrum. Among other things,
+                                        we practised sprint planning, planning poker and tracking tasks on a
+                                        Kanban board in Trello. That gave me a better idea of how developers
+                                        work together in a team and organise their work.
                                     </p>
 
-                                    <p>
-                                        Mijn doel is om zelfstandig volledige webapplicaties te kunnen
-                                        bouwen, van de frontend tot de backend. Ik wil me verder verdiepen
-                                        in JavaScript en TypeScript, leren werken met API’s en ontdekken
-                                        hoe ik AI kan inzetten om processen te automatiseren.
+                                    <p data-i18n="education.p5">
+                                        My goal is to build complete web applications on my own, from the
+                                        front end to the back end. I want to dive deeper into JavaScript and
+                                        TypeScript, learn to work with APIs and discover how I can use AI to
+                                        automate processes.
                                     </p>
 
-                                    <p>
-                                        Wat ik daarbij minstens even belangrijk vind, is dat ik de code
-                                        die ik schrijf ook echt begrijp. Ik wil niet zomaar code laten
-                                        genereren door AI-agents zonder te weten wat die precies doet. Ik
-                                        wil zelf kunnen uitleggen hoe mijn code werkt, waarom bepaalde
-                                        keuzes zijn gemaakt en hoe ik fouten kan opsporen en oplossen. AI
-                                        zie ik als een handig hulpmiddel om bij te leren en efficiënter te
-                                        werken, maar niet als een vervanging voor mijn eigen kennis en
-                                        inzicht.
+                                    <p data-i18n="education.p6">
+                                        Just as important to me is that I truly understand the code I write.
+                                        I don't want AI agents to generate code for me without knowing exactly
+                                        what it does. I want to be able to explain how my code works, why
+                                        certain choices were made and how to track down and fix bugs. I see AI
+                                        as a handy tool for learning and working more efficiently, not as a
+                                        replacement for my own knowledge and insight.
                                     </p>
                                 </div>
                             </div>
 
                             <button type="button" class="read-more-toggle" aria-expanded="false"
                                 aria-controls="education-more">
-                                <span>Lees meer</span>
+                                <span>Read more</span>
                                 <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
                             </button>
                         </div>
@@ -413,14 +421,16 @@
                             <img class="theme-dark-only" src="images/poster-opleiding-dark-800.webp"
                                 srcset="images/poster-opleiding-dark-400.webp 400w, images/poster-opleiding-dark-800.webp 800w"
                                 sizes="(max-width: 1199.98px) 640px, 370px" width="400" height="565"
-                                alt="Poster Full Stack: de lagen van een webapplicatie, van interface, logica en API-verbinding tot data en AI-automatisering"
+                                alt="Full Stack poster (in Dutch): the layers of a web application, from interface, logic and API connection to data and AI automation"
+                                data-i18n-alt="education.posterAlt"
                                 loading="lazy" decoding="async">
                             <img class="theme-light-only" src="images/poster-opleiding-light-800.webp"
                                 srcset="images/poster-opleiding-light-400.webp 400w, images/poster-opleiding-light-800.webp 800w"
                                 sizes="(max-width: 1199.98px) 640px, 370px" width="400" height="565"
-                                alt="Poster Full Stack: de lagen van een webapplicatie, van interface, logica en API-verbinding tot data en AI-automatisering"
+                                alt="Full Stack poster (in Dutch): the layers of a web application, from interface, logic and API connection to data and AI automation"
+                                data-i18n-alt="education.posterAlt"
                                 loading="lazy" decoding="async">
-                            <figcaption>Wat ik leer, laag per laag</figcaption>
+                            <figcaption data-i18n="education.posterOnderschrift">What I'm learning, layer by layer</figcaption>
                         </figure>
                     </div>
                 </article>
@@ -433,7 +443,7 @@
             <div class="container section-grid">
                 <div class="section-head">
                     <span class="section-index" aria-hidden="true">03</span>
-                    <h2 class="section-title">Mijn cv</h2>
+                    <h2 class="section-title" data-i18n="cv.titel">My Resume</h2>
                 </div>
 
                 <!-- Alleen op papier en in de pdf (zie @media print in style.css): monogram, naam en
@@ -449,7 +459,7 @@
                     <ul class="cv-print-contact">
                         <li><i class="fa-solid fa-phone" aria-hidden="true"></i> +32 (0)472 25 42 48</li>
                         <li><i class="fa-solid fa-envelope" aria-hidden="true"></i> wesleybogaerts@hotmail.com</li>
-                        <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Balen, België</li>
+                        <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i> <span data-i18n="algemeen.locatie">Balen, Belgium</span></li>
                     </ul>
                 </div>
 
@@ -460,15 +470,15 @@
                         </div>
 
                         <div>
-                            <span class="card-label">Curriculum vitae</span>
-                            <h3>Werkervaring en opleidingen</h3>
-                            <p class="card-subtitle">Van administratie en finance naar IT</p>
+                            <span class="card-label" data-i18n="cv.label">Resume</span>
+                            <h3 data-i18n="cv.kop">Work experience and education</h3>
+                            <p class="card-subtitle" data-i18n="cv.ondertitel">From administration and finance to IT</p>
                         </div>
                     </div>
 
-                    <p class="lead-text">
-                        Leergierige en analytisch ingestelde student Full Stack &amp; AI Automation
-                        Developer met een sterke professionele achtergrond in administratie en finance.
+                    <p class="lead-text" data-i18n="cv.lead">
+                        Analytical, eager-to-learn Full Stack &amp; AI Automation Developer student
+                        with a strong professional background in administration and finance.
                     </p>
 
                     <!-- Ingeklapt tot de bezoeker op "Lees meer" klikt (zie script.js). De kolommen
@@ -479,97 +489,79 @@
                                 <section class="cv-panel" aria-labelledby="cv-work-title">
                                     <h4 class="cv-panel-title" id="cv-work-title">
                                         <i class="fa-solid fa-briefcase" aria-hidden="true"></i>
-                                        Werkervaring
+                                        <span data-i18n="cv.werk">Work experience</span>
                                     </h4>
 
                                     <ol class="cv-timeline">
                                         <li class="cv-item">
-                                            <p class="cv-date">
-                                                <time datetime="2025-02">Februari 2025</time> -
-                                                <time datetime="2026-09">september 2026</time>
-                                            </p>
-                                            <h5>Assistent accountant</h5>
+                                            <p class="cv-date" data-i18n="cv.werk1.datum"><time datetime="2025-02">February 2025</time> - <time datetime="2026-09">September 2026</time></p>
+                                            <h5 data-i18n="cv.werk1.functie">Assistant Accountant</h5>
                                             <p class="cv-place">Soudal NV</p>
                                             <ul class="cv-tasks">
-                                                <li>Valideren en verwerken van aankoopfacturen in SAP</li>
-                                                <li>Opvolgen van leveranciersbalansen en crediteurenbeheer</li>
-                                                <li>Verwerken en boeken van bankverrichtingen</li>
-                                                <li>Ondersteunen en fungeren als back-up van collega’s</li>
-                                                <li>Voorbereiden en ondersteunen bij audits</li>
+                                                <li data-i18n="cv.werk1.taak1">Validating and processing purchase invoices in SAP</li>
+                                                <li data-i18n="cv.werk1.taak2">Monitoring supplier balances and managing accounts payable</li>
+                                                <li data-i18n="cv.werk1.taak3">Processing and posting bank transactions</li>
+                                                <li data-i18n="cv.werk1.taak4">Supporting colleagues and acting as their back-up</li>
+                                                <li data-i18n="cv.werk1.taak5">Preparing for and supporting audits</li>
                                             </ul>
                                         </li>
 
                                         <li class="cv-item">
-                                            <p class="cv-date">
-                                                <time datetime="2022-08">Augustus 2022</time> -
-                                                <time datetime="2025-01">januari 2025</time>
-                                            </p>
-                                            <h5>Finance assistent</h5>
+                                            <p class="cv-date" data-i18n="cv.werk2.datum"><time datetime="2022-08">August 2022</time> - <time datetime="2025-01">January 2025</time></p>
+                                            <h5 data-i18n="cv.werk2.functie">Finance Assistant</h5>
                                             <p class="cv-place">Oqema NV <span aria-hidden="true">·</span> Pelt</p>
                                             <ul class="cv-tasks">
-                                                <li>Debiteuren- en crediteurenbeheer</li>
-                                                <li>Voorbereiden en indienen van de maandelijkse btw-, ICO- en Intrastat-aangiftes</li>
-                                                <li>Verwerken van verkoop- en aankoopfacturen in SAP</li>
-                                                <li>Verwerken en boeken van bankverrichtingen en klaarzetten van betalingen</li>
-                                                <li>Ondersteunen bij maandafsluitingen en aanleveren van data voor externe audits</li>
-                                                <li>Opvolgen van achterstallige betalingen en versturen van wekelijkse aanmaningen</li>
-                                                <li>Uitvoeren van diverse financiële en administratieve taken</li>
+                                                <li data-i18n="cv.werk2.taak1">Managing accounts receivable and accounts payable</li>
+                                                <li data-i18n="cv.werk2.taak2">Preparing and filing the monthly VAT, ICO and Intrastat returns</li>
+                                                <li data-i18n="cv.werk2.taak3">Processing sales and purchase invoices in SAP</li>
+                                                <li data-i18n="cv.werk2.taak4">Processing and posting bank transactions and preparing payments</li>
+                                                <li data-i18n="cv.werk2.taak5">Supporting month-end closings and providing data for external audits</li>
+                                                <li data-i18n="cv.werk2.taak6">Following up on overdue payments and sending weekly reminders</li>
+                                                <li data-i18n="cv.werk2.taak7">Carrying out various financial and administrative tasks</li>
                                             </ul>
                                         </li>
 
                                         <li class="cv-item">
-                                            <p class="cv-date">
-                                                <time datetime="2021-10">Oktober 2021</time> -
-                                                <time datetime="2022-06">juni 2022</time>
-                                            </p>
-                                            <h5>Medewerker boekhouding <span class="cv-note">(tijdelijk project)</span></h5>
+                                            <p class="cv-date" data-i18n="cv.werk3.datum"><time datetime="2021-10">October 2021</time> - <time datetime="2022-06">June 2022</time></p>
+                                            <h5 data-i18n="cv.werk3.functie">Accounting Clerk <span class="cv-note">(temporary project)</span></h5>
                                             <p class="cv-place">Smet Group <span aria-hidden="true">·</span> Dessel</p>
                                             <ul class="cv-tasks">
-                                                <li>Verwerken van facturen en bankverrichtingen in WIC en BouwOffice</li>
-                                                <li>Verantwoordelijke crediteurenbeheer</li>
-                                                <li>Klaarzetten van betalingen in SEPA-betaallijsten</li>
+                                                <li data-i18n="cv.werk3.taak1">Processing invoices and bank transactions in WIC and BouwOffice</li>
+                                                <li data-i18n="cv.werk3.taak2">Responsible for accounts payable</li>
+                                                <li data-i18n="cv.werk3.taak3">Preparing payments in SEPA payment files</li>
                                             </ul>
                                         </li>
 
                                         <li class="cv-item">
-                                            <p class="cv-date">
-                                                <time datetime="2021-08">Augustus 2021</time> -
-                                                <time datetime="2021-10">oktober 2021</time>
-                                            </p>
-                                            <h5>Junior dossierbeheerder</h5>
+                                            <p class="cv-date" data-i18n="cv.werk4.datum"><time datetime="2021-08">August 2021</time> - <time datetime="2021-10">October 2021</time></p>
+                                            <h5 data-i18n="cv.werk4.functie">Junior Client File Administrator</h5>
                                             <p class="cv-place">ToMik Consultancy <span aria-hidden="true">·</span> Dessel</p>
                                             <ul class="cv-tasks">
-                                                <li>Verwerken van facturen en bankverrichtingen</li>
-                                                <li>Verwerken van CODA-bestanden</li>
-                                                <li>Verwerken van kas- en dagontvangsten</li>
+                                                <li data-i18n="cv.werk4.taak1">Processing invoices and bank transactions</li>
+                                                <li data-i18n="cv.werk4.taak2">Processing CODA files</li>
+                                                <li data-i18n="cv.werk4.taak3">Processing cash and daily receipts</li>
                                             </ul>
                                         </li>
 
                                         <li class="cv-item">
-                                            <p class="cv-date">
-                                                <time datetime="2021-02">Februari 2021</time> -
-                                                <time datetime="2021-05">mei 2021</time>
-                                            </p>
-                                            <h5>Admin &amp; customer service</h5>
+                                            <p class="cv-date" data-i18n="cv.werk5.datum"><time datetime="2021-02">February 2021</time> - <time datetime="2021-05">May 2021</time></p>
+                                            <h5 data-i18n="cv.werk5.functie">Admin &amp; Customer Service</h5>
                                             <p class="cv-place">Recycling Partners Belgium <span aria-hidden="true">·</span> Turnhout</p>
                                             <ul class="cv-tasks">
-                                                <li>Eindverantwoordelijke data-input Waste Management Online</li>
-                                                <li>Customer service</li>
-                                                <li>Sorteerinstructies op maat van de klant opstellen in PowerPoint</li>
+                                                <li data-i18n="cv.werk5.taak1">Final responsibility for data entry in Waste Management Online</li>
+                                                <li data-i18n="cv.werk5.taak2">Customer service</li>
+                                                <li data-i18n="cv.werk5.taak3">Creating custom sorting instructions for clients in PowerPoint</li>
                                             </ul>
                                         </li>
 
                                         <li class="cv-item">
-                                            <p class="cv-date">
-                                                <time datetime="2010-01">Januari 2010</time> -
-                                                <time datetime="2020-03">maart 2020</time>
-                                            </p>
-                                            <h5>Administratief bediende</h5>
+                                            <p class="cv-date" data-i18n="cv.werk6.datum"><time datetime="2010-01">January 2010</time> - <time datetime="2020-03">March 2020</time></p>
+                                            <h5 data-i18n="cv.werk6.functie">Administrative Clerk</h5>
                                             <p class="cv-place">Happyland <span aria-hidden="true">·</span> Herenthout</p>
                                             <ul class="cv-tasks">
-                                                <li>Eindverantwoordelijke verwerken en verifiëren van orders</li>
-                                                <li>Customer service en klachtenbehandeling</li>
-                                                <li>Verantwoordelijke voor social media en folders</li>
+                                                <li data-i18n="cv.werk6.taak1">Final responsibility for processing and verifying orders</li>
+                                                <li data-i18n="cv.werk6.taak2">Customer service and complaint handling</li>
+                                                <li data-i18n="cv.werk6.taak3">Responsible for social media and leaflets</li>
                                             </ul>
                                         </li>
                                     </ol>
@@ -580,44 +572,44 @@
                                     <section class="cv-panel" aria-labelledby="cv-education-title">
                                         <h4 class="cv-panel-title" id="cv-education-title">
                                             <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
-                                            Opleidingen
+                                            <span data-i18n="cv.opleidingen">Education</span>
                                         </h4>
 
                                         <!-- De lopende opleiding krijgt een gevuld bolletje -->
                                         <ol class="cv-timeline">
                                             <li class="cv-item is-current">
-                                                <p class="cv-date"><time datetime="2026">2026</time> - heden</p>
+                                                <p class="cv-date" data-i18n="cv.opl1.datum"><time datetime="2026">2026</time> - present</p>
                                                 <h5>Full Stack &amp; AI Automation Developer</h5>
                                                 <p class="cv-place">SyntraPXL <span aria-hidden="true">·</span> Genk</p>
                                             </li>
 
                                             <li class="cv-item">
                                                 <p class="cv-date"><time datetime="2021">2021</time> - <time datetime="2024">2024</time></p>
-                                                <h5>Graduaat Accounting &amp; Administration</h5>
+                                                <h5 data-i18n="cv.opl2.titel">Associate Degree in Accounting &amp; Administration</h5>
                                                 <p class="cv-place">Thomas More Hogeschool <span aria-hidden="true">·</span> Geel</p>
                                             </li>
 
                                             <li class="cv-item">
                                                 <p class="cv-date"><time datetime="2020">2020</time> - <time datetime="2021">2021</time></p>
-                                                <h5>Boekhoudkundig bediende</h5>
+                                                <h5 data-i18n="cv.opl3.titel">Accounting Clerk</h5>
                                                 <p class="cv-place">Cevora, Campus Boomgaard <span aria-hidden="true">·</span> Turnhout</p>
                                             </li>
 
                                             <li class="cv-item">
                                                 <p class="cv-date"><time datetime="2006">2006</time> - <time datetime="2008">2008</time></p>
-                                                <h5>Opleiding kleuteronderwijs</h5>
+                                                <h5 data-i18n="cv.opl4.titel">Preschool Teacher Training</h5>
                                                 <p class="cv-place">Katholieke Hogeschool Kempen <span aria-hidden="true">·</span> Vorselaar</p>
                                             </li>
 
                                             <li class="cv-item">
                                                 <p class="cv-date"><time datetime="2005">2005</time> - <time datetime="2006">2006</time></p>
-                                                <h5>Bedrijfsbeheer</h5>
+                                                <h5 data-i18n="cv.opl5.titel">Business Management</h5>
                                                 <p class="cv-place">Francesco Paviljoen <span aria-hidden="true">·</span> Herentals</p>
                                             </li>
 
                                             <li class="cv-item">
                                                 <p class="cv-date"><time datetime="1999">1999</time> - <time datetime="2005">2005</time></p>
-                                                <h5>Administratief commercieel medewerker</h5>
+                                                <h5 data-i18n="cv.opl6.titel">Administrative and Commercial Assistant</h5>
                                                 <p class="cv-place">Francesco Paviljoen <span aria-hidden="true">·</span> Herentals</p>
                                             </li>
                                         </ol>
@@ -626,11 +618,11 @@
                                     <section class="cv-panel" aria-labelledby="cv-profile-title">
                                         <h4 class="cv-panel-title" id="cv-profile-title">
                                             <i class="fa-solid fa-id-card" aria-hidden="true"></i>
-                                            Profiel
+                                            <span data-i18n="cv.profiel">Profile</span>
                                         </h4>
 
                                         <div class="cv-group">
-                                            <h5 class="cv-subhead">IT-vaardigheden</h5>
+                                            <h5 class="cv-subhead" data-i18n="cv.itVaardigheden">IT skills</h5>
                                             <!-- Dezelfde indeling en logo's als bij Mijn vaardigheden, kleiner -->
                                             <h6 class="cv-category">Frontend</h6>
                                             <ul class="skill-icons skill-icons-small">
@@ -819,7 +811,7 @@
                                                     <span class="skill-name">Insomnia</span>
                                                 </li>
                                             </ul>
-                                            <h6 class="cv-category">Concepten &amp; methodologieën</h6>
+                                            <h6 class="cv-category" data-i18n="skills.concepten">Concepts &amp; Methodologies</h6>
                                             <ul class="tag-list">
                                                 <li>Monday</li>
                                                 <li>Scrum</li>
@@ -829,28 +821,28 @@
                                         </div>
 
                                         <div class="cv-group">
-                                            <h5 class="cv-subhead">Talenkennis</h5>
+                                            <h5 class="cv-subhead" data-i18n="cv.talen">Languages</h5>
                                             <dl class="cv-languages">
                                                 <div>
-                                                    <dt>Nederlands</dt>
-                                                    <dd>Moedertaal</dd>
+                                                    <dt data-i18n="cv.nederlands">Dutch</dt>
+                                                    <dd data-i18n="cv.moedertaal">Native</dd>
                                                 </div>
                                                 <div>
-                                                    <dt>Engels</dt>
-                                                    <dd>Goede kennis</dd>
+                                                    <dt data-i18n="cv.engels">English</dt>
+                                                    <dd data-i18n="cv.goedeKennis">Good command</dd>
                                                 </div>
                                             </dl>
                                         </div>
 
                                         <div class="cv-group">
-                                            <h5 class="cv-subhead">Persoonlijke kenmerken</h5>
+                                            <h5 class="cv-subhead" data-i18n="cv.kenmerken">Personal traits</h5>
                                             <ul class="cv-traits">
-                                                <li>Leergierig</li>
-                                                <li>Analytisch</li>
-                                                <li>Probleemoplossend</li>
-                                                <li>Nauwkeurig</li>
-                                                <li>Zelfstandig</li>
-                                                <li>Nieuwsgierig</li>
+                                                <li data-i18n="cv.leergierig">Eager to learn</li>
+                                                <li data-i18n="cv.analytisch">Analytical</li>
+                                                <li data-i18n="cv.probleemoplossend">Problem solver</li>
+                                                <li data-i18n="cv.nauwkeurig">Accurate</li>
+                                                <li data-i18n="cv.zelfstandig">Independent</li>
+                                                <li data-i18n="cv.nieuwsgierig">Curious</li>
                                             </ul>
                                         </div>
                                     </section>
@@ -862,13 +854,13 @@
                     <!-- Lees meer links, pdf rechts. cv-pdf.js tekent de pdf met jsPDF en slaat hem meteen op. -->
                     <div class="cv-actions">
                         <button type="button" class="read-more-toggle" aria-expanded="false" aria-controls="cv-more">
-                            <span>Lees meer</span>
+                            <span>Read more</span>
                             <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
                         </button>
 
                         <button type="button" class="cv-pdf">
                             <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
-                            <span>Download als pdf</span>
+                            <span data-i18n="cv.pdf">Download as PDF</span>
                         </button>
                     </div>
                 </article>
@@ -880,7 +872,7 @@
             <div class="container">
                 <div class="section-head">
                     <span class="section-index" aria-hidden="true">04</span>
-                    <h2 class="section-title">Mijn vaardigheden</h2>
+                    <h2 class="section-title" data-i18n="skills.titel">My Tech Stack</h2>
                 </div>
 
                 <!-- Dezelfde logo's als op mijn GitHub-profiel, bewaard in images/skills. De naam verschijnt bij hover. -->
@@ -1082,36 +1074,36 @@
                     </section>
 
                     <section class="skill-group" aria-labelledby="skills-concepts">
-                        <h3 id="skills-concepts">Concepten &amp; methodologieën</h3>
+                        <h3 id="skills-concepts" data-i18n="skills.concepten">Concepts &amp; Methodologies</h3>
                         <ul class="skill-concepts">
                             <li>
                                 <i class="fa-solid fa-list-check" aria-hidden="true"></i>
-                                <p>
-                                    <strong>Monday</strong> — hierin plan ik mijn taken, volg ik op hoever
-                                    een project staat en stem ik het werk af wanneer we in team werken.
+                                <p data-i18n="skills.monday">
+                                    <strong>Monday</strong> — this is where I plan my tasks, track how far
+                                    a project has come and coordinate the work when we work as a team.
                                 </p>
                             </li>
                             <li>
                                 <i class="fa-solid fa-people-group" aria-hidden="true"></i>
-                                <p>
-                                    <strong>Scrum</strong> — in de lessen werk ik in sprints: we schatten
-                                    taken in met planning poker, volgen ze op een kanbanbord in Trello en
-                                    bespreken na elke sprint wat beter kan.
+                                <p data-i18n="skills.scrum">
+                                    <strong>Scrum</strong> — in class I work in sprints: we estimate tasks
+                                    with planning poker, track them on a Kanban board in Trello and discuss
+                                    what could be better after every sprint.
                                 </p>
                             </li>
                             <li>
                                 <i class="fa-solid fa-plug" aria-hidden="true"></i>
-                                <p>
-                                    <strong>REST API</strong> — met JavaScript vraag ik gegevens op via
-                                    HTTP-verzoeken en toon ik het antwoord van de API op mijn pagina.
+                                <p data-i18n="skills.rest">
+                                    <strong>REST API</strong> — with JavaScript I request data through HTTP
+                                    requests and show the API's response on my page.
                                 </p>
                             </li>
                             <li>
                                 <i class="fa-solid fa-cubes" aria-hidden="true"></i>
-                                <p>
-                                    <strong>MCP</strong> — hiermee koppel ik
-                                    AI-assistenten aan mijn eigen tools, zoals GitHub en Google Drive,
-                                    zodat ze rechtstreeks met mijn bestanden en gegevens kunnen werken.
+                                <p data-i18n="skills.mcp">
+                                    <strong>MCP</strong> — I use it to connect AI assistants to my own
+                                    tools, such as GitHub and Google Drive, so they can work directly with
+                                    my files and data.
                                 </p>
                             </li>
                         </ul>
@@ -1126,15 +1118,15 @@
                 <div class="section-head-row">
                     <div class="section-head">
                         <span class="section-index" aria-hidden="true">05</span>
-                        <h2 class="section-title">Mijn projecten</h2>
+                        <h2 class="section-title" data-i18n="projects.titel">My Projects</h2>
                     </div>
 
                     <div class="project-control">
-                        <label for="project-sort">Sorteren</label>
+                        <label for="project-sort" data-i18n="projects.sorteren">Sort</label>
                         <select id="project-sort" class="form-select">
-                            <option value="newest">Nieuwste eerst</option>
-                            <option value="oldest">Oudste eerst</option>
-                            <option value="alphabetical">Alfabetisch (A-Z)</option>
+                            <option value="newest" data-i18n="projects.nieuwste">Newest first</option>
+                            <option value="oldest" data-i18n="projects.oudste">Oldest first</option>
+                            <option value="alphabetical" data-i18n="projects.alfabetisch">Alphabetical (A-Z)</option>
                         </select>
                     </div>
                 </div>
@@ -1143,7 +1135,7 @@
 
                 <noscript>
                     <p>
-                        Zet JavaScript aan om mijn projecten te zien, of bekijk ze op
+                        Turn on JavaScript to see my projects, or view them on
                         <a class="text-decoration-underline" href="https://github.com/Wesley-dev-tech">GitHub</a>.
                     </p>
                 </noscript>
@@ -1166,7 +1158,7 @@
                                 <ul class="project-tags"></ul>
 
                                 <span class="project-cta" aria-hidden="true">
-                                    Bekijk details
+                                    <span data-i18n="projects.details">View details</span>
                                     <i class="fa-solid fa-arrow-right"></i>
                                 </span>
                             </div>
@@ -1174,14 +1166,15 @@
                     </div>
                 </template>
 
-                <nav id="project-pagination" class="project-pagination pager" aria-label="Paginering projecten" hidden>
-                    <button id="project-prev" class="btn btn-secondary" type="button" aria-label="Vorige projectpagina">
+                <nav id="project-pagination" class="project-pagination pager" aria-label="Project pagination" data-i18n-aria-label="projects.paginering" hidden>
+                    <button id="project-prev" class="btn btn-secondary" type="button" aria-label="Previous project page"
+                        data-i18n-aria-label="projects.vorigeLabel">
                         <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
-                        Vorige
+                        <span data-i18n="projects.vorige">Previous</span>
                     </button>
                     <button id="project-next" class="btn btn-secondary" type="button"
-                        aria-label="Volgende projectpagina">
-                        Volgende
+                        aria-label="Next project page" data-i18n-aria-label="projects.volgendeLabel">
+                        <span data-i18n="projects.volgende">Next</span>
                         <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
                     </button>
                 </nav>
@@ -1192,7 +1185,8 @@
     <!-- Detailvenster van een project; script.js vult het in -->
     <dialog id="project-modal" class="dialog project-modal" tabindex="-1" aria-labelledby="project-modal-title">
         <div class="dialog-content">
-            <button type="button" class="dialog-close" aria-label="Sluiten" title="Sluiten">
+            <button type="button" class="dialog-close" aria-label="Close" title="Close"
+                data-i18n-aria-label="modal.sluiten" data-i18n-title="modal.sluiten">
                 <i class="fa-solid fa-xmark" aria-hidden="true"></i>
             </button>
 
@@ -1212,20 +1206,20 @@
                 <h3>Score</h3>
                 <p class="project-modal-score"></p>
                 <blockquote></blockquote>
-                <figcaption>Feedback van mijn docent</figcaption>
+                <figcaption data-i18n="modal.feedback">Feedback from my teacher</figcaption>
             </figure>
 
             <div class="project-footer">
-                <h3>Gebruikte technologieën</h3>
+                <h3 data-i18n="modal.technologieen">Technologies used</h3>
                 <ul class="project-tags"></ul>
 
                 <div class="project-button d-flex flex-wrap gap-3">
                     <a class="btn project-demo" target="_blank" rel="noopener noreferrer">
-                        Bekijk project
+                        <span data-i18n="modal.demo">View project</span>
                     </a>
                     <a class="btn btn-secondary project-code" target="_blank" rel="noopener noreferrer">
                         <i class="fa-brands fa-github" aria-hidden="true"></i>
-                        Bekijk code
+                        <span data-i18n="modal.code">View code</span>
                     </a>
                 </div>
             </div>
@@ -1235,99 +1229,100 @@
     <!-- Privacybeleid; opent via de knop onderaan de footer -->
     <dialog id="privacy-modal" class="dialog privacy-modal" tabindex="-1" aria-labelledby="privacy-title">
         <div class="dialog-content">
-            <button type="button" class="dialog-close" aria-label="Sluiten" title="Sluiten">
+            <button type="button" class="dialog-close" aria-label="Close" title="Close"
+                data-i18n-aria-label="modal.sluiten" data-i18n-title="modal.sluiten">
                 <i class="fa-solid fa-xmark" aria-hidden="true"></i>
             </button>
 
-            <h2 id="privacy-title">Privacybeleid</h2>
-            <p class="privacy-updated">Laatst bijgewerkt op 24 oktober 2026</p>
+            <h2 id="privacy-title" data-i18n="privacy.titel">Privacy policy</h2>
+            <p class="privacy-updated" data-i18n="privacy.bijgewerkt">Last updated on 31 October 2026</p>
 
-            <p>
-                Dit is mijn persoonlijke portfolio. Ik vind privacy belangrijk en hou het
-                daarom eenvoudig: deze site verzamelt zelf geen persoonsgegevens.
+            <p data-i18n="privacy.intro">
+                This is my personal portfolio. I care about privacy, so I keep it simple:
+                this site does not collect any personal data itself.
             </p>
 
-            <h3>Wie is verantwoordelijk?</h3>
-            <p>
-                Wesley Bogaerts, Balen (België). Vragen over privacy stel je via het
-                <a href="#contact" class="privacy-close">contactformulier</a> onderaan de pagina.
+            <h3 data-i18n="privacy.wieKop">Who is responsible?</h3>
+            <p data-i18n="privacy.wie">
+                Wesley Bogaerts, Balen (Belgium). You can ask questions about privacy through the
+                <a href="#contact" class="privacy-close">contact form</a> at the bottom of the page.
             </p>
 
-            <h3>Wat deze site niet doet</h3>
+            <h3 data-i18n="privacy.nietKop">What this site does not do</h3>
             <ul>
-                <li>Geen eigen cookies. Alleen de ingesloten kaart van Google Maps kan cookies plaatsen (zie <a href="#privacy-derden" class="privacy-jump">diensten van derden</a>).</li>
-                <li>Geen statistieken, analytics of tracking.</li>
-                <li>Geen advertenties en geen formulieren die gegevens opslaan.</li>
+                <li data-i18n="privacy.niet1">No cookies of its own. Only the embedded Google Maps map can set cookies (see <a href="#privacy-derden" class="privacy-jump">third-party services</a>).</li>
+                <li data-i18n="privacy.niet2">No statistics, analytics or tracking.</li>
+                <li data-i18n="privacy.niet3">No ads and no forms that store data.</li>
             </ul>
 
-            <h3>Je themakeuze</h3>
-            <p>
-                Kies je het lichte of donkere thema, dan onthoudt je browser die keuze
-                (onder de naam <strong>thema</strong>) in de lokale opslag van je toestel.
-                Dat is geen cookie en het wordt nooit naar mij of naar iemand anders
-                gestuurd. Je wist het door de sitegegevens in je browser te verwijderen.
+            <h3 data-i18n="privacy.keuzeKop">Your theme and language choice</h3>
+            <p data-i18n="privacy.keuze">
+                If you choose the light or dark theme, or English or Dutch, your browser remembers
+                that choice (under the names <strong>thema</strong> and <strong>taal</strong>) in the
+                local storage of your device. That is not a cookie and it is never sent to me or to
+                anyone else. You can clear it by deleting the site data in your browser.
             </p>
 
-            <h3 id="privacy-derden">Diensten van derden</h3>
-            <p>
-                Om de site te tonen, laadt je browser bestanden van deze diensten. Daarbij
-                ontvangen zij technische gegevens zoals je IP-adres en browsertype:
+            <h3 id="privacy-derden" data-i18n="privacy.derdenKop">Third-party services</h3>
+            <p data-i18n="privacy.derden">
+                To show the site, your browser loads files from these services. In doing so, they
+                receive technical data such as your IP address and browser type:
             </p>
             <ul>
                 <li>
-                    <strong>GitHub Pages</strong> host de site
+                    <span data-i18n="privacy.github"><strong>GitHub Pages</strong> hosts the site</span>
                     (<a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement"
-                        target="_blank" rel="noopener noreferrer">privacyverklaring</a>).
+                        target="_blank" rel="noopener noreferrer" data-i18n="privacy.verklaring">privacy statement</a>).
                 </li>
                 <li>
-                    <strong>Google Fonts</strong> levert de lettertypes
+                    <span data-i18n="privacy.fonts"><strong>Google Fonts</strong> provides the fonts</span>
                     (<a href="https://policies.google.com/privacy" target="_blank"
-                        rel="noopener noreferrer">privacybeleid</a>).
+                        rel="noopener noreferrer" data-i18n="privacy.beleid">privacy policy</a>).
                 </li>
                 <li>
-                    <strong>Google Maps</strong> toont de kaart van Balen in de footer. Google kan
-                    daarbij cookies plaatsen
+                    <span data-i18n="privacy.maps"><strong>Google Maps</strong> shows the map of Balen in the footer.
+                    Google may set cookies when doing so</span>
                     (<a href="https://policies.google.com/privacy" target="_blank"
-                        rel="noopener noreferrer">privacybeleid</a>).
+                        rel="noopener noreferrer" data-i18n="privacy.beleid">privacy policy</a>).
                 </li>
                 <li>
-                    <strong>jsDelivr</strong> levert Bootstrap
+                    <span data-i18n="privacy.jsdelivr"><strong>jsDelivr</strong> provides Bootstrap</span>
                     (<a href="https://www.jsdelivr.com/terms/privacy-policy-jsdelivr-net" target="_blank"
-                        rel="noopener noreferrer">privacybeleid</a>).
+                        rel="noopener noreferrer" data-i18n="privacy.beleid">privacy policy</a>).
                 </li>
                 <li>
-                    <strong>cdnjs (Cloudflare)</strong> levert de iconen van Font Awesome
+                    <span data-i18n="privacy.cdnjs"><strong>cdnjs (Cloudflare)</strong> provides the Font Awesome
+                    icons and the jsPDF library for the CV PDF</span>
                     (<a href="https://www.cloudflare.com/privacypolicy/" target="_blank"
-                        rel="noopener noreferrer">privacybeleid</a>).
+                        rel="noopener noreferrer" data-i18n="privacy.beleid">privacy policy</a>).
                 </li>
             </ul>
 
-            <h3>Als je contact opneemt</h3>
-            <p>
-                Stuur je me een bericht via het contactformulier, een e-mail, bel je me of stuur je een bericht via WhatsApp of Messenger, dan
-                gebruik ik je naam, contactgegevens, bericht en eventueel je bedrijfsnaam alleen om je te antwoorden.
-                Ik deel ze met niemand en verwijder ze zodra ze niet meer nodig zijn.
-                Het contactformulier wordt verstuurd via
+            <h3 data-i18n="privacy.contactKop">If you get in touch</h3>
+            <p data-i18n="privacy.contact">
+                If you send me a message through the contact form, email me, call me or send me a message
+                on WhatsApp or Messenger, I only use your name, contact details, message and, if provided,
+                your company name to reply to you. I don't share them with anyone and delete them as soon as
+                they are no longer needed. The contact form is sent through
                 <a href="https://web3forms.com/privacy" target="_blank" rel="noopener noreferrer">Web3Forms</a>,
-                dat je bericht doorstuurt naar mijn mailbox.
-                WhatsApp en Messenger zijn diensten van Meta, met een eigen
-                <a href="https://www.facebook.com/privacy/policy/" target="_blank"
-                    rel="noopener noreferrer">privacybeleid</a>.
+                which forwards your message to my inbox. WhatsApp and Messenger are Meta services with their
+                own <a href="https://www.facebook.com/privacy/policy/" target="_blank"
+                    rel="noopener noreferrer">privacy policy</a>.
             </p>
 
-            <h3>Links naar andere sites</h3>
-            <p>
-                Links naar GitHub, LinkedIn, WhatsApp, Messenger en mijn projecten openen een andere
-                site. Daar geldt het privacybeleid van die site.
+            <h3 data-i18n="privacy.linksKop">Links to other sites</h3>
+            <p data-i18n="privacy.links">
+                Links to GitHub, LinkedIn, WhatsApp, Messenger and my projects open another site.
+                The privacy policy of that site applies there.
             </p>
 
-            <h3>Jouw rechten</h3>
-            <p>
-                Volgens de AVG (GDPR) mag je vragen welke gegevens ik van je heb, ze laten
-                verbeteren of laten verwijderen. Stuur me daarvoor een e-mail. Ben je niet
-                tevreden over mijn antwoord, dan kun je een klacht indienen bij de
-                <a href="https://www.gegevensbeschermingsautoriteit.be" target="_blank"
-                    rel="noopener noreferrer">Gegevensbeschermingsautoriteit</a>.
+            <h3 data-i18n="privacy.rechtenKop">Your rights</h3>
+            <p data-i18n="privacy.rechten">
+                Under the GDPR you may ask which data I hold about you, and have it corrected or
+                deleted. Just send me an email. If you are not satisfied with my answer, you can file a
+                complaint with the Belgian
+                <a href="https://www.dataprotectionauthority.be" target="_blank"
+                    rel="noopener noreferrer">Data Protection Authority</a>.
             </p>
         </div>
     </dialog>
@@ -1339,12 +1334,12 @@
                 <div>
                     <div class="section-head">
                         <span class="section-index" aria-hidden="true">06</span>
-                        <h2 class="section-title">Neem contact op</h2>
+                        <h2 class="section-title" data-i18n="contact.titel">Get in Touch</h2>
                     </div>
 
-                    <p class="footer-intro">
-                        Een vraag over een project of over mijn code op GitHub?
-                        Stuur me gerust een bericht of bel even, ik hoor graag van je.
+                    <p class="footer-intro" data-i18n="contact.intro">
+                        A question about a project or about my code on GitHub?
+                        Feel free to send me a message or give me a call. I'd love to hear from you.
                     </p>
 
                     <!-- Formulier via Web3Forms: de access key vervangt mijn mailadres, dat dus niet in de
@@ -1365,41 +1360,41 @@
                         <!-- Vanaf tablet per twee naast elkaar, zodat het formulier niet hoger wordt dan de kaart ernaast -->
                         <div class="contact-pair">
                             <div class="contact-row">
-                                <label for="contact-naam">Naam<span class="contact-required" aria-hidden="true">*</span></label>
+                                <label for="contact-naam"><span data-i18n="form.naam">Name</span><span class="contact-required" aria-hidden="true">*</span></label>
                                 <input id="contact-naam" name="naam" type="text" autocomplete="name" required
-                                    maxlength="100" placeholder="Naam">
+                                    maxlength="100" placeholder="Name" data-i18n-placeholder="form.naam">
                             </div>
 
                             <div class="contact-row">
-                                <label for="contact-bedrijf">Bedrijfsnaam</label>
+                                <label for="contact-bedrijf" data-i18n="form.bedrijf">Company name</label>
                                 <input id="contact-bedrijf" name="bedrijf" type="text" autocomplete="organization"
-                                    maxlength="100" placeholder="Bedrijfsnaam">
+                                    maxlength="100" placeholder="Company name" data-i18n-placeholder="form.bedrijf">
                             </div>
                         </div>
 
                         <div class="contact-pair">
                             <div class="contact-row">
-                                <label for="contact-email">E-mailadres<span class="contact-required" aria-hidden="true">*</span></label>
+                                <label for="contact-email"><span data-i18n="form.email">Email address</span><span class="contact-required" aria-hidden="true">*</span></label>
                                 <input id="contact-email" name="email" type="email" autocomplete="email" required
-                                    maxlength="200" placeholder="E-mailadres">
+                                    maxlength="200" placeholder="Email address" data-i18n-placeholder="form.email">
                             </div>
 
                             <div class="contact-row">
-                                <label for="contact-telefoon">Telefoonnummer<span class="contact-required" aria-hidden="true">*</span></label>
+                                <label for="contact-telefoon"><span data-i18n="form.telefoon">Phone number</span><span class="contact-required" aria-hidden="true">*</span></label>
                                 <input id="contact-telefoon" name="telefoon" type="tel" autocomplete="tel" required
-                                    maxlength="30" placeholder="Telefoonnummer">
+                                    maxlength="30" placeholder="Phone number" data-i18n-placeholder="form.telefoon">
                             </div>
                         </div>
 
                         <div class="contact-row">
-                            <label for="contact-bericht">Bericht<span class="contact-required" aria-hidden="true">*</span></label>
+                            <label for="contact-bericht"><span data-i18n="form.bericht">Message</span><span class="contact-required" aria-hidden="true">*</span></label>
                             <textarea id="contact-bericht" name="bericht" rows="5" required
-                                maxlength="5000" placeholder="Laat hier je boodschap achter"></textarea>
+                                maxlength="5000" placeholder="Leave your message here" data-i18n-placeholder="form.berichtPlaceholder"></textarea>
                         </div>
 
                         <button type="submit" class="btn footer-cta">
                             <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
-                            <span>Verstuur bericht</span>
+                            <span>Send message</span>
                         </button>
 
                         <p class="contact-status" id="contact-status" role="status" aria-live="polite"></p>
@@ -1410,8 +1405,9 @@
                 <div class="footer-details">
                     <!-- Kaart van Google Maps; style.css maakt ze donker in het donkere thema -->
                     <div class="footer-map">
-                        <iframe title="Balen op Google Maps"
-                            src="https://maps.google.com/maps?q=Balen,+Belgi%C3%AB&amp;z=12&amp;hl=nl&amp;output=embed"
+                        <iframe title="Balen on Google Maps" data-i18n-title="footer.kaartTitel"
+                            src="https://maps.google.com/maps?q=Balen,+Belgi%C3%AB&amp;z=12&amp;hl=en&amp;output=embed"
+                            data-i18n-src="footer.kaartSrc"
                             referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
                     </div>
 
@@ -1449,21 +1445,22 @@
 
             <p class="copyright">
                 &copy; <span id="copyright-year">2026</span> Wesley Bogaerts
-                <span aria-hidden="true">·</span> Alle rechten voorbehouden
+                <span aria-hidden="true">·</span> <span data-i18n="footer.rechten">All rights reserved</span>
                 <span aria-hidden="true">·</span>
                 <button type="button" class="privacy-open" aria-haspopup="dialog"
-                    aria-controls="privacy-modal">Privacybeleid</button>
+                    aria-controls="privacy-modal" data-i18n="privacy.titel">Privacy policy</button>
             </p>
 
             <!-- script.js vult de datum van de laatste publicatie in; dit is de terugval zonder JavaScript -->
             <p class="last-updated">
-                Laatst bijgewerkt op <time id="last-updated" datetime="2026-10-25">25 oktober 2026</time>
+                <span data-i18n="footer.bijgewerkt">Last updated on</span>
+                <time id="last-updated" datetime="2026-10-25">25 October 2026</time>
             </p>
         </div>
     </footer>
 
-    <button id="back-to-top" class="btn back-to-top" type="button" aria-label="Terug naar boven"
-        title="Terug naar boven" hidden>
+    <button id="back-to-top" class="btn back-to-top" type="button" aria-label="Back to top"
+        title="Back to top" data-i18n-aria-label="footer.naarBoven" data-i18n-title="footer.naarBoven" hidden>
         <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
     </button>
 </body>

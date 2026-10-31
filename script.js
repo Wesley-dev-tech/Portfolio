@@ -25,6 +25,112 @@ try {
 
 pasThemaToe(opgeslagenThema === "light" ? "light" : "dark");
 
+// Taal: Engels of Nederlands, los van het thema. De Engelse tekst staat gewoon in index.html;
+// lang/nl.js bevat per sleutel (data-i18n in de HTML) de Nederlandse versie. Teksten die
+// JavaScript zelf maakt, staan in lang/en.js en lang/nl.js.
+// Een eerder gekozen taal wint, anders altijd Engels (de taal van de browser telt niet mee).
+const vertalingen = { en: TAAL_EN, nl: TAAL_NL };
+let huidigeTaal = "en";
+
+try {
+    if (localStorage.getItem("taal") === "nl") {
+        huidigeTaal = "nl";
+    }
+} catch (fout) {
+    // Opslag geblokkeerd: dan gewoon Engels
+}
+
+document.documentElement.lang = huidigeTaal;
+
+// Nederlands gekozen: style.css verbergt de pagina tot ze vertaald is, zodat je nooit eerst Engels ziet
+if (huidigeTaal === "nl") {
+    document.documentElement.classList.add("taal-laden");
+}
+
+// Tekst die JavaScript zelf maakt, in de actieve taal; ontbreekt ze, dan de Engelse
+function t(sleutel) {
+    const tekst = vertalingen[huidigeTaal][sleutel];
+    return tekst !== undefined ? tekst : vertalingen.en[sleutel];
+}
+
+// Projecten bewaren hun teksten als { en: "...", nl: "..." }; gewone tekst blijft gewoon tekst
+function inTaal(waarde) {
+    if (typeof waarde === "object" && waarde !== null) {
+        return waarde[huidigeTaal] || waarde.en;
+    }
+
+    return waarde;
+}
+
+// Attributen die een eigen vertaling kunnen hebben, bv. data-i18n-alt="hero.avatarAlt"
+const vertaalbareAttributen = ["alt", "aria-label", "title", "placeholder", "content", "src"];
+
+// De Engelse tekst uit index.html per element, de eerste keer bewaard zodat je ook terug kan naar Engels
+const engelseTeksten = new Map();
+
+function vertaalPagina() {
+    function vertaling(sleutel, engels) {
+        const nederlands = TAAL_NL[sleutel];
+        return huidigeTaal === "nl" && nederlands !== undefined ? nederlands : engels;
+    }
+
+    function origineelVan(element) {
+        if (!engelseTeksten.has(element)) {
+            engelseTeksten.set(element, {});
+        }
+
+        return engelseTeksten.get(element);
+    }
+
+    document.querySelectorAll("[data-i18n]").forEach(function (element) {
+        const origineel = origineelVan(element);
+
+        if (origineel.tekst === undefined) {
+            origineel.tekst = element.innerHTML;
+        }
+
+        element.innerHTML = vertaling(element.dataset.i18n, origineel.tekst);
+    });
+
+    vertaalbareAttributen.forEach(function (attribuut) {
+        document.querySelectorAll("[data-i18n-" + attribuut + "]").forEach(function (element) {
+            const origineel = origineelVan(element);
+
+            if (origineel[attribuut] === undefined) {
+                origineel[attribuut] = element.getAttribute(attribuut);
+            }
+
+            const nieuw = vertaling(element.getAttribute("data-i18n-" + attribuut), origineel[attribuut]);
+
+            // Alleen aanpassen als het echt verandert, anders laadt bv. de kaart opnieuw
+            if (element.getAttribute(attribuut) !== nieuw) {
+                element.setAttribute(attribuut, nieuw);
+            }
+        });
+    });
+}
+
+// Wat er naast de vaste teksten nog mee moet bij een taalwissel (projecten, knoppen, datum...).
+// De onderdelen in DOMContentLoaded zetten hun eigen functie in deze lijst.
+const bijTaalwissel = [];
+
+function wisselTaal(taal) {
+    huidigeTaal = taal === "nl" ? "nl" : "en";
+    document.documentElement.lang = huidigeTaal;
+
+    // De keuze onthouden voor een volgend bezoek; lukt dat niet, dan geldt ze alleen nu
+    try {
+        localStorage.setItem("taal", huidigeTaal);
+    } catch (fout) {
+        // Opslag geblokkeerd, bv. in een privévenster
+    }
+
+    vertaalPagina();
+    bijTaalwissel.forEach(function (werkBij) {
+        werkBij();
+    });
+}
+
 // De rest werkt met de elementen op de pagina en wacht dus tot de HTML geladen is
 document.addEventListener("DOMContentLoaded", function () {
     // Bezoekers die minder beweging willen: geen scroll-animaties en direct springen
@@ -44,7 +150,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function zetMenu(open) {
         navigatie.classList.toggle("menu-is-open", open);
         menuKnop.setAttribute("aria-expanded", open);
-        menuKnop.setAttribute("aria-label", open ? "Menu sluiten" : "Menu openen");
+        menuKnop.setAttribute("aria-label", open ? t("menu.sluit") : t("menu.open"));
         menuIcoon.className = open ? "fa-solid fa-xmark" : "fa-solid fa-bars";
     }
 
@@ -74,6 +180,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+    bijTaalwissel.push(function () {
+        zetMenu(navigatie.classList.contains("menu-is-open"));
+    });
+
     // Menu sluiten met de Escape-toets
     document.addEventListener("keydown", function (event) {
         if (event.key === "Escape" && navigatie.classList.contains("menu-is-open")) {
@@ -91,8 +201,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         pasThemaToe(thema);
         themaKnop.setAttribute("aria-checked", licht);
-        themaKnop.title = (licht ? "Wissel naar het donkere thema" : "Wissel naar het lichte thema")
-            + " (sneltoets T)";
+        themaKnop.title = (licht ? t("thema.naarDonker") : t("thema.naarLicht")) + t("thema.sneltoets");
     }
 
     themaKnop.addEventListener("click", function () {
@@ -110,6 +219,32 @@ document.addEventListener("DOMContentLoaded", function () {
 
     zetThema(document.documentElement.dataset.theme);
 
+    // Een taalwissel verandert alleen de tooltip, nooit het thema zelf
+    bijTaalwissel.push(function () {
+        zetThema(document.documentElement.dataset.theme);
+    });
+
+    // Taalkeuze in de header. aria-pressed toont de actieve taal ook aan schermlezers;
+    // style.css maakt die vet en onderstreept, dus niet alleen met kleur.
+    const taalKnoppen = document.querySelectorAll(".lang-option");
+
+    function zetTaalknoppen() {
+        taalKnoppen.forEach(function (knop) {
+            knop.setAttribute("aria-pressed", knop.dataset.lang === huidigeTaal);
+        });
+    }
+
+    taalKnoppen.forEach(function (knop) {
+        knop.addEventListener("click", function () {
+            if (knop.dataset.lang !== huidigeTaal) {
+                wisselTaal(knop.dataset.lang);
+            }
+        });
+    });
+
+    zetTaalknoppen();
+    bijTaalwissel.push(zetTaalknoppen);
+
     // Sneltoets T wisselt het thema, behalve tijdens het typen in een veld
     // of samen met Ctrl, Alt of Cmd (zodat bv. Ctrl+T gewoon een nieuw tabblad opent)
     document.addEventListener("keydown", function (event) {
@@ -121,19 +256,25 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Begroeting in de intro volgens het uur van de bezoeker; zonder JavaScript blijft "Hallo"
+    // Begroeting in de intro volgens het uur van de bezoeker; zonder JavaScript blijft "Hi, I'm"
     const begroeting = document.querySelector(".hero-greeting");
-    const uur = new Date().getHours();
 
-    if (uur >= 5 && uur < 12) {
-        begroeting.textContent = "Goeiemorgen, ik ben";
-    } else if (uur >= 12 && uur < 18) {
-        begroeting.textContent = "Goeiemiddag, ik ben";
-    } else if (uur >= 18 && uur < 23) {
-        begroeting.textContent = "Goeienavond, ik ben";
-    } else {
-        begroeting.textContent = "Nog wakker? Ik ben";
+    function zetBegroeting() {
+        const uur = new Date().getHours();
+
+        if (uur >= 5 && uur < 12) {
+            begroeting.textContent = t("groet.ochtend");
+        } else if (uur >= 12 && uur < 18) {
+            begroeting.textContent = t("groet.middag");
+        } else if (uur >= 18 && uur < 23) {
+            begroeting.textContent = t("groet.avond");
+        } else {
+            begroeting.textContent = t("groet.nacht");
+        }
     }
+
+    zetBegroeting();
+    bijTaalwissel.push(zetBegroeting);
 
     // Actieve link in de navigatie
     const secties = document.querySelectorAll("main section[id], footer[id]");
@@ -183,18 +324,26 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
 
+        // Het label volgt de stand van de tekst, in de actieve taal
+        function zetLabel() {
+            label.textContent = tekst.classList.contains("is-open") ? t("leesMinder") : t("leesMeer");
+        }
+
         knop.addEventListener("click", function () {
             const open = tekst.classList.toggle("is-open");
 
             ingeklaptDoorBezoeker = !open;
             knop.setAttribute("aria-expanded", open);
-            label.textContent = open ? "Lees minder" : "Lees meer";
+            zetLabel();
 
             // De opleiding op desktop klapt zonder overgang in (style.css); dan meteen controleren
             if (ingeklaptDoorBezoeker && tekst.getAnimations().length === 0) {
                 brengKnopInBeeld();
             }
         });
+
+        zetLabel();
+        bijTaalwissel.push(zetLabel);
 
         tekst.addEventListener("transitionend", function (event) {
             if (event.propertyName === "grid-template-rows" && ingeklaptDoorBezoeker) {
@@ -228,63 +377,105 @@ document.addEventListener("DOMContentLoaded", function () {
     // Projecten, van oud naar nieuw. Een nieuw project zet je gewoon onderaan de lijst,
     // met een korte teaser voor de kaart en een screenshot in images/ voor het detailvenster.
     // Heeft een project ook een lichte versie, zet die dan in afbeeldingLicht (en demoLicht).
+    // Teksten in twee talen schrijf je als { en: "...", nl: "..." }; een naam die in beide
+    // talen gelijk is (zoals "Polestar 6"), mag gewoon tekst blijven.
     const projecten = [
         {
             titel: "Polestar 6",
-            teaser: "Een fictieve preorder voor een roadster cabrio met drone. Kopen kan niet, dromen wel.",
+            teaser: {
+                en: "A fictional pre-order for a roadster convertible with a drone. You can't buy it, but you can dream.",
+                nl: "Een fictieve preorder voor een roadster cabrio met drone. Kopen kan niet, dromen wel."
+            },
             icoon: "fa-car-side",
-            beschrijving: "Een fictieve preorderpagina voor de Polestar 6, en meteen mijn allereerste "
-                + "opleidingsproject. Hier leerden Flexbox en ik elkaar kennen. Een mobiele versie? "
-                + "Die staat nog in de backlog.",
+            beschrijving: {
+                en: "A fictional pre-order page for the Polestar 6, and my very first course project. "
+                    + "This is where Flexbox and I got to know each other. A mobile version? "
+                    + "That's still in the backlog.",
+                nl: "Een fictieve preorderpagina voor de Polestar 6, en meteen mijn allereerste "
+                    + "opleidingsproject. Hier leerden Flexbox en ik elkaar kennen. Een mobiele versie? "
+                    + "Die staat nog in de backlog."
+            },
             tags: ["HTML", "CSS", "Flexbox"],
             demo: "https://wesley-dev-tech.github.io/Polestar/",
             afbeelding: "images/polestar.webp",
             code: "https://github.com/Wesley-dev-tech/Polestar"
         },
         {
-            titel: "Halloween inschrijvingspagina",
-            teaser: "Een fictieve Halloweentocht op 31 oktober. Kies je tijdslot en vergeet je kostuum niet.",
+            titel: { en: "Halloween sign-up page", nl: "Halloween inschrijvingspagina" },
+            teaser: {
+                en: "A fictional Halloween walk on 31 October. Pick your time slot and don't forget your costume.",
+                nl: "Een fictieve Halloweentocht op 31 oktober. Kies je tijdslot en vergeet je kostuum niet."
+            },
             icoon: "fa-ghost",
-            beschrijving: "Een inschrijvingspagina voor een fictieve Halloweentocht, met tijdsloten tot "
-                + "middernacht. Het lettertype Creepster zorgt voor de rillingen. Bootstrap Grid houdt "
-                + "de spoken op hun plek, ook op je smartphone.",
+            beschrijving: {
+                en: "A sign-up page for a fictional Halloween walk, with time slots until midnight. "
+                    + "The Creepster typeface brings the chills. Bootstrap Grid keeps the ghosts in "
+                    + "their place, even on your smartphone.",
+                nl: "Een inschrijvingspagina voor een fictieve Halloweentocht, met tijdsloten tot "
+                    + "middernacht. Het lettertype Creepster zorgt voor de rillingen. Bootstrap Grid houdt "
+                    + "de spoken op hun plek, ook op je smartphone."
+            },
             tags: ["HTML", "CSS", "Bootstrap Grid"],
             demo: "https://wesley-dev-tech.github.io/Halloween/",
             afbeelding: "images/halloween.webp",
             code: "https://github.com/Wesley-dev-tech/Halloween"
         },
         {
-            titel: "Kruiswoordraadsel",
-            teaser: "Een fictief kruiswoordraadsel waarop je nooit vastloopt. Invullen kan namelijk niet.",
+            titel: { en: "Crossword puzzle", nl: "Kruiswoordraadsel" },
+            teaser: {
+                en: "A fictional crossword you'll never get stuck on. That's because you can't fill it in.",
+                nl: "Een fictief kruiswoordraadsel waarop je nooit vastloopt. Invullen kan namelijk niet."
+            },
             icoon: "fa-table-cells",
-            beschrijving: "Een fictief kruiswoordraadsel van 15 rijen, waarin elk vakje een kolom van "
-                + "Bootstrap Grid is. Het ziet eruit als een puzzel, maar werkt als een screenshot. "
-                + "Read-only, zeg maar.",
+            beschrijving: {
+                en: "A fictional crossword of 15 rows, in which every square is a Bootstrap Grid column. "
+                    + "It looks like a puzzle but works like a screenshot. Read-only, so to speak.",
+                nl: "Een fictief kruiswoordraadsel van 15 rijen, waarin elk vakje een kolom van "
+                    + "Bootstrap Grid is. Het ziet eruit als een puzzel, maar werkt als een screenshot. "
+                    + "Read-only, zeg maar."
+            },
             tags: ["HTML", "CSS", "Bootstrap Grid"],
             demo: "https://wesley-dev-tech.github.io/Crossword_puzzle/",
             afbeelding: "images/kruiswoordraadsel.webp",
             code: "https://github.com/Wesley-dev-tech/Crossword_puzzle"
         },
         {
-            titel: "Productpagina met Tailwind",
-            teaser: "Een fictieve productkaart voor AirPods Pro 3. Zo eerlijk dat ze zelfs de nadelen opsomt.",
+            titel: { en: "Product page with Tailwind", nl: "Productpagina met Tailwind" },
+            teaser: {
+                en: "A fictional product card for the AirPods Pro 3. So honest it even lists the downsides.",
+                nl: "Een fictieve productkaart voor AirPods Pro 3. Zo eerlijk dat ze zelfs de nadelen opsomt."
+            },
             icoon: "fa-headphones",
-            beschrijving: "Een fictieve productkaart voor de AirPods Pro 3, eerlijk tot en met de nadelen. "
-                + "De knop Koop nu heeft geen event listener, dus je portemonnee is veilig. De opmaak is "
-                + "een flinke stapel utility-classes van Tailwind.",
+            beschrijving: {
+                en: "A fictional product card for the AirPods Pro 3, honest right down to the downsides. "
+                    + "The Buy now button has no event listener, so your wallet is safe. The styling is "
+                    + "a hefty stack of Tailwind utility classes.",
+                nl: "Een fictieve productkaart voor de AirPods Pro 3, eerlijk tot en met de nadelen. "
+                    + "De knop Koop nu heeft geen event listener, dus je portemonnee is veilig. De opmaak is "
+                    + "een flinke stapel utility-classes van Tailwind."
+            },
             tags: ["HTML", "Tailwind", "Flexbox"],
             demo: "https://wesley-dev-tech.github.io/Tailwind_product_page/",
             afbeelding: "images/tailwind-productpagina.webp",
             code: "https://github.com/Wesley-dev-tech/Tailwind_product_page"
         },
         {
-            titel: "Geanimeerde browsermock-up",
-            teaser: "Een fictieve browser met een cursor die zijn eigen gang gaat. En dat zonder één regel JavaScript.",
+            titel: { en: "Animated browser mockup", nl: "Geanimeerde browsermock-up" },
+            teaser: {
+                en: "A fictional browser with a cursor that has a mind of its own. And not a single line of JavaScript.",
+                nl: "Een fictieve browser met een cursor die zijn eigen gang gaat. En dat zonder één regel JavaScript."
+            },
             icoon: "fa-window-maximize",
-            beschrijving: "Een fictief browservenster met een cursor die rondzweeft en een pagina die "
-                + "vanzelf scrolt. Nul regels JavaScript, alleen HTML en CSS die hun best doen. Vink "
-                + "Animatie afspelen uit en de cursor gaat in slaapstand. Vink Thema wisselen aan en "
-                + "het hele venster gaat mee.",
+            beschrijving: {
+                en: "A fictional browser window with a cursor that floats around and a page that "
+                    + "scrolls by itself. Zero lines of JavaScript, just HTML and CSS doing their best. "
+                    + "Untick Play animation and the cursor goes to sleep. Tick Switch theme and the "
+                    + "whole window follows along.",
+                nl: "Een fictief browservenster met een cursor die rondzweeft en een pagina die "
+                    + "vanzelf scrolt. Nul regels JavaScript, alleen HTML en CSS die hun best doen. Vink "
+                    + "Animatie afspelen uit en de cursor gaat in slaapstand. Vink Thema wisselen aan en "
+                    + "het hele venster gaat mee."
+            },
             tags: ["HTML", "CSS"],
             demo: "https://wesley-dev-tech.github.io/Animated_browser_mockup/?v=3",
             demoLicht: "https://wesley-dev-tech.github.io/Animated_browser_mockup/?v=3#licht",
@@ -294,45 +485,78 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         {
             titel: "Portfolio",
-            teaser: "Het enige project hier dat niet fictief is, want je zit er middenin. Klik op Bekijk details en kijk achter de schermen.",
+            teaser: {
+                en: "The only project here that isn't fictional, because you're right in the middle of it. "
+                    + "Click View details for a look behind the scenes.",
+                nl: "Het enige project hier dat niet fictief is, want je zit er middenin. Klik op Bekijk "
+                    + "details en kijk achter de schermen."
+            },
             icoon: "fa-laptop-code",
-            beschrijving: "Geen fictie deze keer, dit is mijn eigen portfolio, gebouwd met HTML, CSS, Bootstrap "
-                + "en JavaScript. Je zit er middenin, dus dit venster is eigenlijk ook een project. "
-                + "Werkt op mijn smartphone en desktop, en hopelijk ook op de jouwe.",
+            beschrijving: {
+                en: "No fiction this time: this is my own portfolio, built with HTML, CSS, Bootstrap and "
+                    + "JavaScript, in English and Dutch. You're right in the middle of it, so this window "
+                    + "is actually a project too. It works on my smartphone and desktop, and hopefully on yours too.",
+                nl: "Geen fictie deze keer, dit is mijn eigen portfolio, gebouwd met HTML, CSS, Bootstrap "
+                    + "en JavaScript, in het Engels en het Nederlands. Je zit er middenin, dus dit venster "
+                    + "is eigenlijk ook een project. Werkt op mijn smartphone en desktop, en hopelijk ook op de jouwe."
+            },
             tags: ["HTML", "CSS", "JavaScript", "Flexbox", "Bootstrap"],
             afbeelding: "images/portfolio-dark.webp",
             afbeeldingLicht: "images/portfolio-light.webp",
             code: "https://github.com/Wesley-dev-tech/Portfolio"
         },
         {
-            titel: "Vloermeesters tegelprijs calculator",
-            teaser: "Een fictief tegelbedrijf. Je offerte rolt er als PDF uit, alleen belt er nooit een tegelzetter aan.",
+            titel: { en: "Vloermeesters tile price calculator", nl: "Vloermeesters tegelprijs calculator" },
+            teaser: {
+                en: "A fictional tiling company. Your quote rolls out as a PDF, but no tiler will ever ring your doorbell.",
+                nl: "Een fictief tegelbedrijf. Je offerte rolt er als PDF uit, alleen belt er nooit een tegelzetter aan."
+            },
             icoon: "fa-calculator",
-            beschrijving: "Een rekentool voor Vloermeesters, een fictief tegelbedrijf. Geef de afmetingen "
-                + "van je ruimte in, kies een tegel en een voeg, en de richtprijs rolt eruit als PDF-offerte. "
-                + "Alleen de tegelzetter is nooit gedeployd.",
+            beschrijving: {
+                en: "A calculator for Vloermeesters, a fictional tiling company. Enter the dimensions of "
+                    + "your room, choose a tile and a grout, and the estimated price rolls out as a PDF "
+                    + "quote. Only the tiler was never deployed.",
+                nl: "Een rekentool voor Vloermeesters, een fictief tegelbedrijf. Geef de afmetingen "
+                    + "van je ruimte in, kies een tegel en een voeg, en de richtprijs rolt eruit als PDF-offerte. "
+                    + "Alleen de tegelzetter is nooit gedeployd."
+            },
             tags: ["HTML", "CSS", "JavaScript", "Bootstrap"],
             demo: "https://wesley-dev-tech.github.io/Flooring_price_calculator/",
             afbeelding: "images/vloermeesters.webp",
             code: "https://github.com/Wesley-dev-tech/Flooring_price_calculator"
         },
         {
-            titel: "Examen Griezelnacht",
-            teaser: "Een fictieve griezelnacht in Kasteel Ravenhoek, en mijn examen. De spoken waren mild: 96 op 100.",
+            titel: { en: "Exam: Griezelnacht", nl: "Examen Griezelnacht" },
+            teaser: {
+                en: "A fictional spooky night at Kasteel Ravenhoek, and my exam. The ghosts went easy on me: 96 out of 100.",
+                nl: "Een fictieve griezelnacht in Kasteel Ravenhoek, en mijn examen. De spoken waren mild: 96 op 100."
+            },
             icoon: "fa-graduation-cap",
-            beschrijving: "Mijn examen voor de module Fundamentals & tooling: een fictieve Griezelnacht in "
-                + "Kasteel Ravenhoek, nagebouwd vanaf een ontwerp met Bootstrap, Flexbox, CSS-variabelen en "
-                + "Google Fonts. De maan, het spookje, de pompoen en de vleermuizen zijn losse afbeeldingen "
-                + "die elk hun eigen plekje kregen. Onderaan hangt een subtiel mistje boven de grond.",
+            beschrijving: {
+                en: "My exam for the Fundamentals & tooling module: a fictional Griezelnacht (spooky night) "
+                    + "at Kasteel Ravenhoek, built from a design with Bootstrap, Flexbox, CSS variables and "
+                    + "Google Fonts. The moon, the little ghost, the pumpkin and the bats are separate images, "
+                    + "each with its own spot. At the bottom, a subtle mist hangs above the ground.",
+                nl: "Mijn examen voor de module Fundamentals & tooling: een fictieve Griezelnacht in "
+                    + "Kasteel Ravenhoek, nagebouwd vanaf een ontwerp met Bootstrap, Flexbox, CSS-variabelen en "
+                    + "Google Fonts. De maan, het spookje, de pompoen en de vleermuizen zijn losse afbeeldingen "
+                    + "die elk hun eigen plekje kregen. Onderaan hangt een subtiel mistje boven de grond."
+            },
             tags: ["HTML", "CSS", "Bootstrap", "Flexbox"],
             demo: "https://wesley-dev-tech.github.io/Examen_Griezelnacht/",
             afbeelding: "images/examen-ravenhoek.webp?v=2",
             code: "https://github.com/Wesley-dev-tech/Examen_Griezelnacht",
-            // Alleen bij een examen: de score en de feedback van mijn docent
+            // Alleen bij een examen: de score en de feedback van mijn docent (in het Engels vertaald)
             punten: "96 / 100",
-            feedback: "Wauw Wesley, echt een topexamen afgeleverd! Je website ziet er geweldig uit met die "
-                + "gelaagde illustraties van het kasteel, de vleermuizen en dat subtiele mist-effectje "
-                + "onderaan de hero! Nu nog de javascript klik vinden en dan ben je vertrokken! PROFICIAT"
+            feedback: {
+                en: "Wow Wesley, what a great exam! Your website looks amazing with those layered "
+                    + "illustrations of the castle, the bats and that subtle mist effect at the bottom of "
+                    + "the hero! Now all that's left is to master the JavaScript click and you're good to go! "
+                    + "CONGRATULATIONS",
+                nl: "Wauw Wesley, echt een topexamen afgeleverd! Je website ziet er geweldig uit met die "
+                    + "gelaagde illustraties van het kasteel, de vleermuizen en dat subtiele mist-effectje "
+                    + "onderaan de hero! Nu nog de javascript klik vinden en dan ben je vertrokken! PROFICIAT"
+            }
         },
     ];
 
@@ -355,6 +579,14 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    // Titel en teaser van een kaart in de actieve taal; ook opnieuw bij een taalwissel
+    function vulProjectteksten(kaart) {
+        const project = projecten[Number(kaart.dataset.order)];
+
+        kaart.querySelector(".project-open").textContent = inTaal(project.titel);
+        kaart.querySelector("p").textContent = inTaal(project.teaser);
+    }
+
     // Een kopie van het sjabloon invullen met de teaser van één project
     function maakProjectkaart(project, index) {
         const kaart = projectSjabloon.content.firstElementChild.cloneNode(true);
@@ -362,8 +594,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Hoe hoger het nummer, hoe nieuwer het project
         kaart.dataset.order = index;
         kaart.querySelector(".project-icon i").classList.add(project.icoon);
-        kaart.querySelector(".project-open").textContent = project.titel;
-        kaart.querySelector("p").textContent = project.teaser;
+        vulProjectteksten(kaart);
         vulTags(kaart, project);
 
         return kaart;
@@ -379,7 +610,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (sortering === "alphabetical") {
                 return eerste.querySelector("h3").textContent.localeCompare(
                     tweede.querySelector("h3").textContent,
-                    "nl"
+                    huidigeTaal
                 );
             }
 
@@ -406,6 +637,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     projectSortering.addEventListener("change", werkProjectenBij);
     werkProjectenBij();
+
+    // Bij een taalwissel de teksten vervangen. Alfabetisch kan de volgorde veranderen
+    // (bv. Crossword puzzle tegenover Kruiswoordraadsel); dan opnieuw sorteren.
+    bijTaalwissel.push(function () {
+        projectKaarten.forEach(vulProjectteksten);
+
+        if (projectSortering.value === "alphabetical") {
+            werkProjectenBij();
+        }
+    });
 
     vorigeProjectpaginaKnop.addEventListener("click", function () {
         toonProjectpagina(huidigeProjectpagina - 1);
@@ -466,10 +707,12 @@ document.addEventListener("DOMContentLoaded", function () {
         artikelIndelingen.forEach(maakPosterEvenHoog);
     }
 
-    // Opnieuw meten zodra het lettertype geladen is en bij een andere schermbreedte
+    // Opnieuw meten zodra het lettertype geladen is, bij een andere schermbreedte
+    // en bij een taalwissel (de teksten worden dan langer of korter)
     document.fonts.ready.then(maakAlleKaartenEvenHoog);
     window.addEventListener("resize", maakAlleKaartenEvenHoog);
     maakAlleKaartenEvenHoog();
+    bijTaalwissel.push(maakAlleKaartenEvenHoog);
 
     // Vensters (projectdetail en privacybeleid): openen, sluiten en de focus terugzetten
     let vensterOpener = null;
@@ -518,29 +761,32 @@ document.addEventListener("DOMContentLoaded", function () {
         openVenster(document.querySelector("#privacy-modal"), privacyKnop);
     });
 
-    // Link naar het contactformulier: eerst het venster sluiten, daarna springt de link naar de footer
-    document.querySelectorAll(".privacy-close").forEach(function (link) {
-        link.addEventListener("click", function () {
+    // Links in het privacybeleid. Eén listener op het venster zelf, want bij een taalwissel
+    // vervangt vertaalPagina de tekst (en dus de links) door nieuwe.
+    document.querySelector("#privacy-modal").addEventListener("click", function (gebeurtenis) {
+        const link = gebeurtenis.target.closest(".privacy-close, .privacy-jump");
+
+        if (!link) {
+            return;
+        }
+
+        // Link naar het contactformulier: eerst het venster sluiten, daarna springt de link naar de footer
+        if (link.classList.contains("privacy-close")) {
             link.closest("dialog").close();
-        });
-    });
+            return;
+        }
 
-    // Links binnen het privacybeleid scrollen in het venster zelf naar het juiste stukje,
-    // zonder het adres in de adresbalk te veranderen
-    document.querySelectorAll(".privacy-jump").forEach(function (link) {
-        link.addEventListener("click", function (gebeurtenis) {
-            const doel = document.querySelector(link.getAttribute("href"));
+        // Links binnen het privacybeleid scrollen in het venster zelf naar het juiste stukje,
+        // zonder het adres in de adresbalk te veranderen
+        const doel = document.querySelector(link.getAttribute("href"));
 
-            if (!doel) {
-                return;
-            }
-
+        if (doel) {
             gebeurtenis.preventDefault();
             doel.scrollIntoView({
                 behavior: scrollGedrag(),
                 block: "start"
             });
-        });
+        }
     });
 
     // Detailvenster van een project
@@ -551,8 +797,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const project = projecten[Number(kaart.dataset.order)];
 
         projectModal.querySelector(".project-icon i").className = "fa-solid " + project.icoon;
-        projectModal.querySelector("#project-modal-title").textContent = project.titel;
-        projectModal.querySelector(".project-modal-description").textContent = project.beschrijving;
+        projectModal.querySelector("#project-modal-title").textContent = inTaal(project.titel);
+        projectModal.querySelector(".project-modal-description").textContent = inTaal(project.beschrijving);
         // Screenshot en demo in het thema dat nu actief is, als het project er een lichte versie van heeft
         const lichtThema = document.documentElement.dataset.theme === "light";
 
@@ -561,7 +807,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         projectModalAfbeelding.src = inThema(project.afbeelding, project.afbeeldingLicht);
-        projectModalAfbeelding.alt = "Screenshot van " + project.titel;
+        projectModalAfbeelding.alt = t("project.screenshot") + inTaal(project.titel);
         vulTags(projectModal, project);
 
         // Zonder live demo geen knop die nergens naartoe gaat
@@ -583,7 +829,7 @@ document.addEventListener("DOMContentLoaded", function () {
         beoordeling.hidden = !project.punten;
         if (project.punten) {
             beoordeling.querySelector(".project-modal-score").textContent = project.punten;
-            beoordeling.querySelector("blockquote").textContent = project.feedback;
+            beoordeling.querySelector("blockquote").textContent = inTaal(project.feedback);
         }
 
         openVenster(projectModal, kaart.querySelector(".project-open"));
@@ -665,8 +911,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const bijgewerkt = document.querySelector("#last-updated");
     const publicatieDatum = new Date(document.lastModified);
 
-    if (!isNaN(publicatieDatum)) {
-        bijgewerkt.textContent = publicatieDatum.toLocaleDateString("nl-BE", {
+    // In de datumnotatie van de actieve taal (31 October 2026 of 31 oktober 2026)
+    function zetPublicatieDatum() {
+        if (isNaN(publicatieDatum)) {
+            return;
+        }
+
+        bijgewerkt.textContent = publicatieDatum.toLocaleDateString(t("datum.locale"), {
             day: "numeric",
             month: "long",
             year: "numeric"
@@ -674,12 +925,15 @@ document.addEventListener("DOMContentLoaded", function () {
         bijgewerkt.setAttribute("datetime", publicatieDatum.toISOString().slice(0, 10));
     }
 
+    zetPublicatieDatum();
+    bijTaalwissel.push(zetPublicatieDatum);
+
     // Afdrukken met Ctrl+P: style.css toont op papier alleen het cv (zoals de pdf's in cv/).
     // De titel wordt de voorgestelde bestandsnaam bij "Opslaan als pdf".
     const paginaTitel = document.title;
 
     window.addEventListener("beforeprint", function () {
-        document.title = "Cv Wesley Bogaerts";
+        document.title = t("pdf.bestand") + " Wesley Bogaerts";
     });
 
     window.addEventListener("afterprint", function () {
@@ -710,20 +964,44 @@ document.addEventListener("DOMContentLoaded", function () {
 
     berichtVeld.addEventListener("input", pasBerichtHoogteAan);
 
-    function toonContactStatus(tekst, gelukt) {
-        contactStatus.textContent = tekst;
+    // De melding onthoudt haar sleutel, zodat ze bij een taalwissel mee vertaald wordt
+    let contactStatusSleutel = "";
+    let bezigMetVersturen = false;
+
+    function toonContactStatus(sleutel, gelukt) {
+        contactStatusSleutel = sleutel;
+        contactStatus.textContent = sleutel ? t(sleutel) : "";
         contactStatus.classList.toggle("is-ok", gelukt);
         contactStatus.classList.toggle("is-fout", !gelukt);
     }
+
+    const verstuurKnopTekst = contactFormulier.querySelector('button[type="submit"] span');
+
+    bijTaalwissel.push(function () {
+        verstuurKnopTekst.textContent = bezigMetVersturen ? t("form.bezig") : t("form.verstuur");
+        contactStatus.textContent = contactStatusSleutel ? t(contactStatusSleutel) : "";
+    });
+
+    // Eigen foutmeldingen bij lege of foute velden, in de taal van de pagina in plaats van
+    // die van de browser. Bij het typen weer wissen, anders blijft het veld ongeldig.
+    contactFormulier.querySelectorAll("[required]").forEach(function (veld) {
+        veld.addEventListener("invalid", function () {
+            veld.setCustomValidity(veld.validity.typeMismatch ? t("form.ongeldigEmail") : t("form.verplicht"));
+        });
+
+        veld.addEventListener("input", function () {
+            veld.setCustomValidity("");
+        });
+    });
 
     contactFormulier.addEventListener("submit", async function (gebeurtenis) {
         gebeurtenis.preventDefault();
 
         const verstuurKnop = contactFormulier.querySelector('button[type="submit"]');
-        const knopTekst = verstuurKnop.querySelector("span");
 
         verstuurKnop.disabled = true;
-        knopTekst.textContent = "Bezig met versturen…";
+        bezigMetVersturen = true;
+        verstuurKnopTekst.textContent = t("form.bezig");
         toonContactStatus("", true);
 
         // Na 20 seconden zonder antwoord breken we af, zodat de knop nooit blijft hangen
@@ -748,13 +1026,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
             contactFormulier.reset();
             pasBerichtHoogteAan();
-            toonContactStatus("Bedankt! Je bericht is verstuurd, ik antwoord zo snel mogelijk.", true);
+            toonContactStatus("form.gelukt", true);
         } catch (fout) {
-            toonContactStatus("Versturen lukte niet. Probeer het opnieuw of bel me even.", false);
+            toonContactStatus("form.mislukt", false);
         } finally {
             clearTimeout(wachtTimer);
             verstuurKnop.disabled = false;
-            knopTekst.textContent = "Verstuur bericht";
+            bezigMetVersturen = false;
+            verstuurKnopTekst.textContent = t("form.verstuur");
         }
     });
+
+    // Alle vaste teksten in de gekozen taal zetten (ook die van de projectkaarten, die nu bestaan)
+    // en de pagina weer tonen; style.css verborg ze zolang er Nederlands moest komen
+    vertaalPagina();
+    document.documentElement.classList.remove("taal-laden");
+
+    // Bij Nederlands alles wat JavaScript zelf instelt ook één keer bijwerken (bv. het label van
+    // de menuknop) en de kaarten opnieuw meten, want er staat nu andere tekst
+    if (huidigeTaal !== "en") {
+        bijTaalwissel.forEach(function (werkBij) {
+            werkBij();
+        });
+    }
 });
